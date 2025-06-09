@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://domia.ai
+
+# Sitemaps
+Sitemap: https://domia.ai/sitemap.xml
