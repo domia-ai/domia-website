@@ -391,7 +391,7 @@ export const contactFaqs = [
 	},
 	{
 		q: "🤝 Can I collaborate with Domia?",
-		a: "Absolutely. Whether you're a developer, artist, researcher, or futurist — we’d love to hear from you. DOmia is built to grow with the community.",
+		a: "Absolutely. Whether you're a developer, artist, researcher, or futurist — we’d love to hear from you. Domia is built to grow with the community.",
 	},
 	{
 		q: "🌍 Do I need a smart home to use Domia?",

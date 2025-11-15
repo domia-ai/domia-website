@@ -2,6 +2,7 @@
 
 import { ContactFormType, ContactFormResponseType } from "@/types"
 import { contactFormSchema } from "@/schemas"
+import { emailClient, getContactFormMailOptions } from "@/utils/email"
 
 export async function submitContactForm(
 	data: ContactFormType,
@@ -17,10 +18,7 @@ export async function submitContactForm(
 			}
 		}
 
-		// const { name, email, subject, message } = result.data
-
-		// TODO: Add your email sending logic here
-		// For example: await sendEmail(result.data)
+		await emailClient.sendMail(getContactFormMailOptions(result.data))
 
 		return {
 			success: true,

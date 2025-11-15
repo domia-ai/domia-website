@@ -1,1 +1,1 @@
-yarn pre-commit-lint
+npm run pre-commit-lint

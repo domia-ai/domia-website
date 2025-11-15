@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://domia.ai</loc><lastmod>2025-06-18T22:03:17.725Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://domia.ai/nft</loc><lastmod>2025-06-18T22:03:17.726Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://domia.ai/about</loc><lastmod>2025-06-18T22:03:17.726Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://domia.ai/experience</loc><lastmod>2025-06-18T22:03:17.726Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://domia.ai/contact</loc><lastmod>2025-06-18T22:03:17.726Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://domia.ai/cases</loc><lastmod>2025-06-18T22:03:17.726Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://domia.ai/marketplace</loc><lastmod>2025-06-18T22:03:17.726Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://domia.ai/community</loc><lastmod>2025-06-18T22:03:17.726Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://domia.ai/technology</loc><lastmod>2025-06-18T22:03:17.726Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://domia.ai/cases</loc><lastmod>2025-11-15T21:57:03.058Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://domia.ai/experience</loc><lastmod>2025-11-15T21:57:03.058Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://domia.ai/marketplace</loc><lastmod>2025-11-15T21:57:03.058Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://domia.ai/technology</loc><lastmod>2025-11-15T21:57:03.058Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://domia.ai</loc><lastmod>2025-11-15T21:57:03.058Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://domia.ai/about</loc><lastmod>2025-11-15T21:57:03.058Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://domia.ai/community</loc><lastmod>2025-11-15T21:57:03.058Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://domia.ai/nft</loc><lastmod>2025-11-15T21:57:03.058Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://domia.ai/contact</loc><lastmod>2025-11-15T21:57:03.058Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>
