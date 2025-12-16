@@ -94,7 +94,7 @@ export const zOptionalNullable = <T extends z.ZodTypeAny>(schema: T) =>
 export const zEnum = <T extends [string, ...string[]]>(values: T) =>
 	z.enum(values)
 export const zEnumRequired = <T extends [string, ...string[]]>(values: T) =>
-	z.enum(values, { required_error: "This field is required" })
+	z.enum(values, { message: "This field is required" })
 
 // UUID schema
 export const zUuid = z.string().uuid("Invalid UUID")

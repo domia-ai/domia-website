@@ -1,25 +1,27 @@
-import { dirname } from "path"
-import { fileURLToPath } from "url"
-import { FlatCompat } from "@eslint/eslintrc"
-import prettierConfig, { rules } from "eslint-config-prettier"
-import prettierPlugin from "eslint-plugin-prettier/recommended"
+import { defineConfig, globalIgnores } from "eslint/config"
+import nextVitals from "eslint-config-next/core-web-vitals"
+import nextTs from "eslint-config-next/typescript"
+import prettier from "eslint-config-prettier/flat"
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-
-const compat = new FlatCompat({
-	baseDirectory: __dirname,
-})
-
-const eslintConfig = [
-	...compat.extends("next/core-web-vitals", "next/typescript", "prettier"),
-	prettierConfig,
-	prettierPlugin,
+const eslintConfig = defineConfig([
+	...nextVitals,
+	...nextTs,
+	prettier,
+	// Override default ignores of eslint-config-next.
+	globalIgnores([
+		// Default ignores of eslint-config-next:
+		".next/**",
+		"out/**",
+		"build/**",
+		"next-env.d.ts",
+		".lintstagedrc.js",
+		"src/api/generated/**",
+	]),
 	{
 		rules: {
-			"react/no-children-prop": 0,
+			"react/no-children-prop": "off",
 		},
 	},
-]
+])
 
 export default eslintConfig
