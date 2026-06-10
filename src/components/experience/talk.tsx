@@ -5,14 +5,15 @@ export function Talk() {
 	return (
 		<Card>
 			<CardHeader>
-				<TypographyH2>📱 Talk to Your Domia from Anywhere</TypographyH2>
+				<TypographyH2>💬 Chat with any Domia, from any screen</TypographyH2>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
 				<TypographyLarge>
-					Whether you’re at home, in traffic, or abroad — your Domia is always
-					just a message or voice note away. You can ask questions, send
-					emotional prompts, or just say good morning. It remembers. It
-					responds. It grows with you.
+					Send text or a voice note to any Domia in your fleet from the
+					Console’s chat tester. The reply comes back live — voice through its
+					own TTS, text alongside. Every exchange is a real interaction stored
+					in your local archive, so you can replay it later, grade it, or run it
+					again with a different model to compare.
 				</TypographyLarge>
 			</CardContent>
 		</Card>

@@ -13,8 +13,8 @@ export function Profession() {
 					ready-to-live personalities. With a single install, your Domia can
 					become a calm yoga instructor, a witty AirBnB host, a lobby concierge,
 					or even a full-time teacher for your kids. Each template includes a
-					tuned emotional core, suggested voice, and QLoRA module tailored to
-					its role — ready to serve with depth and purpose.
+					tuned emotional core, suggested voice, and persona tailored to its
+					role — ready to serve with depth and purpose.
 				</TypographyLarge>
 			</CardContent>
 		</Card>

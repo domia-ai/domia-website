@@ -7,14 +7,15 @@ export function Smart() {
 	return (
 		<Card>
 			<CardHeader>
-				<TypographyH2>🏠 Smart Home Assistant</TypographyH2>
+				<TypographyH2>🏠 A Companion for the Home</TypographyH2>
 			</CardHeader>
 			<CardContent className="flex flex-col-reverse items-center gap-8 lg:flex-row lg:items-start">
 				<TypographyLarge>
 					Domia was born as a privacy-first alternative to cloud assistants. It
-					controls your smart devices, senses your routines, and reacts
-					emotionally to your presence. From morning greetings to nighttime
-					routines — all fully offline, with a human touch.
+					talks with you, senses your routines, and reacts emotionally to your
+					presence — from morning greetings to nighttime wind-downs, all fully
+					offline with a human touch. Controlling your smart devices through
+					local skills (Home Assistant, MCP) is on the roadmap.
 				</TypographyLarge>
 
 				<Image

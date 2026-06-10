@@ -44,41 +44,36 @@ export function Flow() {
 
 				<div className="flex flex-col items-center gap-4">
 					<Step
-						title="Step 1 - You Speak"
-						description="You speak naturally to Domia. Audio is captured 100% locally through an onboard mic array — ensuring privacy and zero cloud reliance."
+						title="Step 1 — You Speak"
+						description="You speak naturally to Domia. Audio is captured 100% locally — wake word and voice-activity detection run on-device, so nothing leaves your space."
 					/>
 
 					<Divider />
 
 					<Step
-						title="Step 2 - STT + Intent Detection"
-						description="Speech is transcribed using a local Whisper or Vosk model. Domia then classifies your intent into either a smart action or an open conversation using embedded intent parsing."
+						title="Step 2 — On-device Speech-to-Text"
+						description="Your speech is transcribed locally with a streaming on-device model. No audio is ever sent to the cloud."
 					/>
 
 					<Divider />
 
-					<div className="grid w-full max-w-4xl grid-cols-1 gap-4 md:grid-cols-2">
-						<Step
-							title="Step 3a - If Action"
-							description="The intent triggers Home Assistant integration. Domia communicates locally via MQTT or API to control lights, sensors, switches, and more — instantly and offline."
-						/>
-						<Step
-							title="Step 3b - If Conversation"
-							description="Domia activates its cognitive stack: Emotion Engine, Narrative Memory, Character Profile, and Context modules. RAG (Retrieval-Augmented Generation) is used to construct a dynamic prompt."
-						/>
-					</div>
-
-					<Divider />
-
 					<Step
-						title="Step 4 - Local Q-LoRA Inference"
-						description="The enriched prompt is passed into a fine-tuned, quantized Q-LoRA model in GGUF format. This enables fast, context-aware inference fully on-device."
+						title="Step 3 — Local LLM, with personality & skills"
+						description="Domia builds a prompt from its character, emotion, and memory, then runs a local language model in the personality of the room you're talking to — a small, fast model on a small device, a larger one on a capable hub. Soon it will also call skills through MCP — looking things up or acting in your space (e.g. Home Assistant)."
 					/>
+
 					<Divider />
 
 					<Step
-						title="Step 5 - TTS Response"
-						description="The model’s response is spoken using a local TTS engine — emotionally tuned, latency-free, and adapted to your relationship with Domia."
+						title="Step 4 — Streaming Text-to-Speech"
+						description="The reply is spoken with an on-device TTS voice. Domia synthesizes sentence by sentence as the model writes, so it starts talking back with low latency."
+					/>
+
+					<Divider />
+
+					<Step
+						title="Step 5 — One mind, many rooms"
+						description="A thin device can borrow compute from a stronger Domia hub over your local network — yet still answers in its own voice and identity. Skills like Home Assistant control are on the roadmap."
 					/>
 				</div>
 

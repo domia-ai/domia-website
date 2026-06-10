@@ -11,11 +11,13 @@ import {
 	Name,
 	Future,
 } from "@/components/about"
+import { CtaBand } from "@/components/common/cta-band"
 
 export const metadata: Metadata = {
-	title: "Domia | About",
+	title: "About — Local-First Voice AI",
 	description:
-		"Discover the mission, vision, and people behind Domia — the local AI that lives, learns, and evolves with you.",
+		"The mission, vision, and people behind Domia — a private, local voice AI companion that lives, learns, and evolves with you, on your own hardware.",
+	alternates: { canonical: "/about" },
 }
 
 export default function About() {
@@ -30,6 +32,7 @@ export default function About() {
 			<Join />
 			<Manifesto />
 			<Future />
+			<CtaBand />
 		</div>
 	)
 }

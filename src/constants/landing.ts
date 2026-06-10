@@ -4,7 +4,7 @@ import {
 	XIcon,
 	DiscordIcon,
 	EmailIcon,
-} from "@/components/landing"
+} from "@/components/landing/icons"
 import { CollectionItemType } from "@/types"
 
 export const routes = [
@@ -26,15 +26,10 @@ export const routes = [
 			"Browse and install emotional skills and personality modules for Domia.",
 	},
 	{
-		href: "/nft",
-		label: "🎨 NFT",
-		description:
-			"Explore our unique Founders NFT collection with real-world perks.",
-	},
-	{
 		href: "/experience",
-		label: "📱 Experience",
-		description: "Discover how to interact with Domia via mobile and web apps.",
+		label: "🎛️ Console",
+		description:
+			"See your fleet, replay conversations with audio, tune latency, and grade interactions — all on your own network.",
 	},
 	{
 		href: "/cases",
@@ -84,66 +79,141 @@ export const socialMediaLinks = [
 	},
 ]
 
+export const personasShowcase = [
+	{
+		image: "/collection/chef.webp",
+		name: "The Chef",
+		blurb:
+			"Knows your kitchen. Asks how the bread turned out. Likes routine and small wins.",
+	},
+	{
+		image: "/collection/teacher.webp",
+		name: "The Teacher",
+		blurb: "Patient and curious. Never tired of a good follow-up question.",
+	},
+	{
+		image: "/collection/musician.webp",
+		name: "The Musician",
+		blurb:
+			"Speaks in cadence. Picks up rhythms in how you talk and suggests music for the moment.",
+	},
+	{
+		image: "/collection/doctor.webp",
+		name: "The Doctor",
+		blurb: "Calm under pressure. Reads tone first, answers second.",
+	},
+	{
+		image: "/collection/investigator.webp",
+		name: "The Investigator",
+		blurb:
+			"Asks one more question than you expected. Notices what others miss.",
+	},
+	{
+		image: "/collection/gamer.webp",
+		name: "The Gamer",
+		blurb: "Up for late nights, fast banter, and remembers your stats.",
+	},
+	{
+		image: "/collection/astronaut.webp",
+		name: "The Explorer",
+		blurb: "Wonders at things you’ve stopped noticing. Reads aloud well.",
+	},
+	{
+		image: "/collection/architect.webp",
+		name: "The Architect",
+		blurb:
+			"Thinks in spaces. Helps you decide where things go and how they connect.",
+	},
+]
+
+export const consoleCapabilities = [
+	{
+		name: "🗺️ Your Whole Fleet, One View",
+		description:
+			"See every Domia across your space at a glance — which room each one is in, whether it’s online, and its persona, voice, engines, and current mood, live.",
+	},
+	{
+		name: "💬 Chat With Any Domia",
+		description:
+			"Write or send a voice note to any Domia from the dashboard — the same mind behind the voice in your rooms. A quick way to feel out a persona before anyone ever hears it.",
+	},
+	{
+		name: "🎧 Replay With Audio",
+		description:
+			"Every conversation is a full record — the audio in, the audio out, the transcript. Scrub the waveform, hear what was said, see exactly where time went.",
+	},
+	{
+		name: "⏱️ Tune With Real Numbers",
+		description:
+			"TTFA, STT, LLM, and TTS latency per interaction, rolled up per device. Decide which model goes where based on numbers, not vibes.",
+	},
+	{
+		name: "📝 Grade And Export",
+		description:
+			"Mark interactions good or needs-work, write corrections, tag them. Export NDJSON for fine-tuning your local model — your dialogues become your dataset.",
+	},
+	{
+		name: "🛡️ Private, On Your Network",
+		description:
+			"The Console runs on your own hardware alongside your Domias. Nothing about your space leaves the building — managing many rooms stays as private as a single one.",
+	},
+]
+
 export const features = [
 	{
-		name: "🧠 Local LLM Intelligence.",
+		name: "🗣️ Local Speech-to-Speech (S2S).",
 		description:
-			"Domia uses Q-LoRA-tuned models and RAG-based memory retrieval to deliver fast, contextual, and emotional responses — all offline and device-local.",
+			"Talk to Domia naturally. Wake word, speech-to-text, the language model, and text-to-speech all run on your own hardware — it starts replying with low latency, and no audio ever touches the cloud.",
 	},
 	{
-		name: "🧬 Multi-Layered Cognitive Engine.",
+		name: "🏠 A Personality Per Room.",
 		description:
-			"From emotions to personality, profession, and motivation — Domia’s mind is built from multiple modular layers. Fully editable or dynamically evolving over time.",
+			"Each room or device can have its own character, voice, emotion, and memory. Your kitchen and your bedroom can feel like genuinely different companions.",
 	},
 	{
-		name: "🔒 100% Local, Secure & Ethical.",
+		name: "🧠 Many Rooms, One Mind.",
 		description:
-			"All processing happens on-device or within your local network. No data leaves your home. Fully private, ethically designed, and under your control.",
+			"Any capable Domia can serve several rooms at once — others borrow its compute over your local network, yet each still answers in its own identity and voice. Roles aren’t fixed; which device does what is just configuration.",
 	},
 	{
-		name: "🕸️ Collective Intelligence.",
+		name: "🔒 100% Local, Private by Design.",
 		description:
-			"Multiple Domia’s in the same home collaborate, share awareness, and learn from each other — forming a resilient and adaptive home ecosystem.",
+			"All processing happens on-device or within your local network. Your conversations, emotions, and memories stay where they belong: with you.",
 	},
 	{
-		name: "🗣️ Natural Voice Interaction.",
+		name: "🕸️ A Private Mesh.",
 		description:
-			"Talk to Domia like a friend. It listens, understands, and responds using natural speech and emotional nuance — all offline.",
+			"Multiple Domias discover each other on your network and delegate work peer-to-peer — a resilient ecosystem with no central cloud and no single point of failure.",
 	},
 	{
-		name: "🧩 Smart Device Control.",
+		name: "📖 Memory & Emotion.",
 		description:
-			"Control lights, sensors, and more — locally and privately — using Home Assistant’s powerful integration layer.",
+			"Domia remembers recent conversations and the facts that matter, and carries an evolving emotional state that colors how it understands and responds to you.",
 	},
 	{
-		name: "📖 Narrative Memory & Context.",
+		name: "🎛️ Tuned to Your Hardware.",
 		description:
-			"Domia remembers. It builds stories from your interactions, forming a persistent, narrative context that influences how it understands and behaves.",
+			"Domia runs the model that best fits each device — a small, fast model on a low-power node, a larger one on a capable hub. Sensible defaults adapt across the spectrum, and every model is swappable. No lock-in to any single model.",
 	},
 	{
-		name: "🛠️ Built in Public & Community-Driven.",
+		name: "🧩 Yours to Shape — and Extend.",
 		description:
-			"Domia is built in public — improved by real users, guided by an active community, and shared with radical transparency. We don’t just invite feedback — we co-create with our users. From the roadmap to real features, your ideas help shape what Domia becomes.",
+			"Voice, personality, emotion, memory, and behavior are all configuration you can change live, with no restart. Extend the context to make a Domia as specific as you need — a persona, knowledge, and rules tailored to your space.",
 	},
 	{
-		name: "♾️ Unified AI, IoT & Blockchain.",
+		name: "🏗️ Runs On Your Hardware.",
 		description:
-			"From voice interaction to hardware automation to NFT-based ownership and personalization, everything works together — privately and offline.",
+			"From a small edge device in each room to a capable machine acting as the hub — Domia adapts to the hardware you already have. The same code, just configured.",
 	},
 	{
-		name: "🏗️ Adaptable Infrastructure.",
+		name: "🛠️ Built in Public & Source-Available.",
 		description:
-			"Domia runs on scalable infrastructure — from tiny edge devices like Orange Pi and Raspberry Pi, to powerful home cores running multiple agents.",
+			"Domia is built in public and source-available — improved by real users, guided by an active community, and shared with radical transparency. Your ideas help shape what it becomes.",
 	},
 	{
-		name: "🌐 Remote Access, Fully Private.",
+		name: "🧩 Skills via MCP (Roadmap).",
 		description:
-			"With our premium mobile app, you can talk to your Domia from anywhere in the world — without compromising your data.",
-	},
-	{
-		name: "🚪 No Vendor Lock-In.",
-		description:
-			"Domia is built on open standards and modular architecture. Even its integration with Home Assistant is fully local and replaceable — no walled gardens, no cloud platforms, and no vendor lock-in.",
+			"Next, Domia learns to act: tool-calling through the Model Context Protocol (MCP) and a local Home Assistant bridge to control lights, scenes, and devices — built the same way as everything else: local-first, replaceable, no vendor lock-in.",
 	},
 ]
 
@@ -175,121 +245,54 @@ export const collection: CollectionItemType[] = [
 
 export const holdersBenefits = [
 	{
-		title: "👑 Lifetime Premium Access",
-		description: "to all features without monthly fees.",
+		title: "🚀 Early Access",
+		description:
+			"be among the first to run new features and shape the roadmap.",
 	},
 	{
-		title: "🎨 Unlock Unique Skins",
-		description: "to visually personalize your Domia.",
-	},
-	{
-		title: "🚀 Early Feature Access",
-		description: "to test and shape the roadmap.",
-	},
-	{
-		title: "📡 Priority Device Connectivity",
-		description: "to physical hubs and nodes.",
-	},
-	{
-		title: "🛠️ Advanced Settings Panel",
-		description: "with extended configuration tools.",
-	},
-	{
-		title: "💬 VIP Community Access",
-		description: "for private collaboration & alpha testing.",
-	},
-	{
-		title: "💰 Resale With Royalties",
-		description: "keep earning if your Domia is traded.",
-	},
-	{
-		title: "🌍 Become an Ambassador",
-		description: "and represent Domia globally.",
-	},
-	{
-		title: "🧠 DAO Participation",
-		description: "to help steer future development.",
-	},
-	{
-		title: "🏷️ Holder Discounts",
-		description: "on enterprise plans, upgrades & merch.",
-	},
-	{
-		title: "🎁 Referral Bonuses",
-		description: "when new users join through your invite.",
-	},
-	{
-		title: "🎫 Priority Access",
-		description: "to claim future Domia hardware kits.",
+		title: "💬 Founder Community",
+		description: "a private space to collaborate directly with the team.",
 	},
 	{
 		title: "🏆 Founder Badge",
-		description: "with your name listed on the Hall of Early Supporters.",
+		description: "your name listed in the Hall of Early Supporters.",
+	},
+	{
+		title: "💡 Propose & Vote on Features",
+		description: "help decide what we build next.",
 	},
 	{
 		title: "🔐 Exclusive Betas",
-		description: "of experimental features and future layers.",
+		description: "try experimental features before anyone else.",
 	},
 	{
-		title: "🌌 Domia Ecosystem Discounts",
+		title: "🎙️ Voice & Persona Customization",
+		description: "shape a unique voice and character for your Domia.",
+	},
+	{
+		title: "🧑‍💻 Priority Support",
+		description: "direct help with setup, integration, and troubleshooting.",
+	},
+	{
+		title: "🏷️ Supporter Discounts",
+		description: "on future plans, hardware kits, and add-ons.",
+	},
+	{
+		title: "📦 First Look at Hardware",
+		description: "early access to room-node and hub hardware as it ships.",
+	},
+	{
+		title: "🌍 Become an Ambassador",
+		description: "represent Domia in your community.",
+	},
+	{
+		title: "🛸 Domia Labs",
+		description: "play with prototypes and tools not yet public.",
+	},
+	{
+		title: "🧬 Influence How Domia Grows",
 		description:
-			"on upcoming Domia-related products, services and spin-off projects. Be part of the revolution.",
-	},
-	{
-		title: "📦 Limited Edition Hardware Drops",
-		description: "receive special-edition Domia devices before anyone else.",
-	},
-	{
-		title: "🧬 Influence AI Personality Evolution",
-		description:
-			"your feedback helps shape the emotional intelligence of future Domia’s.",
-	},
-	{
-		title: "🎙️ Voice Model Customization",
-		description: "upload or train a unique voice for your personal Domia.",
-	},
-	{
-		title: "🏡 Domia for Commercial Use",
-		description:
-			"commercial license to use Domia in hotels, offices or rentals.",
-	},
-	{
-		title: "📘 Appear in the Lore",
-		description:
-			"your Domia gets a story, history and maybe even appears in official media.",
-	},
-	{
-		title: "💡 Request a Feature",
-		description: "holders can propose and vote on new functionalities.",
-	},
-	{
-		title: "🛸 Access to Domia Labs",
-		description:
-			"play with prototypes, tools and experimental AIs not yet public.",
-	},
-	{
-		title: "🔄 NFT Fusion & Upgrade",
-		description:
-			"combine NFTs to create rare, evolved Domia’s with boosted traits.",
-	},
-	{
-		title: "🎮 Domia World Access",
-		description:
-			"early entry to a future simulation or gamified universe of Domia’s.",
-	},
-	{
-		title: "📊 Analytics Dashboard",
-		description: "track how your Domia behaves, evolves and interacts.",
-	},
-	{
-		title: "🧑‍💻 Personalized Support",
-		description:
-			"direct assistance from the Domia team for setup, integration, and troubleshooting.",
-	},
-	{
-		title: "🧬 Free Base Skill",
-		description:
-			"From the future marketplace matching your main NFT’s personality",
+			"your feedback shapes the emotional intelligence of future Domias.",
 	},
 ]
 
@@ -307,7 +310,7 @@ export const futureSteps = [
 	{
 		title: "🧩 Skill Marketplace",
 		description:
-			"Add new capabilities, professions, and emotional traits with QLoRA-powered plugins.",
+			"Add new capabilities, professions, and emotional traits with installable persona and skill modules.",
 	},
 	{
 		title: "📲 Mobile & Web Sync",
@@ -325,9 +328,9 @@ export const futureSteps = [
 			"From hosting Airbnb guests to guiding hotel visitors, Domia is learning new roles in real-world environments.",
 	},
 	{
-		title: "🎨 Founders NFT Collection",
+		title: "🎟️ Founder Pass",
 		description:
-			"We’re launching a limited collection of Domia NFTs. More than art, each NFT is a key to early access, exclusive skins, future rewards, and community influence.",
+			"An optional early-supporter pass — a portable identity profile that unlocks early access and a say in the roadmap. A way to support the project; never required to use Domia.",
 	},
 	{
 		title: "🧠💡 Creative Mode",
@@ -403,7 +406,7 @@ export const contactFaqs = [
 	},
 	{
 		q: "💌 Can I get early access?",
-		a: "Yes! Early access is granted to NFT holders and selected community members. Reach out and tell us why you want to be part of the future.",
+		a: "Yes! Early access goes to founder-pass supporters and selected community members. Reach out and tell us why you want to be part of the future.",
 	},
 ]
 

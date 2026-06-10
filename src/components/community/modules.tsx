@@ -9,8 +9,8 @@ export function Modules() {
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
 				<TypographyLarge>
-					Domia actively features and promotes the best community-created QLoRA
-					modules, voice packs, and identity seeds. Your work could power
+					Domia actively features and promotes the best community-created
+					personas, voice packs, and identity seeds. Your work could power
 					hundreds of Domia’s across the world — with attribution and optional
 					revenue sharing.
 				</TypographyLarge>

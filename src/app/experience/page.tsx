@@ -2,36 +2,41 @@ import type { Metadata } from "next"
 
 import {
 	Hero,
-	Talk,
-	Feels,
-	Configuration,
 	Devices,
+	Talk,
+	AudioReplay,
+	Latency,
+	Grading,
+	RunAgain,
+	Archive,
+	Configuration,
 	Private,
-	Customize,
-	Nft,
-	Memory,
-	Trainer,
+	Personas,
+	WhatsNext,
 } from "@/components/experience"
 
 export const metadata: Metadata = {
-	title: "Domia | Experience",
+	title: "The Domia Console — manage your local voice AI fleet",
 	description:
-		"Explore the Domia mobile and web apps — control your smart home, talk with your AI companion, and experience local AI with emotion in real-time.",
+		"The Console is the local web app you run alongside your Domias. See every device, replay any conversation with audio, tune latency, grade interactions, and export your dialogues for fine-tuning — all on your own network.",
+	alternates: { canonical: "/experience" },
 }
 
 export default function Experience() {
 	return (
 		<div className="flex flex-col gap-10">
 			<Hero />
-			<Talk />
-			<Feels />
-			<Configuration />
 			<Devices />
+			<Talk />
+			<AudioReplay />
+			<Latency />
+			<Grading />
+			<RunAgain />
+			<Archive />
+			<Configuration />
 			<Private />
-			<Customize />
-			<Nft />
-			<Memory />
-			<Trainer />
+			<Personas />
+			<WhatsNext />
 		</div>
 	)
 }

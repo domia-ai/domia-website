@@ -9,11 +9,12 @@ export function About() {
 			</CardHeader>
 			<CardContent>
 				<TypographyLarge>
-					Domia combines emotional intelligence, real-world awareness, and
-					unique personality to become a true companion. It understands your
-					voice, responds with empathy, controls your smart home, and evolves
-					through shared experiences — all without sending your data to the
-					cloud.
+					Domia combines a unique personality, emotion, and memory to become a
+					true companion. It understands your voice, responds with empathy,
+					remembers what matters to you, and evolves through shared experiences
+					— all running on your own hardware, without sending your data to the
+					cloud. (Acting in the world — controlling devices through local skills
+					— is on the roadmap.)
 				</TypographyLarge>
 			</CardContent>
 		</Card>

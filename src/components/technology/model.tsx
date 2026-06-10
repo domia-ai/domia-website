@@ -9,16 +9,14 @@ export function Model() {
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
 				<TypographyLarge>
-					Domia understands, converses, and reflects — all without needing to
-					ask a server. Thanks to integrated support for Ollama, every Domia can
-					run a local language model directly on your device. From small, fast
-					models optimized for low-memory chips, to advanced QLoRA-tuned models
-					running on NUCs and GPUs — Domia adapts to what you give it.
-					Everything from conversation to emotional interpretation to internal
-					decision-making is powered by local language understanding. This keeps
-					your data private, your latency low, and your Domia truly yours. You
-					can even swap models, fine-tune them, or use multiple ones per node —
-					giving each Domia its own voice, tone, and expertise.
+					Domia understands, converses, and reflects — all without asking a
+					server. Every Domia runs a local language model right on your device.
+					From small, fast models for low-memory devices to larger models on a
+					capable machine, Domia adapts to the hardware you give it — the model
+					is just config, swappable per node, never locked in. Everything from
+					conversation to emotional interpretation to internal decision-making
+					is powered by local language understanding. That keeps your data
+					private, your latency low, and your Domia truly yours.
 				</TypographyLarge>
 			</CardContent>
 		</Card>

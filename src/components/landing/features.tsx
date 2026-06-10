@@ -15,8 +15,8 @@ export function Features() {
 			<CardContent className="flex flex-col gap-8">
 				<TypographyLarge>
 					Discover what makes Domia truly one-of-a-kind. Each feature is
-					designed to bring your smart home to life with intelligence, emotion,
-					and autonomy — all running privately and locally.
+					designed to bring your space to life with intelligence, emotion, and
+					autonomy — all running privately and locally.
 				</TypographyLarge>
 
 				<dl className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">

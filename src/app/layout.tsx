@@ -15,25 +15,37 @@ const outfitSans = Outfit({
 })
 
 export const metadata: Metadata = {
-	title: "Domia | The Local AI That Lives With You",
+	title: {
+		default:
+			"Domia — Private Local Voice AI for Homes, Hotels & Intelligent Spaces",
+		template: "%s | Domia",
+	},
 	description:
-		"Domia is a fully local AI assistant with emotions, memory, and unique personality. Control your smart home, evolve with time, and stay 100% private.",
+		"Domia is a private, local voice AI: on-device speech-to-speech with a personality, voice, and memory per room. Multi-room smart hub, no cloud audio. Runs on Raspberry Pi to Mac mini.",
 	keywords: [
+		"local voice AI",
+		"local speech-to-speech AI",
+		"private voice assistant",
+		"offline AI assistant",
+		"multi-room voice assistant",
+		"on-device LLM",
+		"AI concierge for hotels",
+		"private AI for hotels",
+		"Home Assistant voice AI",
+		"Raspberry Pi AI assistant",
+		"local AI companion",
 		"Domia",
-		"local AI",
-		"AI assistant",
-		"smart home",
-		"emotion engine",
-		"privacy AI",
-		"offline AI",
-		"home automation",
 	],
 	creator: "Domia Team",
 	metadataBase: new URL("https://domia.ai"),
+	alternates: {
+		canonical: "/",
+	},
 	openGraph: {
-		title: "Domia | The Local AI That Lives With You",
+		title:
+			"Domia — Private Local Voice AI for Homes, Hotels & Intelligent Spaces",
 		description:
-			"The AI assistant with emotions and full offline control. Built for privacy. Made for you.",
+			"On-device speech-to-speech voice AI with a personality and voice per room. One private smart hub, many rooms, no cloud audio.",
 		url: "https://domia.ai",
 		siteName: "Domia",
 		images: [
@@ -41,7 +53,7 @@ export const metadata: Metadata = {
 				url: "/og-image.png",
 				width: 1200,
 				height: 630,
-				alt: "Domia - Your Local AI Assistant",
+				alt: "Domia — Private local voice AI for homes, hotels, and intelligent spaces",
 			},
 		],
 		locale: "en_US",
@@ -49,9 +61,9 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Domia | The Local AI That Lives With You",
+		title: "Domia — Private Local Voice AI for Homes, Hotels & Spaces",
 		description:
-			"Offline AI assistant with emotion engine and smart home control.",
+			"On-device speech-to-speech voice AI. A personality and voice per room. One private hub, no cloud audio.",
 		site: "@domia_ai",
 		creator: "@domia_ai",
 		images: ["/og-image.png"],
@@ -67,6 +79,41 @@ export const metadata: Metadata = {
 	},
 }
 
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "Organization",
+			"@id": "https://domia.ai/#organization",
+			name: "Domia",
+			url: "https://domia.ai",
+			logo: "https://domia.ai/og-image.png",
+			sameAs: ["https://x.com/domia_ai", "https://github.com/domia-ai"],
+		},
+		{
+			"@type": "WebSite",
+			"@id": "https://domia.ai/#website",
+			name: "Domia",
+			url: "https://domia.ai",
+			description:
+				"Private, local voice AI for homes, hotels, and intelligent spaces — on-device speech-to-speech, a personality per room, no cloud audio.",
+			publisher: { "@id": "https://domia.ai/#organization" },
+			inLanguage: "en",
+		},
+		{
+			"@type": "SoftwareApplication",
+			name: "Domia",
+			applicationCategory: "BusinessApplication",
+			operatingSystem: "macOS, Linux, Raspberry Pi OS",
+			description:
+				"Private, local voice AI: on-device speech-to-speech with a personality, voice, and memory per room. Multi-room smart hub, no cloud audio.",
+			url: "https://domia.ai",
+			publisher: { "@id": "https://domia.ai/#organization" },
+			offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+		},
+	],
+}
+
 export default function RootLayout({
 	children,
 }: Readonly<{
@@ -74,6 +121,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
+			<head>
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+				/>
+			</head>
 			<body className={`${outfitSans.className} antialiased`}>
 				<SpeedInsights />
 				<Analytics />

@@ -11,8 +11,8 @@ export function Why() {
 				<TypographyLarge>
 					In a world of voice assistants that obey — Domia chooses to care.
 					Built with local AI, emotional intelligence, and true memory, it’s
-					more than a smart home system. It’s a growing presence that adapts,
-					reflects, and belongs in your world.
+					more than a voice assistant. It’s a growing presence that adapts,
+					reflects, and belongs in your space.
 				</TypographyLarge>
 			</CardContent>
 		</Card>

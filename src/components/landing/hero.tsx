@@ -1,20 +1,47 @@
 import Image from "next/image"
+import Link from "next/link"
 
-import { TypographyH1, TypographyXLarge } from "@/components/ui/typography"
+import { Button } from "@/components/ui/button"
+import { GithubIcon } from "@/components/landing/icons"
+import {
+	TypographyH1,
+	TypographyLarge,
+	TypographyXLarge,
+} from "@/components/ui/typography"
 
 export function Hero() {
 	return (
 		<div className="flex flex-col-reverse lg:flex-row">
 			<div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
+				<TypographyLarge className="text-primary font-semibold tracking-wide uppercase">
+					The Local AI That Lives With You
+				</TypographyLarge>
+
 				<TypographyH1 className="leading-tight">
-					Domia — The Local AI That Lives With You
+					Private local voice AI for homes, hotels, and intelligent spaces
 				</TypographyH1>
 
 				<TypographyXLarge className="max-w-md">
-					Domia is not just an assistant. It’s a living AI that understands your
-					emotions, acts with purpose, and evolves with you — all running 100%
-					locally.
+					Domia is a network of local voice companions. Each room — each space —
+					can have its own personality, voice, memory, and role, all running
+					privately on your own hardware. No cloud.
 				</TypographyXLarge>
+
+				<div className="flex flex-wrap items-center justify-center gap-3">
+					<Button asChild size="lg">
+						<a
+							href="https://github.com/domia-ai"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<GithubIcon className="mr-2 size-4" />
+							Explore on GitHub
+						</a>
+					</Button>
+					<Button asChild size="lg" variant="outline">
+						<Link href="/technology">See how it works</Link>
+					</Button>
+				</div>
 			</div>
 
 			<div className="flex flex-1 items-center justify-center">
@@ -22,7 +49,7 @@ export function Hero() {
 					<div className="animate-halo absolute inset-0 z-0 rounded-full bg-radial-[at_50%_75%] from-sky-200 via-blue-400 to-indigo-900 to-90% blur-2xl" />
 					<Image
 						src="/domia.webp"
-						alt="Domia logo"
+						alt="Domia — private local voice AI running on your own hardware"
 						width={500}
 						height={500}
 						priority

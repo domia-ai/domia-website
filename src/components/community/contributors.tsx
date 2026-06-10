@@ -10,9 +10,9 @@ export function Contributors() {
 			<CardContent className="flex flex-col gap-8">
 				<TypographyLarge>
 					Developers, researchers, writers, designers and tinkerers are all
-					welcome. Whether you’re building QLoRA modules, designing
-					personalities, creating tools, or improving the core — Domia is open
-					by design. Every contribution matters and is credited.
+					welcome. Whether you’re building personas and skills, designing
+					voices, creating tools, or improving the core — Domia is open by
+					design. Every contribution matters and is credited.
 				</TypographyLarge>
 			</CardContent>
 		</Card>

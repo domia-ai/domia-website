@@ -22,7 +22,7 @@ export function Hero() {
 					<div className="animate-halo absolute inset-0 z-0 rounded-full bg-radial-[at_50%_75%] from-sky-200 via-blue-400 to-indigo-900 to-90% blur-2xl" />
 					<Image
 						src="/cases.webp"
-						alt="Domia cases logo"
+						alt="Domia local voice AI use cases for homes, hotels and businesses"
 						width={500}
 						height={500}
 						priority

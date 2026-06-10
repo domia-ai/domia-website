@@ -1,5 +1,31 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/components/ui/table"
 import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
+
+const TIERS = [
+	{
+		device: "Any small device",
+		role: "Room node",
+		runs: "Mic, wake word, voice-activity detection, playback — delegates the heavy stages to a hub",
+	},
+	{
+		device: "A capable machine",
+		role: "Hub",
+		runs: "Full on-device speech-to-speech pipeline; serves several rooms in parallel",
+	},
+	{
+		device: "A powerful machine",
+		role: "Hub +",
+		runs: "Larger models, deeper memory, richer real-time emotion",
+	},
+]
 
 export function Hardware() {
 	return (
@@ -9,16 +35,33 @@ export function Hardware() {
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
 				<TypographyLarge>
-					Domia is engineered to run on minimal local hardware — whether it’s a
-					Raspberry Pi, an Orange Pi, or even a small ESP32 module. Each Domia
-					node becomes part of a decentralized ecosystem, capable of sensing,
-					speaking, and evolving alongside you — all without the cloud. But give
-					Domia Central more power — a NUC, a mini PC, or even a server — and it
-					becomes something else entirely. With increased resources, Domia
-					unlocks larger language models, deeper memory, collective
-					consciousness, and real-time emotional simulation. Built to be
-					efficient. Ready to grow.
+					Domia runs across a wide hardware spectrum. The role isn’t hardcoded —
+					what each device does is just configuration, so the same code fits the
+					hardware you already have.
 				</TypographyLarge>
+
+				<Table>
+					<TableHeader>
+						<TableRow>
+							<TableHead>Device</TableHead>
+							<TableHead>Role</TableHead>
+							<TableHead>What it runs locally</TableHead>
+						</TableRow>
+					</TableHeader>
+					<TableBody>
+						{TIERS.map((tier) => (
+							<TableRow key={tier.device}>
+								<TableCell className="font-medium">{tier.device}</TableCell>
+								<TableCell className="text-primary font-semibold">
+									{tier.role}
+								</TableCell>
+								<TableCell className="text-muted-foreground">
+									{tier.runs}
+								</TableCell>
+							</TableRow>
+						))}
+					</TableBody>
+				</Table>
 			</CardContent>
 		</Card>
 	)

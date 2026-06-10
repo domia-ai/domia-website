@@ -9,13 +9,13 @@ export function Stt() {
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
 				<TypographyLarge>
-					Domia begins by listening — but not just for words. Using offline
-					voice recognition engines like Whisper or Vosk, each Domia node can
-					transcribe your voice into text without sending anything to the cloud.
-					It detects your tone, rhythm, and even ambient noise to build context.
-					No internet. No latency. No leaks. With multi-language support and
-					local wake-word detection, Domia is always attentive, never invasive —
-					ready to respond when you need it, and silent when you don’t.
+					Domia begins by listening — but not just for words. Using streaming
+					on-device speech recognition, each Domia node transcribes your voice
+					into text without sending anything to the cloud. No cloud audio. Low
+					latency. No leaks. The speech model is swappable and sized to the
+					device. With local wake-word and voice-activity detection, Domia is
+					always attentive, never invasive — ready to respond when you need it,
+					and silent when you don’t.
 				</TypographyLarge>
 			</CardContent>
 		</Card>

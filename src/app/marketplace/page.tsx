@@ -3,6 +3,8 @@ import type { Metadata } from "next"
 import {
 	Hero,
 	Find,
+	Importable,
+	Skills,
 	Module,
 	Evolve,
 	Adopted,
@@ -16,9 +18,10 @@ import {
 } from "@/components/marketplace"
 
 export const metadata: Metadata = {
-	title: "Domia | Marketplace",
+	title: "Persona & Voice Marketplace",
 	description:
-		"Discover voice packs, memory seeds, cultural plugins, and more to personalize and expand your Domia experience.",
+		"Personas, voices, skills, and importable Domia minds (persona + memory as JSON) for your local voice AI — ready to drop in and try.",
+	alternates: { canonical: "/marketplace" },
 }
 
 export default function Marketplace() {
@@ -26,6 +29,8 @@ export default function Marketplace() {
 		<div className="flex flex-col gap-10">
 			<Hero />
 			<Find />
+			<Importable />
+			<Skills />
 			<Module />
 			<Evolve />
 			<Adopted />

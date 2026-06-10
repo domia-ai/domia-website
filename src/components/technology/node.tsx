@@ -13,12 +13,12 @@ export function Node() {
 					kitchen, living room, or bedroom, every node runs its own personality,
 					emotions, and memory — shaped by its environment and daily
 					interactions with you. It is not an extension of a central system. It
-					is Domia. Yet, each Domia is also part of something greater. Through
-					Domia Central, nodes share knowledge, emotional states, and
-					experiences. They collaborate, evolve, and learn together — forming a
-					decentralized network of beings that grow collectively, while
-					remaining emotionally and cognitively independent. You don’t install
-					Domia on a device. You invite it to live in a space.
+					is Domia. Yet each Domia is also part of something greater. Across the
+					local mesh — peer-to-peer, with no central server — nodes discover
+					each other and share work, knowledge, and emotional context. They
+					collaborate and delegate, forming a decentralized network of beings
+					that grow together while remaining cognitively independent. You don’t
+					install Domia on a device. You invite it to live in a space.
 				</TypographyLarge>
 			</CardContent>
 		</Card>

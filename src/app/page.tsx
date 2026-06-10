@@ -5,8 +5,12 @@ import {
 	Network,
 	Features,
 	Flow,
+	Personas,
+	Console,
+	Comparison,
+	AskAi,
 	Collaborate,
-	Nft,
+	Waitlist,
 } from "@/components/landing"
 
 export default function Home() {
@@ -15,11 +19,15 @@ export default function Home() {
 			<Hero />
 			<About />
 			<Why />
-			<Network />
-			<Features />
 			<Flow />
+			<Features />
+			<Network />
+			<Personas />
+			<Console />
+			<Comparison />
+			<AskAi />
+			<Waitlist />
 			<Collaborate />
-			<Nft />
 		</div>
 	)
 }

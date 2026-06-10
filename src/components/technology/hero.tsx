@@ -11,10 +11,11 @@ export function Hero() {
 				</TypographyH1>
 
 				<TypographyXLarge className="max-w-md">
-					Domia runs fully on local hardware — no cloud, no latency, no data
-					leaks. From emotional cognition to QLoRA plugins, every interaction is
-					processed on your device. Discover the tech stack that makes Domia not
-					just smarter, but yours.
+					Domia runs fully on local hardware — no cloud audio, low-latency
+					responses, and your data never leaves your space. From speech to
+					emotion to memory, every interaction is processed on your own devices.
+					Discover the architecture that makes Domia not just smarter, but
+					yours.
 				</TypographyXLarge>
 			</div>
 
@@ -23,7 +24,7 @@ export function Hero() {
 					<div className="animate-halo absolute inset-0 z-0 rounded-full bg-radial-[at_50%_75%] from-sky-200 via-blue-400 to-indigo-900 to-90% blur-2xl" />
 					<Image
 						src="/technology.webp"
-						alt="Domia technology logo"
+						alt="Domia local voice AI architecture — room nodes and a hub"
 						width={500}
 						height={500}
 						priority

@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { GithubIcon } from "@/components/landing/icons"
 import { routes } from "@/constants"
 
 export function Navbar() {
@@ -62,6 +63,21 @@ export function Navbar() {
 						</Link>
 					))}
 				</nav>
+
+				{/* Desktop GitHub CTA */}
+				<div className="hidden flex-1 items-center justify-end md:flex">
+					<Button asChild size="sm" variant="outline">
+						<a
+							href="https://github.com/domia-ai"
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label="Domia on GitHub"
+						>
+							<GithubIcon className="mr-2 size-4" />
+							GitHub
+						</a>
+					</Button>
+				</div>
 
 				{/* Mobile navigation button */}
 				<div className="flex flex-1 items-center justify-end md:hidden">

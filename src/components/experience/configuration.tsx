@@ -5,14 +5,16 @@ export function Configuration() {
 	return (
 		<Card>
 			<CardHeader>
-				<TypographyH2>🧰 Full Configuration Panel</TypographyH2>
+				<TypographyH2>🧠 See every Domia’s mind</TypographyH2>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
 				<TypographyLarge>
-					Want your Domia to be more empathetic? More assertive? Prefer a new
-					voice or memory style? The Experience App lets you adjust emotional
-					parameters, voice packs, behaviors and even schedule quiet time — all
-					in one place.
+					Click into any Domia and the Console shows you what’s inside: persona
+					profile, the engines it’s running, its live Plutchik-8 mood snapshot,
+					its runtime capabilities, the MCP skills it’s wired into, and its
+					recent interactions side-by-side with the raw config it’s operating
+					from. Today this view is read-first; richer in-place editing of
+					persona and mood is on the roadmap as the Console matures.
 				</TypographyLarge>
 			</CardContent>
 		</Card>

@@ -5,23 +5,19 @@ export function App() {
 	return (
 		<Card>
 			<CardHeader>
-				<TypographyH2>
-					📱 The Domia App — One Interface, Infinite Minds
-				</TypographyH2>
+				<TypographyH2>🎛️ The Domia Console</TypographyH2>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
 				<TypographyLarge>
-					You don’t need an app to use Domia. But when you open it — something
-					magical happens. The Domia App (available on web and mobile) gives you
-					a real-time window into your entire ecosystem. You can visualize what
-					each Domia is feeling, customize their roles and personalities, and
-					observe how they evolve over time. But it’s more than a control panel.
-					Through the app, you can **talk to your Domia** — by text or voice —
-					as if you were speaking to someone who’s still at home, watching over
-					things, waiting for your return. It’s a way to stay emotionally
-					connected, even when you’re physically apart. Whether you’re managing
-					modules or just asking how their day’s been, the Domia App brings your
-					digital companions closer — without compromising their autonomy.
+					You don’t need the Console to use Domia — every device runs its voice
+					pipeline on its own. The Console is the web app you run alongside your
+					fleet to see what each Domia is doing: replay any conversation with
+					full audio, watch per-stage latency, grade interactions to build a
+					fine-tuning corpus, and rerun any past interaction against a different
+					model. A small collector daemon discovers Domias over MQTT and mirrors
+					traces and audio into a local SQLite + WAV archive, so your history
+					stays intact even if a device drops. Web today; a mobile companion is
+					on the roadmap.
 				</TypographyLarge>
 			</CardContent>
 		</Card>

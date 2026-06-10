@@ -9,18 +9,24 @@ export function Stack() {
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
 				<TypographyLarge>
-					Domia is powered by a modular, local-first architecture built entirely
-					with TypeScript and designed for extensibility. Each node runs
-					independently using lightweight Docker containers, with core features
-					— like emotional state, memory, personality, and motivation — managed
-					by plug-and-play cognitive modules. Domia Central coordinates
-					communication using MQTT, enabling low-latency, secure synchronization
-					across nodes. On-device inference is powered by Ollama for local LLMs,
-					with support for Whisper or Vosk for STT, and Piper for TTS — all
-					running offline. Domia’s full backend is built on Node.js, optimized
-					for embedded systems but scalable to NUCs and GPUs. Every layer, from
-					emotion engine to profession modules, is hackable, composable, and
-					fully transparent.
+					Domia is a modular, local-first architecture written entirely in
+					TypeScript on Node.js. Speech inference runs in-process and the
+					language model runs locally — but the models themselves are a choice,
+					not a lock-in. Speech-to-text, text-to-speech, and the language model
+					are all swappable, so you can fit a small, fast model to a low-power
+					device or a larger one to a capable machine. Each Domia keeps its
+					config and state in a local database, so engines, voices,
+					personalities, and behavior are all data you can change live — no
+					restart, no hardcoded roles.
+				</TypographyLarge>
+				<TypographyLarge>
+					Domias talk to each other peer-to-peer over gRPC streaming, discover
+					each other with MQTT, and delegate work by capability: a thin room
+					node can hand its speech-to-text, LLM, and text-to-speech to a
+					stronger hub, which serves several rooms in parallel through
+					child-process inference pools. The same backend scales from a
+					Raspberry Pi room node to a Mac mini or NUC hub — every layer
+					hackable, composable, and transparent.
 				</TypographyLarge>
 			</CardContent>
 		</Card>
