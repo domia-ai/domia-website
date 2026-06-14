@@ -16,24 +16,31 @@ const outfitSans = Outfit({
 
 export const metadata: Metadata = {
 	title: {
-		default:
-			"Domia — Private Local Voice AI for Homes, Hotels & Intelligent Spaces",
+		default: "Domia — Private local voice AI: a network of personalities",
 		template: "%s | Domia",
 	},
 	description:
-		"Domia is a private, local voice AI: on-device speech-to-speech with a personality, voice, and memory per room. Multi-room smart hub, no cloud audio. Runs on Raspberry Pi to Mac mini.",
+		"Domia is a private, open-source network of local voice AIs that share compute and run fully on your hardware. A personality, voice, and memory per device. Delegated inference, no cloud audio. Adapts to your hardware — better hardware, better experience.",
 	keywords: [
 		"local voice AI",
+		"open source voice AI",
+		"open source Alexa alternative",
 		"local speech-to-speech AI",
 		"private voice assistant",
 		"offline AI assistant",
-		"multi-room voice assistant",
 		"on-device LLM",
-		"AI concierge for hotels",
-		"private AI for hotels",
-		"Home Assistant voice AI",
-		"Raspberry Pi AI assistant",
+		"self-hosted voice AI",
+		"networked voice AI",
+		"multi-room voice AI",
+		"AI mesh",
+		"voice AI delegation",
 		"local AI companion",
+		"voice AI personality",
+		"Home Assistant voice AI",
+		"MCP voice assistant",
+		"TypeScript voice AI",
+		"sherpa-onnx",
+		"Ollama voice assistant",
 		"Domia",
 	],
 	creator: "Domia Team",
@@ -42,10 +49,9 @@ export const metadata: Metadata = {
 		canonical: "/",
 	},
 	openGraph: {
-		title:
-			"Domia — Private Local Voice AI for Homes, Hotels & Intelligent Spaces",
+		title: "Domia — Private local voice AI: a network of personalities",
 		description:
-			"On-device speech-to-speech voice AI with a personality and voice per room. One private smart hub, many rooms, no cloud audio.",
+			"A networked voice AI built around delegated compute and a personality per device. On-device speech-to-speech, no cloud audio. Works for a single room, a multi-room home, a venue, or anything in between.",
 		url: "https://domia.ai",
 		siteName: "Domia",
 		images: [
@@ -53,7 +59,7 @@ export const metadata: Metadata = {
 				url: "/og-image.png",
 				width: 1200,
 				height: 630,
-				alt: "Domia — Private local voice AI for homes, hotels, and intelligent spaces",
+				alt: "Domia — Private local voice AI: a network of personalities, on-device speech-to-speech, no cloud audio",
 			},
 		],
 		locale: "en_US",
@@ -61,9 +67,9 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Domia — Private Local Voice AI for Homes, Hotels & Spaces",
+		title: "Domia — Private local voice AI: a network of personalities",
 		description:
-			"On-device speech-to-speech voice AI. A personality and voice per room. One private hub, no cloud audio.",
+			"On-device speech-to-speech with delegated compute and a personality per device. No cloud audio. Adapts to your hardware — better hardware, better experience.",
 		site: "@domia_ai",
 		creator: "@domia_ai",
 		images: ["/og-image.png"],
@@ -96,20 +102,32 @@ const jsonLd = {
 			name: "Domia",
 			url: "https://domia.ai",
 			description:
-				"Private, local voice AI for homes, hotels, and intelligent spaces — on-device speech-to-speech, a personality per room, no cloud audio.",
+				"A networked private voice AI: on-device speech-to-speech, delegated inference, and a personality per device. No cloud audio.",
 			publisher: { "@id": "https://domia.ai/#organization" },
 			inLanguage: "en",
 		},
 		{
 			"@type": "SoftwareApplication",
 			name: "Domia",
-			applicationCategory: "BusinessApplication",
+			applicationCategory: "MultimediaApplication",
 			operatingSystem: "macOS, Linux, Raspberry Pi OS",
 			description:
-				"Private, local voice AI: on-device speech-to-speech with a personality, voice, and memory per room. Multi-room smart hub, no cloud audio.",
+				"A networked local voice AI built around delegated compute and a personality per device. On-device speech-to-speech with sherpa-onnx and Ollama. Adapts to your hardware — better hardware, better experience.",
 			url: "https://domia.ai",
 			publisher: { "@id": "https://domia.ai/#organization" },
 			offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+			isAccessibleForFree: true,
+			license: "https://www.apache.org/licenses/LICENSE-2.0",
+		},
+		{
+			"@type": "SoftwareSourceCode",
+			"@id": "https://domia.ai/#sourcecode",
+			name: "Domia",
+			codeRepository: "https://github.com/domia-ai/domia-core",
+			programmingLanguage: "TypeScript",
+			runtimePlatform: "Node.js",
+			license: "https://www.apache.org/licenses/LICENSE-2.0",
+			about: { "@id": "https://domia.ai/#organization" },
 		},
 	],
 }

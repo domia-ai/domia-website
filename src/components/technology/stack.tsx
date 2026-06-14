@@ -17,16 +17,16 @@ export function Stack() {
 					device or a larger one to a capable machine. Each Domia keeps its
 					config and state in a local database, so engines, voices,
 					personalities, and behavior are all data you can change live — no
-					restart, no hardcoded roles.
+					restart, no hardcoded roles. A new Domia even boots neutral: it gets
+					its purpose from a template, and you can reshape it at any time.
 				</TypographyLarge>
 				<TypographyLarge>
 					Domias talk to each other peer-to-peer over gRPC streaming, discover
 					each other with MQTT, and delegate work by capability: a thin room
 					node can hand its speech-to-text, LLM, and text-to-speech to a
 					stronger hub, which serves several rooms in parallel through
-					child-process inference pools. The same backend scales from a
-					Raspberry Pi room node to a Mac mini or NUC hub — every layer
-					hackable, composable, and transparent.
+					child-process inference pools. The same backend adapts to your
+					hardware — every layer hackable, composable, and transparent.
 				</TypographyLarge>
 			</CardContent>
 		</Card>

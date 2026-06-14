@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { DemoLink } from "@/components/landing/demo-link"
 import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
 
 export function RunAgain() {
@@ -17,6 +18,12 @@ export function RunAgain() {
 					model swap across your fleet, you can hear what it would have sounded
 					like on the conversations you’ve already had.
 				</TypographyLarge>
+
+				<DemoLink
+					variant="inline"
+					path="/conversations/demo-3"
+					label="See a side-by-side rerun →"
+				/>
 			</CardContent>
 		</Card>
 	)

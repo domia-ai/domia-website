@@ -1,21 +1,29 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { DemoLink } from "@/components/landing/demo-link"
 import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
 
 export function Configuration() {
 	return (
 		<Card>
 			<CardHeader>
-				<TypographyH2>🧠 See every Domia’s mind</TypographyH2>
+				<TypographyH2>🎚️ Edit every Domia’s mind, live</TypographyH2>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
 				<TypographyLarge>
-					Click into any Domia and the Console shows you what’s inside: persona
-					profile, the engines it’s running, its live Plutchik-8 mood snapshot,
-					its runtime capabilities, the MCP skills it’s wired into, and its
-					recent interactions side-by-side with the raw config it’s operating
-					from. Today this view is read-first; richer in-place editing of
-					persona and mood is on the roadmap as the Console matures.
+					Click into any Domia and open its config workspace: tune personality
+					traits and mood on a live emotion radar, swap the STT, LLM, and TTS
+					models from pickers that can install new ones on the device, adjust
+					temperature, context window, threads, and voice speed with sliders —
+					then apply. Changes land on that device and take effect on its next
+					conversation. Browse its memories and emotional history from their own
+					screens, alongside every conversation it has had.
 				</TypographyLarge>
+
+				<DemoLink
+					variant="inline"
+					path="/domias"
+					label="Open a Domia’s config →"
+				/>
 			</CardContent>
 		</Card>
 	)

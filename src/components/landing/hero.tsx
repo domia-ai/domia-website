@@ -3,6 +3,7 @@ import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import { GithubIcon } from "@/components/landing/icons"
+import { DemoLink } from "@/components/landing/demo-link"
 import {
 	TypographyH1,
 	TypographyLarge,
@@ -13,21 +14,27 @@ export function Hero() {
 	return (
 		<div className="flex flex-col-reverse lg:flex-row">
 			<div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
+				<span className="border-primary/30 bg-primary/10 text-primary inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-semibold">
+					<span className="bg-primary size-2 animate-pulse rounded-full" />
+					100% Open Source · Runs fully local
+				</span>
+
 				<TypographyLarge className="text-primary font-semibold tracking-wide uppercase">
 					The Local AI That Lives With You
 				</TypographyLarge>
 
 				<TypographyH1 className="leading-tight">
-					Private local voice AI for homes, hotels, and intelligent spaces
+					A private network of voice AIs. A personality per device.
 				</TypographyH1>
 
 				<TypographyXLarge className="max-w-md">
-					Domia is a network of local voice companions. Each room — each space —
-					can have its own personality, voice, memory, and role, all running
-					privately on your own hardware. No cloud.
+					Domia is a network of local voice companions that share compute and
+					run fully on your hardware. Each device — each room — with its own
+					personality, voice, and memory. Fully open source. No cloud.
 				</TypographyXLarge>
 
 				<div className="flex flex-wrap items-center justify-center gap-3">
+					<DemoLink variant="primary" label="Try the live demo" />
 					<Button asChild size="lg">
 						<a
 							href="https://github.com/domia-ai"

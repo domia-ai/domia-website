@@ -10,6 +10,7 @@ import {
 	RunAgain,
 	Archive,
 	Configuration,
+	Templates,
 	Private,
 	Personas,
 	WhatsNext,
@@ -34,6 +35,7 @@ export default function Experience() {
 			<RunAgain />
 			<Archive />
 			<Configuration />
+			<Templates />
 			<Private />
 			<Personas />
 			<WhatsNext />

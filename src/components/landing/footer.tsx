@@ -13,7 +13,8 @@ export function Footer() {
 							Domia
 						</Link>
 						<p className="text-muted-foreground max-w-xs text-center text-sm md:text-left">
-							Private local voice AI for homes, hotels, and intelligent spaces.
+							A private network of local voice AIs — a personality per device,
+							on your own hardware.
 						</p>
 					</div>
 
@@ -41,7 +42,8 @@ export function Footer() {
 
 				<div className="mt-8 flex flex-col items-center gap-4 border-t pt-8 md:flex-row md:justify-between">
 					<p className="text-muted-foreground text-sm">
-						&copy; 2026 Domia, Inc. All rights reserved.
+						&copy; 2026 Domia, Inc. &middot; Open source under the Apache 2.0
+						license.
 					</p>
 					<div className="flex gap-x-6">
 						{socialMediaLinks.map((item) => (

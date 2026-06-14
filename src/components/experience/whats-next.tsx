@@ -7,24 +7,9 @@ import {
 
 const upcoming = [
 	{
-		title: "🗂️ Memory timeline",
-		description:
-			"Browse facts and significant moments per Domia, not just the recent turns. The schema exists today; the UI is next.",
-	},
-	{
-		title: "📈 Emotion trends",
-		description:
-			"Plot the Plutchik-8 state over hours and days. Useful for understanding how your Domia is shifting over time.",
-	},
-	{
 		title: "🧩 Skills browser",
 		description:
-			"Inspect every MCP server wired into the fleet, what tools each exposes, and the tool-calls each has performed.",
-	},
-	{
-		title: "⚙️ Console settings",
-		description:
-			"Per-Console preferences, archive paths, backup, theme. Small surface, ships when it’s ready.",
+			"Inspect every MCP server wired into the fleet, what tools each exposes, and the tool-calls each has performed. Lands together with the skills engine itself.",
 	},
 	{
 		title: "📱 Mobile companion",
@@ -47,9 +32,7 @@ export function WhatsNext() {
 			<CardContent className="flex flex-col gap-8">
 				<TypographyLarge>
 					Here’s what we’re building next on top of the Console. Everything in
-					this list is either already a placeholder in the app, a schema that’s
-					waiting on a UI, or a near-term commitment in our roadmap — not
-					aspiration.
+					this list is a near-term commitment in our roadmap — not aspiration.
 				</TypographyLarge>
 
 				<ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

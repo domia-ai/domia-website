@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { DemoLink } from "@/components/landing/demo-link"
 import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
 
 export function Grading() {
@@ -16,6 +17,12 @@ export function Grading() {
 					labelers. No data leaving your network. Just a steady loop between
 					living with your Domia and making it better.
 				</TypographyLarge>
+
+				<DemoLink
+					variant="inline"
+					path="/conversations/demo-2"
+					label="Grade an interaction yourself →"
+				/>
 			</CardContent>
 		</Card>
 	)

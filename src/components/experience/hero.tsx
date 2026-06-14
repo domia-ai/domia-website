@@ -1,5 +1,6 @@
 import Image from "next/image"
 
+import { DemoLink } from "@/components/landing/demo-link"
 import { TypographyH1, TypographyXLarge } from "@/components/ui/typography"
 
 export function Hero() {
@@ -14,9 +15,10 @@ export function Hero() {
 					The Console is the web app you run alongside your Domias. See every
 					device in your mesh, replay any conversation with its real audio, tune
 					latency, grade interactions, and export your dialogues for fine-tuning
-					— all on your own hardware. Web today; a mobile companion is on the
-					roadmap.
+					— all on your own hardware.
 				</TypographyXLarge>
+
+				<DemoLink variant="primary" label="Try the Console live" />
 			</div>
 
 			<div className="flex flex-1 items-center justify-center">

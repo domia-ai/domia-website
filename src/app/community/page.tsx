@@ -18,7 +18,7 @@ import { CtaBand } from "@/components/common/cta-band"
 export const metadata: Metadata = {
 	title: "Open-Source Community",
 	description:
-		"Join the Domia community — builders, creators, and privacy advocates shaping a source-available, local-first voice AI. Connect, contribute, and steer the roadmap.",
+		"Join the Domia community — builders, creators, and privacy advocates shaping an open-source, local-first voice AI. Connect, contribute, and steer the roadmap.",
 	alternates: { canonical: "/community" },
 }
 
@@ -38,7 +38,7 @@ export default function Community() {
 			<Collabs />
 			<CtaBand
 				title="Build with us"
-				subtitle="Domia is source-available. Add personas and skills, propose features, or hack the architecture — start on GitHub or say hi."
+				subtitle="Domia is open source. Add personas and skills, propose features, or hack the architecture — start on GitHub or say hi."
 				contactLabel="Say hi"
 			/>
 		</div>

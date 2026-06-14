@@ -177,8 +177,8 @@ export function Form() {
 													{ value: "hotel", label: "🏨 For a hotel / Airbnb" },
 													{ value: "builder", label: "🛠️ To build skills" },
 													{
-														value: "founder",
-														label: "🎟️ Founder Pass / partner",
+														value: "partner",
+														label: "🤝 As a partner / investor",
 													},
 												].map((option) => (
 													<Button

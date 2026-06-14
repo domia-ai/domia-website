@@ -9,11 +9,12 @@ export function Vision() {
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
 				<TypographyLarge>
-					Domia is just the beginning. We envision a world where every home,
-					hotel, and shared space is enhanced by intelligent companions that
-					understand mood, respect boundaries, and evolve with you. From solo
-					living to family life, from creativity to hospitality — Domia becomes
-					who you need, wherever you are.
+					Domia is just the beginning. We envision a world where every space is
+					enhanced by intelligent companions that understand mood, respect
+					boundaries, and evolve with you — running on hardware you own, in a
+					network you control. From solo living to family life, from a single
+					room to a whole property — Domia becomes who you need, wherever you
+					are.
 				</TypographyLarge>
 			</CardContent>
 		</Card>

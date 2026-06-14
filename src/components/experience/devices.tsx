@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { DemoLink } from "@/components/landing/demo-link"
 import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
 
 export function Devices() {
@@ -16,6 +17,12 @@ export function Devices() {
 					conversations it handled. Each one keeps its own identity; you
 					navigate them all from one screen.
 				</TypographyLarge>
+
+				<DemoLink
+					variant="inline"
+					path="/"
+					label="Browse the fleet dashboard →"
+				/>
 			</CardContent>
 		</Card>
 	)

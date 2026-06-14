@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { DemoLink } from "@/components/landing/demo-link"
 import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
 
 export function AudioReplay() {
@@ -16,6 +17,12 @@ export function AudioReplay() {
 					LLM, and TTS each took their time. Voice AI is hard to tune without
 					ears; the Console gives you yours back.
 				</TypographyLarge>
+
+				<DemoLink
+					variant="inline"
+					path="/conversations/demo-1"
+					label="Listen to a real interaction →"
+				/>
 			</CardContent>
 		</Card>
 	)

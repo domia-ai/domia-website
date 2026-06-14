@@ -6,7 +6,7 @@ import { contactFaqs } from "@/constants"
 export const metadata: Metadata = {
 	title: "Contact & Early Access",
 	description:
-		"Get in touch with the Domia team — questions, collaborations, hotel pilots, or early access to a private local voice AI. Let’s build the future together.",
+		"Get in touch with the Domia team — questions, collaborations, pilots, or early access to a private local voice AI. Let’s build the future together.",
 	alternates: { canonical: "/contact" },
 }
 

@@ -1,5 +1,3 @@
-import Link from "next/link"
-
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import {
 	Table,
@@ -26,7 +24,7 @@ const ROWS = [
 		cloud: "No — vendor’s servers",
 	},
 	{
-		feature: "Source-available, no vendor lock-in",
+		feature: "Open source, no vendor lock-in",
 		domia: "Yes",
 		cloud: "No",
 	},
@@ -68,24 +66,6 @@ export function Comparison() {
 						))}
 					</TableBody>
 				</Table>
-
-				<TypographyLarge>
-					New to local voice AI?{" "}
-					<Link
-						href="/blog/local-voice-ai-vs-cloud-assistants"
-						className="text-primary underline-offset-4 hover:underline"
-					>
-						Read the full comparison
-					</Link>{" "}
-					and more guides on our{" "}
-					<Link
-						href="/blog"
-						className="text-primary underline-offset-4 hover:underline"
-					>
-						blog
-					</Link>
-					.
-				</TypographyLarge>
 			</CardContent>
 		</Card>
 	)

@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { GithubIcon } from "@/components/landing/icons"
+import { DemoLink } from "@/components/landing/demo-link"
 import { routes } from "@/constants"
 
 export function Navbar() {
@@ -64,8 +65,8 @@ export function Navbar() {
 					))}
 				</nav>
 
-				{/* Desktop GitHub CTA */}
-				<div className="hidden flex-1 items-center justify-end md:flex">
+				{/* Desktop GitHub CTA + Demo */}
+				<div className="hidden flex-1 items-center justify-end gap-2 md:flex">
 					<Button asChild size="sm" variant="outline">
 						<a
 							href="https://github.com/domia-ai"
@@ -77,6 +78,7 @@ export function Navbar() {
 							GitHub
 						</a>
 					</Button>
+					<DemoLink variant="secondary" label="Try the demo" />
 				</div>
 
 				{/* Mobile navigation button */}
@@ -114,6 +116,11 @@ export function Navbar() {
 				)}
 			>
 				<div className="bg-background/50 container grid gap-1 py-4 backdrop-blur-sm">
+					<DemoLink
+						variant="primary"
+						label="Try the live demo"
+						className="mb-2 w-full"
+					/>
 					{routes.map((route, index) => (
 						<Link
 							key={route.href}

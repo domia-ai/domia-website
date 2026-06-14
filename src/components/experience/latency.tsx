@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { DemoLink } from "@/components/landing/demo-link"
 import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
 
 export function Latency() {
@@ -17,6 +18,12 @@ export function Latency() {
 					didn’t expect? Decisions about which model goes where stop being
 					guesses.
 				</TypographyLarge>
+
+				<DemoLink
+					variant="inline"
+					path="/analytics"
+					label="Open the latency dashboard →"
+				/>
 			</CardContent>
 		</Card>
 	)

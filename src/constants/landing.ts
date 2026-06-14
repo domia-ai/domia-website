@@ -5,7 +5,6 @@ import {
 	DiscordIcon,
 	EmailIcon,
 } from "@/components/landing/icons"
-import { CollectionItemType } from "@/types"
 
 export const routes = [
 	{
@@ -78,6 +77,8 @@ export const socialMediaLinks = [
 		icon: EmailIcon,
 	},
 ]
+
+export const demoUrl = "https://console.domia.ai"
 
 export const personasShowcase = [
 	{
@@ -188,7 +189,17 @@ export const features = [
 	{
 		name: "📖 Memory & Emotion.",
 		description:
-			"Domia remembers recent conversations and the facts that matter, and carries an evolving emotional state that colors how it understands and responds to you.",
+			"After every turn, a quiet reflection pass extracts what mattered — facts about you, shifts in mood — and folds it back into how Domia understands and responds. It remembers recent conversations and carries an evolving emotional state, all stored locally.",
+	},
+	{
+		name: "💬 Real Back-and-Forth.",
+		description:
+			"Reply and keep talking — Domia holds a follow-up window after each answer, so you don’t repeat the wake word mid-conversation. Sessions keep their context.",
+	},
+	{
+		name: "🐣 Born Minimal.",
+		description:
+			"A new Domia boots neutral, with no role at all. Give it a purpose by applying a template — a thin room node, a full hub, or anything in between — and reshape it whenever you want.",
 	},
 	{
 		name: "🎛️ Tuned to Your Hardware.",
@@ -206,9 +217,9 @@ export const features = [
 			"From a small edge device in each room to a capable machine acting as the hub — Domia adapts to the hardware you already have. The same code, just configured.",
 	},
 	{
-		name: "🛠️ Built in Public & Source-Available.",
+		name: "🛠️ Built in Public & Open Source.",
 		description:
-			"Domia is built in public and source-available — improved by real users, guided by an active community, and shared with radical transparency. Your ideas help shape what it becomes.",
+			"Domia is built in public and fully open source — improved by real users, guided by an active community, and shared with radical transparency. Your ideas help shape what it becomes.",
 	},
 	{
 		name: "🧩 Skills via MCP (Roadmap).",
@@ -217,140 +228,36 @@ export const features = [
 	},
 ]
 
-export enum Rarity {
-	Common = "Common",
-	Rare = "Rare",
-	Epic = "Epic",
-	Legendary = "Legendary",
-}
-
-export const collection: CollectionItemType[] = [
-	{ image: "legendary.webp", name: "Domia #0", rarity: Rarity.Legendary },
-	{ image: "accountant.webp", name: "Domia #1", rarity: Rarity.Common },
-	{ image: "architect.webp", name: "Domia #2", rarity: Rarity.Rare },
-	{ image: "astronaut.webp", name: "Domia #3", rarity: Rarity.Epic },
-	{ image: "chef.webp", name: "Domia #4", rarity: Rarity.Common },
-	{ image: "doctor.webp", name: "Domia #5", rarity: Rarity.Rare },
-	{ image: "electrician.webp", name: "Domia #6", rarity: Rarity.Epic },
-	{ image: "gamer.webp", name: "Domia #7", rarity: Rarity.Common },
-	{ image: "investigator.webp", name: "Domia #8", rarity: Rarity.Rare },
-	{ image: "lawyer.webp", name: "Domia #9", rarity: Rarity.Epic },
-	{ image: "musician.webp", name: "Domia #10", rarity: Rarity.Common },
-	{ image: "programmer.webp", name: "Domia #11", rarity: Rarity.Rare },
-	{ image: "aviator.webp", name: "Domia #12", rarity: Rarity.Epic },
-	{ image: "athlete.webp", name: "Domia #13", rarity: Rarity.Common },
-	{ image: "mechanic.webp", name: "Domia #14", rarity: Rarity.Rare },
-	{ image: "teacher.webp", name: "Domia #15", rarity: Rarity.Epic },
-]
-
-export const holdersBenefits = [
-	{
-		title: "🚀 Early Access",
-		description:
-			"be among the first to run new features and shape the roadmap.",
-	},
-	{
-		title: "💬 Founder Community",
-		description: "a private space to collaborate directly with the team.",
-	},
-	{
-		title: "🏆 Founder Badge",
-		description: "your name listed in the Hall of Early Supporters.",
-	},
-	{
-		title: "💡 Propose & Vote on Features",
-		description: "help decide what we build next.",
-	},
-	{
-		title: "🔐 Exclusive Betas",
-		description: "try experimental features before anyone else.",
-	},
-	{
-		title: "🎙️ Voice & Persona Customization",
-		description: "shape a unique voice and character for your Domia.",
-	},
-	{
-		title: "🧑‍💻 Priority Support",
-		description: "direct help with setup, integration, and troubleshooting.",
-	},
-	{
-		title: "🏷️ Supporter Discounts",
-		description: "on future plans, hardware kits, and add-ons.",
-	},
-	{
-		title: "📦 First Look at Hardware",
-		description: "early access to room-node and hub hardware as it ships.",
-	},
-	{
-		title: "🌍 Become an Ambassador",
-		description: "represent Domia in your community.",
-	},
-	{
-		title: "🛸 Domia Labs",
-		description: "play with prototypes and tools not yet public.",
-	},
-	{
-		title: "🧬 Influence How Domia Grows",
-		description:
-			"your feedback shapes the emotional intelligence of future Domias.",
-	},
-]
-
 export const futureSteps = [
 	{
-		title: "🧠 Emotional Fine-Tuning",
+		title: "🧩 Skills via MCP",
 		description:
-			"Domia will deepen its emotional intelligence with profession-based personalities and adaptive mood modules",
+			"Tool-calling through the Model Context Protocol so Domia can act in the world — starting with a local Home Assistant bridge for lights, scenes, and devices. Local-first and swappable, like everything else.",
 	},
 	{
-		title: "🗣️ Multilingual Domia's",
+		title: "🗣️ Multilingual Domias",
 		description:
-			"Speak naturally in your language. Domia will understand and respond — locally.",
+			"Speak naturally in your language. Speech recognition, voices, and wake words beyond English — all still running locally.",
 	},
 	{
-		title: "🧩 Skill Marketplace",
+		title: "🧠 Episodic Memory",
 		description:
-			"Add new capabilities, professions, and emotional traits with installable persona and skill modules.",
+			"Vector recall over everything your Domia has lived: facts, conversations, and documents you give it — retrieved locally at answer time, never uploaded.",
 	},
 	{
-		title: "📲 Mobile & Web Sync",
+		title: "🎙️ More Voice Engines",
 		description:
-			"Seamlessly interact with Domia from your phone, laptop, or voice — anytime, anywhere.",
+			"A wider family of local TTS engines and voices to choose from, so every Domia can sound exactly the way you want.",
 	},
 	{
-		title: "🧬 Shared Memory",
+		title: "📱 Mobile Companion",
 		description:
-			"Domia's will start sharing insights, emotions, and knowledge to build a collective intelligence across your ecosystem.",
+			"The Console on a screen you carry around — same fleet, same network, same data.",
 	},
 	{
-		title: "🏨 Beyond Smart Homes",
+		title: "🧑‍🏫 Trainer Mode",
 		description:
-			"From hosting Airbnb guests to guiding hotel visitors, Domia is learning new roles in real-world environments.",
-	},
-	{
-		title: "🎟️ Founder Pass",
-		description:
-			"An optional early-supporter pass — a portable identity profile that unlocks early access and a say in the roadmap. A way to support the project; never required to use Domia.",
-	},
-	{
-		title: "🧠💡 Creative Mode",
-		description:
-			"Unleash Domia’s creative side — composing music, writing stories, and generating ideas with you as a co-creator.",
-	},
-	{
-		title: "🏙️ Domia for Urban Spaces",
-		description:
-			"Domia will soon assist in public spaces: coworkings, hospitals, schools, and more — bringing emotional AI to the heart of cities.",
-	},
-	{
-		title: "🎮 Roleplay Domia's",
-		description:
-			"Turn Domia into a storyteller, coach, tutor, or game partner. New role-based personalities coming soon.",
-	},
-	{
-		title: "📦 Community-Created Skills & Skins",
-		description:
-			"Domia users will be able to create and share their own skills, personalities, and visuals — shaping a truly customizable future.",
+			"A guided flow for teaching a Domia a specific role — a host, a guide, a coach — from a handful of examples.",
 	},
 ]
 
@@ -373,7 +280,7 @@ export const coreValues = [
 	{
 		name: "🌍 Human-First Technology",
 		description:
-			"Domia is built for homes, hotels, and communities — not corporations. We believe AI should enhance real life, not replace it.",
+			"Domia is built for people and the spaces they live in — not corporations. We believe AI should enhance real life, not replace it.",
 	},
 	{
 		name: "🤝 Community-Driven Development",
@@ -406,7 +313,7 @@ export const contactFaqs = [
 	},
 	{
 		q: "💌 Can I get early access?",
-		a: "Yes! Early access goes to founder-pass supporters and selected community members. Reach out and tell us why you want to be part of the future.",
+		a: "The core is open — you can run Domia today. For early builds of the Console and upcoming features, reach out and tell us how you'd use it.",
 	},
 ]
 

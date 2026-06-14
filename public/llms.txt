@@ -1,0 +1,33 @@
+# Domia
+
+> Domia is a private network of local voice AIs with a personality, voice, and memory per device. The full speech-to-speech loop — wake word, voice-activity detection, speech-to-text, a local language model, and text-to-speech — runs on the user's own hardware. No cloud audio, no accounts, no telemetry. Devices discover each other over MQTT, talk peer-to-peer over gRPC streaming, and delegate compute by capability: a thin room node can borrow a stronger hub's speech and language stages while keeping its own identity and voice.
+
+Domia is written in TypeScript on Node.js. Speech inference runs in-process via sherpa-onnx (ONNX Runtime); the language model runs locally via Ollama or llama.cpp. Every engine and model is swappable per device through database-driven configuration — no hardcoded roles, no vendor lock-in. A new Domia boots neutral and receives its purpose from a template (thin room node, full hub, or anything in between).
+
+Key facts:
+- Fully local speech-to-speech: no audio ever leaves the user's network
+- A personality per device: character profile, Plutchik-8 emotional state, and memory, all stored locally
+- After each conversation turn, a reflection pass extracts facts and mood shifts locally
+- Follow-up conversations without repeating the wake word; sessions keep context
+- Peer-to-peer mesh: MQTT discovery, gRPC streaming, capability delegation in a star topology
+- One hub can serve several rooms in parallel through child-process inference pools
+- The Domia Console is a separate local web app for managing a fleet: replay any conversation with its real audio, per-stage latency breakdowns (STT / LLM / TTS / time-to-first-audio), grade interactions and export them as NDJSON for fine-tuning, portable configuration templates, and a live config editor per device
+- Roadmap: skills via the Model Context Protocol (MCP) with a local Home Assistant bridge, multilingual support, episodic memory with local vector recall, a mobile Console companion
+- Source-available, built in public
+
+## Pages
+
+- [Home](https://domia.ai/): what Domia is and its core features
+- [Technology](https://domia.ai/technology): architecture — local S2S pipeline, P2P mesh, capability delegation, swappable engines
+- [Console](https://domia.ai/experience): the fleet dashboard — audio replay, latency tuning, grading, templates
+- [Use cases](https://domia.ai/cases): homes, hosts, businesses, museums, interactive spaces
+- [About](https://domia.ai/about): mission, vision, and the team behind Domia
+- [Blog](https://domia.ai/blog): guides on local voice AI and self-hosting
+- [Community](https://domia.ai/community): how to contribute
+- [Contact](https://domia.ai/contact): get in touch
+
+## Links
+
+- [GitHub](https://github.com/domia-ai): source code
+- [Live demo](https://console.domia.ai): read-only Console demo with real captured data
+- [X / Twitter](https://x.com/domia_ai)
