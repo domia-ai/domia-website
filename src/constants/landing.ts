@@ -131,12 +131,12 @@ export const consoleCapabilities = [
 	{
 		name: "🗺️ Your Whole Fleet, One View",
 		description:
-			"See every Domia across your space at a glance — which room each one is in, whether it’s online, and its persona, voice, engines, and current mood, live.",
+			"See every Domia across your space at a glance — where each one lives, whether it’s online, and its persona, voice, engines, and current mood, live.",
 	},
 	{
 		name: "💬 Chat With Any Domia",
 		description:
-			"Write or send a voice note to any Domia from the dashboard — the same mind behind the voice in your rooms. A quick way to feel out a persona before anyone ever hears it.",
+			"Write or send a voice note to any Domia from the dashboard — the same mind behind the voice in your space. A quick way to feel out a persona before anyone ever hears it.",
 	},
 	{
 		name: "🎧 Replay With Audio",
@@ -156,7 +156,7 @@ export const consoleCapabilities = [
 	{
 		name: "🛡️ Private, On Your Network",
 		description:
-			"The Console runs on your own hardware alongside your Domias. Nothing about your space leaves the building — managing many rooms stays as private as a single one.",
+			"The Console runs on your own hardware alongside your Domias. Nothing about your space leaves the building — managing many spaces stays as private as a single one.",
 	},
 ]
 
@@ -167,14 +167,14 @@ export const features = [
 			"Talk to Domia naturally. Wake word, speech-to-text, the language model, and text-to-speech all run on your own hardware — it starts replying with low latency, and no audio ever touches the cloud.",
 	},
 	{
-		name: "🏠 A Personality Per Room.",
+		name: "📍 A Personality Per Space.",
 		description:
-			"Each room or device can have its own character, voice, emotion, and memory. Your kitchen and your bedroom can feel like genuinely different companions.",
+			"Each space or device can have its own character, voice, emotion, and memory. A kitchen, a studio, a reception desk — each can feel like a genuinely different companion.",
 	},
 	{
-		name: "🧠 Many Rooms, One Mind.",
+		name: "🧠 Many Spaces, One Mind.",
 		description:
-			"Any capable Domia can serve several rooms at once — others borrow its compute over your local network, yet each still answers in its own identity and voice. Roles aren’t fixed; which device does what is just configuration.",
+			"Any capable Domia can serve several spaces at once — others borrow its compute over your local network, yet each still answers in its own identity and voice. Roles aren’t fixed; which device does what is just configuration.",
 	},
 	{
 		name: "🔒 100% Local, Private by Design.",
@@ -199,7 +199,7 @@ export const features = [
 	{
 		name: "🐣 Born Minimal.",
 		description:
-			"A new Domia boots neutral, with no role at all. Give it a purpose by applying a template — a thin room node, a full hub, or anything in between — and reshape it whenever you want.",
+			"A new Domia boots neutral, with no role at all. Give it a purpose by applying a template — a thin edge node, a full hub, or anything in between — and reshape it whenever you want.",
 	},
 	{
 		name: "🎛️ Tuned to Your Hardware.",
@@ -214,7 +214,7 @@ export const features = [
 	{
 		name: "🏗️ Runs On Your Hardware.",
 		description:
-			"From a small edge device in each room to a capable machine acting as the hub — Domia adapts to the hardware you already have. The same code, just configured.",
+			"From a small edge device in each space to a capable machine acting as the hub — Domia adapts to the hardware you already have. The same code, just configured.",
 	},
 	{
 		name: "🛠️ Built in Public & Open Source.",
@@ -222,18 +222,13 @@ export const features = [
 			"Domia is built in public and fully open source — improved by real users, guided by an active community, and shared with radical transparency. Your ideas help shape what it becomes.",
 	},
 	{
-		name: "🧩 Skills via MCP (Roadmap).",
+		name: "🧩 Skills via MCP.",
 		description:
-			"Next, Domia learns to act: tool-calling through the Model Context Protocol (MCP) and a local Home Assistant bridge to control lights, scenes, and devices — built the same way as everything else: local-first, replaceable, no vendor lock-in.",
+			"Domia can act in the world: it speaks the Model Context Protocol, picks the right tool, and calls it mid-conversation. Point it at any MCP server — including a Home Assistant one — to control lights, scenes, and devices. Opt-in, local-first, no vendor lock-in.",
 	},
 ]
 
 export const futureSteps = [
-	{
-		title: "🧩 Skills via MCP",
-		description:
-			"Tool-calling through the Model Context Protocol so Domia can act in the world — starting with a local Home Assistant bridge for lights, scenes, and devices. Local-first and swappable, like everything else.",
-	},
 	{
 		title: "🗣️ Multilingual Domias",
 		description:

@@ -24,7 +24,7 @@ export function Hero() {
 					<div className="animate-halo absolute inset-0 z-0 rounded-full bg-radial-[at_50%_75%] from-sky-200 via-blue-400 to-indigo-900 to-90% blur-2xl" />
 					<Image
 						src="/technology.webp"
-						alt="Domia local voice AI architecture — room nodes and a hub"
+						alt="Domia local voice AI architecture — edge nodes and a hub"
 						width={500}
 						height={500}
 						priority

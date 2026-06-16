@@ -13,7 +13,7 @@ export function Vision() {
 					enhanced by intelligent companions that understand mood, respect
 					boundaries, and evolve with you — running on hardware you own, in a
 					network you control. From solo living to family life, from a single
-					room to a whole property — Domia becomes who you need, wherever you
+					space to a whole property — Domia becomes who you need, wherever you
 					are.
 				</TypographyLarge>
 			</CardContent>

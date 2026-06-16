@@ -1,6 +1,5 @@
 import {
 	zObject,
-	zString,
 	zStringMax,
 	zEmailRequired,
 	zBoolean,
@@ -10,7 +9,6 @@ import {
 export const contactFormSchema = zObject({
 	name: zStringMax(50),
 	email: zEmailRequired,
-	audience: zString,
 	subject: zStringMax(100),
 	message: zStringMax(1000),
 })

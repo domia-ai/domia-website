@@ -7,10 +7,10 @@ import {
 	TypographySmall,
 } from "@/components/ui/typography"
 
-const ROOMS = [
+const SPACES = [
 	{ emoji: "🍳", name: "Kitchen" },
-	{ emoji: "🛏️", name: "Bedroom" },
-	{ emoji: "📺", name: "Living room" },
+	{ emoji: "🎨", name: "Studio" },
+	{ emoji: "🛎️", name: "Front desk" },
 ]
 
 const STAGES = [
@@ -44,18 +44,18 @@ export function Diagram() {
 			</CardHeader>
 			<CardContent className="flex flex-col items-center gap-6">
 				<TypographyLarge className="self-start">
-					Each room runs on a small edge device that listens and speaks — it
+					Each space runs on a small edge device that listens and speaks — it
 					captures audio with a wake word and voice-activity detection, and
 					plays the reply back. The heavy stages run on a single hub that serves
-					several rooms in parallel. Identity travels with every request, so the
-					hub answers in each room’s own voice — never its own.
+					several spaces in parallel. Identity travels with every request, so
+					the hub answers in each space’s own voice — never its own.
 				</TypographyLarge>
 
 				<div className="flex flex-wrap justify-center gap-4">
-					{ROOMS.map((room) => (
+					{SPACES.map((space) => (
 						<Box
-							key={room.name}
-							title={`${room.emoji} ${room.name}`}
+							key={space.name}
+							title={`${space.emoji} ${space.name}`}
 							sub="small device: mic · wake · VAD · playback"
 						/>
 					))}

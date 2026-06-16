@@ -5,15 +5,16 @@ export function Skills() {
 	return (
 		<Card>
 			<CardHeader>
-				<TypographyH2>🔌 Skills & MCP Servers (Roadmap)</TypographyH2>
+				<TypographyH2>🔌 Skills & MCP Servers</TypographyH2>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
 				<TypographyLarge>
-					Beyond personas and voices, the marketplace will offer skills — MCP
-					servers that let a Domia actually act: look things up, run tools, and
-					connect to local systems like Home Assistant. Add a skill the same way
-					you add a persona: pick it, drop it in, and your Domia can do more —
-					all local-first, replaceable, and under your control.
+					Skills let a Domia actually act: look things up, run tools, and
+					connect to local systems like Home Assistant. They work today through
+					the Model Context Protocol — point a Domia at an MCP server and it
+					picks the right tool mid-conversation, all local-first and under your
+					control. The marketplace will make discovering and adding them as easy
+					as adding a persona.
 				</TypographyLarge>
 			</CardContent>
 		</Card>

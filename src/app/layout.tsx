@@ -51,7 +51,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: "Domia — Private local voice AI: a network of personalities",
 		description:
-			"A networked voice AI built around delegated compute and a personality per device. On-device speech-to-speech, no cloud audio. Works for a single room, a multi-room home, a venue, or anything in between.",
+			"A networked voice AI built around delegated compute and a personality per device. On-device speech-to-speech, no cloud audio. Works for a single space, a whole home, a venue, or anything in between.",
 		url: "https://domia.ai",
 		siteName: "Domia",
 		images: [

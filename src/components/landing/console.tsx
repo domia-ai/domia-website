@@ -14,11 +14,11 @@ export function Console() {
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
 				<TypographyLarge>
-					As your space grows from one Domia to many — a single room, a whole
-					home, a multi-room workshop or studio — managing them stays simple.
-					The Domia Console is one place to see every Domia you run, replay what
+					As your setup grows from one Domia to many — a single space, a whole
+					home, a workshop, a studio, a venue — managing them stays simple. The
+					Domia Console is one place to see every Domia you run, replay what
 					they’ve done, and shape what they do next, all on your own network. A
-					handful of rooms or a hundred, it feels like one.
+					handful or a hundred, it feels like one.
 				</TypographyLarge>
 
 				<dl className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -41,7 +41,7 @@ export function Console() {
 				</dl>
 
 				<TypographyBlockquote>
-					“One screen for every room.”
+					“One screen for every space.”
 				</TypographyBlockquote>
 			</CardContent>
 		</Card>

@@ -9,8 +9,8 @@ export function Node() {
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
 				<TypographyLarge>
-					Each Domia Node is a unique individual. Whether placed in your
-					kitchen, living room, or bedroom, every node runs its own personality,
+					Each Domia Node is a unique individual. Wherever it lives — a kitchen,
+					a studio, a reception desk — every node runs its own personality,
 					emotions, and memory — shaped by its environment and daily
 					interactions with you. It is not an extension of a central system. It
 					is Domia. Yet each Domia is also part of something greater. Across the

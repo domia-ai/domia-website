@@ -29,7 +29,7 @@ export function Hero() {
 
 				<TypographyXLarge className="max-w-md">
 					Domia is a network of local voice companions that share compute and
-					run fully on your hardware. Each device — each room — with its own
+					run fully on your hardware. Each device — each space — with its own
 					personality, voice, and memory. Fully open source. No cloud.
 				</TypographyXLarge>
 

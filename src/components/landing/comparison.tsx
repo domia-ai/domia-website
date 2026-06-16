@@ -13,7 +13,7 @@ const ROWS = [
 	{ feature: "Audio sent to the cloud", domia: "Never", cloud: "Always" },
 	{ feature: "Works fully offline", domia: "Yes", cloud: "No" },
 	{
-		feature: "A personality & voice per room",
+		feature: "A personality & voice per space",
 		domia: "Yes",
 		cloud: "No — one shared voice",
 	},
@@ -40,7 +40,7 @@ export function Comparison() {
 			<CardContent className="flex flex-col gap-6">
 				<TypographyLarge>
 					Cloud assistants stream your voice to someone else’s servers. Domia
-					keeps everything on your own hardware — and gives every room its own
+					keeps everything on your own hardware — and gives every space its own
 					identity.
 				</TypographyLarge>
 

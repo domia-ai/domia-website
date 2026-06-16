@@ -14,8 +14,9 @@ export function Smart() {
 					Domia was born as a privacy-first alternative to cloud assistants. It
 					talks with you, senses your routines, and reacts emotionally to your
 					presence — from morning greetings to nighttime wind-downs, all fully
-					offline with a human touch. Controlling your smart devices through
-					local skills (Home Assistant, MCP) is on the roadmap.
+					offline with a human touch. And it can control your smart devices
+					through local skills — point it at a Home Assistant (or any) MCP
+					server and it picks the right tool and acts. Opt-in.
 				</TypographyLarge>
 
 				<Image

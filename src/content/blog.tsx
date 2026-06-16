@@ -88,7 +88,7 @@ export const posts: BlogPost[] = [
 					Domia is a network of local voice companions. A thin device (like a
 					Raspberry Pi) can handle just the microphone and playback and borrow a
 					nearby hub’s compute for the heavy stages — yet the reply still comes
-					back in that room’s own voice and personality. See the{" "}
+					back in that space’s own voice and personality. See the{" "}
 					<A href="/technology">architecture</A> for the full picture, or read{" "}
 					<A href="/blog/private-voice-assistant-raspberry-pi">
 						how to run it on a Raspberry Pi
@@ -102,7 +102,7 @@ export const posts: BlogPost[] = [
 		slug: "private-voice-assistant-raspberry-pi",
 		title: "Run a private voice assistant on a Raspberry Pi (with a local hub)",
 		description:
-			"A Raspberry Pi can't run a big language model — but it makes a perfect room node. Here's the thin-node + hub model that puts a private, offline voice assistant in every room.",
+			"A Raspberry Pi can't run a big language model — but it makes a perfect edge node. Here's the thin-node + hub model that puts a private, offline voice assistant in every space.",
 		date: "2026-06-03",
 		readingTime: "6 min read",
 		keywords: [
@@ -117,7 +117,7 @@ export const posts: BlogPost[] = [
 				<TypographyLarge>
 					People often ask whether a Raspberry Pi can run a local voice
 					assistant. The honest answer: a Pi can’t comfortably run a full
-					language model — but it makes an excellent <em>room node</em>, and
+					language model — but it makes an excellent <em>edge node</em>, and
 					that’s exactly the role Domia gives it.
 				</TypographyLarge>
 
@@ -131,7 +131,7 @@ export const posts: BlogPost[] = [
 					mini, a NUC, or a modest workstation.
 				</TypographyP>
 				<TypographyP>
-					The hub runs the heavy models once and serves several rooms in
+					The hub runs the heavy models once and serves several spaces in
 					parallel using inference pools. Crucially, the identity travels with
 					each request — so when the hub answers for your kitchen, it answers in
 					the kitchen’s voice and personality, not its own.
@@ -141,15 +141,15 @@ export const posts: BlogPost[] = [
 				<TypographyP>
 					There’s no fixed “server” and “client.” What each device does is just
 					configuration in a local database. A single powerful machine can be a
-					hub <em>and</em> a room; a Pi can be purely a node. As your setup
-					grows, you change config — not code.
+					hub <em>and</em> an edge node; a Pi can be purely a node. As your
+					setup grows, you change config — not code.
 				</TypographyP>
 
 				<TypographyH2>Getting started</TypographyH2>
 				<TypographyP>
-					Domia’s core is source-available and runs on macOS, Linux, and small
+					Domia’s core is open source and runs on macOS, Linux, and small
 					single-board computers. The hub runs a local model server and a few
-					model downloads; a room node needs far less. The{" "}
+					model downloads; an edge node needs far less. The{" "}
 					<A href="/technology">Technology page</A> walks through the setup, and
 					everything lives on <A href="/contact">GitHub</A>. Curious about the
 					privacy trade-offs versus a cloud assistant? See{" "}
@@ -166,7 +166,7 @@ export const posts: BlogPost[] = [
 		title:
 			"Local voice AI vs cloud assistants: privacy, ownership, and latency",
 		description:
-			"Alexa and Google Home stream your voice to the cloud. A local voice AI keeps it on your hardware. Here's an honest comparison of privacy, ownership, multi-room identity, and what you give up either way.",
+			"Alexa and Google Home stream your voice to the cloud. A local voice AI keeps it on your hardware. Here's an honest comparison of privacy, ownership, per-space identity, and what you give up either way.",
 		date: "2026-06-03",
 		readingTime: "5 min read",
 		keywords: [
@@ -197,26 +197,27 @@ export const posts: BlogPost[] = [
 				<TypographyH2>Ownership & lock-in</TypographyH2>
 				<TypographyP>
 					Cloud assistants tie you to a vendor’s hardware, voices, and account.
-					With a local, source-available system you choose the language model,
-					the voice, and the personality, and you can change them whenever you
-					like. No subscription, no API keys, no walled garden.
+					With a local, open source system you choose the language model, the
+					voice, and the personality, and you can change them whenever you like.
+					No subscription, no API keys, no walled garden.
 				</TypographyP>
 
-				<TypographyH2>Identity per room</TypographyH2>
+				<TypographyH2>Identity per space</TypographyH2>
 				<TypographyP>
 					Cloud ecosystems give every speaker the same shared voice. Domia gives
-					each room its own personality, voice, emotion, and memory — your
-					kitchen and your bedroom can feel like genuinely different companions,
-					even when they share one hub.
+					each space its own personality, voice, emotion, and memory — a kitchen
+					and a studio can feel like genuinely different companions, even when
+					they share one hub.
 				</TypographyP>
 
 				<TypographyH2>The honest trade-offs</TypographyH2>
 				<TypographyP>
 					Local isn’t free of cost: you provide the hardware (a hub plus thin
-					room nodes), and you do a little setup. Smart-home control through
-					skills is still on the roadmap for Domia, where cloud assistants
-					already have broad device support. But for privacy, ownership, and
-					per-room identity, local wins clearly. See the side-by-side on the{" "}
+					edge nodes), and you do a little setup. Smart-home control works
+					through skills (MCP) on Domia today — opt-in — and the device support
+					is whatever MCP servers you point it at, where cloud assistants ship
+					broad support out of the box. But for privacy, ownership, and
+					per-space identity, local wins clearly. See the side-by-side on the{" "}
 					<A href="/">home page</A> or dig into the{" "}
 					<A href="/technology">architecture</A>.
 				</TypographyP>

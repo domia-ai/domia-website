@@ -22,9 +22,9 @@ export function Stack() {
 				</TypographyLarge>
 				<TypographyLarge>
 					Domias talk to each other peer-to-peer over gRPC streaming, discover
-					each other with MQTT, and delegate work by capability: a thin room
+					each other with MQTT, and delegate work by capability: a thin edge
 					node can hand its speech-to-text, LLM, and text-to-speech to a
-					stronger hub, which serves several rooms in parallel through
+					stronger hub, which serves several spaces in parallel through
 					child-process inference pools. The same backend adapts to your
 					hardware — every layer hackable, composable, and transparent.
 				</TypographyLarge>

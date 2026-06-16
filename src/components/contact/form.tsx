@@ -29,7 +29,6 @@ export function Form() {
 		defaultValues: {
 			name: "",
 			email: "",
-			audience: "",
 			subject: "",
 			message: "",
 		},
@@ -68,8 +67,8 @@ export function Form() {
 				<CardContent className="flex flex-col gap-8">
 					<TypographyLarge>
 						Our team is always open to ideas, feedback, and opportunities.
-						Whether you’re a developer, early adopter, investor, hotelier, or
-						just curious about emotional AI — Domia is here for you.
+						Whoever you are and whatever you’re building or wondering — drop us
+						a line.
 					</TypographyLarge>
 
 					<TypographyLarge>
@@ -164,49 +163,6 @@ export function Form() {
 									}}
 								/>
 							</div>
-
-							<Field
-								name="audience"
-								children={({ state, handleChange }) => {
-									return (
-										<div className="flex flex-col gap-3">
-											<Label>I’m reaching out as (optional)</Label>
-											<div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-												{[
-													{ value: "home", label: "🏠 For my home" },
-													{ value: "hotel", label: "🏨 For a hotel / Airbnb" },
-													{ value: "builder", label: "🛠️ To build skills" },
-													{
-														value: "partner",
-														label: "🤝 As a partner / investor",
-													},
-												].map((option) => (
-													<Button
-														key={option.value}
-														type="button"
-														variant={
-															state.value === option.value
-																? "default"
-																: "outline"
-														}
-														className="justify-start"
-														disabled={formState.isSubmitting}
-														onClick={() =>
-															handleChange(
-																state.value === option.value
-																	? ""
-																	: option.value,
-															)
-														}
-													>
-														{option.label}
-													</Button>
-												))}
-											</div>
-										</div>
-									)
-								}}
-							/>
 
 							<Field
 								name="subject"

@@ -31,9 +31,8 @@ export const formatContactFormToEmail = (data: ContactFormType) =>
 export const getContactFormMailOptions = (
 	data: ContactFormType,
 ): SendMailOptions => {
-	const { email, subject, audience } = data
-	const subjectLine =
-		subject.trim() || (audience ? `Interested — ${audience}` : "New message")
+	const { email, subject } = data
+	const subjectLine = subject.trim() || "New message"
 
 	return {
 		from: `"Domia Website" <${emailConfig.user}>`,

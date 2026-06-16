@@ -12,13 +12,13 @@ import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
 const TIERS = [
 	{
 		device: "Any small device",
-		role: "Room node",
+		role: "Edge node",
 		runs: "Mic, wake word, voice-activity detection, playback — delegates the heavy stages to a hub",
 	},
 	{
 		device: "A capable machine",
 		role: "Hub",
-		runs: "Full on-device speech-to-speech pipeline; serves several rooms in parallel",
+		runs: "Full on-device speech-to-speech pipeline; serves several spaces in parallel",
 	},
 	{
 		device: "A powerful machine",

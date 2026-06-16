@@ -17,15 +17,15 @@ import { cn } from "@/lib/utils"
 
 const PROMPT = `I just discovered a project called Domia and I want to really get it. Website: https://domia.ai — source: https://github.com/domia-ai (if you can browse, please open them). Here's the full context so you understand it 100%:
 
-Domia is a private, local voice AI — a network of voice companions that live in your home, hotel, or any intelligent space. Everything runs on your own hardware, with zero cloud: the whole speech-to-speech loop (wake word, voice-activity detection, speech-to-text, a local language model, and text-to-speech) happens on-device, so no audio ever leaves the building.
+Domia is a private, local voice AI — a network of voice companions that live in any space you put them: a home, a venue, a workspace. Everything runs on your own hardware, with zero cloud: the whole speech-to-speech loop (wake word, voice-activity detection, speech-to-text, a local language model, and text-to-speech) happens on-device, so no audio ever leaves the building.
 
 What makes it special:
-- A real personality, voice, emotion, and memory PER room — your kitchen could be a cheerful chef that suggests recipes, your bedroom a calm companion that winds you down, the living room an excited movie buff. Each one remembers you and evolves.
-- It's a peer-to-peer mesh: a thin little device in each room handles the mic and speaker and borrows compute from one stronger "hub" that runs the heavy models and serves many rooms at once — yet every reply still comes back in that room's own voice and character. No central server; what each device does is just configuration, nothing hardcoded.
+- A real personality, voice, emotion, and memory PER space — a kitchen could be a cheerful chef that suggests recipes, a studio a calm companion that helps you focus, a reception desk an upbeat host. Each one remembers you and evolves.
+- It's a peer-to-peer mesh: a thin little device in each space handles the mic and speaker and borrows compute from one stronger "hub" that runs the heavy models and serves many spaces at once — yet every reply still comes back in that space's own voice and character. No central server; what each device does is just configuration, nothing hardcoded.
 - The models are swappable and adapt to the hardware — a small fast model on a tiny device, a bigger one on a capable hub. No lock-in.
-- It's fully open source, privacy-first, and deeply customizable: you can shape a persona, extend its knowledge, and even import a whole "mind" (persona + memory) as a JSON file that's ready to try in seconds. Coming soon: skills via the Model Context Protocol (MCP) so it can actually act (e.g. control a smart home).
+- It's fully open source, privacy-first, and deeply customizable: you can shape a persona, extend its knowledge, and even import a whole "mind" (persona + memory) as a JSON file that's ready to try in seconds. It also speaks the Model Context Protocol (MCP), so it can act in the world — control a smart home via an MCP server, opt-in today.
 
-Please explain it back to me with genuine enthusiasm: what Domia is, everything it's capable of, how it works in simple terms, and the coolest real use cases (a family home, an Airbnb or hotel, a small business). Help me feel why this is exciting and what I could build with it.`
+Please explain it back to me with genuine enthusiasm: what Domia is, everything it's capable of, how it works in simple terms, and the coolest real use cases (a home, a short-term rental, a small business, a creative studio). Help me feel why this is exciting and what I could build with it.`
 
 const ASSISTANTS: {
 	name: string

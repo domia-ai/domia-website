@@ -17,21 +17,17 @@ export function Network() {
 					peer-to-peer mesh. There’s no central server and no fixed roles: any
 					capable Domia can lend its compute to the others, and what each device
 					does is simply configuration. Together they share work, memory, and
-					emotional context across the space. Each Domia keeps its own emotional
-					state and personality, which may evolve independently or harmonize
-					with others. For example, your bedroom Domia might remain calm and
-					quiet, tuned for relaxation and reflection, while the kitchen Domia
-					takes on the role of a cheerful chef — suggesting recipes, narrating
-					steps, or playing upbeat music. In the living room, your Domia might
-					become a sports commentator, reacting with excitement during a game
-					night. This flexibility creates emotionally aware micro-environments
-					and allows for immersive character-driven experiences throughout the
-					space.
+					emotional context across the network. Each Domia keeps its own
+					emotional state and personality, which may evolve independently or
+					harmonize with others. One Domia might be calm and quiet, tuned for
+					focus and reflection; another a cheerful guide that narrates and
+					suggests; another an energetic host that greets and reacts. This
+					flexibility creates emotionally aware micro-environments and allows
+					for immersive, character-driven experiences across every space you put
+					a Domia in.
 				</TypographyLarge>
 
-				<TypographyBlockquote>
-					“Your home thinks together.”
-				</TypographyBlockquote>
+				<TypographyBlockquote>“They think together.”</TypographyBlockquote>
 			</CardContent>
 		</Card>
 	)

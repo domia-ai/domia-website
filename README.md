@@ -1,48 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Domia — Website
 
-## Getting Started
+The marketing site for **Domia**, a private network of local voice AIs with a personality, voice, and memory per device. The whole speech-to-speech loop — wake word, voice-activity detection, speech-to-text, a local language model, and text-to-speech — runs on your own hardware. No cloud audio, no accounts, no telemetry.
 
-First, run the development server:
+This repo is just the website (the thing you see at [domia.ai](https://domia.ai)). The product lives in separate repos:
+
+- **[domia-core](https://github.com/domia-ai/domia-core)** — the voice AI itself: the S2S pipeline, the peer-to-peer mesh, capability delegation, the persona/emotion/memory engines, and MCP skills.
+- **[domia-app](https://github.com/domia-ai/domia-app)** — the Domia Console: a local web app to manage a fleet (audio replay, per-stage latency, grading + export, config templates). Read-only demo at [console.domia.ai](https://console.domia.ai).
+
+## Stack
+
+- [Next.js 16](https://nextjs.org) (App Router, Turbopack) + [React 19](https://react.dev)
+- [Tailwind CSS 4](https://tailwindcss.com) + shadcn/ui
+- [TanStack Form](https://tanstack.com/form) + [Zod](https://zod.dev) for the contact form
+- TypeScript throughout
+- `next-sitemap` for sitemap/robots, JSON-LD + `llms.txt` for SEO/AEO
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Outfit](https://vercel.com/font), a new font family for Vercel.
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Dev server (Turbopack) |
+| `npm run build` | Production build (regenerates the sitemap on `postbuild`) |
+| `npm run start` | Serve the production build |
+| `npm run lint` | ESLint |
+| `npm run format` / `format:fix` | Prettier check / write |
+| `npm run validate` | lint + format + build |
 
-## Learn More
+## Layout
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  app/            # routes (/, /technology, /experience, /cases, /community, /contact, /blog)
+  components/     # landing/, experience/, technology/, cases/, about/, community/, ui/
+  constants/      # landing copy + data (single source of truth for sections)
+  content/        # blog posts
+  schemas/        # zod schemas (contact form)
+  actions/        # server actions (contact submit)
+public/           # images, og-image, llms.txt, generated sitemap/robots
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Most copy lives in `src/constants/landing.ts` and the per-section components — edit there.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Links
 
-## Deploy on Vercel
+- Website: [domia.ai](https://domia.ai)
+- Console demo: [console.domia.ai](https://console.domia.ai)
+- GitHub: [github.com/domia-ai](https://github.com/domia-ai)
+- X: [@domia_ai](https://x.com/domia_ai)
+- Discord: [join](https://discord.gg/Sx4ACEMSyv)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-📜 Licensed under BSL 1.1 — free to explore, private for now, fully open source in 2030.
-
-🛡️ License: Business Source License (BSL) 1.1
-DOMIA Website is not yet open source — but it will be.
-We believe in developer transparency, source availability, and community-driven evolution, while protecting the long-term sustainability of the project.
-
-🔍 TL;DR:
-
-✅ You can read, learn from, and contribute to the source code.
-
-🗓️ It will become fully open source under Apache 2.0 on January 1, 2030.
+Open source under the [Apache License 2.0](./LICENSE). Read it, run it, fork it, and contribute — Domia is built in public.

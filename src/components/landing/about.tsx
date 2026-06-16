@@ -13,8 +13,8 @@ export function About() {
 					true companion. It understands your voice, responds with empathy,
 					remembers what matters to you, and evolves through shared experiences
 					— all running on your own hardware, without sending your data to the
-					cloud. (Acting in the world — controlling devices through local skills
-					— is on the roadmap.)
+					cloud. It can also act in the world — calling tools and controlling
+					devices through local skills (MCP), opt-in.
 				</TypographyLarge>
 			</CardContent>
 		</Card>

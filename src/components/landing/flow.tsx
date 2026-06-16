@@ -59,7 +59,7 @@ export function Flow() {
 
 					<Step
 						title="Step 3 — Local LLM, with personality & skills"
-						description="Domia builds a prompt from its character, emotion, and memory, then runs a local language model in the personality of the room you're talking to — a small, fast model on a small device, a larger one on a capable hub. Soon it will also call skills through MCP — looking things up or acting in your space (e.g. Home Assistant)."
+						description="Domia builds a prompt from its character, emotion, and memory, then runs a local language model in the personality of the space you're talking to — a small, fast model on a small device, a larger one on a capable hub. It can also call skills through MCP — looking things up or acting in your space (e.g. via a Home Assistant MCP server). Opt-in."
 					/>
 
 					<Divider />
@@ -72,15 +72,15 @@ export function Flow() {
 					<Divider />
 
 					<Step
-						title="Step 5 — One mind, many rooms"
-						description="A thin device can borrow compute from a stronger Domia hub over your local network — yet still answers in its own voice and identity. Skills like Home Assistant control are on the roadmap."
+						title="Step 5 — One mind, many spaces"
+						description="A thin device can borrow compute from a stronger Domia hub over your local network — yet still answers in its own voice and identity. Roles aren't fixed; which device does what is just configuration."
 					/>
 				</div>
 
 				<TypographyBlockquote>
 					“Domia redefines interaction — not just automating tasks, but
 					cultivating relationships. It’s the beginning of a new kind of
-					presence in your home.”
+					presence in your space.”
 				</TypographyBlockquote>
 			</CardContent>
 		</Card>
