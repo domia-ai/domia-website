@@ -1,28 +1,27 @@
 import Image from "next/image"
+import { getTranslations } from "next-intl/server"
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
 
-export function Spaces() {
+export async function Spaces() {
+	const t = await getTranslations("cases.spaces")
+
 	return (
 		<Card>
 			<CardHeader>
-				<TypographyH2>🎢 Theme Parks & Interactive Spaces</TypographyH2>
+				<TypographyH2>{t("title")}</TypographyH2>
 			</CardHeader>
 			<CardContent className="flex flex-col-reverse items-center gap-8 lg:flex-row lg:items-start">
-				<TypographyLarge>
-					In theme parks or educational attractions, Domia becomes a recurring
-					presence — guiding guests, delivering narratives, and even reacting to
-					prior visits. With memory and emotional tracking, every interaction
-					feels like part of a shared story.
-				</TypographyLarge>
+				<TypographyLarge>{t("p1")}</TypographyLarge>
 
 				<Image
 					src="/cases/spaces.webp"
-					alt="Domia spaces logo"
-					width={200}
-					height={200}
+					alt={t("imageAlt")}
+					width={921}
+					height={1043}
 					priority
+					className="h-auto w-full max-w-[200px]"
 				/>
 			</CardContent>
 		</Card>

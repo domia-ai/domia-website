@@ -1,29 +1,28 @@
 import Image from "next/image"
+import { getTranslations } from "next-intl/server"
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
 
-export function Cultural() {
+export async function Cultural() {
+	const t = await getTranslations("cases.cultural")
+
 	return (
 		<Card>
 			<CardHeader>
-				<TypographyH2>🏛️ Museum & Cultural Guide</TypographyH2>
+				<TypographyH2>{t("title")}</TypographyH2>
 			</CardHeader>
 
 			<CardContent className="flex flex-col-reverse items-center gap-8 lg:flex-row lg:items-start">
-				<TypographyLarge>
-					Domia can act as a multilingual, emotionally aware guide in museums,
-					galleries, or cultural centers. It adapts its tone based on visitor
-					age or interest, answers deep-dive questions, and creates a
-					personalized, immersive journey through knowledge and art.
-				</TypographyLarge>
+				<TypographyLarge>{t("p1")}</TypographyLarge>
 
 				<Image
 					src="/cases/cultural.webp"
-					alt="Domia cultural logo"
-					width={200}
-					height={200}
+					alt={t("imageAlt")}
+					width={723}
+					height={959}
 					priority
+					className="h-auto w-full max-w-[200px]"
 				/>
 			</CardContent>
 		</Card>

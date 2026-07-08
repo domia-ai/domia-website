@@ -1,28 +1,21 @@
+import { getTranslations } from "next-intl/server"
+
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { DemoLink } from "@/components/landing/demo-link"
 import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
 
-export function Devices() {
+export async function Devices() {
+	const t = await getTranslations("experience.devices")
+
 	return (
 		<Card>
 			<CardHeader>
-				<TypographyH2>🗺️ Your fleet, at a glance</TypographyH2>
+				<TypographyH2>{t("title")}</TypographyH2>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
-				<TypographyLarge>
-					Open the Console and you see every Domia in your network at once —
-					where each one lives, whether it’s online, the persona it’s running,
-					the engines it loaded for STT, LLM, TTS and wake word, its current
-					Plutchik-8 mood, the MCP skills it has, and the last few conversations
-					it handled. Each one keeps its own identity; you navigate them all
-					from one screen.
-				</TypographyLarge>
+				<TypographyLarge>{t("intro")}</TypographyLarge>
 
-				<DemoLink
-					variant="inline"
-					path="/"
-					label="Browse the fleet dashboard →"
-				/>
+				<DemoLink variant="inline" path="/" label={t("demo")} />
 			</CardContent>
 		</Card>
 	)

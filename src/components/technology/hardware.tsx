@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server"
+
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import {
 	Table,
@@ -9,54 +11,38 @@ import {
 } from "@/components/ui/table"
 import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
 
-const TIERS = [
-	{
-		device: "Any small device",
-		role: "Edge node",
-		runs: "Mic, wake word, voice-activity detection, playback — delegates the heavy stages to a hub",
-	},
-	{
-		device: "A capable machine",
-		role: "Hub",
-		runs: "Full on-device speech-to-speech pipeline; serves several spaces in parallel",
-	},
-	{
-		device: "A powerful machine",
-		role: "Hub +",
-		runs: "Larger models, deeper memory, richer real-time emotion",
-	},
-]
+const TIER_IDS = ["edge", "hub", "hubPlus"] as const
 
-export function Hardware() {
+export async function Hardware() {
+	const t = await getTranslations("technology.hardware")
+
 	return (
 		<Card>
 			<CardHeader>
-				<TypographyH2>💡 Hardware That Adapts to You</TypographyH2>
+				<TypographyH2>{t("title")}</TypographyH2>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
-				<TypographyLarge>
-					Domia runs across a wide hardware spectrum. The role isn’t hardcoded —
-					what each device does is just configuration, so the same code fits the
-					hardware you already have.
-				</TypographyLarge>
+				<TypographyLarge>{t("intro")}</TypographyLarge>
 
 				<Table>
 					<TableHeader>
 						<TableRow>
-							<TableHead>Device</TableHead>
-							<TableHead>Role</TableHead>
-							<TableHead>What it runs locally</TableHead>
+							<TableHead>{t("headDevice")}</TableHead>
+							<TableHead>{t("headRole")}</TableHead>
+							<TableHead>{t("headRuns")}</TableHead>
 						</TableRow>
 					</TableHeader>
 					<TableBody>
-						{TIERS.map((tier) => (
-							<TableRow key={tier.device}>
-								<TableCell className="font-medium">{tier.device}</TableCell>
+						{TIER_IDS.map((id) => (
+							<TableRow key={id}>
+								<TableCell className="font-medium">
+									{t(`tiers.${id}.device`)}
+								</TableCell>
 								<TableCell className="text-primary font-semibold">
-									{tier.role}
+									{t(`tiers.${id}.role`)}
 								</TableCell>
 								<TableCell className="text-muted-foreground">
-									{tier.runs}
+									{t(`tiers.${id}.runs`)}
 								</TableCell>
 							</TableRow>
 						))}

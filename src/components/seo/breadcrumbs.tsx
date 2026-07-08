@@ -1,19 +1,24 @@
-const SITE = "https://domia.ai"
+import { getLocale, getTranslations } from "next-intl/server"
 
-export function BreadcrumbsJsonLd({
+import { localizedUrl } from "@/i18n/urls"
+
+export async function BreadcrumbsJsonLd({
 	items,
 }: {
 	items: { name: string; path: string }[]
 }) {
+	const locale = await getLocale()
+	const t = await getTranslations("meta")
+
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "BreadcrumbList",
-		itemListElement: [{ name: "Home", path: "/" }, ...items].map(
+		itemListElement: [{ name: t("home.breadcrumb"), path: "/" }, ...items].map(
 			(item, index) => ({
 				"@type": "ListItem",
 				position: index + 1,
 				name: item.name,
-				item: `${SITE}${item.path === "/" ? "" : item.path}`,
+				item: localizedUrl(item.path, locale),
 			}),
 		),
 	}

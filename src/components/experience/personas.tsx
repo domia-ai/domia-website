@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { getTranslations } from "next-intl/server"
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import {
@@ -8,23 +9,20 @@ import {
 } from "@/components/ui/typography"
 import { personasShowcase } from "@/constants"
 
-export function Personas() {
+export async function Personas() {
+	const t = await getTranslations("experience.personas")
+
 	return (
 		<Card id="personas">
 			<CardHeader>
-				<TypographyH2>🎭 Make your Domia a person</TypographyH2>
+				<TypographyH2>{t("title")}</TypographyH2>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
-				<TypographyLarge>
-					A Domia isn’t just a voice. It’s someone — with a name, a temperament,
-					a way of speaking. Start from one of these and tweak from there, or
-					write your own from scratch. Every persona is just a JSON template you
-					import into the Console.
-				</TypographyLarge>
+				<TypographyLarge>{t("intro")}</TypographyLarge>
 
 				<ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 					{personasShowcase.map((persona) => (
-						<li key={persona.name}>
+						<li key={persona.id}>
 							<Card className="bg-secondary h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
 								<CardContent className="flex flex-col items-center gap-3 p-4 text-center">
 									<Image
@@ -36,7 +34,7 @@ export function Personas() {
 									/>
 									<p className="text-base font-semibold">{persona.name}</p>
 									<TypographySmall className="text-muted-foreground">
-										{persona.blurb}
+										{t(`blurbs.${persona.id}`)}
 									</TypographySmall>
 								</CardContent>
 							</Card>
@@ -45,8 +43,9 @@ export function Personas() {
 				</ul>
 
 				<TypographySmall className="text-muted-foreground">
-					More personas — and a community gallery of community-made ones — live
-					in the <code>domia-personas</code> repository on GitHub.
+					{t.rich("more", {
+						code: (chunks) => <code>{chunks}</code>,
+					})}
 				</TypographySmall>
 			</CardContent>
 		</Card>

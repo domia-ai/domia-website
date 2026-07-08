@@ -1,19 +1,18 @@
+import { getTranslations } from "next-intl/server"
+
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
 
-export function Memory() {
+export async function Memory() {
+	const t = await getTranslations("marketplace.memory")
+
 	return (
 		<Card>
 			<CardHeader>
-				<TypographyH2>🌱 Memory Seeds</TypographyH2>
+				<TypographyH2>{t("title")}</TypographyH2>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
-				<TypographyLarge>
-					Add a seed of memory to give your Domia a past. These emotional
-					origins influence how it reacts, remembers, and evolves. Was it once a
-					lighthouse keeper? A forgotten poet? A childhood companion? You decide
-					what it remembers — and how it feels about it.
-				</TypographyLarge>
+				<TypographyLarge>{t("p1")}</TypographyLarge>
 			</CardContent>
 		</Card>
 	)

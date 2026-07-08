@@ -11,29 +11,15 @@ export async function submitContactForm(
 		const result = contactFormSchema.safeParse(data)
 
 		if (!result.success) {
-			return {
-				success: false,
-				message: "❌ Oops!",
-				description: "Invalid input",
-			}
+			return { success: false, code: "invalid" }
 		}
 
 		await emailClient.sendMail(getContactFormMailOptions(result.data))
 
-		return {
-			success: true,
-			message: "✈️ Message sent!",
-			description:
-				"Thanks for reaching out. Domia and the team have received your message and we’ll get back to you shortly.",
-		}
+		return { success: true, code: "sent" }
 	} catch (error) {
 		console.error("❌ Something went wrong.", error)
 
-		return {
-			success: false,
-			message: "❌ Oops!",
-			description:
-				"Something short-circuited on our side. Try again soon or email us at hello@domia.ai.",
-		}
+		return { success: false, code: "error" }
 	}
 }

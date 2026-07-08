@@ -1,32 +1,27 @@
 import Image from "next/image"
+import { getTranslations } from "next-intl/server"
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
 
-export function Personas() {
+export async function Personas() {
+	const t = await getTranslations("cases.personas")
+
 	return (
 		<Card>
 			<CardHeader>
-				<TypographyH2>🧑‍💼 Brand Personas, Powered by Domia</TypographyH2>
+				<TypographyH2>{t("title")}</TypographyH2>
 			</CardHeader>
 			<CardContent className="flex flex-col-reverse items-center gap-8 lg:flex-row lg:items-start">
-				<TypographyLarge>
-					Bring your character, mascot, or ambassador to life with real memory,
-					emotion, and voice. Domia can be fully aligned with your brand’s tone,
-					mission, and philosophy — becoming a persistent, emotionally aware AI
-					that greets, guides, entertains, and teaches across physical and
-					digital spaces. Whether embedded in tourism kiosks, museum exhibits,
-					retail touchpoints or theme parks, your Domia evolves with your
-					audience — offline or via a private cloud — while preserving your
-					values, your identity, and your data.
-				</TypographyLarge>
+				<TypographyLarge>{t("p1")}</TypographyLarge>
 
 				<Image
 					src="/cases/personas.webp"
-					alt="Domia personas logo"
-					width={400}
-					height={400}
+					alt={t("imageAlt")}
+					width={1024}
+					height={673}
 					priority
+					className="h-auto w-full max-w-[400px]"
 				/>
 			</CardContent>
 		</Card>

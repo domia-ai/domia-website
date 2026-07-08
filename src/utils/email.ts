@@ -5,7 +5,7 @@ import type { ContactFormType } from "@/types"
 export const emailConfig = {
 	service: process.env.EMAIL_SERVICE || "gmail",
 	host: process.env.EMAIL_HOST || "smtp.gmail.com",
-	secure: Boolean(process.env.EMAIL_SECURE || true),
+	secure: process.env.EMAIL_SECURE !== "false",
 	port: Number(process.env.EMAIL_PORT || 465),
 	user: process.env.EMAIL_USER || "",
 	password: process.env.EMAIL_PASSWORD || "",

@@ -40,15 +40,14 @@ export function DemoLink({
 
 	return (
 		<Button
-			asChild
 			size={variant === "primary" ? "lg" : "sm"}
 			variant={variant === "primary" ? "default" : "outline"}
 			className={className}
+			nativeButton={false}
+			render={<a href={href} target="_blank" rel="noopener noreferrer" />}
 		>
-			<a href={href} target="_blank" rel="noopener noreferrer">
-				{label}
-				<ExternalLink className="ml-2 size-4" />
-			</a>
+			{label}
+			<ExternalLink className="ml-2 size-4" />
 		</Button>
 	)
 }

@@ -2,6 +2,7 @@
 import { useForm } from "@tanstack/react-form"
 import { Mail } from "lucide-react"
 import { toast } from "sonner"
+import { useTranslations } from "next-intl"
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -9,7 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { submitContactForm } from "@/actions/contact"
-import { contactFormSchema } from "@/schemas"
+import { buildContactFormSchema } from "@/schemas"
 import {
 	TypographyFormError,
 	TypographyH2,
@@ -20,6 +21,8 @@ import {
 } from "../ui/typography"
 
 export function Form() {
+	const t = useTranslations("contact.form")
+
 	const {
 		Field,
 		Subscribe,
@@ -33,19 +36,19 @@ export function Form() {
 			message: "",
 		},
 		validators: {
-			onSubmit: contactFormSchema,
+			onSubmit: buildContactFormSchema(t),
 		},
 		onSubmit: async ({ value, formApi }) => {
 			const result = await submitContactForm(value)
 
 			if (result.success) {
 				formApi.reset()
-				toast.success(result?.message, {
-					description: result?.description,
+				toast.success(t("toasts.sent.title"), {
+					description: t("toasts.sent.description"),
 				})
 			} else {
-				toast.error(result?.message, {
-					description: result?.description,
+				toast.error(t(`toasts.${result.code}.title`), {
+					description: t(`toasts.${result.code}.description`),
 				})
 			}
 		},
@@ -61,30 +64,28 @@ export function Form() {
 		>
 			<Card>
 				<CardHeader>
-					<TypographyH2>💬 Send us a message</TypographyH2>
+					<TypographyH2>{t("title")}</TypographyH2>
 				</CardHeader>
 
 				<CardContent className="flex flex-col gap-8">
-					<TypographyLarge>
-						Our team is always open to ideas, feedback, and opportunities.
-						Whoever you are and whatever you’re building or wondering — drop us
-						a line.
-					</TypographyLarge>
+					<TypographyLarge>{t("intro")}</TypographyLarge>
 
 					<TypographyLarge>
-						📬 Other ways to reach us If forms aren’t your thing, feel free to
-						send us an email directly at{" "}
-						<a
-							href="mailto:hello@domia.ai"
-							className="hover:text-primary underline transition-colors"
-						>
-							hello@domia.ai
-						</a>
+						{t.rich("emailLine", {
+							a: (chunks) => (
+								<a
+									href="mailto:hello@domia.ai"
+									className="hover:text-primary underline transition-colors"
+								>
+									{chunks}
+								</a>
+							),
+						})}
 					</TypographyLarge>
 
 					<div className="grid gap-12 lg:grid-cols-2">
 						<div className="flex flex-col gap-8">
-							<TypographyH3>Contact Information</TypographyH3>
+							<TypographyH3>{t("info.title")}</TypographyH3>
 
 							<div className="flex items-center gap-3">
 								<div className="bg-primary/10 rounded-lg p-2">
@@ -92,7 +93,9 @@ export function Form() {
 								</div>
 
 								<div>
-									<TypographyP className="font-medium">Email</TypographyP>
+									<TypographyP className="font-medium">
+										{t("info.email")}
+									</TypographyP>
 									<TypographyP className="text-muted-foreground">
 										<a
 											href="mailto:hello@domia.ai"
@@ -106,7 +109,7 @@ export function Form() {
 						</div>
 
 						<div className="flex flex-col gap-8">
-							<TypographyH3>Contact Form</TypographyH3>
+							<TypographyH3>{t("formTitle")}</TypographyH3>
 
 							<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
 								<Field
@@ -114,7 +117,7 @@ export function Form() {
 									children={({ name, state, handleChange, handleBlur }) => {
 										return (
 											<div className="flex flex-col gap-2">
-												<Label htmlFor={name}>Name</Label>
+												<Label htmlFor={name}>{t("fields.name.label")}</Label>
 
 												<Input
 													id={name}
@@ -122,7 +125,7 @@ export function Form() {
 													value={state.value}
 													onBlur={handleBlur}
 													onChange={(e) => handleChange(e.target.value)}
-													placeholder="What's your name?"
+													placeholder={t("fields.name.placeholder")}
 													disabled={formState.isSubmitting}
 												/>
 
@@ -141,7 +144,7 @@ export function Form() {
 									children={({ name, state, handleChange, handleBlur }) => {
 										return (
 											<div className="flex flex-col gap-2">
-												<Label htmlFor={name}>Email</Label>
+												<Label htmlFor={name}>{t("fields.email.label")}</Label>
 
 												<Input
 													id={name}
@@ -149,7 +152,7 @@ export function Form() {
 													value={state.value}
 													onBlur={handleBlur}
 													onChange={(e) => handleChange(e.target.value)}
-													placeholder="hello@domia.ai"
+													placeholder={t("fields.email.placeholder")}
 													disabled={formState.isSubmitting}
 												/>
 
@@ -169,7 +172,7 @@ export function Form() {
 								children={({ name, state, handleChange, handleBlur }) => {
 									return (
 										<div className="flex flex-col gap-2">
-											<Label htmlFor={name}>Subject</Label>
+											<Label htmlFor={name}>{t("fields.subject.label")}</Label>
 
 											<Input
 												id={name}
@@ -177,7 +180,7 @@ export function Form() {
 												value={state.value}
 												onBlur={handleBlur}
 												onChange={(e) => handleChange(e.target.value)}
-												placeholder="What is this regarding?"
+												placeholder={t("fields.subject.placeholder")}
 												disabled={formState.isSubmitting}
 											/>
 
@@ -196,7 +199,7 @@ export function Form() {
 								children={({ name, state, handleChange, handleBlur }) => {
 									return (
 										<div className="flex flex-col gap-2">
-											<Label htmlFor={name}>Message</Label>
+											<Label htmlFor={name}>{t("fields.message.label")}</Label>
 
 											<Textarea
 												id={name}
@@ -204,7 +207,7 @@ export function Form() {
 												value={state.value}
 												onBlur={handleBlur}
 												onChange={(e) => handleChange(e.target.value)}
-												placeholder="What would you like to share?"
+												placeholder={t("fields.message.placeholder")}
 												rows={5}
 												disabled={formState.isSubmitting}
 											/>
@@ -223,16 +226,14 @@ export function Form() {
 								selector={(state) => [state.canSubmit, state.isSubmitting]}
 								children={([canSubmit, isSubmitting]) => (
 									<Button type="submit" disabled={!canSubmit || isSubmitting}>
-										{isSubmitting ? "Sending..." : "Send Message 🚀"}
+										{isSubmitting ? t("submitting") : t("submit")}
 									</Button>
 								)}
 							/>
 						</div>
 					</div>
 
-					<TypographyBlockquote>
-						“Domia listens - always 💌.”
-					</TypographyBlockquote>
+					<TypographyBlockquote>{t("quote")}</TypographyBlockquote>
 				</CardContent>
 			</Card>
 		</form>

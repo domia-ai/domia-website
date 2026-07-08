@@ -1,21 +1,18 @@
+import { getTranslations } from "next-intl/server"
+
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
 
-export function About() {
+export async function About() {
+	const t = await getTranslations("landing.about")
+
 	return (
 		<Card>
 			<CardHeader>
-				<TypographyH2>🧬 What is Domia?</TypographyH2>
+				<TypographyH2>{t("title")}</TypographyH2>
 			</CardHeader>
 			<CardContent>
-				<TypographyLarge>
-					Domia combines a unique personality, emotion, and memory to become a
-					true companion. It understands your voice, responds with empathy,
-					remembers what matters to you, and evolves through shared experiences
-					— all running on your own hardware, without sending your data to the
-					cloud. It can also act in the world — calling tools and controlling
-					devices through local skills (MCP), opt-in.
-				</TypographyLarge>
+				<TypographyLarge>{t("p1")}</TypographyLarge>
 			</CardContent>
 		</Card>
 	)

@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server"
+
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import {
 	TypographyH2,
@@ -5,46 +7,29 @@ import {
 	TypographySmall,
 } from "@/components/ui/typography"
 
-const upcoming = [
-	{
-		title: "🧩 Skills browser",
-		description:
-			"Inspect every MCP server wired into the fleet, what tools each exposes, and the tool-calls each has performed. Lands together with the skills engine itself.",
-	},
-	{
-		title: "📱 Mobile companion",
-		description:
-			"Web today, mobile next. Same Console, same network, same data — just on a screen you carry around.",
-	},
-	{
-		title: "🧑‍🏫 Trainer mode",
-		description:
-			"A guided flow for teaching a Domia a specific role — a host, a guide, a coach — from a handful of examples.",
-	},
-]
+const upcomingIds = ["skills", "mobile", "trainer"] as const
 
-export function WhatsNext() {
+export async function WhatsNext() {
+	const t = await getTranslations("experience.whatsNext")
+
 	return (
 		<Card>
 			<CardHeader>
-				<TypographyH2>🛣️ What’s next</TypographyH2>
+				<TypographyH2>{t("title")}</TypographyH2>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
-				<TypographyLarge>
-					Here’s what we’re building next on top of the Console. Everything in
-					this list is a near-term commitment in our roadmap — not aspiration.
-				</TypographyLarge>
+				<TypographyLarge>{t("intro")}</TypographyLarge>
 
 				<ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-					{upcoming.map((item) => (
-						<li key={item.title}>
+					{upcomingIds.map((id) => (
+						<li key={id}>
 							<Card className="bg-secondary h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
 								<CardHeader>
-									<p className="text-lg font-bold">{item.title}</p>
+									<p className="text-lg font-bold">{t(`items.${id}.title`)}</p>
 								</CardHeader>
 								<CardContent>
 									<TypographySmall className="text-muted-foreground">
-										{item.description}
+										{t(`items.${id}.description`)}
 									</TypographySmall>
 								</CardContent>
 							</Card>

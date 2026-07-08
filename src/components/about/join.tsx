@@ -1,18 +1,18 @@
+import { getTranslations } from "next-intl/server"
+
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
 
-export function Join() {
+export async function Join() {
+	const t = await getTranslations("about.join")
+
 	return (
 		<Card>
 			<CardHeader>
-				<TypographyH2>🧑‍💻 Join the Mission</TypographyH2>
+				<TypographyH2>{t("title")}</TypographyH2>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-8">
-				<TypographyLarge>
-					Be Part of the Evolution, Whether you’re a developer, a designer, or
-					simply a dreamer, Domia is open to your energy. Help shape how
-					emotional AI grows and integrates into real-world environments.
-				</TypographyLarge>
+				<TypographyLarge>{t("p1")}</TypographyLarge>
 			</CardContent>
 		</Card>
 	)

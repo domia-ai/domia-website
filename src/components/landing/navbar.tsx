@@ -1,18 +1,20 @@
 "use client"
 import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { useTranslations } from "next-intl"
 import { Menu, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { GithubIcon } from "@/components/landing/icons"
 import { DemoLink } from "@/components/landing/demo-link"
+import { LanguageSwitcher } from "@/components/landing/language-switcher"
+import { Link, usePathname } from "@/i18n/navigation"
 import { routes } from "@/constants"
 
 export function Navbar() {
 	const [isOpen, setIsOpen] = useState(false)
 	const pathname = usePathname()
+	const t = useTranslations("nav")
 
 	return (
 		<header className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur">
@@ -25,38 +27,34 @@ export function Navbar() {
 					</Link>
 				</div>
 
-				{/* Desktop navigation */}
 				<nav className="mx-6 hidden items-center space-x-1 md:flex lg:space-x-2">
 					{routes.map((route) => (
 						<Link
-							key={route.href}
-							href={route.href}
+							key={route}
+							href={route}
 							className={cn(
 								"group relative rounded-md px-3 py-2 text-sm font-medium transition-all duration-300",
 								"hover:text-primary hover:bg-primary/5",
-								pathname === route.href
+								pathname === route
 									? "text-primary bg-primary/10"
 									: "text-muted-foreground",
 							)}
 						>
-							<span className="relative z-10">{route.label}</span>
-
-							{/* Active indicator line */}
+							<span className="relative z-10">{t(route.slice(1))}</span>
 							<div
 								className={cn(
 									"bg-primary absolute bottom-0 left-1/2 h-0.5 rounded-full transition-all duration-300",
-									pathname === route.href
+									pathname === route
 										? "w-3/4 -translate-x-1/2 opacity-100"
 										: "w-0 -translate-x-1/2 opacity-0",
 								)}
 							/>
 
-							{/* Hover indicator line */}
 							<div
 								className={cn(
 									"bg-primary/60 absolute bottom-0 left-1/2 h-0.5 rounded-full transition-all duration-300",
 									"group-hover:w-3/4 group-hover:-translate-x-1/2 group-hover:opacity-100",
-									pathname === route.href
+									pathname === route
 										? "opacity-0"
 										: "w-0 -translate-x-1/2 opacity-0",
 								)}
@@ -65,28 +63,32 @@ export function Navbar() {
 					))}
 				</nav>
 
-				{/* Desktop GitHub CTA + Demo */}
 				<div className="hidden flex-1 items-center justify-end gap-2 md:flex">
-					<Button asChild size="sm" variant="outline">
-						<a
-							href="https://github.com/domia-ai"
-							target="_blank"
-							rel="noopener noreferrer"
-							aria-label="Domia on GitHub"
-						>
-							<GithubIcon className="mr-2 size-4" />
-							GitHub
-						</a>
+					<LanguageSwitcher />
+					<Button
+						size="sm"
+						variant="outline"
+						nativeButton={false}
+						render={
+							<a
+								href="https://github.com/domia-ai"
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label={t("githubAria")}
+							/>
+						}
+					>
+						<GithubIcon className="mr-2 size-4" />
+						GitHub
 					</Button>
-					<DemoLink variant="secondary" label="Try the demo" />
+					<DemoLink variant="secondary" label={t("tryDemo")} />
 				</div>
 
-				{/* Mobile navigation button */}
 				<div className="flex flex-1 items-center justify-end md:hidden">
 					<Button
 						variant="ghost"
 						size="icon"
-						aria-label={isOpen ? "Close menu" : "Open menu"}
+						aria-label={isOpen ? t("closeMenu") : t("openMenu")}
 						onClick={() => setIsOpen(!isOpen)}
 						className="hover:bg-primary/10 transition-colors duration-200"
 					>
@@ -108,7 +110,6 @@ export function Navbar() {
 				</div>
 			</div>
 
-			{/* Mobile navigation menu */}
 			<div
 				className={cn(
 					"overflow-hidden transition-all duration-300 ease-in-out md:hidden",
@@ -118,17 +119,17 @@ export function Navbar() {
 				<div className="bg-background/50 container grid gap-1 py-4 backdrop-blur-sm">
 					<DemoLink
 						variant="primary"
-						label="Try the live demo"
+						label={t("tryLiveDemo")}
 						className="mb-2 w-full"
 					/>
 					{routes.map((route, index) => (
 						<Link
-							key={route.href}
-							href={route.href}
+							key={route}
+							href={route}
 							className={cn(
 								"group relative flex items-center overflow-hidden rounded-lg px-4 py-3 text-base font-medium transition-all duration-200",
 								"hover:bg-primary/10 hover:text-primary hover:translate-x-1",
-								pathname === route.href
+								pathname === route
 									? "bg-primary/15 text-primary border-primary border-l-2"
 									: "hover:bg-accent hover:text-accent-foreground",
 								"animate-in slide-in-from-left-5 fade-in-0",
@@ -139,10 +140,11 @@ export function Navbar() {
 							}}
 							onClick={() => setIsOpen(false)}
 						>
-							<span className="relative z-10">{route.label}</span>
+							<span className="relative z-10">{t(route.slice(1))}</span>
 							<div className="from-primary/5 absolute inset-0 bg-gradient-to-r to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 						</Link>
 					))}
+					<LanguageSwitcher className="mt-2 justify-center" />
 				</div>
 			</div>
 		</header>

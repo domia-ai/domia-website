@@ -1,5 +1,0 @@
-export * from "./hero"
-export * from "./post-card"
-export * from "./post-list"
-export * from "./post-article"
-export * from "./post-jsonld"

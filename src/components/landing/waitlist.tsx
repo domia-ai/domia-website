@@ -1,23 +1,26 @@
-import Link from "next/link"
+import { getTranslations } from "next-intl/server"
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
+import { Link } from "@/i18n/navigation"
 
-export function Waitlist() {
+export async function Waitlist() {
+	const t = await getTranslations("landing.waitlist")
+
 	return (
 		<Card id="waitlist">
 			<CardHeader>
-				<TypographyH2>📨 Stay in the loop</TypographyH2>
+				<TypographyH2>{t("title")}</TypographyH2>
 			</CardHeader>
 			<CardContent className="flex flex-col items-start gap-6">
-				<TypographyLarge>
-					Domia’s core is open and you can run it today. Want updates as the
-					Console, skills, and new voices land — or interested in piloting Domia
-					in your space? Tell us how you’d use it and we’ll reach out.
-				</TypographyLarge>
-				<Button asChild size="lg">
-					<Link href="/contact">Get in touch</Link>
+				<TypographyLarge>{t("p1")}</TypographyLarge>
+				<Button
+					size="lg"
+					nativeButton={false}
+					render={<Link href="/contact" />}
+				>
+					{t("cta")}
 				</Button>
 			</CardContent>
 		</Card>

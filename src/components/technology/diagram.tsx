@@ -1,4 +1,5 @@
 import { ArrowDown } from "lucide-react"
+import { getTranslations } from "next-intl/server"
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import {
@@ -8,16 +9,12 @@ import {
 } from "@/components/ui/typography"
 
 const SPACES = [
-	{ emoji: "🍳", name: "Kitchen" },
-	{ emoji: "🎨", name: "Studio" },
-	{ emoji: "🛎️", name: "Front desk" },
-]
+	{ id: "kitchen", emoji: "🍳" },
+	{ id: "studio", emoji: "🎨" },
+	{ id: "frontDesk", emoji: "🛎️" },
+] as const
 
-const STAGES = [
-	{ label: "Speech-to-Text" },
-	{ label: "Language model" },
-	{ label: "Text-to-Speech" },
-]
+const STAGE_IDS = ["stt", "llm", "tts"] as const
 
 const Box = ({
 	title,
@@ -36,69 +33,55 @@ const Box = ({
 	</div>
 )
 
-export function Diagram() {
+export async function Diagram() {
+	const t = await getTranslations("technology.diagram")
+
 	return (
 		<Card>
 			<CardHeader>
-				<TypographyH2>🗺️ How the Pieces Fit</TypographyH2>
+				<TypographyH2>{t("title")}</TypographyH2>
 			</CardHeader>
 			<CardContent className="flex flex-col items-center gap-6">
-				<TypographyLarge className="self-start">
-					Each space runs on a small edge device that listens and speaks — it
-					captures audio with a wake word and voice-activity detection, and
-					plays the reply back. The heavy stages run on a single hub that serves
-					several spaces in parallel. Identity travels with every request, so
-					the hub answers in each space’s own voice — never its own.
-				</TypographyLarge>
+				<TypographyLarge className="self-start">{t("intro")}</TypographyLarge>
 
 				<div className="flex flex-wrap justify-center gap-4">
 					{SPACES.map((space) => (
 						<Box
-							key={space.name}
-							title={`${space.emoji} ${space.name}`}
-							sub="small device: mic · wake · VAD · playback"
+							key={space.id}
+							title={`${space.emoji} ${t(`spaces.${space.id}`)}`}
+							sub={t("spaceSub")}
 						/>
 					))}
 				</div>
 
 				<div className="text-muted-foreground flex flex-col items-center">
 					<ArrowDown className="animate-pulse" />
-					<TypographySmall>
-						gRPC over your local network — audio + persona + voice
-					</TypographySmall>
+					<TypographySmall>{t("transport")}</TypographySmall>
 					<ArrowDown className="animate-pulse" />
 				</div>
 
 				<div className="border-primary/30 flex w-full max-w-3xl flex-col items-center gap-4 rounded-xl border-2 border-dashed p-5">
-					<span className="font-bold">
-						🧠 Smart hub — parallel inference pools
-					</span>
+					<span className="font-bold">{t("hub")}</span>
 					<div className="flex flex-wrap items-center justify-center gap-2">
-						{STAGES.map((stage, i) => (
-							<div key={stage.label} className="flex items-center gap-2">
-								<Box title={stage.label} />
-								{i < STAGES.length - 1 ? (
+						{STAGE_IDS.map((id, index) => (
+							<div key={id} className="flex items-center gap-2">
+								<Box title={t(`stages.${id}`)} />
+								{index < STAGE_IDS.length - 1 ? (
 									<span className="text-muted-foreground">→</span>
 								) : null}
 							</div>
 						))}
 					</div>
 					<div className="flex flex-wrap justify-center gap-3">
-						<Box title="Discovery" sub="peers find each other" />
-						<Box title="Config" sub="live, no restart" />
+						<Box title={t("discovery.title")} sub={t("discovery.sub")} />
+						<Box title={t("config.title")} sub={t("config.sub")} />
 					</div>
 				</div>
 
-				<TypographyLarge className="text-center">
-					Every model is swappable, and Domia runs the one that best fits each
-					device — a small, fast model on a low-power device, a larger one on a
-					capable hub. Sensible defaults adapt across the hardware spectrum, and
-					everything stays configurable. Nothing is locked in.
-				</TypographyLarge>
+				<TypographyLarge className="text-center">{t("models")}</TypographyLarge>
 
 				<TypographySmall className="text-muted-foreground text-center">
-					No central server and no cloud audio. Roles aren’t hardcoded — any
-					capable device can be the hub; it’s all configuration.
+					{t("footnote")}
 				</TypographySmall>
 			</CardContent>
 		</Card>
