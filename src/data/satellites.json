@@ -1,0 +1,47 @@
+{
+	"meta": {
+		"source": "domia-core/src/db/constants/runtime.ts (SATELLITE_PROTOCOL_ENUM, DEFAULT_SATELLITE_PROTOCOL, DEFAULT_SATELLITE_FOLLOW_UP); domia-core/docs/ARCHITECTURE.md (Satellites); domia-core/src/modules/realtime-gateway (OpenAI-Realtime endpoint)",
+		"capturedAt": "2026-09-24T00:00:00.000Z",
+		"generator": "manual"
+	},
+	"protocols": [
+		{
+			"id": "esphome",
+			"factoryFirmware": true,
+			"connectsOut": true,
+			"onDevice": ["wakeWord", "audioIn", "audioOut", "leds"],
+			"streams": ["audioIn", "replyAudioAdvertisedFormat", "announcements"],
+			"caveats": [
+				"followUpOnFactoryFirmware",
+				"advertisedFormatOnly",
+				"pingWatchdog"
+			]
+		},
+		{
+			"id": "wyoming",
+			"factoryFirmware": false,
+			"connectsOut": true,
+			"onDevice": ["wakeWord", "audioIn", "audioOut"],
+			"streams": ["audioIn", "replyAudio"],
+			"caveats": ["nodeConnectsOut", "noPlaybackConfirmation"]
+		},
+		{
+			"id": "livekit",
+			"factoryFirmware": false,
+			"connectsOut": false,
+			"onDevice": ["audioIn", "audioOut"],
+			"streams": ["audioIn", "replyAudio"],
+			"caveats": ["needsRuntimeOnNode", "webrtcRoom"]
+		},
+		{
+			"id": "websocket",
+			"factoryFirmware": false,
+			"connectsOut": false,
+			"onDevice": ["wakeWord", "audioIn", "audioOut"],
+			"streams": ["audioIn", "replyAudio", "audioPlayedStamp"],
+			"caveats": ["referenceProtocol", "diyBuild"]
+		}
+	],
+	"followUpDefault": true,
+	"defaultProtocol": "esphome"
+}

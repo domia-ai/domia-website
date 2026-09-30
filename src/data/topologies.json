@@ -1,0 +1,462 @@
+{
+	"meta": {
+		"source": "Domia Deployment Topologies.html (Claude Design reference page supplied by the user: node cards, placement table, link endpoints); domia-core/docs/ARCHITECTURE.md (mesh, satellites)",
+		"capturedAt": "2026-09-24T00:00:00.000Z",
+		"generator": "manual"
+	},
+	"canvas": {
+		"w": 1200,
+		"h": 620
+	},
+	"nodes": [
+		{
+			"id": "main",
+			"kind": "node",
+			"base": {
+				"x": 450,
+				"y": 140,
+				"w": 300,
+				"h": 230
+			}
+		},
+		{
+			"id": "mic",
+			"kind": "peripheral",
+			"base": {
+				"x": 302,
+				"y": 232,
+				"w": 102,
+				"h": 44
+			}
+		},
+		{
+			"id": "speaker",
+			"kind": "peripheral",
+			"base": {
+				"x": 798,
+				"y": 232,
+				"w": 104,
+				"h": 44
+			}
+		},
+		{
+			"id": "sat-esphome",
+			"kind": "satellite",
+			"base": {
+				"x": 110,
+				"y": 60,
+				"w": 212,
+				"h": 72
+			}
+		},
+		{
+			"id": "sat-livekit",
+			"kind": "satellite",
+			"base": {
+				"x": 878,
+				"y": 60,
+				"w": 212,
+				"h": 72
+			}
+		},
+		{
+			"id": "sat-websocket",
+			"kind": "satellite",
+			"base": {
+				"x": 100,
+				"y": 470,
+				"w": 212,
+				"h": 72
+			}
+		},
+		{
+			"id": "sat-wyoming",
+			"kind": "satellite",
+			"base": {
+				"x": 878,
+				"y": 470,
+				"w": 212,
+				"h": 72
+			}
+		},
+		{
+			"id": "hub-b",
+			"kind": "peer",
+			"base": {
+				"x": 858,
+				"y": 50,
+				"w": 260,
+				"h": 140
+			}
+		},
+		{
+			"id": "hub-c",
+			"kind": "peer",
+			"base": {
+				"x": 480,
+				"y": 420,
+				"w": 250,
+				"h": 140
+			}
+		}
+	],
+	"scenarios": [
+		{
+			"id": "single",
+			"frame": {
+				"y": 110,
+				"h": 290
+			},
+			"identities": ["nova"],
+			"placements": {
+				"main": {
+					"dx": 0,
+					"dy": 0,
+					"scale": 1
+				},
+				"mic": {
+					"dx": 0,
+					"dy": 0,
+					"scale": 1
+				},
+				"speaker": {
+					"dx": 0,
+					"dy": 0,
+					"scale": 1
+				},
+				"sat-esphome": null,
+				"sat-livekit": null,
+				"sat-websocket": null,
+				"sat-wyoming": null,
+				"hub-b": null,
+				"hub-c": null
+			},
+			"links": [
+				{
+					"id": "mic-in",
+					"from": "mic",
+					"to": "main",
+					"kind": "audio",
+					"dashed": false,
+					"arrow": false,
+					"points": [
+						[404, 254],
+						[450, 254]
+					]
+				},
+				{
+					"id": "speaker-out",
+					"from": "main",
+					"to": "speaker",
+					"kind": "audio",
+					"dashed": false,
+					"arrow": false,
+					"points": [
+						[750, 254],
+						[798, 254]
+					]
+				}
+			],
+			"labels": [],
+			"bindings": {}
+		},
+		{
+			"id": "hubRooms",
+			"frame": {
+				"y": 40,
+				"h": 580
+			},
+			"identities": ["nova", "sage", "ember"],
+			"placements": {
+				"main": {
+					"dx": 0,
+					"dy": 0,
+					"scale": 1
+				},
+				"mic": null,
+				"speaker": null,
+				"sat-esphome": {
+					"dx": 0,
+					"dy": 0,
+					"scale": 1
+				},
+				"sat-livekit": {
+					"dx": 0,
+					"dy": 0,
+					"scale": 1
+				},
+				"sat-websocket": {
+					"dx": 0,
+					"dy": 0,
+					"scale": 1
+				},
+				"sat-wyoming": {
+					"dx": 0,
+					"dy": 0,
+					"scale": 1
+				},
+				"hub-b": null,
+				"hub-c": null
+			},
+			"links": [
+				{
+					"id": "esphome-stream",
+					"from": "sat-esphome",
+					"to": "main",
+					"kind": "satellite",
+					"dashed": true,
+					"arrow": false,
+					"points": [
+						[322, 96],
+						[468, 172]
+					]
+				},
+				{
+					"id": "livekit-stream",
+					"from": "sat-livekit",
+					"to": "main",
+					"kind": "satellite",
+					"dashed": true,
+					"arrow": false,
+					"points": [
+						[878, 96],
+						[732, 172]
+					]
+				},
+				{
+					"id": "websocket-stream",
+					"from": "sat-websocket",
+					"to": "main",
+					"kind": "satellite",
+					"dashed": true,
+					"arrow": false,
+					"points": [
+						[312, 496],
+						[470, 324]
+					]
+				},
+				{
+					"id": "wyoming-stream",
+					"from": "sat-wyoming",
+					"to": "main",
+					"kind": "satellite",
+					"dashed": true,
+					"arrow": false,
+					"points": [
+						[878, 496],
+						[730, 324]
+					]
+				}
+			],
+			"labels": [
+				{
+					"id": "audio-streams",
+					"x": 600,
+					"y": 118
+				},
+				{
+					"id": "same-behaviour",
+					"x": 600,
+					"y": 415
+				},
+				{
+					"id": "realtime-endpoint",
+					"x": 600,
+					"y": 588
+				}
+			],
+			"bindings": {
+				"sat-esphome": "nova",
+				"sat-livekit": "sage",
+				"sat-websocket": "ember",
+				"sat-wyoming": "nova"
+			}
+		},
+		{
+			"id": "mesh",
+			"frame": {
+				"y": 30,
+				"h": 560
+			},
+			"identities": ["nova", "sage", "ember", "rhea", "milo"],
+			"placements": {
+				"main": {
+					"dx": -390,
+					"dy": -90,
+					"scale": 0.8
+				},
+				"mic": null,
+				"speaker": null,
+				"sat-esphome": null,
+				"sat-livekit": null,
+				"sat-websocket": {
+					"dx": -40,
+					"dy": -150,
+					"scale": 0.85
+				},
+				"sat-wyoming": {
+					"dx": 30,
+					"dy": -165,
+					"scale": 0.85
+				},
+				"hub-b": {
+					"dx": 0,
+					"dy": 0,
+					"scale": 1
+				},
+				"hub-c": {
+					"dx": 0,
+					"dy": 0,
+					"scale": 1
+				}
+			},
+			"links": [
+				{
+					"id": "lend-main-b",
+					"from": "main",
+					"to": "hub-b",
+					"kind": "stage",
+					"dashed": false,
+					"arrow": false,
+					"points": [
+						[302, 138],
+						[856, 120]
+					]
+				},
+				{
+					"id": "lend-main-c",
+					"from": "main",
+					"to": "hub-c",
+					"kind": "stage",
+					"dashed": false,
+					"arrow": false,
+					"points": [
+						[240, 190],
+						[518, 426]
+					]
+				},
+				{
+					"id": "lend-b-c",
+					"from": "hub-b",
+					"to": "hub-c",
+					"kind": "stage",
+					"dashed": false,
+					"arrow": false,
+					"points": [
+						[940, 175],
+						[700, 422]
+					]
+				},
+				{
+					"id": "find-main-b",
+					"from": "main",
+					"to": "hub-b",
+					"kind": "discovery",
+					"dashed": true,
+					"arrow": false,
+					"path": "M302,158 Q580,215 856,142"
+				},
+				{
+					"id": "find-main-c",
+					"from": "main",
+					"to": "hub-c",
+					"kind": "discovery",
+					"dashed": true,
+					"arrow": false,
+					"path": "M225,205 Q320,355 495,438"
+				},
+				{
+					"id": "find-b-c",
+					"from": "hub-b",
+					"to": "hub-c",
+					"kind": "discovery",
+					"dashed": true,
+					"arrow": false,
+					"path": "M950,190 Q870,345 712,438"
+				},
+				{
+					"id": "delegation-c-b",
+					"from": "hub-c",
+					"to": "hub-b",
+					"kind": "stage",
+					"dashed": true,
+					"arrow": true,
+					"points": [
+						[648, 414],
+						[895, 180]
+					]
+				},
+				{
+					"id": "websocket-stream",
+					"from": "sat-websocket",
+					"to": "main",
+					"kind": "satellite",
+					"dashed": true,
+					"arrow": false,
+					"points": [
+						[150, 316],
+						[168, 195]
+					]
+				},
+				{
+					"id": "wyoming-stream",
+					"from": "sat-wyoming",
+					"to": "hub-b",
+					"kind": "satellite",
+					"dashed": true,
+					"arrow": false,
+					"points": [
+						[998, 302],
+						[990, 178]
+					]
+				}
+			],
+			"labels": [
+				{
+					"id": "lend-caption",
+					"x": 430,
+					"y": 60,
+					"w": 300
+				},
+				{
+					"id": "persona-caption",
+					"x": 465,
+					"y": 280,
+					"w": 195
+				}
+			],
+			"bindings": {
+				"sat-websocket": "ember",
+				"sat-wyoming": "rhea"
+			}
+		}
+	],
+	"identities": [
+		{
+			"id": "nova",
+			"node": "main",
+			"avatar": "/collection/chef.webp"
+		},
+		{
+			"id": "sage",
+			"node": "main",
+			"avatar": "/collection/teacher.webp"
+		},
+		{
+			"id": "ember",
+			"node": "main",
+			"avatar": "/collection/musician.webp"
+		},
+		{
+			"id": "rhea",
+			"node": "hub-b",
+			"avatar": "/collection/doctor.webp"
+		},
+		{
+			"id": "milo",
+			"node": "hub-c",
+			"avatar": "/collection/programmer.webp"
+		}
+	],
+	"pipelineChips": ["wake", "stt", "routing", "llm", "tts"]
+}

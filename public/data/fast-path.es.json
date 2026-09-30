@@ -1,0 +1,4871 @@
+{
+	"skipWords": [
+		"please",
+		"can you",
+		"could you",
+		"would you",
+		"will you",
+		"for me",
+		"i'd like",
+		"i'd like to",
+		"i want",
+		"i want you to",
+		"hey",
+		"por favor",
+		"porfa",
+		"gracias",
+		"podrías",
+		"podría",
+		"puedes",
+		"podés",
+		"me podrías",
+		"me podría",
+		"me puedes",
+		"me podés",
+		"te importaría",
+		"te importa",
+		"le importa",
+		"le importaría",
+		"te animas a",
+		"te animás a",
+		"oye"
+	],
+	"skipPhrasesPerSide": 3,
+	"maxUtteranceChars": 80,
+	"blockers": [
+		"don't",
+		"do not",
+		"didn't",
+		"never",
+		"won't",
+		"wouldn't",
+		"did",
+		"why",
+		"when",
+		"who",
+		"would",
+		"could",
+		"can",
+		"should",
+		"what",
+		"how",
+		"if",
+		"imagine",
+		"suppose",
+		"said",
+		"told",
+		"asked",
+		"yesterday",
+		"tomorrow",
+		"later",
+		"earlier",
+		"already",
+		"no",
+		"nunca",
+		"jamás",
+		"jamas",
+		"por qué",
+		"por que",
+		"cuándo",
+		"cuando",
+		"quién",
+		"quien",
+		"podrías",
+		"podrias",
+		"puedes",
+		"debería",
+		"deberia",
+		"qué",
+		"cómo",
+		"como",
+		"si",
+		"imagina",
+		"supón",
+		"supon",
+		"dijo",
+		"contó",
+		"conto",
+		"preguntó",
+		"pregunto",
+		"ayer",
+		"mañana",
+		"manana",
+		"luego",
+		"antes",
+		"ya"
+	],
+	"minCoverage": 0.1,
+	"intents": [
+		{
+			"tool": "HassTurnOn",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<encender> [<articulo>] {entity}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "enciende" }],
+								[{ "kind": "text", "value": "encienda" }],
+								[{ "kind": "text", "value": "prende" }],
+								[{ "kind": "text", "value": "prenda" }],
+								[{ "kind": "text", "value": "activa" }],
+								[{ "kind": "text", "value": "active" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" }
+					],
+					"prefilter": "^[ ]*(?:enciende|encienda|prende|prenda|activa|active)[ ]*(?:[ ]*(?:la|el|las|los|mi|mis))?[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": {
+				"entity": {
+					"kind": "context",
+					"arg": "entity",
+					"key": "entity:default,media_player"
+				}
+			},
+			"requiredKeywords": [
+				["enciende", "prende", "activa", "encender", "prender"]
+			],
+			"argDefaults": {},
+			"priority": 1
+		},
+		{
+			"tool": "HassTurnOn",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<encender> [<articulo>] luces (de|del|de la|en) [<articulo>] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "enciende" }],
+								[{ "kind": "text", "value": "encienda" }],
+								[{ "kind": "text", "value": "prende" }],
+								[{ "kind": "text", "value": "prenda" }],
+								[{ "kind": "text", "value": "activa" }],
+								[{ "kind": "text", "value": "active" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "luces" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "de" }],
+								[{ "kind": "text", "value": "del" }],
+								[{ "kind": "text", "value": "de la" }],
+								[{ "kind": "text", "value": "en" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:enciende|encienda|prende|prenda|activa|active)[ ]*(?:[ ]*(?:la|el|las|los|mi|mis))?[ ]*luces[ ]*(?:de|del|de[ ]+la|en)[ ]*(?:[ ]*(?:la|el|las|los|mi|mis))?[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": { "area": { "kind": "context", "arg": "area", "key": "area" } },
+			"requiredKeywords": [
+				["enciende", "prende", "activa", "encender", "prender"]
+			],
+			"argDefaults": { "domain": ["light"] },
+			"priority": 0
+		},
+		{
+			"tool": "HassTurnOff",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<apagar> [<articulo>] {entity}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "apaga" }],
+								[{ "kind": "text", "value": "apague" }],
+								[{ "kind": "text", "value": "desactiva" }],
+								[{ "kind": "text", "value": "desactive" }],
+								[{ "kind": "text", "value": "desconecta" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" }
+					],
+					"prefilter": "^[ ]*(?:apaga|apague|desactiva|desactive|desconecta)[ ]*(?:[ ]*(?:la|el|las|los|mi|mis))?[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": {
+				"entity": {
+					"kind": "context",
+					"arg": "entity",
+					"key": "entity:default,media_player"
+				}
+			},
+			"requiredKeywords": [["apaga", "desactiva", "apagar", "desconecta"]],
+			"argDefaults": {},
+			"priority": 1
+		},
+		{
+			"tool": "HassTurnOff",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<apagar> [<articulo>] luces (de|del|de la|en) [<articulo>] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "apaga" }],
+								[{ "kind": "text", "value": "apague" }],
+								[{ "kind": "text", "value": "desactiva" }],
+								[{ "kind": "text", "value": "desactive" }],
+								[{ "kind": "text", "value": "desconecta" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "luces" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "de" }],
+								[{ "kind": "text", "value": "del" }],
+								[{ "kind": "text", "value": "de la" }],
+								[{ "kind": "text", "value": "en" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:apaga|apague|desactiva|desactive|desconecta)[ ]*(?:[ ]*(?:la|el|las|los|mi|mis))?[ ]*luces[ ]*(?:de|del|de[ ]+la|en)[ ]*(?:[ ]*(?:la|el|las|los|mi|mis))?[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": { "area": { "kind": "context", "arg": "area", "key": "area" } },
+			"requiredKeywords": [["apaga", "desactiva", "apagar", "desconecta"]],
+			"argDefaults": { "domain": ["light"] },
+			"priority": 0
+		},
+		{
+			"tool": "HassLightSet",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "(pon|ajusta) [<articulo>] {entity} al {level} [por ciento]",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "pon" }],
+								[{ "kind": "text", "value": "ajusta" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{ "kind": "text", "value": "al" },
+						{ "kind": "slot", "name": "level" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "por ciento" }]
+						}
+					],
+					"prefilter": "^[ ]*(?:pon|ajusta)[ ]*(?:[ ]*(?:la|el|las|los|mi|mis))?[ ]*(?:.+)[ ]*al[ ]*(?:.+)[ ]*(?:[ ]*por[ ]+ciento)?[ ]*$"
+				},
+				{
+					"source": "(pon|ajusta) [<articulo>] {entity} a {level} [por ciento]",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "pon" }],
+								[{ "kind": "text", "value": "ajusta" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{ "kind": "text", "value": "a" },
+						{ "kind": "slot", "name": "level" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "por ciento" }]
+						}
+					],
+					"prefilter": "^[ ]*(?:pon|ajusta)[ ]*(?:[ ]*(?:la|el|las|los|mi|mis))?[ ]*(?:.+)[ ]*a[ ]*(?:.+)[ ]*(?:[ ]*por[ ]+ciento)?[ ]*$"
+				}
+			],
+			"slots": {
+				"entity": {
+					"kind": "context",
+					"arg": "entity",
+					"key": "entity:default,media_player"
+				},
+				"level": { "kind": "range", "arg": "brightness", "min": 0, "max": 100 }
+			},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 1
+		},
+		{
+			"tool": "HassTurnOn",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<abre> [(el|la|los|las)] {coverClasses} [([(en|de)] [(el|la)]|del)] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "abra" }],
+								[{ "kind": "text", "value": "abre" }],
+								[{ "kind": "text", "value": "abrir" }],
+								[{ "kind": "text", "value": "abri" }],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "suba" }],
+											[{ "kind": "text", "value": "sube" }],
+											[{ "kind": "text", "value": "subir" }],
+											[{ "kind": "text", "value": "subi" }],
+											[{ "kind": "text", "value": "levanta" }],
+											[{ "kind": "text", "value": "levante" }],
+											[{ "kind": "text", "value": "levantar" }],
+											[{ "kind": "text", "value": "levanta" }],
+											[{ "kind": "text", "value": "aumenta" }],
+											[{ "kind": "text", "value": "aumente" }],
+											[{ "kind": "text", "value": "aumentar" }],
+											[{ "kind": "text", "value": "aumenta" }],
+											[{ "kind": "text", "value": "incrementa" }],
+											[{ "kind": "text", "value": "incremente" }],
+											[{ "kind": "text", "value": "incrementar" }],
+											[{ "kind": "text", "value": "incrementa" }]
+										]
+									}
+								]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "las" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "coverClasses" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "en" }],
+															[{ "kind": "text", "value": "de" }]
+														]
+													}
+												]
+											},
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "el" }],
+															[{ "kind": "text", "value": "la" }]
+														]
+													}
+												]
+											}
+										],
+										[{ "kind": "text", "value": "del" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:abra|abre|abrir|abri|(?:suba|sube|subir|subi|levanta|levante|levantar|levanta|aumenta|aumente|aumentar|aumenta|incrementa|incremente|incrementar|incrementa))[ ]*(?:[ ]*(?:el|la|los|las))?[ ]*(?:.+)[ ]*(?:[ ]*(?:(?:[ ]*(?:en|de))?[ ]*(?:[ ]*(?:el|la))?|del))?[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": {
+				"area": { "kind": "context", "arg": "area", "key": "area" },
+				"coverClasses": {
+					"kind": "values",
+					"arg": "device_class",
+					"values": [
+						{ "phrase": "toldo", "args": { "device_class": ["awning"] } },
+						{ "phrase": "toldos", "args": { "device_class": ["awning"] } },
+						{ "phrase": "persiana", "args": { "device_class": ["blind"] } },
+						{ "phrase": "persianas", "args": { "device_class": ["blind"] } },
+						{ "phrase": "cortina", "args": { "device_class": ["curtain"] } },
+						{ "phrase": "cortinas", "args": { "device_class": ["curtain"] } },
+						{ "phrase": "puerta", "args": { "device_class": ["door"] } },
+						{ "phrase": "puertas", "args": { "device_class": ["door"] } },
+						{
+							"phrase": "puerta garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta del garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta del cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta de garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta de cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta de la garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta de la cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas del garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas del cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas de garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas de cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas de la garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas de la cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela del garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela del cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela de garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela de cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela de la garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela de la cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas del garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas del cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas de garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas de cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas de la garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas de la cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón del garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón del cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón de garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón de cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón de la garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón de la cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones del garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones del cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones de garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones de cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones de la garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones de la cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{ "phrase": "cochera", "args": { "device_class": ["garage"] } },
+						{ "phrase": "cocheras", "args": { "device_class": ["garage"] } },
+						{ "phrase": "verja", "args": { "device_class": ["gate"] } },
+						{ "phrase": "verjas", "args": { "device_class": ["gate"] } },
+						{ "phrase": "cancela", "args": { "device_class": ["gate"] } },
+						{ "phrase": "cancelas", "args": { "device_class": ["gate"] } },
+						{ "phrase": "portón", "args": { "device_class": ["gate"] } },
+						{ "phrase": "portones", "args": { "device_class": ["gate"] } },
+						{ "phrase": "estor", "args": { "device_class": ["shade"] } },
+						{ "phrase": "estores", "args": { "device_class": ["shade"] } },
+						{
+							"phrase": "contraventana",
+							"args": { "device_class": ["shutter"] }
+						},
+						{
+							"phrase": "contraventanas",
+							"args": { "device_class": ["shutter"] }
+						},
+						{ "phrase": "veneciana", "args": { "device_class": ["shutter"] } },
+						{ "phrase": "venecianas", "args": { "device_class": ["shutter"] } },
+						{ "phrase": "ventana", "args": { "device_class": ["window"] } },
+						{ "phrase": "ventanas", "args": { "device_class": ["window"] } }
+					]
+				}
+			},
+			"requiredKeywords": [],
+			"argDefaults": { "domain": ["cover"] },
+			"priority": 0
+		},
+		{
+			"tool": "HassTurnOn",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<enciende> [<todos>] <luces> [([(en|de)] [(el|la)]|del)] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "encenda" }],
+								[{ "kind": "text", "value": "encende" }],
+								[{ "kind": "text", "value": "encender" }],
+								[{ "kind": "text", "value": "encende" }],
+								[{ "kind": "text", "value": "encienda" }],
+								[{ "kind": "text", "value": "enciende" }],
+								[{ "kind": "text", "value": "enciender" }],
+								[{ "kind": "text", "value": "enciende" }],
+								[{ "kind": "text", "value": "conecta" }],
+								[{ "kind": "text", "value": "conecte" }],
+								[{ "kind": "text", "value": "conectar" }],
+								[{ "kind": "text", "value": "conecta" }],
+								[{ "kind": "text", "value": "activa" }],
+								[{ "kind": "text", "value": "active" }],
+								[{ "kind": "text", "value": "activar" }],
+								[{ "kind": "text", "value": "activa" }],
+								[{ "kind": "text", "value": "prenda" }],
+								[{ "kind": "text", "value": "prende" }],
+								[{ "kind": "text", "value": "prender" }],
+								[{ "kind": "text", "value": "prende" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "todas" }],
+													[{ "kind": "text", "value": "todos" }]
+												]
+											},
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "los" }],
+															[{ "kind": "text", "value": "las" }]
+														]
+													}
+												]
+											}
+										],
+										[
+											{ "kind": "text", "value": "cada" },
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "una" }],
+															[{ "kind": "text", "value": "uno" }]
+														]
+													},
+													{ "kind": "text", "value": "de" },
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "las" }],
+															[{ "kind": "text", "value": "los" }]
+														]
+													}
+												]
+											}
+										],
+										[
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "todas" }],
+													[{ "kind": "text", "value": "todos" }]
+												]
+											},
+											{ "kind": "text", "value": "y cada" },
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "una" }],
+													[{ "kind": "text", "value": "uno" }]
+												]
+											},
+											{ "kind": "text", "value": "de" },
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "las" }],
+													[{ "kind": "text", "value": "los" }]
+												]
+											}
+										]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "las" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "luz" }],
+								[{ "kind": "text", "value": "luces" }],
+								[{ "kind": "text", "value": "lampara" }],
+								[{ "kind": "text", "value": "lamparas" }],
+								[{ "kind": "text", "value": "bombilla" }],
+								[{ "kind": "text", "value": "bombillas" }],
+								[{ "kind": "text", "value": "bombillo" }],
+								[{ "kind": "text", "value": "bombillos" }],
+								[{ "kind": "text", "value": "ampolleta" }],
+								[{ "kind": "text", "value": "ampolletas" }],
+								[{ "kind": "text", "value": "luminaria" }],
+								[{ "kind": "text", "value": "luminarias" }],
+								[{ "kind": "text", "value": "lamparilla" }],
+								[{ "kind": "text", "value": "lamparillas" }],
+								[{ "kind": "text", "value": "foco" }],
+								[{ "kind": "text", "value": "focos" }],
+								[{ "kind": "text", "value": "interruptor" }],
+								[{ "kind": "text", "value": "interruptores" }],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "llave" }],
+											[{ "kind": "text", "value": "llaves" }]
+										]
+									},
+									{
+										"kind": "optional",
+										"body": [{ "kind": "text", "value": "de la luz" }]
+									}
+								]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "en" }],
+															[{ "kind": "text", "value": "de" }]
+														]
+													}
+												]
+											},
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "el" }],
+															[{ "kind": "text", "value": "la" }]
+														]
+													}
+												]
+											}
+										],
+										[{ "kind": "text", "value": "del" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:encenda|encende|encender|encende|encienda|enciende|enciender|enciende|conecta|conecte|conectar|conecta|activa|active|activar|activa|prenda|prende|prender|prende)[ ]*(?:[ ]*(?:(?:todas|todos)[ ]*(?:[ ]*(?:los|las))?|cada[ ]*(?:[ ]*(?:una|uno)[ ]*de[ ]*(?:las|los))?|(?:todas|todos)[ ]*y[ ]+cada[ ]*(?:una|uno)[ ]*de[ ]*(?:las|los)))?[ ]*(?:[ ]*(?:el|la|los|las))?[ ]*(?:luz|luces|lampara|lamparas|bombilla|bombillas|bombillo|bombillos|ampolleta|ampolletas|luminaria|luminarias|lamparilla|lamparillas|foco|focos|interruptor|interruptores|(?:llave|llaves)[ ]*(?:[ ]*de[ ]+la[ ]+luz)?)[ ]*(?:[ ]*(?:(?:[ ]*(?:en|de))?[ ]*(?:[ ]*(?:el|la))?|del))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "<enciende> [([(en|de)] [(el|la)]|del)] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "encenda" }],
+								[{ "kind": "text", "value": "encende" }],
+								[{ "kind": "text", "value": "encender" }],
+								[{ "kind": "text", "value": "encende" }],
+								[{ "kind": "text", "value": "encienda" }],
+								[{ "kind": "text", "value": "enciende" }],
+								[{ "kind": "text", "value": "enciender" }],
+								[{ "kind": "text", "value": "enciende" }],
+								[{ "kind": "text", "value": "conecta" }],
+								[{ "kind": "text", "value": "conecte" }],
+								[{ "kind": "text", "value": "conectar" }],
+								[{ "kind": "text", "value": "conecta" }],
+								[{ "kind": "text", "value": "activa" }],
+								[{ "kind": "text", "value": "active" }],
+								[{ "kind": "text", "value": "activar" }],
+								[{ "kind": "text", "value": "activa" }],
+								[{ "kind": "text", "value": "prenda" }],
+								[{ "kind": "text", "value": "prende" }],
+								[{ "kind": "text", "value": "prender" }],
+								[{ "kind": "text", "value": "prende" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "en" }],
+															[{ "kind": "text", "value": "de" }]
+														]
+													}
+												]
+											},
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "el" }],
+															[{ "kind": "text", "value": "la" }]
+														]
+													}
+												]
+											}
+										],
+										[{ "kind": "text", "value": "del" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:encenda|encende|encender|encende|encienda|enciende|enciender|enciende|conecta|conecte|conectar|conecta|activa|active|activar|activa|prenda|prende|prender|prende)[ ]*(?:[ ]*(?:(?:[ ]*(?:en|de))?[ ]*(?:[ ]*(?:el|la))?|del))?[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": { "area": { "kind": "context", "arg": "area", "key": "area" } },
+			"requiredKeywords": [],
+			"argDefaults": { "domain": ["light"] },
+			"priority": 0
+		},
+		{
+			"tool": "HassTurnOn",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<enciende> [todos] [(los|el)] (ventilador|ventiladores|abanico|abanicos) [([(en|de)] [(el|la)]|del)] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "encenda" }],
+								[{ "kind": "text", "value": "encende" }],
+								[{ "kind": "text", "value": "encender" }],
+								[{ "kind": "text", "value": "encende" }],
+								[{ "kind": "text", "value": "encienda" }],
+								[{ "kind": "text", "value": "enciende" }],
+								[{ "kind": "text", "value": "enciender" }],
+								[{ "kind": "text", "value": "enciende" }],
+								[{ "kind": "text", "value": "conecta" }],
+								[{ "kind": "text", "value": "conecte" }],
+								[{ "kind": "text", "value": "conectar" }],
+								[{ "kind": "text", "value": "conecta" }],
+								[{ "kind": "text", "value": "activa" }],
+								[{ "kind": "text", "value": "active" }],
+								[{ "kind": "text", "value": "activar" }],
+								[{ "kind": "text", "value": "activa" }],
+								[{ "kind": "text", "value": "prenda" }],
+								[{ "kind": "text", "value": "prende" }],
+								[{ "kind": "text", "value": "prender" }],
+								[{ "kind": "text", "value": "prende" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "todos" }]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "el" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "ventilador" }],
+								[{ "kind": "text", "value": "ventiladores" }],
+								[{ "kind": "text", "value": "abanico" }],
+								[{ "kind": "text", "value": "abanicos" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "en" }],
+															[{ "kind": "text", "value": "de" }]
+														]
+													}
+												]
+											},
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "el" }],
+															[{ "kind": "text", "value": "la" }]
+														]
+													}
+												]
+											}
+										],
+										[{ "kind": "text", "value": "del" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:encenda|encende|encender|encende|encienda|enciende|enciender|enciende|conecta|conecte|conectar|conecta|activa|active|activar|activa|prenda|prende|prender|prende)[ ]*(?:[ ]*todos)?[ ]*(?:[ ]*(?:los|el))?[ ]*(?:ventilador|ventiladores|abanico|abanicos)[ ]*(?:[ ]*(?:(?:[ ]*(?:en|de))?[ ]*(?:[ ]*(?:el|la))?|del))?[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": { "area": { "kind": "context", "arg": "area", "key": "area" } },
+			"requiredKeywords": [],
+			"argDefaults": { "domain": ["fan"] },
+			"priority": 0
+		},
+		{
+			"tool": "HassTurnOn",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<enciende> [(el|la|los|las)] {entity} [([(en|de)] [(el|la)]|del)] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "encenda" }],
+								[{ "kind": "text", "value": "encende" }],
+								[{ "kind": "text", "value": "encender" }],
+								[{ "kind": "text", "value": "encende" }],
+								[{ "kind": "text", "value": "encienda" }],
+								[{ "kind": "text", "value": "enciende" }],
+								[{ "kind": "text", "value": "enciender" }],
+								[{ "kind": "text", "value": "enciende" }],
+								[{ "kind": "text", "value": "conecta" }],
+								[{ "kind": "text", "value": "conecte" }],
+								[{ "kind": "text", "value": "conectar" }],
+								[{ "kind": "text", "value": "conecta" }],
+								[{ "kind": "text", "value": "activa" }],
+								[{ "kind": "text", "value": "active" }],
+								[{ "kind": "text", "value": "activar" }],
+								[{ "kind": "text", "value": "activa" }],
+								[{ "kind": "text", "value": "prenda" }],
+								[{ "kind": "text", "value": "prende" }],
+								[{ "kind": "text", "value": "prender" }],
+								[{ "kind": "text", "value": "prende" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "las" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "en" }],
+															[{ "kind": "text", "value": "de" }]
+														]
+													}
+												]
+											},
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "el" }],
+															[{ "kind": "text", "value": "la" }]
+														]
+													}
+												]
+											}
+										],
+										[{ "kind": "text", "value": "del" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:encenda|encende|encender|encende|encienda|enciende|enciender|enciende|conecta|conecte|conectar|conecta|activa|active|activar|activa|prenda|prende|prender|prende)[ ]*(?:[ ]*(?:el|la|los|las))?[ ]*(?:.+)[ ]*(?:[ ]*(?:(?:[ ]*(?:en|de))?[ ]*(?:[ ]*(?:el|la))?|del))?[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": {
+				"area": { "kind": "context", "arg": "area", "key": "area" },
+				"entity": {
+					"kind": "context",
+					"arg": "entity",
+					"key": "entity:climate,cover,fan,input_boolean,light,lock,switch,valve"
+				}
+			},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 1
+		},
+		{
+			"tool": "HassTurnOn",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<enciende> <luces> [(de [(la|las|lo|los)]|del)] [(el|la|los|las)] {entity} [([(en|de)] [(el|la)]|del)] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "encenda" }],
+								[{ "kind": "text", "value": "encende" }],
+								[{ "kind": "text", "value": "encender" }],
+								[{ "kind": "text", "value": "encende" }],
+								[{ "kind": "text", "value": "encienda" }],
+								[{ "kind": "text", "value": "enciende" }],
+								[{ "kind": "text", "value": "enciender" }],
+								[{ "kind": "text", "value": "enciende" }],
+								[{ "kind": "text", "value": "conecta" }],
+								[{ "kind": "text", "value": "conecte" }],
+								[{ "kind": "text", "value": "conectar" }],
+								[{ "kind": "text", "value": "conecta" }],
+								[{ "kind": "text", "value": "activa" }],
+								[{ "kind": "text", "value": "active" }],
+								[{ "kind": "text", "value": "activar" }],
+								[{ "kind": "text", "value": "activa" }],
+								[{ "kind": "text", "value": "prenda" }],
+								[{ "kind": "text", "value": "prende" }],
+								[{ "kind": "text", "value": "prender" }],
+								[{ "kind": "text", "value": "prende" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "las" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "luz" }],
+								[{ "kind": "text", "value": "luces" }],
+								[{ "kind": "text", "value": "lampara" }],
+								[{ "kind": "text", "value": "lamparas" }],
+								[{ "kind": "text", "value": "bombilla" }],
+								[{ "kind": "text", "value": "bombillas" }],
+								[{ "kind": "text", "value": "bombillo" }],
+								[{ "kind": "text", "value": "bombillos" }],
+								[{ "kind": "text", "value": "ampolleta" }],
+								[{ "kind": "text", "value": "ampolletas" }],
+								[{ "kind": "text", "value": "luminaria" }],
+								[{ "kind": "text", "value": "luminarias" }],
+								[{ "kind": "text", "value": "lamparilla" }],
+								[{ "kind": "text", "value": "lamparillas" }],
+								[{ "kind": "text", "value": "foco" }],
+								[{ "kind": "text", "value": "focos" }],
+								[{ "kind": "text", "value": "interruptor" }],
+								[{ "kind": "text", "value": "interruptores" }],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "llave" }],
+											[{ "kind": "text", "value": "llaves" }]
+										]
+									},
+									{
+										"kind": "optional",
+										"body": [{ "kind": "text", "value": "de la luz" }]
+									}
+								]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{ "kind": "text", "value": "de" },
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "la" }],
+															[{ "kind": "text", "value": "las" }],
+															[{ "kind": "text", "value": "lo" }],
+															[{ "kind": "text", "value": "los" }]
+														]
+													}
+												]
+											}
+										],
+										[{ "kind": "text", "value": "del" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "las" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "en" }],
+															[{ "kind": "text", "value": "de" }]
+														]
+													}
+												]
+											},
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "el" }],
+															[{ "kind": "text", "value": "la" }]
+														]
+													}
+												]
+											}
+										],
+										[{ "kind": "text", "value": "del" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:encenda|encende|encender|encende|encienda|enciende|enciender|enciende|conecta|conecte|conectar|conecta|activa|active|activar|activa|prenda|prende|prender|prende)[ ]*(?:[ ]*(?:el|la|los|las))?[ ]*(?:luz|luces|lampara|lamparas|bombilla|bombillas|bombillo|bombillos|ampolleta|ampolletas|luminaria|luminarias|lamparilla|lamparillas|foco|focos|interruptor|interruptores|(?:llave|llaves)[ ]*(?:[ ]*de[ ]+la[ ]+luz)?)[ ]*(?:[ ]*(?:de[ ]*(?:[ ]*(?:la|las|lo|los))?|del))?[ ]*(?:[ ]*(?:el|la|los|las))?[ ]*(?:.+)[ ]*(?:[ ]*(?:(?:[ ]*(?:en|de))?[ ]*(?:[ ]*(?:el|la))?|del))?[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": {
+				"area": { "kind": "context", "arg": "area", "key": "area" },
+				"entity": { "kind": "context", "arg": "entity", "key": "entity:light" }
+			},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 1
+		},
+		{
+			"tool": "HassTurnOff",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<cierra> [(el|la|los|las)] {coverClasses} [([(en|de)] [(el|la)]|del)] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "cierra" }],
+								[{ "kind": "text", "value": "cierre" }],
+								[{ "kind": "text", "value": "cerrar" }],
+								[{ "kind": "text", "value": "cerra" }],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "baja" }],
+											[{ "kind": "text", "value": "baje" }],
+											[{ "kind": "text", "value": "bajar" }],
+											[{ "kind": "text", "value": "baja" }],
+											[{ "kind": "text", "value": "reduce" }],
+											[{ "kind": "text", "value": "reduzca" }],
+											[{ "kind": "text", "value": "reducir" }],
+											[{ "kind": "text", "value": "reduci" }],
+											[{ "kind": "text", "value": "decrementa" }],
+											[{ "kind": "text", "value": "decremente" }],
+											[{ "kind": "text", "value": "decrementar" }],
+											[{ "kind": "text", "value": "decrementa" }],
+											[{ "kind": "text", "value": "disminuye" }],
+											[{ "kind": "text", "value": "disminuya" }],
+											[{ "kind": "text", "value": "disminuir" }],
+											[{ "kind": "text", "value": "disminui" }],
+											[{ "kind": "text", "value": "acorta" }],
+											[{ "kind": "text", "value": "acorte" }],
+											[{ "kind": "text", "value": "acortar" }],
+											[{ "kind": "text", "value": "acorta" }]
+										]
+									}
+								]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "las" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "coverClasses" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "en" }],
+															[{ "kind": "text", "value": "de" }]
+														]
+													}
+												]
+											},
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "el" }],
+															[{ "kind": "text", "value": "la" }]
+														]
+													}
+												]
+											}
+										],
+										[{ "kind": "text", "value": "del" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:cierra|cierre|cerrar|cerra|(?:baja|baje|bajar|baja|reduce|reduzca|reducir|reduci|decrementa|decremente|decrementar|decrementa|disminuye|disminuya|disminuir|disminui|acorta|acorte|acortar|acorta))[ ]*(?:[ ]*(?:el|la|los|las))?[ ]*(?:.+)[ ]*(?:[ ]*(?:(?:[ ]*(?:en|de))?[ ]*(?:[ ]*(?:el|la))?|del))?[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": {
+				"area": { "kind": "context", "arg": "area", "key": "area" },
+				"coverClasses": {
+					"kind": "values",
+					"arg": "device_class",
+					"values": [
+						{ "phrase": "toldo", "args": { "device_class": ["awning"] } },
+						{ "phrase": "toldos", "args": { "device_class": ["awning"] } },
+						{ "phrase": "persiana", "args": { "device_class": ["blind"] } },
+						{ "phrase": "persianas", "args": { "device_class": ["blind"] } },
+						{ "phrase": "cortina", "args": { "device_class": ["curtain"] } },
+						{ "phrase": "cortinas", "args": { "device_class": ["curtain"] } },
+						{ "phrase": "puerta", "args": { "device_class": ["door"] } },
+						{ "phrase": "puertas", "args": { "device_class": ["door"] } },
+						{
+							"phrase": "puerta garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta del garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta del cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta de garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta de cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta de la garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta de la cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas del garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas del cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas de garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas de cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas de la garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas de la cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela del garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela del cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela de garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela de cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela de la garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela de la cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas del garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas del cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas de garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas de cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas de la garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas de la cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón del garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón del cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón de garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón de cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón de la garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón de la cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones del garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones del cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones de garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones de cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones de la garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones de la cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{ "phrase": "cochera", "args": { "device_class": ["garage"] } },
+						{ "phrase": "cocheras", "args": { "device_class": ["garage"] } },
+						{ "phrase": "verja", "args": { "device_class": ["gate"] } },
+						{ "phrase": "verjas", "args": { "device_class": ["gate"] } },
+						{ "phrase": "cancela", "args": { "device_class": ["gate"] } },
+						{ "phrase": "cancelas", "args": { "device_class": ["gate"] } },
+						{ "phrase": "portón", "args": { "device_class": ["gate"] } },
+						{ "phrase": "portones", "args": { "device_class": ["gate"] } },
+						{ "phrase": "estor", "args": { "device_class": ["shade"] } },
+						{ "phrase": "estores", "args": { "device_class": ["shade"] } },
+						{
+							"phrase": "contraventana",
+							"args": { "device_class": ["shutter"] }
+						},
+						{
+							"phrase": "contraventanas",
+							"args": { "device_class": ["shutter"] }
+						},
+						{ "phrase": "veneciana", "args": { "device_class": ["shutter"] } },
+						{ "phrase": "venecianas", "args": { "device_class": ["shutter"] } },
+						{ "phrase": "ventana", "args": { "device_class": ["window"] } },
+						{ "phrase": "ventanas", "args": { "device_class": ["window"] } }
+					]
+				}
+			},
+			"requiredKeywords": [],
+			"argDefaults": { "domain": ["cover"] },
+			"priority": 0
+		},
+		{
+			"tool": "HassTurnOff",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<apaga> [<todos>] <luces> [([(en|de)] [(el|la)]|del)] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "apaga" }],
+								[{ "kind": "text", "value": "apague" }],
+								[{ "kind": "text", "value": "apagar" }],
+								[{ "kind": "text", "value": "apaga" }],
+								[{ "kind": "text", "value": "desconecta" }],
+								[{ "kind": "text", "value": "desconecte" }],
+								[{ "kind": "text", "value": "desconectar" }],
+								[{ "kind": "text", "value": "desconecta" }],
+								[{ "kind": "text", "value": "desactiva" }],
+								[{ "kind": "text", "value": "desactive" }],
+								[{ "kind": "text", "value": "desactivar" }],
+								[{ "kind": "text", "value": "desactiva" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "todas" }],
+													[{ "kind": "text", "value": "todos" }]
+												]
+											},
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "los" }],
+															[{ "kind": "text", "value": "las" }]
+														]
+													}
+												]
+											}
+										],
+										[
+											{ "kind": "text", "value": "cada" },
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "una" }],
+															[{ "kind": "text", "value": "uno" }]
+														]
+													},
+													{ "kind": "text", "value": "de" },
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "las" }],
+															[{ "kind": "text", "value": "los" }]
+														]
+													}
+												]
+											}
+										],
+										[
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "todas" }],
+													[{ "kind": "text", "value": "todos" }]
+												]
+											},
+											{ "kind": "text", "value": "y cada" },
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "una" }],
+													[{ "kind": "text", "value": "uno" }]
+												]
+											},
+											{ "kind": "text", "value": "de" },
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "las" }],
+													[{ "kind": "text", "value": "los" }]
+												]
+											}
+										]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "las" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "luz" }],
+								[{ "kind": "text", "value": "luces" }],
+								[{ "kind": "text", "value": "lampara" }],
+								[{ "kind": "text", "value": "lamparas" }],
+								[{ "kind": "text", "value": "bombilla" }],
+								[{ "kind": "text", "value": "bombillas" }],
+								[{ "kind": "text", "value": "bombillo" }],
+								[{ "kind": "text", "value": "bombillos" }],
+								[{ "kind": "text", "value": "ampolleta" }],
+								[{ "kind": "text", "value": "ampolletas" }],
+								[{ "kind": "text", "value": "luminaria" }],
+								[{ "kind": "text", "value": "luminarias" }],
+								[{ "kind": "text", "value": "lamparilla" }],
+								[{ "kind": "text", "value": "lamparillas" }],
+								[{ "kind": "text", "value": "foco" }],
+								[{ "kind": "text", "value": "focos" }],
+								[{ "kind": "text", "value": "interruptor" }],
+								[{ "kind": "text", "value": "interruptores" }],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "llave" }],
+											[{ "kind": "text", "value": "llaves" }]
+										]
+									},
+									{
+										"kind": "optional",
+										"body": [{ "kind": "text", "value": "de la luz" }]
+									}
+								]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "en" }],
+															[{ "kind": "text", "value": "de" }]
+														]
+													}
+												]
+											},
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "el" }],
+															[{ "kind": "text", "value": "la" }]
+														]
+													}
+												]
+											}
+										],
+										[{ "kind": "text", "value": "del" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:apaga|apague|apagar|apaga|desconecta|desconecte|desconectar|desconecta|desactiva|desactive|desactivar|desactiva)[ ]*(?:[ ]*(?:(?:todas|todos)[ ]*(?:[ ]*(?:los|las))?|cada[ ]*(?:[ ]*(?:una|uno)[ ]*de[ ]*(?:las|los))?|(?:todas|todos)[ ]*y[ ]+cada[ ]*(?:una|uno)[ ]*de[ ]*(?:las|los)))?[ ]*(?:[ ]*(?:el|la|los|las))?[ ]*(?:luz|luces|lampara|lamparas|bombilla|bombillas|bombillo|bombillos|ampolleta|ampolletas|luminaria|luminarias|lamparilla|lamparillas|foco|focos|interruptor|interruptores|(?:llave|llaves)[ ]*(?:[ ]*de[ ]+la[ ]+luz)?)[ ]*(?:[ ]*(?:(?:[ ]*(?:en|de))?[ ]*(?:[ ]*(?:el|la))?|del))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "<apaga> [([(en|de)] [(el|la)]|del)] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "apaga" }],
+								[{ "kind": "text", "value": "apague" }],
+								[{ "kind": "text", "value": "apagar" }],
+								[{ "kind": "text", "value": "apaga" }],
+								[{ "kind": "text", "value": "desconecta" }],
+								[{ "kind": "text", "value": "desconecte" }],
+								[{ "kind": "text", "value": "desconectar" }],
+								[{ "kind": "text", "value": "desconecta" }],
+								[{ "kind": "text", "value": "desactiva" }],
+								[{ "kind": "text", "value": "desactive" }],
+								[{ "kind": "text", "value": "desactivar" }],
+								[{ "kind": "text", "value": "desactiva" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "en" }],
+															[{ "kind": "text", "value": "de" }]
+														]
+													}
+												]
+											},
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "el" }],
+															[{ "kind": "text", "value": "la" }]
+														]
+													}
+												]
+											}
+										],
+										[{ "kind": "text", "value": "del" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:apaga|apague|apagar|apaga|desconecta|desconecte|desconectar|desconecta|desactiva|desactive|desactivar|desactiva)[ ]*(?:[ ]*(?:(?:[ ]*(?:en|de))?[ ]*(?:[ ]*(?:el|la))?|del))?[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": { "area": { "kind": "context", "arg": "area", "key": "area" } },
+			"requiredKeywords": [],
+			"argDefaults": { "domain": ["light"] },
+			"priority": 0
+		},
+		{
+			"tool": "HassTurnOff",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<apaga> [todos] [(los|el)] (ventilador|ventiladores|abanico|abanicos) [([(en|de)] [(el|la)]|del)] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "apaga" }],
+								[{ "kind": "text", "value": "apague" }],
+								[{ "kind": "text", "value": "apagar" }],
+								[{ "kind": "text", "value": "apaga" }],
+								[{ "kind": "text", "value": "desconecta" }],
+								[{ "kind": "text", "value": "desconecte" }],
+								[{ "kind": "text", "value": "desconectar" }],
+								[{ "kind": "text", "value": "desconecta" }],
+								[{ "kind": "text", "value": "desactiva" }],
+								[{ "kind": "text", "value": "desactive" }],
+								[{ "kind": "text", "value": "desactivar" }],
+								[{ "kind": "text", "value": "desactiva" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "todos" }]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "el" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "ventilador" }],
+								[{ "kind": "text", "value": "ventiladores" }],
+								[{ "kind": "text", "value": "abanico" }],
+								[{ "kind": "text", "value": "abanicos" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "en" }],
+															[{ "kind": "text", "value": "de" }]
+														]
+													}
+												]
+											},
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "el" }],
+															[{ "kind": "text", "value": "la" }]
+														]
+													}
+												]
+											}
+										],
+										[{ "kind": "text", "value": "del" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:apaga|apague|apagar|apaga|desconecta|desconecte|desconectar|desconecta|desactiva|desactive|desactivar|desactiva)[ ]*(?:[ ]*todos)?[ ]*(?:[ ]*(?:los|el))?[ ]*(?:ventilador|ventiladores|abanico|abanicos)[ ]*(?:[ ]*(?:(?:[ ]*(?:en|de))?[ ]*(?:[ ]*(?:el|la))?|del))?[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": { "area": { "kind": "context", "arg": "area", "key": "area" } },
+			"requiredKeywords": [],
+			"argDefaults": { "domain": ["fan"] },
+			"priority": 0
+		},
+		{
+			"tool": "HassTurnOff",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<apaga> [(el|la|los|las)] {entity} [([(en|de)] [(el|la)]|del)] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "apaga" }],
+								[{ "kind": "text", "value": "apague" }],
+								[{ "kind": "text", "value": "apagar" }],
+								[{ "kind": "text", "value": "apaga" }],
+								[{ "kind": "text", "value": "desconecta" }],
+								[{ "kind": "text", "value": "desconecte" }],
+								[{ "kind": "text", "value": "desconectar" }],
+								[{ "kind": "text", "value": "desconecta" }],
+								[{ "kind": "text", "value": "desactiva" }],
+								[{ "kind": "text", "value": "desactive" }],
+								[{ "kind": "text", "value": "desactivar" }],
+								[{ "kind": "text", "value": "desactiva" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "las" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "en" }],
+															[{ "kind": "text", "value": "de" }]
+														]
+													}
+												]
+											},
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "el" }],
+															[{ "kind": "text", "value": "la" }]
+														]
+													}
+												]
+											}
+										],
+										[{ "kind": "text", "value": "del" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:apaga|apague|apagar|apaga|desconecta|desconecte|desconectar|desconecta|desactiva|desactive|desactivar|desactiva)[ ]*(?:[ ]*(?:el|la|los|las))?[ ]*(?:.+)[ ]*(?:[ ]*(?:(?:[ ]*(?:en|de))?[ ]*(?:[ ]*(?:el|la))?|del))?[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": {
+				"area": { "kind": "context", "arg": "area", "key": "area" },
+				"entity": {
+					"kind": "context",
+					"arg": "entity",
+					"key": "entity:climate,cover,fan,input_boolean,light,lock,switch,valve"
+				}
+			},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 1
+		},
+		{
+			"tool": "HassTurnOff",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<apaga> <luces> [(de [(la|las|lo|los)]|del)] [(el|la|los|las)] {entity} [([(en|de)] [(el|la)]|del)] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "apaga" }],
+								[{ "kind": "text", "value": "apague" }],
+								[{ "kind": "text", "value": "apagar" }],
+								[{ "kind": "text", "value": "apaga" }],
+								[{ "kind": "text", "value": "desconecta" }],
+								[{ "kind": "text", "value": "desconecte" }],
+								[{ "kind": "text", "value": "desconectar" }],
+								[{ "kind": "text", "value": "desconecta" }],
+								[{ "kind": "text", "value": "desactiva" }],
+								[{ "kind": "text", "value": "desactive" }],
+								[{ "kind": "text", "value": "desactivar" }],
+								[{ "kind": "text", "value": "desactiva" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "las" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "luz" }],
+								[{ "kind": "text", "value": "luces" }],
+								[{ "kind": "text", "value": "lampara" }],
+								[{ "kind": "text", "value": "lamparas" }],
+								[{ "kind": "text", "value": "bombilla" }],
+								[{ "kind": "text", "value": "bombillas" }],
+								[{ "kind": "text", "value": "bombillo" }],
+								[{ "kind": "text", "value": "bombillos" }],
+								[{ "kind": "text", "value": "ampolleta" }],
+								[{ "kind": "text", "value": "ampolletas" }],
+								[{ "kind": "text", "value": "luminaria" }],
+								[{ "kind": "text", "value": "luminarias" }],
+								[{ "kind": "text", "value": "lamparilla" }],
+								[{ "kind": "text", "value": "lamparillas" }],
+								[{ "kind": "text", "value": "foco" }],
+								[{ "kind": "text", "value": "focos" }],
+								[{ "kind": "text", "value": "interruptor" }],
+								[{ "kind": "text", "value": "interruptores" }],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "llave" }],
+											[{ "kind": "text", "value": "llaves" }]
+										]
+									},
+									{
+										"kind": "optional",
+										"body": [{ "kind": "text", "value": "de la luz" }]
+									}
+								]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{ "kind": "text", "value": "de" },
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "la" }],
+															[{ "kind": "text", "value": "las" }],
+															[{ "kind": "text", "value": "lo" }],
+															[{ "kind": "text", "value": "los" }]
+														]
+													}
+												]
+											}
+										],
+										[{ "kind": "text", "value": "del" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "las" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "en" }],
+															[{ "kind": "text", "value": "de" }]
+														]
+													}
+												]
+											},
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "el" }],
+															[{ "kind": "text", "value": "la" }]
+														]
+													}
+												]
+											}
+										],
+										[{ "kind": "text", "value": "del" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:apaga|apague|apagar|apaga|desconecta|desconecte|desconectar|desconecta|desactiva|desactive|desactivar|desactiva)[ ]*(?:[ ]*(?:el|la|los|las))?[ ]*(?:luz|luces|lampara|lamparas|bombilla|bombillas|bombillo|bombillos|ampolleta|ampolletas|luminaria|luminarias|lamparilla|lamparillas|foco|focos|interruptor|interruptores|(?:llave|llaves)[ ]*(?:[ ]*de[ ]+la[ ]+luz)?)[ ]*(?:[ ]*(?:de[ ]*(?:[ ]*(?:la|las|lo|los))?|del))?[ ]*(?:[ ]*(?:el|la|los|las))?[ ]*(?:.+)[ ]*(?:[ ]*(?:(?:[ ]*(?:en|de))?[ ]*(?:[ ]*(?:el|la))?|del))?[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": {
+				"area": { "kind": "context", "arg": "area", "key": "area" },
+				"entity": { "kind": "context", "arg": "entity", "key": "entity:light" }
+			},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 1
+		},
+		{
+			"tool": "HassSetPosition",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<establece_abre_cierra> [[la] posición [(de|del)]] [(el|la|las|los)] {coverClasses} (a|al) {position} [<porciento>] <area>",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "pon" }],
+											[{ "kind": "text", "value": "ponga" }],
+											[{ "kind": "text", "value": "poner" }],
+											[{ "kind": "text", "value": "pone" }],
+											[{ "kind": "text", "value": "estableca" }],
+											[{ "kind": "text", "value": "establece" }],
+											[{ "kind": "text", "value": "establecer" }],
+											[{ "kind": "text", "value": "establece" }],
+											[{ "kind": "text", "value": "establezca" }],
+											[{ "kind": "text", "value": "establezce" }],
+											[{ "kind": "text", "value": "establezcer" }],
+											[{ "kind": "text", "value": "establezce" }],
+											[{ "kind": "text", "value": "ajusta" }],
+											[{ "kind": "text", "value": "ajuste" }],
+											[{ "kind": "text", "value": "ajustar" }],
+											[{ "kind": "text", "value": "ajusta" }],
+											[{ "kind": "text", "value": "configura" }],
+											[{ "kind": "text", "value": "configure" }],
+											[{ "kind": "text", "value": "configurar" }],
+											[{ "kind": "text", "value": "configura" }],
+											[{ "kind": "text", "value": "cambia" }],
+											[{ "kind": "text", "value": "cambiar" }],
+											[{ "kind": "text", "value": "cambia" }],
+											[{ "kind": "text", "value": "cambie" }]
+										]
+									}
+								],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "abra" }],
+											[{ "kind": "text", "value": "abre" }],
+											[{ "kind": "text", "value": "abrir" }],
+											[{ "kind": "text", "value": "abri" }],
+											[
+												{
+													"kind": "group",
+													"alternatives": [
+														[{ "kind": "text", "value": "suba" }],
+														[{ "kind": "text", "value": "sube" }],
+														[{ "kind": "text", "value": "subir" }],
+														[{ "kind": "text", "value": "subi" }],
+														[{ "kind": "text", "value": "levanta" }],
+														[{ "kind": "text", "value": "levante" }],
+														[{ "kind": "text", "value": "levantar" }],
+														[{ "kind": "text", "value": "levanta" }],
+														[{ "kind": "text", "value": "aumenta" }],
+														[{ "kind": "text", "value": "aumente" }],
+														[{ "kind": "text", "value": "aumentar" }],
+														[{ "kind": "text", "value": "aumenta" }],
+														[{ "kind": "text", "value": "incrementa" }],
+														[{ "kind": "text", "value": "incremente" }],
+														[{ "kind": "text", "value": "incrementar" }],
+														[{ "kind": "text", "value": "incrementa" }]
+													]
+												}
+											]
+										]
+									}
+								],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "cierra" }],
+											[{ "kind": "text", "value": "cierre" }],
+											[{ "kind": "text", "value": "cerrar" }],
+											[{ "kind": "text", "value": "cerra" }],
+											[
+												{
+													"kind": "group",
+													"alternatives": [
+														[{ "kind": "text", "value": "baja" }],
+														[{ "kind": "text", "value": "baje" }],
+														[{ "kind": "text", "value": "bajar" }],
+														[{ "kind": "text", "value": "baja" }],
+														[{ "kind": "text", "value": "reduce" }],
+														[{ "kind": "text", "value": "reduzca" }],
+														[{ "kind": "text", "value": "reducir" }],
+														[{ "kind": "text", "value": "reduci" }],
+														[{ "kind": "text", "value": "decrementa" }],
+														[{ "kind": "text", "value": "decremente" }],
+														[{ "kind": "text", "value": "decrementar" }],
+														[{ "kind": "text", "value": "decrementa" }],
+														[{ "kind": "text", "value": "disminuye" }],
+														[{ "kind": "text", "value": "disminuya" }],
+														[{ "kind": "text", "value": "disminuir" }],
+														[{ "kind": "text", "value": "disminui" }],
+														[{ "kind": "text", "value": "acorta" }],
+														[{ "kind": "text", "value": "acorte" }],
+														[{ "kind": "text", "value": "acortar" }],
+														[{ "kind": "text", "value": "acorta" }]
+													]
+												}
+											]
+										]
+									}
+								]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "optional",
+									"body": [{ "kind": "text", "value": "la" }]
+								},
+								{ "kind": "text", "value": "posicion" },
+								{
+									"kind": "optional",
+									"body": [
+										{
+											"kind": "group",
+											"alternatives": [
+												[{ "kind": "text", "value": "de" }],
+												[{ "kind": "text", "value": "del" }]
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "coverClasses" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "a" }],
+								[{ "kind": "text", "value": "al" }]
+							]
+						},
+						{ "kind": "slot", "name": "position" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "%" }],
+										[{ "kind": "text", "value": "porcien" }],
+										[{ "kind": "text", "value": "porciento" }],
+										[{ "kind": "text", "value": "por cien" }],
+										[{ "kind": "text", "value": "por ciento" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "en" }],
+															[{ "kind": "text", "value": "de" }]
+														]
+													}
+												]
+											},
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "el" }],
+															[{ "kind": "text", "value": "la" }]
+														]
+													}
+												]
+											}
+										],
+										[{ "kind": "text", "value": "del" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:(?:pon|ponga|poner|pone|estableca|establece|establecer|establece|establezca|establezce|establezcer|establezce|ajusta|ajuste|ajustar|ajusta|configura|configure|configurar|configura|cambia|cambiar|cambia|cambie)|(?:abra|abre|abrir|abri|(?:suba|sube|subir|subi|levanta|levante|levantar|levanta|aumenta|aumente|aumentar|aumenta|incrementa|incremente|incrementar|incrementa))|(?:cierra|cierre|cerrar|cerra|(?:baja|baje|bajar|baja|reduce|reduzca|reducir|reduci|decrementa|decremente|decrementar|decrementa|disminuye|disminuya|disminuir|disminui|acorta|acorte|acortar|acorta)))[ ]*(?:[ ]*(?:[ ]*la)?[ ]*posicion[ ]*(?:[ ]*(?:de|del))?)?[ ]*(?:[ ]*(?:el|la|las|los))?[ ]*(?:.+)[ ]*(?:a|al)[ ]*(?:.+)[ ]*(?:[ ]*(?:%|porcien|porciento|por[ ]+cien|por[ ]+ciento))?[ ]*(?:[ ]*(?:(?:[ ]*(?:en|de))?[ ]*(?:[ ]*(?:el|la))?|del))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "<establece_abre_cierra> [[la] posición [(de|del)]] [(el|la|las|los)] {coverClasses} <area> (a|al) {position} [<porciento>]",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "pon" }],
+											[{ "kind": "text", "value": "ponga" }],
+											[{ "kind": "text", "value": "poner" }],
+											[{ "kind": "text", "value": "pone" }],
+											[{ "kind": "text", "value": "estableca" }],
+											[{ "kind": "text", "value": "establece" }],
+											[{ "kind": "text", "value": "establecer" }],
+											[{ "kind": "text", "value": "establece" }],
+											[{ "kind": "text", "value": "establezca" }],
+											[{ "kind": "text", "value": "establezce" }],
+											[{ "kind": "text", "value": "establezcer" }],
+											[{ "kind": "text", "value": "establezce" }],
+											[{ "kind": "text", "value": "ajusta" }],
+											[{ "kind": "text", "value": "ajuste" }],
+											[{ "kind": "text", "value": "ajustar" }],
+											[{ "kind": "text", "value": "ajusta" }],
+											[{ "kind": "text", "value": "configura" }],
+											[{ "kind": "text", "value": "configure" }],
+											[{ "kind": "text", "value": "configurar" }],
+											[{ "kind": "text", "value": "configura" }],
+											[{ "kind": "text", "value": "cambia" }],
+											[{ "kind": "text", "value": "cambiar" }],
+											[{ "kind": "text", "value": "cambia" }],
+											[{ "kind": "text", "value": "cambie" }]
+										]
+									}
+								],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "abra" }],
+											[{ "kind": "text", "value": "abre" }],
+											[{ "kind": "text", "value": "abrir" }],
+											[{ "kind": "text", "value": "abri" }],
+											[
+												{
+													"kind": "group",
+													"alternatives": [
+														[{ "kind": "text", "value": "suba" }],
+														[{ "kind": "text", "value": "sube" }],
+														[{ "kind": "text", "value": "subir" }],
+														[{ "kind": "text", "value": "subi" }],
+														[{ "kind": "text", "value": "levanta" }],
+														[{ "kind": "text", "value": "levante" }],
+														[{ "kind": "text", "value": "levantar" }],
+														[{ "kind": "text", "value": "levanta" }],
+														[{ "kind": "text", "value": "aumenta" }],
+														[{ "kind": "text", "value": "aumente" }],
+														[{ "kind": "text", "value": "aumentar" }],
+														[{ "kind": "text", "value": "aumenta" }],
+														[{ "kind": "text", "value": "incrementa" }],
+														[{ "kind": "text", "value": "incremente" }],
+														[{ "kind": "text", "value": "incrementar" }],
+														[{ "kind": "text", "value": "incrementa" }]
+													]
+												}
+											]
+										]
+									}
+								],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "cierra" }],
+											[{ "kind": "text", "value": "cierre" }],
+											[{ "kind": "text", "value": "cerrar" }],
+											[{ "kind": "text", "value": "cerra" }],
+											[
+												{
+													"kind": "group",
+													"alternatives": [
+														[{ "kind": "text", "value": "baja" }],
+														[{ "kind": "text", "value": "baje" }],
+														[{ "kind": "text", "value": "bajar" }],
+														[{ "kind": "text", "value": "baja" }],
+														[{ "kind": "text", "value": "reduce" }],
+														[{ "kind": "text", "value": "reduzca" }],
+														[{ "kind": "text", "value": "reducir" }],
+														[{ "kind": "text", "value": "reduci" }],
+														[{ "kind": "text", "value": "decrementa" }],
+														[{ "kind": "text", "value": "decremente" }],
+														[{ "kind": "text", "value": "decrementar" }],
+														[{ "kind": "text", "value": "decrementa" }],
+														[{ "kind": "text", "value": "disminuye" }],
+														[{ "kind": "text", "value": "disminuya" }],
+														[{ "kind": "text", "value": "disminuir" }],
+														[{ "kind": "text", "value": "disminui" }],
+														[{ "kind": "text", "value": "acorta" }],
+														[{ "kind": "text", "value": "acorte" }],
+														[{ "kind": "text", "value": "acortar" }],
+														[{ "kind": "text", "value": "acorta" }]
+													]
+												}
+											]
+										]
+									}
+								]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "optional",
+									"body": [{ "kind": "text", "value": "la" }]
+								},
+								{ "kind": "text", "value": "posicion" },
+								{
+									"kind": "optional",
+									"body": [
+										{
+											"kind": "group",
+											"alternatives": [
+												[{ "kind": "text", "value": "de" }],
+												[{ "kind": "text", "value": "del" }]
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "coverClasses" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "en" }],
+															[{ "kind": "text", "value": "de" }]
+														]
+													}
+												]
+											},
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "el" }],
+															[{ "kind": "text", "value": "la" }]
+														]
+													}
+												]
+											}
+										],
+										[{ "kind": "text", "value": "del" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "a" }],
+								[{ "kind": "text", "value": "al" }]
+							]
+						},
+						{ "kind": "slot", "name": "position" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "%" }],
+										[{ "kind": "text", "value": "porcien" }],
+										[{ "kind": "text", "value": "porciento" }],
+										[{ "kind": "text", "value": "por cien" }],
+										[{ "kind": "text", "value": "por ciento" }]
+									]
+								}
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:(?:pon|ponga|poner|pone|estableca|establece|establecer|establece|establezca|establezce|establezcer|establezce|ajusta|ajuste|ajustar|ajusta|configura|configure|configurar|configura|cambia|cambiar|cambia|cambie)|(?:abra|abre|abrir|abri|(?:suba|sube|subir|subi|levanta|levante|levantar|levanta|aumenta|aumente|aumentar|aumenta|incrementa|incremente|incrementar|incrementa))|(?:cierra|cierre|cerrar|cerra|(?:baja|baje|bajar|baja|reduce|reduzca|reducir|reduci|decrementa|decremente|decrementar|decrementa|disminuye|disminuya|disminuir|disminui|acorta|acorte|acortar|acorta)))[ ]*(?:[ ]*(?:[ ]*la)?[ ]*posicion[ ]*(?:[ ]*(?:de|del))?)?[ ]*(?:[ ]*(?:el|la|las|los))?[ ]*(?:.+)[ ]*(?:[ ]*(?:(?:[ ]*(?:en|de))?[ ]*(?:[ ]*(?:el|la))?|del))?[ ]*(?:.+)[ ]*(?:a|al)[ ]*(?:.+)[ ]*(?:[ ]*(?:%|porcien|porciento|por[ ]+cien|por[ ]+ciento))?[ ]*$"
+				},
+				{
+					"source": "<establece_abre_cierra> <area> [[la] posición [(de|del)]] [(el|la|las|los)] {coverClasses} (a|al) {position} [<porciento>]",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "pon" }],
+											[{ "kind": "text", "value": "ponga" }],
+											[{ "kind": "text", "value": "poner" }],
+											[{ "kind": "text", "value": "pone" }],
+											[{ "kind": "text", "value": "estableca" }],
+											[{ "kind": "text", "value": "establece" }],
+											[{ "kind": "text", "value": "establecer" }],
+											[{ "kind": "text", "value": "establece" }],
+											[{ "kind": "text", "value": "establezca" }],
+											[{ "kind": "text", "value": "establezce" }],
+											[{ "kind": "text", "value": "establezcer" }],
+											[{ "kind": "text", "value": "establezce" }],
+											[{ "kind": "text", "value": "ajusta" }],
+											[{ "kind": "text", "value": "ajuste" }],
+											[{ "kind": "text", "value": "ajustar" }],
+											[{ "kind": "text", "value": "ajusta" }],
+											[{ "kind": "text", "value": "configura" }],
+											[{ "kind": "text", "value": "configure" }],
+											[{ "kind": "text", "value": "configurar" }],
+											[{ "kind": "text", "value": "configura" }],
+											[{ "kind": "text", "value": "cambia" }],
+											[{ "kind": "text", "value": "cambiar" }],
+											[{ "kind": "text", "value": "cambia" }],
+											[{ "kind": "text", "value": "cambie" }]
+										]
+									}
+								],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "abra" }],
+											[{ "kind": "text", "value": "abre" }],
+											[{ "kind": "text", "value": "abrir" }],
+											[{ "kind": "text", "value": "abri" }],
+											[
+												{
+													"kind": "group",
+													"alternatives": [
+														[{ "kind": "text", "value": "suba" }],
+														[{ "kind": "text", "value": "sube" }],
+														[{ "kind": "text", "value": "subir" }],
+														[{ "kind": "text", "value": "subi" }],
+														[{ "kind": "text", "value": "levanta" }],
+														[{ "kind": "text", "value": "levante" }],
+														[{ "kind": "text", "value": "levantar" }],
+														[{ "kind": "text", "value": "levanta" }],
+														[{ "kind": "text", "value": "aumenta" }],
+														[{ "kind": "text", "value": "aumente" }],
+														[{ "kind": "text", "value": "aumentar" }],
+														[{ "kind": "text", "value": "aumenta" }],
+														[{ "kind": "text", "value": "incrementa" }],
+														[{ "kind": "text", "value": "incremente" }],
+														[{ "kind": "text", "value": "incrementar" }],
+														[{ "kind": "text", "value": "incrementa" }]
+													]
+												}
+											]
+										]
+									}
+								],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "cierra" }],
+											[{ "kind": "text", "value": "cierre" }],
+											[{ "kind": "text", "value": "cerrar" }],
+											[{ "kind": "text", "value": "cerra" }],
+											[
+												{
+													"kind": "group",
+													"alternatives": [
+														[{ "kind": "text", "value": "baja" }],
+														[{ "kind": "text", "value": "baje" }],
+														[{ "kind": "text", "value": "bajar" }],
+														[{ "kind": "text", "value": "baja" }],
+														[{ "kind": "text", "value": "reduce" }],
+														[{ "kind": "text", "value": "reduzca" }],
+														[{ "kind": "text", "value": "reducir" }],
+														[{ "kind": "text", "value": "reduci" }],
+														[{ "kind": "text", "value": "decrementa" }],
+														[{ "kind": "text", "value": "decremente" }],
+														[{ "kind": "text", "value": "decrementar" }],
+														[{ "kind": "text", "value": "decrementa" }],
+														[{ "kind": "text", "value": "disminuye" }],
+														[{ "kind": "text", "value": "disminuya" }],
+														[{ "kind": "text", "value": "disminuir" }],
+														[{ "kind": "text", "value": "disminui" }],
+														[{ "kind": "text", "value": "acorta" }],
+														[{ "kind": "text", "value": "acorte" }],
+														[{ "kind": "text", "value": "acortar" }],
+														[{ "kind": "text", "value": "acorta" }]
+													]
+												}
+											]
+										]
+									}
+								]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "en" }],
+															[{ "kind": "text", "value": "de" }]
+														]
+													}
+												]
+											},
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "el" }],
+															[{ "kind": "text", "value": "la" }]
+														]
+													}
+												]
+											}
+										],
+										[{ "kind": "text", "value": "del" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "optional",
+									"body": [{ "kind": "text", "value": "la" }]
+								},
+								{ "kind": "text", "value": "posicion" },
+								{
+									"kind": "optional",
+									"body": [
+										{
+											"kind": "group",
+											"alternatives": [
+												[{ "kind": "text", "value": "de" }],
+												[{ "kind": "text", "value": "del" }]
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "coverClasses" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "a" }],
+								[{ "kind": "text", "value": "al" }]
+							]
+						},
+						{ "kind": "slot", "name": "position" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "%" }],
+										[{ "kind": "text", "value": "porcien" }],
+										[{ "kind": "text", "value": "porciento" }],
+										[{ "kind": "text", "value": "por cien" }],
+										[{ "kind": "text", "value": "por ciento" }]
+									]
+								}
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:(?:pon|ponga|poner|pone|estableca|establece|establecer|establece|establezca|establezce|establezcer|establezce|ajusta|ajuste|ajustar|ajusta|configura|configure|configurar|configura|cambia|cambiar|cambia|cambie)|(?:abra|abre|abrir|abri|(?:suba|sube|subir|subi|levanta|levante|levantar|levanta|aumenta|aumente|aumentar|aumenta|incrementa|incremente|incrementar|incrementa))|(?:cierra|cierre|cerrar|cerra|(?:baja|baje|bajar|baja|reduce|reduzca|reducir|reduci|decrementa|decremente|decrementar|decrementa|disminuye|disminuya|disminuir|disminui|acorta|acorte|acortar|acorta)))[ ]*(?:[ ]*(?:(?:[ ]*(?:en|de))?[ ]*(?:[ ]*(?:el|la))?|del))?[ ]*(?:.+)[ ]*(?:[ ]*(?:[ ]*la)?[ ]*posicion[ ]*(?:[ ]*(?:de|del))?)?[ ]*(?:[ ]*(?:el|la|las|los))?[ ]*(?:.+)[ ]*(?:a|al)[ ]*(?:.+)[ ]*(?:[ ]*(?:%|porcien|porciento|por[ ]+cien|por[ ]+ciento))?[ ]*$"
+				}
+			],
+			"slots": {
+				"area": { "kind": "context", "arg": "area", "key": "area" },
+				"coverClasses": {
+					"kind": "values",
+					"arg": "device_class",
+					"values": [
+						{ "phrase": "toldo", "args": { "device_class": ["awning"] } },
+						{ "phrase": "toldos", "args": { "device_class": ["awning"] } },
+						{ "phrase": "persiana", "args": { "device_class": ["blind"] } },
+						{ "phrase": "persianas", "args": { "device_class": ["blind"] } },
+						{ "phrase": "cortina", "args": { "device_class": ["curtain"] } },
+						{ "phrase": "cortinas", "args": { "device_class": ["curtain"] } },
+						{ "phrase": "puerta", "args": { "device_class": ["door"] } },
+						{ "phrase": "puertas", "args": { "device_class": ["door"] } },
+						{
+							"phrase": "puerta garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta del garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta del cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta de garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta de cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta de la garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puerta de la cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas del garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas del cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas de garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas de cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas de la garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "puertas de la cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela del garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela del cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela de garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela de cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela de la garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancela de la cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas del garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas del cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas de garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas de cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas de la garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "cancelas de la cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón del garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón del cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón de garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón de cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón de la garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portón de la cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones del garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones del cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones de garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones de cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones de la garaje",
+							"args": { "device_class": ["garage"] }
+						},
+						{
+							"phrase": "portones de la cochera",
+							"args": { "device_class": ["garage"] }
+						},
+						{ "phrase": "cochera", "args": { "device_class": ["garage"] } },
+						{ "phrase": "cocheras", "args": { "device_class": ["garage"] } },
+						{ "phrase": "verja", "args": { "device_class": ["gate"] } },
+						{ "phrase": "verjas", "args": { "device_class": ["gate"] } },
+						{ "phrase": "cancela", "args": { "device_class": ["gate"] } },
+						{ "phrase": "cancelas", "args": { "device_class": ["gate"] } },
+						{ "phrase": "portón", "args": { "device_class": ["gate"] } },
+						{ "phrase": "portones", "args": { "device_class": ["gate"] } },
+						{ "phrase": "estor", "args": { "device_class": ["shade"] } },
+						{ "phrase": "estores", "args": { "device_class": ["shade"] } },
+						{
+							"phrase": "contraventana",
+							"args": { "device_class": ["shutter"] }
+						},
+						{
+							"phrase": "contraventanas",
+							"args": { "device_class": ["shutter"] }
+						},
+						{ "phrase": "veneciana", "args": { "device_class": ["shutter"] } },
+						{ "phrase": "venecianas", "args": { "device_class": ["shutter"] } },
+						{ "phrase": "ventana", "args": { "device_class": ["window"] } },
+						{ "phrase": "ventanas", "args": { "device_class": ["window"] } }
+					]
+				},
+				"position": { "kind": "range", "arg": "position", "min": 0, "max": 100 }
+			},
+			"requiredKeywords": [],
+			"argDefaults": { "domain": ["cover"] },
+			"priority": 0
+		},
+		{
+			"tool": "HassSetPosition",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<establece_abre_cierra> [[la] posición [(de|del)]] [(el|la|los|las)] {entity} (a|al) {position} [<porciento>]",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "pon" }],
+											[{ "kind": "text", "value": "ponga" }],
+											[{ "kind": "text", "value": "poner" }],
+											[{ "kind": "text", "value": "pone" }],
+											[{ "kind": "text", "value": "estableca" }],
+											[{ "kind": "text", "value": "establece" }],
+											[{ "kind": "text", "value": "establecer" }],
+											[{ "kind": "text", "value": "establece" }],
+											[{ "kind": "text", "value": "establezca" }],
+											[{ "kind": "text", "value": "establezce" }],
+											[{ "kind": "text", "value": "establezcer" }],
+											[{ "kind": "text", "value": "establezce" }],
+											[{ "kind": "text", "value": "ajusta" }],
+											[{ "kind": "text", "value": "ajuste" }],
+											[{ "kind": "text", "value": "ajustar" }],
+											[{ "kind": "text", "value": "ajusta" }],
+											[{ "kind": "text", "value": "configura" }],
+											[{ "kind": "text", "value": "configure" }],
+											[{ "kind": "text", "value": "configurar" }],
+											[{ "kind": "text", "value": "configura" }],
+											[{ "kind": "text", "value": "cambia" }],
+											[{ "kind": "text", "value": "cambiar" }],
+											[{ "kind": "text", "value": "cambia" }],
+											[{ "kind": "text", "value": "cambie" }]
+										]
+									}
+								],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "abra" }],
+											[{ "kind": "text", "value": "abre" }],
+											[{ "kind": "text", "value": "abrir" }],
+											[{ "kind": "text", "value": "abri" }],
+											[
+												{
+													"kind": "group",
+													"alternatives": [
+														[{ "kind": "text", "value": "suba" }],
+														[{ "kind": "text", "value": "sube" }],
+														[{ "kind": "text", "value": "subir" }],
+														[{ "kind": "text", "value": "subi" }],
+														[{ "kind": "text", "value": "levanta" }],
+														[{ "kind": "text", "value": "levante" }],
+														[{ "kind": "text", "value": "levantar" }],
+														[{ "kind": "text", "value": "levanta" }],
+														[{ "kind": "text", "value": "aumenta" }],
+														[{ "kind": "text", "value": "aumente" }],
+														[{ "kind": "text", "value": "aumentar" }],
+														[{ "kind": "text", "value": "aumenta" }],
+														[{ "kind": "text", "value": "incrementa" }],
+														[{ "kind": "text", "value": "incremente" }],
+														[{ "kind": "text", "value": "incrementar" }],
+														[{ "kind": "text", "value": "incrementa" }]
+													]
+												}
+											]
+										]
+									}
+								],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "cierra" }],
+											[{ "kind": "text", "value": "cierre" }],
+											[{ "kind": "text", "value": "cerrar" }],
+											[{ "kind": "text", "value": "cerra" }],
+											[
+												{
+													"kind": "group",
+													"alternatives": [
+														[{ "kind": "text", "value": "baja" }],
+														[{ "kind": "text", "value": "baje" }],
+														[{ "kind": "text", "value": "bajar" }],
+														[{ "kind": "text", "value": "baja" }],
+														[{ "kind": "text", "value": "reduce" }],
+														[{ "kind": "text", "value": "reduzca" }],
+														[{ "kind": "text", "value": "reducir" }],
+														[{ "kind": "text", "value": "reduci" }],
+														[{ "kind": "text", "value": "decrementa" }],
+														[{ "kind": "text", "value": "decremente" }],
+														[{ "kind": "text", "value": "decrementar" }],
+														[{ "kind": "text", "value": "decrementa" }],
+														[{ "kind": "text", "value": "disminuye" }],
+														[{ "kind": "text", "value": "disminuya" }],
+														[{ "kind": "text", "value": "disminuir" }],
+														[{ "kind": "text", "value": "disminui" }],
+														[{ "kind": "text", "value": "acorta" }],
+														[{ "kind": "text", "value": "acorte" }],
+														[{ "kind": "text", "value": "acortar" }],
+														[{ "kind": "text", "value": "acorta" }]
+													]
+												}
+											]
+										]
+									}
+								]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "optional",
+									"body": [{ "kind": "text", "value": "la" }]
+								},
+								{ "kind": "text", "value": "posicion" },
+								{
+									"kind": "optional",
+									"body": [
+										{
+											"kind": "group",
+											"alternatives": [
+												[{ "kind": "text", "value": "de" }],
+												[{ "kind": "text", "value": "del" }]
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "las" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "a" }],
+								[{ "kind": "text", "value": "al" }]
+							]
+						},
+						{ "kind": "slot", "name": "position" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "%" }],
+										[{ "kind": "text", "value": "porcien" }],
+										[{ "kind": "text", "value": "porciento" }],
+										[{ "kind": "text", "value": "por cien" }],
+										[{ "kind": "text", "value": "por ciento" }]
+									]
+								}
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:(?:pon|ponga|poner|pone|estableca|establece|establecer|establece|establezca|establezce|establezcer|establezce|ajusta|ajuste|ajustar|ajusta|configura|configure|configurar|configura|cambia|cambiar|cambia|cambie)|(?:abra|abre|abrir|abri|(?:suba|sube|subir|subi|levanta|levante|levantar|levanta|aumenta|aumente|aumentar|aumenta|incrementa|incremente|incrementar|incrementa))|(?:cierra|cierre|cerrar|cerra|(?:baja|baje|bajar|baja|reduce|reduzca|reducir|reduci|decrementa|decremente|decrementar|decrementa|disminuye|disminuya|disminuir|disminui|acorta|acorte|acortar|acorta)))[ ]*(?:[ ]*(?:[ ]*la)?[ ]*posicion[ ]*(?:[ ]*(?:de|del))?)?[ ]*(?:[ ]*(?:el|la|los|las))?[ ]*(?:.+)[ ]*(?:a|al)[ ]*(?:.+)[ ]*(?:[ ]*(?:%|porcien|porciento|por[ ]+cien|por[ ]+ciento))?[ ]*$"
+				}
+			],
+			"slots": {
+				"entity": {
+					"kind": "context",
+					"arg": "entity",
+					"key": "entity:cover,valve"
+				},
+				"position": { "kind": "range", "arg": "position", "min": 0, "max": 100 }
+			},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 1
+		},
+		{
+			"tool": "time",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "qué hora es [ahora]",
+					"ast": [
+						{ "kind": "text", "value": "que hora es" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "ahora" }]
+						}
+					],
+					"prefilter": "^[ ]*que[ ]+hora[ ]+es[ ]*(?:[ ]*ahora)?[ ]*$"
+				},
+				{
+					"source": "qué horas son",
+					"ast": [{ "kind": "text", "value": "que horas son" }],
+					"prefilter": "^[ ]*que[ ]+horas[ ]+son[ ]*$"
+				},
+				{
+					"source": "qué hora tienes",
+					"ast": [{ "kind": "text", "value": "que hora tienes" }],
+					"prefilter": "^[ ]*que[ ]+hora[ ]+tienes[ ]*$"
+				},
+				{
+					"source": "dime la hora [actual]",
+					"ast": [
+						{ "kind": "text", "value": "dime la hora" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "actual" }]
+						}
+					],
+					"prefilter": "^[ ]*dime[ ]+la[ ]+hora[ ]*(?:[ ]*actual)?[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0,
+			"allowBlockedTokens": true
+		},
+		{
+			"tool": "date",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "qué día es [hoy]",
+					"ast": [
+						{ "kind": "text", "value": "que dia es" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "hoy" }] }
+					],
+					"prefilter": "^[ ]*que[ ]+dia[ ]+es[ ]*(?:[ ]*hoy)?[ ]*$"
+				},
+				{
+					"source": "qué fecha es [hoy]",
+					"ast": [
+						{ "kind": "text", "value": "que fecha es" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "hoy" }] }
+					],
+					"prefilter": "^[ ]*que[ ]+fecha[ ]+es[ ]*(?:[ ]*hoy)?[ ]*$"
+				},
+				{
+					"source": "a qué (día|fecha) estamos",
+					"ast": [
+						{ "kind": "text", "value": "a que" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "dia" }],
+								[{ "kind": "text", "value": "fecha" }]
+							]
+						},
+						{ "kind": "text", "value": "estamos" }
+					],
+					"prefilter": "^[ ]*a[ ]+que[ ]*(?:dia|fecha)[ ]*estamos[ ]*$"
+				},
+				{
+					"source": "dime la fecha [de hoy]",
+					"ast": [
+						{ "kind": "text", "value": "dime la fecha" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "de hoy" }]
+						}
+					],
+					"prefilter": "^[ ]*dime[ ]+la[ ]+fecha[ ]*(?:[ ]*de[ ]+hoy)?[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0,
+			"allowBlockedTokens": true
+		},
+		{
+			"tool": "timer",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "(pon|ponme|configura|activa) [un] temporizador de {duration}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "pon" }],
+								[{ "kind": "text", "value": "ponme" }],
+								[{ "kind": "text", "value": "configura" }],
+								[{ "kind": "text", "value": "activa" }]
+							]
+						},
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "un" }] },
+						{ "kind": "text", "value": "temporizador de" },
+						{ "kind": "slot", "name": "duration" }
+					],
+					"prefilter": "^[ ]*(?:pon|ponme|configura|activa)[ ]*(?:[ ]*un)?[ ]*temporizador[ ]+de[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "temporizador [de] {duration}",
+					"ast": [
+						{ "kind": "text", "value": "temporizador" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "de" }] },
+						{ "kind": "slot", "name": "duration" }
+					],
+					"prefilter": "^[ ]*temporizador[ ]*(?:[ ]*de)?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "[una] cuenta atrás de {duration}",
+					"ast": [
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "una" }]
+						},
+						{ "kind": "text", "value": "cuenta atras de" },
+						{ "kind": "slot", "name": "duration" }
+					],
+					"prefilter": "^[ ]*(?:[ ]*una)?[ ]*cuenta[ ]+atras[ ]+de[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "avísame en {duration}",
+					"ast": [
+						{ "kind": "text", "value": "avisame en" },
+						{ "kind": "slot", "name": "duration" }
+					],
+					"prefilter": "^[ ]*avisame[ ]+en[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": {
+				"duration": {
+					"kind": "duration",
+					"arg": "seconds",
+					"maxSeconds": 86400
+				}
+			},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "timer_cancel",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "cancela [el] temporizador",
+					"ast": [
+						{ "kind": "text", "value": "cancela" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "el" }] },
+						{ "kind": "text", "value": "temporizador" }
+					],
+					"prefilter": "^[ ]*cancela[ ]*(?:[ ]*el)?[ ]*temporizador[ ]*$"
+				},
+				{
+					"source": "para [el] temporizador",
+					"ast": [
+						{ "kind": "text", "value": "para" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "el" }] },
+						{ "kind": "text", "value": "temporizador" }
+					],
+					"prefilter": "^[ ]*para[ ]*(?:[ ]*el)?[ ]*temporizador[ ]*$"
+				},
+				{
+					"source": "quita [el] temporizador",
+					"ast": [
+						{ "kind": "text", "value": "quita" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "el" }] },
+						{ "kind": "text", "value": "temporizador" }
+					],
+					"prefilter": "^[ ]*quita[ ]*(?:[ ]*el)?[ ]*temporizador[ ]*$"
+				},
+				{
+					"source": "cancela [la] cuenta atrás",
+					"ast": [
+						{ "kind": "text", "value": "cancela" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "la" }] },
+						{ "kind": "text", "value": "cuenta atras" }
+					],
+					"prefilter": "^[ ]*cancela[ ]*(?:[ ]*la)?[ ]*cuenta[ ]+atras[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "timer_status",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "cuánto [tiempo] falta [del temporizador]",
+					"ast": [
+						{ "kind": "text", "value": "cuanto" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "tiempo" }]
+						},
+						{ "kind": "text", "value": "falta" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "del temporizador" }]
+						}
+					],
+					"prefilter": "^[ ]*cuanto[ ]*(?:[ ]*tiempo)?[ ]*falta[ ]*(?:[ ]*del[ ]+temporizador)?[ ]*$"
+				},
+				{
+					"source": "cuánto [tiempo] queda [del temporizador]",
+					"ast": [
+						{ "kind": "text", "value": "cuanto" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "tiempo" }]
+						},
+						{ "kind": "text", "value": "queda" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "del temporizador" }]
+						}
+					],
+					"prefilter": "^[ ]*cuanto[ ]*(?:[ ]*tiempo)?[ ]*queda[ ]*(?:[ ]*del[ ]+temporizador)?[ ]*$"
+				},
+				{
+					"source": "cuánto le queda al temporizador",
+					"ast": [
+						{ "kind": "text", "value": "cuanto le queda al temporizador" }
+					],
+					"prefilter": "^[ ]*cuanto[ ]+le[ ]+queda[ ]+al[ ]+temporizador[ ]*$"
+				},
+				{
+					"source": "estado del temporizador",
+					"ast": [{ "kind": "text", "value": "estado del temporizador" }],
+					"prefilter": "^[ ]*estado[ ]+del[ ]+temporizador[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "reminder",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "cancela [(el|mi)] recordatorio",
+					"ast": [
+						{ "kind": "text", "value": "cancela" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "mi" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "recordatorio" }
+					],
+					"prefilter": "^[ ]*cancela[ ]*(?:[ ]*(?:el|mi))?[ ]*recordatorio[ ]*$"
+				},
+				{
+					"source": "cancela [(los|mis)] recordatorios",
+					"ast": [
+						{ "kind": "text", "value": "cancela" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mis" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "recordatorios" }
+					],
+					"prefilter": "^[ ]*cancela[ ]*(?:[ ]*(?:los|mis))?[ ]*recordatorios[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": { "action": "cancel" },
+			"priority": 0
+		},
+		{
+			"tool": "repeat",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "repite [eso]",
+					"ast": [
+						{ "kind": "text", "value": "repite" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "eso" }] }
+					],
+					"prefilter": "^[ ]*repite[ ]*(?:[ ]*eso)?[ ]*$"
+				},
+				{
+					"source": "repítelo",
+					"ast": [{ "kind": "text", "value": "repitelo" }],
+					"prefilter": "^[ ]*repitelo[ ]*$"
+				},
+				{
+					"source": "qué dijiste",
+					"ast": [{ "kind": "text", "value": "que dijiste" }],
+					"prefilter": "^[ ]*que[ ]+dijiste[ ]*$"
+				},
+				{
+					"source": "qué has dicho",
+					"ast": [{ "kind": "text", "value": "que has dicho" }],
+					"prefilter": "^[ ]*que[ ]+has[ ]+dicho[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0,
+			"allowBlockedTokens": true
+		},
+		{
+			"tool": "cancel",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "olvídalo",
+					"ast": [{ "kind": "text", "value": "olvidalo" }],
+					"prefilter": "^[ ]*olvidalo[ ]*$"
+				},
+				{
+					"source": "déjalo",
+					"ast": [{ "kind": "text", "value": "dejalo" }],
+					"prefilter": "^[ ]*dejalo[ ]*$"
+				},
+				{
+					"source": "nada",
+					"ast": [{ "kind": "text", "value": "nada" }],
+					"prefilter": "^[ ]*nada[ ]*$"
+				},
+				{
+					"source": "cancela [eso]",
+					"ast": [
+						{ "kind": "text", "value": "cancela" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "eso" }] }
+					],
+					"prefilter": "^[ ]*cancela[ ]*(?:[ ]*eso)?[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0,
+			"allowBlockedTokens": true
+		},
+		{
+			"tool": "alarm",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "(pon|ponme|activa) una alarma (a|para) {clockTime}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "pon" }],
+								[{ "kind": "text", "value": "ponme" }],
+								[{ "kind": "text", "value": "activa" }]
+							]
+						},
+						{ "kind": "text", "value": "una alarma" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "a" }],
+								[{ "kind": "text", "value": "para" }]
+							]
+						},
+						{ "kind": "slot", "name": "clockTime" }
+					],
+					"prefilter": "^[ ]*(?:pon|ponme|activa)[ ]*una[ ]+alarma[ ]*(?:a|para)[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "(pon|ponme) una alarma {clockTime}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "pon" }],
+								[{ "kind": "text", "value": "ponme" }]
+							]
+						},
+						{ "kind": "text", "value": "una alarma" },
+						{ "kind": "slot", "name": "clockTime" }
+					],
+					"prefilter": "^[ ]*(?:pon|ponme)[ ]*una[ ]+alarma[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "despiértame (a|para) {clockTime}",
+					"ast": [
+						{ "kind": "text", "value": "despiertame" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "a" }],
+								[{ "kind": "text", "value": "para" }]
+							]
+						},
+						{ "kind": "slot", "name": "clockTime" }
+					],
+					"prefilter": "^[ ]*despiertame[ ]*(?:a|para)[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "alarma (a|para) {clockTime}",
+					"ast": [
+						{ "kind": "text", "value": "alarma" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "a" }],
+								[{ "kind": "text", "value": "para" }]
+							]
+						},
+						{ "kind": "slot", "name": "clockTime" }
+					],
+					"prefilter": "^[ ]*alarma[ ]*(?:a|para)[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": { "clockTime": { "kind": "clockTime", "arg": "at" } },
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0,
+			"allowBlockedTokens": true
+		},
+		{
+			"tool": "alarm",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "(pon|ponme|activa) una alarma (a|para) {clockTime} todos los días",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "pon" }],
+								[{ "kind": "text", "value": "ponme" }],
+								[{ "kind": "text", "value": "activa" }]
+							]
+						},
+						{ "kind": "text", "value": "una alarma" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "a" }],
+								[{ "kind": "text", "value": "para" }]
+							]
+						},
+						{ "kind": "slot", "name": "clockTime" },
+						{ "kind": "text", "value": "todos los dias" }
+					],
+					"prefilter": "^[ ]*(?:pon|ponme|activa)[ ]*una[ ]+alarma[ ]*(?:a|para)[ ]*(?:.+)[ ]*todos[ ]+los[ ]+dias[ ]*$"
+				},
+				{
+					"source": "(pon|ponme|activa) una alarma diaria (a|para) {clockTime}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "pon" }],
+								[{ "kind": "text", "value": "ponme" }],
+								[{ "kind": "text", "value": "activa" }]
+							]
+						},
+						{ "kind": "text", "value": "una alarma diaria" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "a" }],
+								[{ "kind": "text", "value": "para" }]
+							]
+						},
+						{ "kind": "slot", "name": "clockTime" }
+					],
+					"prefilter": "^[ ]*(?:pon|ponme|activa)[ ]*una[ ]+alarma[ ]+diaria[ ]*(?:a|para)[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "despiértame (a|para) {clockTime} todos los días",
+					"ast": [
+						{ "kind": "text", "value": "despiertame" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "a" }],
+								[{ "kind": "text", "value": "para" }]
+							]
+						},
+						{ "kind": "slot", "name": "clockTime" },
+						{ "kind": "text", "value": "todos los dias" }
+					],
+					"prefilter": "^[ ]*despiertame[ ]*(?:a|para)[ ]*(?:.+)[ ]*todos[ ]+los[ ]+dias[ ]*$"
+				},
+				{
+					"source": "despiértame todos los días (a|para) {clockTime}",
+					"ast": [
+						{ "kind": "text", "value": "despiertame todos los dias" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "a" }],
+								[{ "kind": "text", "value": "para" }]
+							]
+						},
+						{ "kind": "slot", "name": "clockTime" }
+					],
+					"prefilter": "^[ ]*despiertame[ ]+todos[ ]+los[ ]+dias[ ]*(?:a|para)[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": { "clockTime": { "kind": "clockTime", "arg": "at" } },
+			"requiredKeywords": [],
+			"argDefaults": { "daily": true },
+			"priority": 0,
+			"allowBlockedTokens": true
+		},
+		{
+			"tool": "alarm_cancel",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "cancela [(la|mi)] alarma",
+					"ast": [
+						{ "kind": "text", "value": "cancela" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "mi" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "alarma" }
+					],
+					"prefilter": "^[ ]*cancela[ ]*(?:[ ]*(?:la|mi))?[ ]*alarma[ ]*$"
+				},
+				{
+					"source": "cancela [(las|mis)] alarmas",
+					"ast": [
+						{ "kind": "text", "value": "cancela" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "mis" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "alarmas" }
+					],
+					"prefilter": "^[ ]*cancela[ ]*(?:[ ]*(?:las|mis))?[ ]*alarmas[ ]*$"
+				},
+				{
+					"source": "(quita|apaga|borra|desactiva) [(la|mi)] alarma",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "quita" }],
+								[{ "kind": "text", "value": "apaga" }],
+								[{ "kind": "text", "value": "borra" }],
+								[{ "kind": "text", "value": "desactiva" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "mi" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "alarma" }
+					],
+					"prefilter": "^[ ]*(?:quita|apaga|borra|desactiva)[ ]*(?:[ ]*(?:la|mi))?[ ]*alarma[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "volume",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "(sube|súbele|súbete) tu volumen",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "sube" }],
+								[{ "kind": "text", "value": "subele" }],
+								[{ "kind": "text", "value": "subete" }]
+							]
+						},
+						{ "kind": "text", "value": "tu volumen" }
+					],
+					"prefilter": "^[ ]*(?:sube|subele|subete)[ ]*tu[ ]+volumen[ ]*$"
+				},
+				{
+					"source": "tu volumen más alto",
+					"ast": [{ "kind": "text", "value": "tu volumen mas alto" }],
+					"prefilter": "^[ ]*tu[ ]+volumen[ ]+mas[ ]+alto[ ]*$"
+				},
+				{
+					"source": "habla más (alto|fuerte)",
+					"ast": [
+						{ "kind": "text", "value": "habla mas" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "alto" }],
+								[{ "kind": "text", "value": "fuerte" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*habla[ ]+mas[ ]*(?:alto|fuerte)[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": { "direction": "up" },
+			"priority": 0
+		},
+		{
+			"tool": "volume",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "(baja|bájale|bájate) tu volumen",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "baja" }],
+								[{ "kind": "text", "value": "bajale" }],
+								[{ "kind": "text", "value": "bajate" }]
+							]
+						},
+						{ "kind": "text", "value": "tu volumen" }
+					],
+					"prefilter": "^[ ]*(?:baja|bajale|bajate)[ ]*tu[ ]+volumen[ ]*$"
+				},
+				{
+					"source": "tu volumen más bajo",
+					"ast": [{ "kind": "text", "value": "tu volumen mas bajo" }],
+					"prefilter": "^[ ]*tu[ ]+volumen[ ]+mas[ ]+bajo[ ]*$"
+				},
+				{
+					"source": "habla más (bajo|bajito|flojo|suave)",
+					"ast": [
+						{ "kind": "text", "value": "habla mas" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "bajo" }],
+								[{ "kind": "text", "value": "bajito" }],
+								[{ "kind": "text", "value": "flojo" }],
+								[{ "kind": "text", "value": "suave" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*habla[ ]+mas[ ]*(?:bajo|bajito|flojo|suave)[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": { "direction": "down" },
+			"priority": 0
+		},
+		{
+			"tool": "volume",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "(pon|ajusta|deja) tu volumen (a|al|en) {level} [por ciento]",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "pon" }],
+								[{ "kind": "text", "value": "ajusta" }],
+								[{ "kind": "text", "value": "deja" }]
+							]
+						},
+						{ "kind": "text", "value": "tu volumen" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "a" }],
+								[{ "kind": "text", "value": "al" }],
+								[{ "kind": "text", "value": "en" }]
+							]
+						},
+						{ "kind": "slot", "name": "level" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "por ciento" }]
+						}
+					],
+					"prefilter": "^[ ]*(?:pon|ajusta|deja)[ ]*tu[ ]+volumen[ ]*(?:a|al|en)[ ]*(?:.+)[ ]*(?:[ ]*por[ ]+ciento)?[ ]*$"
+				},
+				{
+					"source": "tu volumen (a|al|en) {level} [por ciento]",
+					"ast": [
+						{ "kind": "text", "value": "tu volumen" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "a" }],
+								[{ "kind": "text", "value": "al" }],
+								[{ "kind": "text", "value": "en" }]
+							]
+						},
+						{ "kind": "slot", "name": "level" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "por ciento" }]
+						}
+					],
+					"prefilter": "^[ ]*tu[ ]+volumen[ ]*(?:a|al|en)[ ]*(?:.+)[ ]*(?:[ ]*por[ ]+ciento)?[ ]*$"
+				},
+				{
+					"source": "habla al {level} por ciento",
+					"ast": [
+						{ "kind": "text", "value": "habla al" },
+						{ "kind": "slot", "name": "level" },
+						{ "kind": "text", "value": "por ciento" }
+					],
+					"prefilter": "^[ ]*habla[ ]+al[ ]*(?:.+)[ ]*por[ ]+ciento[ ]*$"
+				}
+			],
+			"slots": {
+				"level": { "kind": "range", "arg": "level", "min": 0, "max": 100 }
+			},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "playback_pause",
+			"provider": "music-assistant",
+			"templates": [
+				{
+					"source": "(pausa|para|detén) [<articulo>] <musica>",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "pausa" }],
+								[{ "kind": "text", "value": "para" }],
+								[{ "kind": "text", "value": "deten" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }],
+										[{ "kind": "text", "value": "esta" }],
+										[{ "kind": "text", "value": "este" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "musica" }],
+								[{ "kind": "text", "value": "cancion" }],
+								[{ "kind": "text", "value": "tema" }],
+								[{ "kind": "text", "value": "reproduccion" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:pausa|para|deten)[ ]*(?:[ ]*(?:la|el|las|los|mi|mis|esta|este))?[ ]*(?:musica|cancion|tema|reproduccion)[ ]*$"
+				},
+				{
+					"source": "(apaga|quita) [<articulo>] <musica>",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "apaga" }],
+								[{ "kind": "text", "value": "quita" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }],
+										[{ "kind": "text", "value": "esta" }],
+										[{ "kind": "text", "value": "este" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "musica" }],
+								[{ "kind": "text", "value": "cancion" }],
+								[{ "kind": "text", "value": "tema" }],
+								[{ "kind": "text", "value": "reproduccion" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:apaga|quita)[ ]*(?:[ ]*(?:la|el|las|los|mi|mis|esta|este))?[ ]*(?:musica|cancion|tema|reproduccion)[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "playback_resume",
+			"provider": "music-assistant",
+			"templates": [
+				{
+					"source": "(reanuda|continúa|sigue) [<articulo>] <musica>",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "reanuda" }],
+								[{ "kind": "text", "value": "continua" }],
+								[{ "kind": "text", "value": "sigue" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }],
+										[{ "kind": "text", "value": "esta" }],
+										[{ "kind": "text", "value": "este" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "musica" }],
+								[{ "kind": "text", "value": "cancion" }],
+								[{ "kind": "text", "value": "tema" }],
+								[{ "kind": "text", "value": "reproduccion" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:reanuda|continua|sigue)[ ]*(?:[ ]*(?:la|el|las|los|mi|mis|esta|este))?[ ]*(?:musica|cancion|tema|reproduccion)[ ]*$"
+				},
+				{
+					"source": "vuelve a poner [<articulo>] <musica>",
+					"ast": [
+						{ "kind": "text", "value": "vuelve a poner" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }],
+										[{ "kind": "text", "value": "esta" }],
+										[{ "kind": "text", "value": "este" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "musica" }],
+								[{ "kind": "text", "value": "cancion" }],
+								[{ "kind": "text", "value": "tema" }],
+								[{ "kind": "text", "value": "reproduccion" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*vuelve[ ]+a[ ]+poner[ ]*(?:[ ]*(?:la|el|las|los|mi|mis|esta|este))?[ ]*(?:musica|cancion|tema|reproduccion)[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "playback_next_track",
+			"provider": "music-assistant",
+			"templates": [
+				{
+					"source": "(siguiente|próxima|otra) (canción|tema)",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "siguiente" }],
+								[{ "kind": "text", "value": "proxima" }],
+								[{ "kind": "text", "value": "otra" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "cancion" }],
+								[{ "kind": "text", "value": "tema" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:siguiente|proxima|otra)[ ]*(?:cancion|tema)[ ]*$"
+				},
+				{
+					"source": "(pon|pasa a) [<articulo>] (siguiente|próxima) (canción|tema)",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "pon" }],
+								[{ "kind": "text", "value": "pasa a" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }],
+										[{ "kind": "text", "value": "esta" }],
+										[{ "kind": "text", "value": "este" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "siguiente" }],
+								[{ "kind": "text", "value": "proxima" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "cancion" }],
+								[{ "kind": "text", "value": "tema" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:pon|pasa[ ]+a)[ ]*(?:[ ]*(?:la|el|las|los|mi|mis|esta|este))?[ ]*(?:siguiente|proxima)[ ]*(?:cancion|tema)[ ]*$"
+				},
+				{
+					"source": "salta [<articulo>] (canción|tema)",
+					"ast": [
+						{ "kind": "text", "value": "salta" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }],
+										[{ "kind": "text", "value": "esta" }],
+										[{ "kind": "text", "value": "este" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "cancion" }],
+								[{ "kind": "text", "value": "tema" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*salta[ ]*(?:[ ]*(?:la|el|las|los|mi|mis|esta|este))?[ ]*(?:cancion|tema)[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "playback_previous_track",
+			"provider": "music-assistant",
+			"templates": [
+				{
+					"source": "(anterior|previa) (canción|tema)",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "anterior" }],
+								[{ "kind": "text", "value": "previa" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "cancion" }],
+								[{ "kind": "text", "value": "tema" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:anterior|previa)[ ]*(?:cancion|tema)[ ]*$"
+				},
+				{
+					"source": "(pon|vuelve a) [<articulo>] (canción|tema) (anterior|previa)",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "pon" }],
+								[{ "kind": "text", "value": "vuelve a" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }],
+										[{ "kind": "text", "value": "esta" }],
+										[{ "kind": "text", "value": "este" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "cancion" }],
+								[{ "kind": "text", "value": "tema" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "anterior" }],
+								[{ "kind": "text", "value": "previa" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:pon|vuelve[ ]+a)[ ]*(?:[ ]*(?:la|el|las|los|mi|mis|esta|este))?[ ]*(?:cancion|tema)[ ]*(?:anterior|previa)[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "volume_volume_set",
+			"provider": "music-assistant",
+			"templates": [
+				{
+					"source": "(pon|ajusta) [<articulo>] (volumen|música) (a|al) {level} [por ciento]",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "pon" }],
+								[{ "kind": "text", "value": "ajusta" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }],
+										[{ "kind": "text", "value": "esta" }],
+										[{ "kind": "text", "value": "este" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "volumen" }],
+								[{ "kind": "text", "value": "musica" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "a" }],
+								[{ "kind": "text", "value": "al" }]
+							]
+						},
+						{ "kind": "slot", "name": "level" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "por ciento" }]
+						}
+					],
+					"prefilter": "^[ ]*(?:pon|ajusta)[ ]*(?:[ ]*(?:la|el|las|los|mi|mis|esta|este))?[ ]*(?:volumen|musica)[ ]*(?:a|al)[ ]*(?:.+)[ ]*(?:[ ]*por[ ]+ciento)?[ ]*$"
+				}
+			],
+			"slots": {
+				"level": { "kind": "range", "arg": "level", "min": 0, "max": 100 }
+			},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "volume_volume_up",
+			"provider": "music-assistant",
+			"templates": [
+				{
+					"source": "sube [<articulo>] (volumen|música)",
+					"ast": [
+						{ "kind": "text", "value": "sube" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }],
+										[{ "kind": "text", "value": "esta" }],
+										[{ "kind": "text", "value": "este" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "volumen" }],
+								[{ "kind": "text", "value": "musica" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*sube[ ]*(?:[ ]*(?:la|el|las|los|mi|mis|esta|este))?[ ]*(?:volumen|musica)[ ]*$"
+				},
+				{
+					"source": "súbele [<articulo>] (volumen|música)",
+					"ast": [
+						{ "kind": "text", "value": "subele" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }],
+										[{ "kind": "text", "value": "esta" }],
+										[{ "kind": "text", "value": "este" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "volumen" }],
+								[{ "kind": "text", "value": "musica" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*subele[ ]*(?:[ ]*(?:la|el|las|los|mi|mis|esta|este))?[ ]*(?:volumen|musica)[ ]*$"
+				},
+				{
+					"source": "más alto",
+					"ast": [{ "kind": "text", "value": "mas alto" }],
+					"prefilter": "^[ ]*mas[ ]+alto[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "volume_volume_down",
+			"provider": "music-assistant",
+			"templates": [
+				{
+					"source": "baja [<articulo>] (volumen|música)",
+					"ast": [
+						{ "kind": "text", "value": "baja" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }],
+										[{ "kind": "text", "value": "esta" }],
+										[{ "kind": "text", "value": "este" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "volumen" }],
+								[{ "kind": "text", "value": "musica" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*baja[ ]*(?:[ ]*(?:la|el|las|los|mi|mis|esta|este))?[ ]*(?:volumen|musica)[ ]*$"
+				},
+				{
+					"source": "bájale [<articulo>] (volumen|música)",
+					"ast": [
+						{ "kind": "text", "value": "bajale" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }],
+										[{ "kind": "text", "value": "esta" }],
+										[{ "kind": "text", "value": "este" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "volumen" }],
+								[{ "kind": "text", "value": "musica" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*bajale[ ]*(?:[ ]*(?:la|el|las|los|mi|mis|esta|este))?[ ]*(?:volumen|musica)[ ]*$"
+				},
+				{
+					"source": "más bajo",
+					"ast": [{ "kind": "text", "value": "mas bajo" }],
+					"prefilter": "^[ ]*mas[ ]+bajo[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "music_now_playing",
+			"provider": "music-assistant",
+			"templates": [
+				{
+					"source": "(canción|tema) actual",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "cancion" }],
+								[{ "kind": "text", "value": "tema" }]
+							]
+						},
+						{ "kind": "text", "value": "actual" }
+					],
+					"prefilter": "^[ ]*(?:cancion|tema)[ ]*actual[ ]*$"
+				},
+				{
+					"source": "dime [<articulo>] (canción|tema)",
+					"ast": [
+						{ "kind": "text", "value": "dime" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "la" }],
+										[{ "kind": "text", "value": "el" }],
+										[{ "kind": "text", "value": "las" }],
+										[{ "kind": "text", "value": "los" }],
+										[{ "kind": "text", "value": "mi" }],
+										[{ "kind": "text", "value": "mis" }],
+										[{ "kind": "text", "value": "esta" }],
+										[{ "kind": "text", "value": "este" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "cancion" }],
+								[{ "kind": "text", "value": "tema" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*dime[ ]*(?:[ ]*(?:la|el|las|los|mi|mis|esta|este))?[ ]*(?:cancion|tema)[ ]*$"
+				},
+				{
+					"source": "cuál (canción|tema) es esta",
+					"ast": [
+						{ "kind": "text", "value": "cual" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "cancion" }],
+								[{ "kind": "text", "value": "tema" }]
+							]
+						},
+						{ "kind": "text", "value": "es esta" }
+					],
+					"prefilter": "^[ ]*cual[ ]*(?:cancion|tema)[ ]*es[ ]+esta[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		}
+	]
+}

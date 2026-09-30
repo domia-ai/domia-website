@@ -1,0 +1,108 @@
+{
+	"meta": {
+		"source": "domia-core source and status documents",
+		"capturedAt": "2026-09-28T00:00:00.000Z",
+		"generator": "manual"
+	},
+	"verifiedAt": "2026-09-28",
+	"lanes": {
+		"shipped": [
+			{
+				"id": "localPipeline",
+				"area": "voice"
+			},
+			{
+				"id": "bargeIn",
+				"area": "voice"
+			},
+			{
+				"id": "satelliteProtocols",
+				"area": "voice"
+			},
+			{
+				"id": "realtimeEndpoint",
+				"area": "voice"
+			},
+			{
+				"id": "fastPath",
+				"area": "skills"
+			},
+			{
+				"id": "builtinTools",
+				"area": "skills"
+			},
+			{
+				"id": "mcpSkills",
+				"area": "skills"
+			},
+			{
+				"id": "routines",
+				"area": "skills"
+			},
+			{
+				"id": "memoryLayers",
+				"area": "memoryIdentity"
+			},
+			{
+				"id": "identityMood",
+				"area": "memoryIdentity"
+			},
+			{
+				"id": "mindTransfer",
+				"area": "memoryIdentity"
+			},
+			{
+				"id": "mesh",
+				"area": "network"
+			},
+			{
+				"id": "multiIdentity",
+				"area": "network"
+			},
+			{
+				"id": "meshSecurity",
+				"area": "network"
+			},
+			{
+				"id": "console",
+				"area": "console"
+			},
+			{
+				"id": "broadcast",
+				"area": "console"
+			}
+		],
+		"maturing": [
+			{
+				"id": "smallModelReplyQuality",
+				"area": "voice"
+			},
+			{
+				"id": "poolJobCancellation",
+				"area": "voice"
+			},
+			{
+				"id": "proactiveNudges",
+				"area": "voice"
+			}
+		],
+		"notBuilt": [
+			{
+				"id": "speakerRecognition",
+				"area": "memoryIdentity"
+			},
+			{
+				"id": "remoteAccess",
+				"area": "network"
+			},
+			{
+				"id": "automaticUpdates",
+				"area": "upkeep"
+			},
+			{
+				"id": "ci",
+				"area": "upkeep"
+			}
+		]
+	}
+}

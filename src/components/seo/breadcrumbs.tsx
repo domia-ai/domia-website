@@ -2,11 +2,9 @@ import { getLocale, getTranslations } from "next-intl/server"
 
 import { localizedUrl } from "@/i18n/urls"
 
-export async function BreadcrumbsJsonLd({
-	items,
-}: {
-	items: { name: string; path: string }[]
-}) {
+import type { BreadcrumbsJsonLdProps } from "./types"
+
+export async function BreadcrumbsJsonLd({ items }: BreadcrumbsJsonLdProps) {
 	const locale = await getLocale()
 	const t = await getTranslations("meta")
 

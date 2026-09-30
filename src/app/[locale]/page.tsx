@@ -1,36 +1,30 @@
 import { pageLocale } from "@/i18n/page"
 import {
 	Hero,
-	About,
-	Why,
-	Network,
-	Features,
-	Flow,
-	Personas,
-	Console,
-	Comparison,
-	AskAi,
-	Collaborate,
-	Waitlist,
+	Proof,
+	UseCasesStrip,
+	ConsoleTeaser,
+	Cta,
 } from "@/components/landing"
+import {
+	PersonaBuilderExplainer,
+	TopologiesCompact,
+	VoicePathExplainer,
+} from "@/components/explainers"
 
 export default async function Home(props: PageProps<"/[locale]">) {
 	await pageLocale(props.params)
 
 	return (
-		<div className="flex flex-col gap-10">
+		<div className="flex flex-col">
 			<Hero />
-			<About />
-			<Why />
-			<Flow />
-			<Features />
-			<Network />
-			<Personas />
-			<Console />
-			<Comparison />
-			<AskAi />
-			<Waitlist />
-			<Collaborate />
+			<Proof />
+			<VoicePathExplainer tone="base" />
+			<PersonaBuilderExplainer tone="alt" />
+			<UseCasesStrip />
+			<TopologiesCompact tone="alt" />
+			<ConsoleTeaser />
+			<Cta />
 		</div>
 	)
 }

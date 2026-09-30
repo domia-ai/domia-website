@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 import { routing } from "./routing"
 
-export const SITE_URL = "https://domia.ai"
+export const SITE_URL = "https://www.domia.ai"
 
 export const localizedUrl = (path: string, locale: string): string => {
 	const suffix = path === "/" ? "" : path

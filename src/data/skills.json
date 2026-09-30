@@ -1,0 +1,369 @@
+{
+	"meta": {
+		"source": "domia-core: specializations/domia/tools (DOMIA_TOOLS: name, hiddenFromLlm, policy), specializations/home-assistant/constants (HA_ACTION_VERBS, HA_CONTEXT_TOOL, HA_SENSITIVE_TOOL_RE, HA_SENSITIVE_DOMAIN_RE and HA_FAST_PATH_EXCLUDED_DOMAINS for domains, HA_BUILTIN_SHADOWED_TOOLS), specializations/music-assistant/constants (MA tool ids), src/db/constants/skills.ts (ROUTINE_MAX_STEPS, SKILL_SERVER_DESCRIPTOR_MAX_*); defaultOn = works on a fresh node without connecting anything (built-in tools and routines on the builtin provider; skill_provider.is_active defaults to false in src/db/schema/skills.ts), every group switchable per identity from the console; examples: fastPath from the same packs (routines with phrases register fast-path templates via specializations/domia/routines.ts; routine tool = ROUTINE_TOOL_PREFIX + slug; the MCP tool id is illustrative)",
+		"capturedAt": "2026-09-24T02:49:40.716Z",
+		"generator": "domia-core/evals/gen-website-data.ts"
+	},
+	"groups": [
+		{
+			"id": "builtin",
+			"alwaysOn": false,
+			"defaultOn": true,
+			"tools": [
+				{
+					"id": "time",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "date",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "timer",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "timer_cancel",
+					"fastPath": true,
+					"hidden": true,
+					"policy": "allow"
+				},
+				{
+					"id": "timer_status",
+					"fastPath": true,
+					"hidden": true,
+					"policy": "allow"
+				},
+				{
+					"id": "reminder",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "repeat",
+					"fastPath": true,
+					"hidden": true,
+					"policy": "allow"
+				},
+				{
+					"id": "cancel",
+					"fastPath": true,
+					"hidden": true,
+					"policy": "allow"
+				},
+				{
+					"id": "alarm",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "alarm_cancel",
+					"fastPath": true,
+					"hidden": true,
+					"policy": "allow"
+				},
+				{
+					"id": "volume",
+					"fastPath": true,
+					"hidden": true,
+					"policy": "allow"
+				},
+				{
+					"id": "remember",
+					"fastPath": false,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "forget",
+					"fastPath": false,
+					"hidden": false,
+					"policy": "confirm"
+				}
+			],
+			"domains": []
+		},
+		{
+			"id": "homeAssistant",
+			"alwaysOn": false,
+			"defaultOn": false,
+			"tools": [
+				{
+					"id": "HassTurnOn",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "HassTurnOff",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "HassLightSet",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "HassSetPosition",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "HassClimateSetTemperature",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "HassClimateSetFanMode",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "HassFanSetSpeed",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "HassVacuumStart",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "HassVacuumReturnToBase",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "HassVacuumCleanArea",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "HassLawnMowerDock",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "HassLawnMowerStartMowing",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "HassLockDoor",
+					"fastPath": false,
+					"hidden": false,
+					"policy": "confirm"
+				},
+				{
+					"id": "HassUnlockDoor",
+					"fastPath": false,
+					"hidden": false,
+					"policy": "confirm"
+				},
+				{
+					"id": "GetLiveContext",
+					"fastPath": false,
+					"hidden": false,
+					"policy": "allow"
+				}
+			],
+			"domains": [
+				{
+					"id": "cover",
+					"fastPath": true,
+					"policy": "confirm"
+				},
+				{
+					"id": "lock",
+					"fastPath": false,
+					"policy": "confirm"
+				},
+				{
+					"id": "alarm_control_panel",
+					"fastPath": false,
+					"policy": "confirm"
+				},
+				{
+					"id": "siren",
+					"fastPath": false,
+					"policy": "confirm"
+				}
+			]
+		},
+		{
+			"id": "musicAssistant",
+			"alwaysOn": false,
+			"defaultOn": false,
+			"tools": [
+				{
+					"id": "music_play",
+					"fastPath": false,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "music_now_playing",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "playback_play_media",
+					"fastPath": false,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "playback_pause",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "playback_resume",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "playback_next_track",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "playback_previous_track",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "volume_volume_set",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "volume_volume_up",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "volume_volume_down",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "volume_volume_mute",
+					"fastPath": true,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "players_list_players",
+					"fastPath": false,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "library_search_artists",
+					"fastPath": false,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "library_search_albums",
+					"fastPath": false,
+					"hidden": false,
+					"policy": "allow"
+				},
+				{
+					"id": "library_search_tracks",
+					"fastPath": false,
+					"hidden": false,
+					"policy": "allow"
+				}
+			],
+			"domains": []
+		},
+		{
+			"id": "mcp",
+			"alwaysOn": false,
+			"defaultOn": false,
+			"tools": [],
+			"domains": []
+		},
+		{
+			"id": "routines",
+			"alwaysOn": false,
+			"defaultOn": true,
+			"tools": [],
+			"domains": []
+		}
+	],
+	"examples": [
+		{
+			"id": "timer",
+			"group": "builtin",
+			"tool": "timer",
+			"fastPath": true
+		},
+		{
+			"id": "lights",
+			"group": "homeAssistant",
+			"tool": "HassTurnOff",
+			"fastPath": true
+		},
+		{
+			"id": "music",
+			"group": "musicAssistant",
+			"tool": "music_play",
+			"fastPath": false
+		},
+		{
+			"id": "goodNight",
+			"group": "routines",
+			"tool": "routine_good_night",
+			"fastPath": true
+		},
+		{
+			"id": "descriptor",
+			"group": "mcp",
+			"tool": "add_to_list",
+			"fastPath": false
+		}
+	],
+	"routineMaxSteps": 8,
+	"descriptorLimits": {
+		"maxBytes": 65536,
+		"maxTemplates": 200,
+		"maxTemplateChars": 200
+	},
+	"defaults": {
+		"fastPathEnabled": true,
+		"skillsEngine": true,
+		"builtinTools": true
+	}
+}

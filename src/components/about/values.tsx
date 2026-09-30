@@ -1,41 +1,41 @@
 import { getTranslations } from "next-intl/server"
+import { Globe, HardDrive, Layers, ListChecks } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
-import { coreValueIds } from "@/constants"
+import { ProofGrid, Section } from "@/components/sections"
+import { TypographyH2 } from "@/components/ui/typography"
+
+import { valueHrefs, valueIds } from "./constants"
+import type { ValueId } from "./types"
+
+const valueIcons: Record<ValueId, LucideIcon> = {
+	localFirst: HardDrive,
+	statedLimits: ListChecks,
+	oneSoftware: Layers,
+	public: Globe,
+}
 
 export async function Values() {
 	const t = await getTranslations("about.values")
 
 	return (
-		<Card>
-			<CardHeader>
-				<TypographyH2>{t("title")}</TypographyH2>
-			</CardHeader>
-			<CardContent className="flex flex-col gap-8">
-				<TypographyLarge>{t("intro")}</TypographyLarge>
-
-				<dl className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-					{coreValueIds.map((id) => (
-						<Card
-							key={id}
-							className="bg-secondary transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-						>
-							<CardHeader>
-								<dt className="text-xl font-bold">{t(`items.${id}.name`)}</dt>
-							</CardHeader>
-
-							<CardContent>
-								<dd className="flex flex-auto flex-col text-base/7">
-									<p className="text-md flex-auto">
-										{t(`items.${id}.description`)}
-									</p>
-								</dd>
-							</CardContent>
-						</Card>
-					))}
-				</dl>
-			</CardContent>
-		</Card>
+		<Section id="values" tone="base" labelledBy="values-title">
+			<div className="flex flex-col gap-10">
+				<TypographyH2 id="values-title" className="text-center">
+					{t("title")}
+				</TypographyH2>
+				<ProofGrid
+					columns={2}
+					items={valueIds.map((id) => ({
+						id,
+						title: t(`items.${id}.title`),
+						body: t(`items.${id}.body`),
+						icon: valueIcons[id],
+						href: valueHrefs[id],
+						hrefLabel: valueHrefs[id] ? t(`items.${id}.link`) : undefined,
+					}))}
+				/>
+			</div>
+		</Section>
 	)
 }

@@ -1,0 +1,4851 @@
+{
+	"skipWords": [
+		"please",
+		"can you",
+		"could you",
+		"would you",
+		"will you",
+		"for me",
+		"i'd like",
+		"i'd like to",
+		"i want",
+		"i want you to",
+		"hey"
+	],
+	"skipPhrasesPerSide": 3,
+	"maxUtteranceChars": 80,
+	"blockers": [
+		"don't",
+		"do not",
+		"didn't",
+		"never",
+		"won't",
+		"wouldn't",
+		"did",
+		"why",
+		"when",
+		"who",
+		"would",
+		"could",
+		"can",
+		"should",
+		"what",
+		"how",
+		"if",
+		"imagine",
+		"suppose",
+		"said",
+		"told",
+		"asked",
+		"yesterday",
+		"tomorrow",
+		"later",
+		"earlier",
+		"already"
+	],
+	"minCoverage": 0.1,
+	"intents": [
+		{
+			"tool": "HassTurnOn",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<turnon> [<the>] {entity}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn on" }],
+								[{ "kind": "text", "value": "switch on" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" }
+					],
+					"prefilter": "^[ ]*(?:turn[ ]+on|switch[ ]+on)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "turn [<the>] {entity} on",
+					"ast": [
+						{ "kind": "text", "value": "turn" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{ "kind": "text", "value": "on" }
+					],
+					"prefilter": "^[ ]*turn[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*on[ ]*$"
+				}
+			],
+			"slots": {
+				"entity": {
+					"kind": "context",
+					"arg": "entity",
+					"key": "entity:default,media_player"
+				}
+			},
+			"requiredKeywords": [["on"]],
+			"argDefaults": {},
+			"priority": 1
+		},
+		{
+			"tool": "HassTurnOn",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<turnon> [<the>] lights in [<the>] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn on" }],
+								[{ "kind": "text", "value": "switch on" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "lights in" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:turn[ ]+on|switch[ ]+on)[ ]*(?:[ ]*(?:the|my|our))?[ ]*lights[ ]+in[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "<turnon> [<the>] {area} lights",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn on" }],
+								[{ "kind": "text", "value": "switch on" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{ "kind": "text", "value": "lights" }
+					],
+					"prefilter": "^[ ]*(?:turn[ ]+on|switch[ ]+on)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*lights[ ]*$"
+				}
+			],
+			"slots": { "area": { "kind": "context", "arg": "area", "key": "area" } },
+			"requiredKeywords": [["on"]],
+			"argDefaults": { "domain": ["light"] },
+			"priority": 0
+		},
+		{
+			"tool": "HassTurnOff",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<turnoff> [<the>] {entity}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn off" }],
+								[{ "kind": "text", "value": "switch off" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" }
+					],
+					"prefilter": "^[ ]*(?:turn[ ]+off|switch[ ]+off)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "turn [<the>] {entity} off",
+					"ast": [
+						{ "kind": "text", "value": "turn" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{ "kind": "text", "value": "off" }
+					],
+					"prefilter": "^[ ]*turn[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*off[ ]*$"
+				}
+			],
+			"slots": {
+				"entity": {
+					"kind": "context",
+					"arg": "entity",
+					"key": "entity:default,media_player"
+				}
+			},
+			"requiredKeywords": [["off"]],
+			"argDefaults": {},
+			"priority": 1
+		},
+		{
+			"tool": "HassTurnOff",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<turnoff> [<the>] lights in [<the>] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn off" }],
+								[{ "kind": "text", "value": "switch off" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "lights in" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:turn[ ]+off|switch[ ]+off)[ ]*(?:[ ]*(?:the|my|our))?[ ]*lights[ ]+in[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "<turnoff> [<the>] {area} lights",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn off" }],
+								[{ "kind": "text", "value": "switch off" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{ "kind": "text", "value": "lights" }
+					],
+					"prefilter": "^[ ]*(?:turn[ ]+off|switch[ ]+off)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*lights[ ]*$"
+				}
+			],
+			"slots": { "area": { "kind": "context", "arg": "area", "key": "area" } },
+			"requiredKeywords": [["off"]],
+			"argDefaults": { "domain": ["light"] },
+			"priority": 0
+		},
+		{
+			"tool": "HassLightSet",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "(set|dim|brighten) [<the>] {entity} to {level} [percent] [brightness]",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "set" }],
+								[{ "kind": "text", "value": "dim" }],
+								[{ "kind": "text", "value": "brighten" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{ "kind": "text", "value": "to" },
+						{ "kind": "slot", "name": "level" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "percent" }]
+						},
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "brightness" }]
+						}
+					],
+					"prefilter": "^[ ]*(?:set|dim|brighten)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*to[ ]*(?:.+)[ ]*(?:[ ]*percent)?[ ]*(?:[ ]*brightness)?[ ]*$"
+				},
+				{
+					"source": "set [<the>] {entity} brightness to {level} [percent]",
+					"ast": [
+						{ "kind": "text", "value": "set" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{ "kind": "text", "value": "brightness to" },
+						{ "kind": "slot", "name": "level" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "percent" }]
+						}
+					],
+					"prefilter": "^[ ]*set[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*brightness[ ]+to[ ]*(?:.+)[ ]*(?:[ ]*percent)?[ ]*$"
+				}
+			],
+			"slots": {
+				"entity": {
+					"kind": "context",
+					"arg": "entity",
+					"key": "entity:default,media_player"
+				},
+				"level": { "kind": "range", "arg": "brightness", "min": 0, "max": 100 }
+			},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 1
+		},
+		{
+			"tool": "HassTurnOn",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<open> [<the>] {coverClasses} <in> [<the>] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "open" }],
+								[{ "kind": "text", "value": "raise" }],
+								[{ "kind": "text", "value": "lift" }]
+							]
+						},
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "up" }] },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "coverClasses" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "in" }],
+								[{ "kind": "text", "value": "on" }],
+								[{ "kind": "text", "value": "at" }],
+								[{ "kind": "text", "value": "of" }],
+								[{ "kind": "text", "value": "across" }],
+								[{ "kind": "text", "value": "around" }],
+								[{ "kind": "text", "value": "throughout" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:open|raise|lift)[ ]*(?:[ ]*up)?[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:in|on|at|of|across|around|throughout)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "<open> [<the>] {area} {coverClasses}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "open" }],
+								[{ "kind": "text", "value": "raise" }],
+								[{ "kind": "text", "value": "lift" }]
+							]
+						},
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "up" }] },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{ "kind": "slot", "name": "coverClasses" }
+					],
+					"prefilter": "^[ ]*(?:open|raise|lift)[ ]*(?:[ ]*up)?[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": {
+				"area": { "kind": "context", "arg": "area", "key": "area" },
+				"coverClasses": {
+					"kind": "values",
+					"arg": "device_class",
+					"values": [
+						{ "phrase": "awning", "args": { "device_class": ["awning"] } },
+						{ "phrase": "awnings", "args": { "device_class": ["awning"] } },
+						{ "phrase": "blind", "args": { "device_class": ["blind"] } },
+						{ "phrase": "blinds", "args": { "device_class": ["blind"] } },
+						{ "phrase": "curtain", "args": { "device_class": ["curtain"] } },
+						{ "phrase": "curtains", "args": { "device_class": ["curtain"] } },
+						{ "phrase": "door", "args": { "device_class": ["door"] } },
+						{ "phrase": "doors", "args": { "device_class": ["door"] } },
+						{ "phrase": "garage door", "args": { "device_class": ["garage"] } },
+						{
+							"phrase": "garage doors",
+							"args": { "device_class": ["garage"] }
+						},
+						{ "phrase": "gate", "args": { "device_class": ["gate"] } },
+						{ "phrase": "gates", "args": { "device_class": ["gate"] } },
+						{ "phrase": "shade", "args": { "device_class": ["shade"] } },
+						{ "phrase": "shades", "args": { "device_class": ["shade"] } },
+						{ "phrase": "shutter", "args": { "device_class": ["shutter"] } },
+						{ "phrase": "shutters", "args": { "device_class": ["shutter"] } },
+						{ "phrase": "window", "args": { "device_class": ["window"] } },
+						{ "phrase": "windows", "args": { "device_class": ["window"] } }
+					]
+				}
+			},
+			"requiredKeywords": [],
+			"argDefaults": { "domain": ["cover"] },
+			"priority": 0
+		},
+		{
+			"tool": "HassTurnOn",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "(light up|illuminate) [<the>] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "light up" }],
+								[{ "kind": "text", "value": "illuminate" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:light[ ]+up|illuminate)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "[<the>] {area} <light> on",
+					"ast": [
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "light" }],
+								[{ "kind": "text", "value": "lights" }],
+								[{ "kind": "text", "value": "lighting" }],
+								[{ "kind": "text", "value": "lamp" }],
+								[{ "kind": "text", "value": "lamps" }]
+							]
+						},
+						{ "kind": "text", "value": "on" }
+					],
+					"prefilter": "^[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:light|lights|lighting|lamp|lamps)[ ]*on[ ]*$"
+				},
+				{
+					"source": "<light> on [in] [<the>] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "light" }],
+								[{ "kind": "text", "value": "lights" }],
+								[{ "kind": "text", "value": "lighting" }],
+								[{ "kind": "text", "value": "lamp" }],
+								[{ "kind": "text", "value": "lamps" }]
+							]
+						},
+						{ "kind": "text", "value": "on" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "in" }] },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:light|lights|lighting|lamp|lamps)[ ]*on[ ]*(?:[ ]*in)?[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "<turn> on [<all>] [<the>] {area} <light>",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn" }],
+								[{ "kind": "text", "value": "switch" }],
+								[{ "kind": "text", "value": "change" }],
+								[{ "kind": "text", "value": "bring" }]
+							]
+						},
+						{ "kind": "text", "value": "on" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{ "kind": "text", "value": "all" },
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "optional",
+														"body": [{ "kind": "text", "value": "of" }]
+													},
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "the" }],
+															[{ "kind": "text", "value": "my" }],
+															[{ "kind": "text", "value": "our" }]
+														]
+													}
+												]
+											}
+										],
+										[
+											{ "kind": "text", "value": "every" },
+											{
+												"kind": "optional",
+												"body": [{ "kind": "text", "value": "single" }]
+											}
+										],
+										[
+											{ "kind": "text", "value": "each" },
+											{
+												"kind": "optional",
+												"body": [{ "kind": "text", "value": "and every" }]
+											}
+										]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "light" }],
+								[{ "kind": "text", "value": "lights" }],
+								[{ "kind": "text", "value": "lighting" }],
+								[{ "kind": "text", "value": "lamp" }],
+								[{ "kind": "text", "value": "lamps" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:turn|switch|change|bring)[ ]*on[ ]*(?:[ ]*(?:all[ ]*(?:[ ]*(?:[ ]*of)?[ ]*(?:the|my|our))?|every[ ]*(?:[ ]*single)?|each[ ]*(?:[ ]*and[ ]+every)?))?[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:light|lights|lighting|lamp|lamps)[ ]*$"
+				}
+			],
+			"slots": { "area": { "kind": "context", "arg": "area", "key": "area" } },
+			"requiredKeywords": [],
+			"argDefaults": { "domain": ["light"] },
+			"priority": 0
+		},
+		{
+			"tool": "HassTurnOn",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<turn> on [(<all>|<the>)] (fan|fans) <in> [<the>] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn" }],
+								[{ "kind": "text", "value": "switch" }],
+								[{ "kind": "text", "value": "change" }],
+								[{ "kind": "text", "value": "bring" }]
+							]
+						},
+						{ "kind": "text", "value": "on" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "group",
+												"alternatives": [
+													[
+														{ "kind": "text", "value": "all" },
+														{
+															"kind": "optional",
+															"body": [
+																{
+																	"kind": "optional",
+																	"body": [{ "kind": "text", "value": "of" }]
+																},
+																{
+																	"kind": "group",
+																	"alternatives": [
+																		[{ "kind": "text", "value": "the" }],
+																		[{ "kind": "text", "value": "my" }],
+																		[{ "kind": "text", "value": "our" }]
+																	]
+																}
+															]
+														}
+													],
+													[
+														{ "kind": "text", "value": "every" },
+														{
+															"kind": "optional",
+															"body": [{ "kind": "text", "value": "single" }]
+														}
+													],
+													[
+														{ "kind": "text", "value": "each" },
+														{
+															"kind": "optional",
+															"body": [{ "kind": "text", "value": "and every" }]
+														}
+													]
+												]
+											}
+										],
+										[
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "the" }],
+													[{ "kind": "text", "value": "my" }],
+													[{ "kind": "text", "value": "our" }]
+												]
+											}
+										]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "fan" }],
+								[{ "kind": "text", "value": "fans" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "in" }],
+								[{ "kind": "text", "value": "on" }],
+								[{ "kind": "text", "value": "at" }],
+								[{ "kind": "text", "value": "of" }],
+								[{ "kind": "text", "value": "across" }],
+								[{ "kind": "text", "value": "around" }],
+								[{ "kind": "text", "value": "throughout" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:turn|switch|change|bring)[ ]*on[ ]*(?:[ ]*(?:(?:all[ ]*(?:[ ]*(?:[ ]*of)?[ ]*(?:the|my|our))?|every[ ]*(?:[ ]*single)?|each[ ]*(?:[ ]*and[ ]+every)?)|(?:the|my|our)))?[ ]*(?:fan|fans)[ ]*(?:in|on|at|of|across|around|throughout)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "<turn> on [<the>] {area} (fan|fans)",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn" }],
+								[{ "kind": "text", "value": "switch" }],
+								[{ "kind": "text", "value": "change" }],
+								[{ "kind": "text", "value": "bring" }]
+							]
+						},
+						{ "kind": "text", "value": "on" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "fan" }],
+								[{ "kind": "text", "value": "fans" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:turn|switch|change|bring)[ ]*on[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:fan|fans)[ ]*$"
+				},
+				{
+					"source": "[<turn>] [<all>] [<the>] {area} (fan|fans) on",
+					"ast": [
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "turn" }],
+										[{ "kind": "text", "value": "switch" }],
+										[{ "kind": "text", "value": "change" }],
+										[{ "kind": "text", "value": "bring" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{ "kind": "text", "value": "all" },
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "optional",
+														"body": [{ "kind": "text", "value": "of" }]
+													},
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "the" }],
+															[{ "kind": "text", "value": "my" }],
+															[{ "kind": "text", "value": "our" }]
+														]
+													}
+												]
+											}
+										],
+										[
+											{ "kind": "text", "value": "every" },
+											{
+												"kind": "optional",
+												"body": [{ "kind": "text", "value": "single" }]
+											}
+										],
+										[
+											{ "kind": "text", "value": "each" },
+											{
+												"kind": "optional",
+												"body": [{ "kind": "text", "value": "and every" }]
+											}
+										]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "fan" }],
+								[{ "kind": "text", "value": "fans" }]
+							]
+						},
+						{ "kind": "text", "value": "on" }
+					],
+					"prefilter": "^[ ]*(?:[ ]*(?:turn|switch|change|bring))?[ ]*(?:[ ]*(?:all[ ]*(?:[ ]*(?:[ ]*of)?[ ]*(?:the|my|our))?|every[ ]*(?:[ ]*single)?|each[ ]*(?:[ ]*and[ ]+every)?))?[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:fan|fans)[ ]*on[ ]*$"
+				},
+				{
+					"source": "[<turn>] [(<all>|<the>)] (fan|fans) <in> [<the>] {area} on",
+					"ast": [
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "turn" }],
+										[{ "kind": "text", "value": "switch" }],
+										[{ "kind": "text", "value": "change" }],
+										[{ "kind": "text", "value": "bring" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "group",
+												"alternatives": [
+													[
+														{ "kind": "text", "value": "all" },
+														{
+															"kind": "optional",
+															"body": [
+																{
+																	"kind": "optional",
+																	"body": [{ "kind": "text", "value": "of" }]
+																},
+																{
+																	"kind": "group",
+																	"alternatives": [
+																		[{ "kind": "text", "value": "the" }],
+																		[{ "kind": "text", "value": "my" }],
+																		[{ "kind": "text", "value": "our" }]
+																	]
+																}
+															]
+														}
+													],
+													[
+														{ "kind": "text", "value": "every" },
+														{
+															"kind": "optional",
+															"body": [{ "kind": "text", "value": "single" }]
+														}
+													],
+													[
+														{ "kind": "text", "value": "each" },
+														{
+															"kind": "optional",
+															"body": [{ "kind": "text", "value": "and every" }]
+														}
+													]
+												]
+											}
+										],
+										[
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "the" }],
+													[{ "kind": "text", "value": "my" }],
+													[{ "kind": "text", "value": "our" }]
+												]
+											}
+										]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "fan" }],
+								[{ "kind": "text", "value": "fans" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "in" }],
+								[{ "kind": "text", "value": "on" }],
+								[{ "kind": "text", "value": "at" }],
+								[{ "kind": "text", "value": "of" }],
+								[{ "kind": "text", "value": "across" }],
+								[{ "kind": "text", "value": "around" }],
+								[{ "kind": "text", "value": "throughout" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{ "kind": "text", "value": "on" }
+					],
+					"prefilter": "^[ ]*(?:[ ]*(?:turn|switch|change|bring))?[ ]*(?:[ ]*(?:(?:all[ ]*(?:[ ]*(?:[ ]*of)?[ ]*(?:the|my|our))?|every[ ]*(?:[ ]*single)?|each[ ]*(?:[ ]*and[ ]+every)?)|(?:the|my|our)))?[ ]*(?:fan|fans)[ ]*(?:in|on|at|of|across|around|throughout)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*on[ ]*$"
+				}
+			],
+			"slots": { "area": { "kind": "context", "arg": "area", "key": "area" } },
+			"requiredKeywords": [],
+			"argDefaults": { "domain": ["fan"] },
+			"priority": 0
+		},
+		{
+			"tool": "HassTurnOn",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<turn> on [<the>] {area} [<the>] {entity}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn" }],
+								[{ "kind": "text", "value": "switch" }],
+								[{ "kind": "text", "value": "change" }],
+								[{ "kind": "text", "value": "bring" }]
+							]
+						},
+						{ "kind": "text", "value": "on" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" }
+					],
+					"prefilter": "^[ ]*(?:turn|switch|change|bring)[ ]*on[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "<turn> on [<the>] {entity} <in> [<the>] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn" }],
+								[{ "kind": "text", "value": "switch" }],
+								[{ "kind": "text", "value": "change" }],
+								[{ "kind": "text", "value": "bring" }]
+							]
+						},
+						{ "kind": "text", "value": "on" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "in" }],
+								[{ "kind": "text", "value": "on" }],
+								[{ "kind": "text", "value": "at" }],
+								[{ "kind": "text", "value": "of" }],
+								[{ "kind": "text", "value": "across" }],
+								[{ "kind": "text", "value": "around" }],
+								[{ "kind": "text", "value": "throughout" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:turn|switch|change|bring)[ ]*on[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:in|on|at|of|across|around|throughout)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "[<turn>] [<the>] {area} [<the>] {entity} [to] on",
+					"ast": [
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "turn" }],
+										[{ "kind": "text", "value": "switch" }],
+										[{ "kind": "text", "value": "change" }],
+										[{ "kind": "text", "value": "bring" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "to" }] },
+						{ "kind": "text", "value": "on" }
+					],
+					"prefilter": "^[ ]*(?:[ ]*(?:turn|switch|change|bring))?[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:[ ]*to)?[ ]*on[ ]*$"
+				},
+				{
+					"source": "[<turn>] [<the>] {entity} <in> [<the>] {area} [to] on",
+					"ast": [
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "turn" }],
+										[{ "kind": "text", "value": "switch" }],
+										[{ "kind": "text", "value": "change" }],
+										[{ "kind": "text", "value": "bring" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "in" }],
+								[{ "kind": "text", "value": "on" }],
+								[{ "kind": "text", "value": "at" }],
+								[{ "kind": "text", "value": "of" }],
+								[{ "kind": "text", "value": "across" }],
+								[{ "kind": "text", "value": "around" }],
+								[{ "kind": "text", "value": "throughout" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "to" }] },
+						{ "kind": "text", "value": "on" }
+					],
+					"prefilter": "^[ ]*(?:[ ]*(?:turn|switch|change|bring))?[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:in|on|at|of|across|around|throughout)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:[ ]*to)?[ ]*on[ ]*$"
+				}
+			],
+			"slots": {
+				"area": { "kind": "context", "arg": "area", "key": "area" },
+				"entity": {
+					"kind": "context",
+					"arg": "entity",
+					"key": "entity:climate,cover,fan,input_boolean,light,lock,switch,valve"
+				}
+			},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 1
+		},
+		{
+			"tool": "HassTurnOn",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<turn> on [<the>] {area} [<the>] {entity} <light>",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn" }],
+								[{ "kind": "text", "value": "switch" }],
+								[{ "kind": "text", "value": "change" }],
+								[{ "kind": "text", "value": "bring" }]
+							]
+						},
+						{ "kind": "text", "value": "on" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "light" }],
+								[{ "kind": "text", "value": "lights" }],
+								[{ "kind": "text", "value": "lighting" }],
+								[{ "kind": "text", "value": "lamp" }],
+								[{ "kind": "text", "value": "lamps" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:turn|switch|change|bring)[ ]*on[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:light|lights|lighting|lamp|lamps)[ ]*$"
+				},
+				{
+					"source": "<turn> on [<the>] {entity} <light> <in> [<the>] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn" }],
+								[{ "kind": "text", "value": "switch" }],
+								[{ "kind": "text", "value": "change" }],
+								[{ "kind": "text", "value": "bring" }]
+							]
+						},
+						{ "kind": "text", "value": "on" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "light" }],
+								[{ "kind": "text", "value": "lights" }],
+								[{ "kind": "text", "value": "lighting" }],
+								[{ "kind": "text", "value": "lamp" }],
+								[{ "kind": "text", "value": "lamps" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "in" }],
+								[{ "kind": "text", "value": "on" }],
+								[{ "kind": "text", "value": "at" }],
+								[{ "kind": "text", "value": "of" }],
+								[{ "kind": "text", "value": "across" }],
+								[{ "kind": "text", "value": "around" }],
+								[{ "kind": "text", "value": "throughout" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:turn|switch|change|bring)[ ]*on[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:light|lights|lighting|lamp|lamps)[ ]*(?:in|on|at|of|across|around|throughout)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "[<turn>] [<the>] {area} [<the>] {entity} <light> [to] on",
+					"ast": [
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "turn" }],
+										[{ "kind": "text", "value": "switch" }],
+										[{ "kind": "text", "value": "change" }],
+										[{ "kind": "text", "value": "bring" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "light" }],
+								[{ "kind": "text", "value": "lights" }],
+								[{ "kind": "text", "value": "lighting" }],
+								[{ "kind": "text", "value": "lamp" }],
+								[{ "kind": "text", "value": "lamps" }]
+							]
+						},
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "to" }] },
+						{ "kind": "text", "value": "on" }
+					],
+					"prefilter": "^[ ]*(?:[ ]*(?:turn|switch|change|bring))?[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:light|lights|lighting|lamp|lamps)[ ]*(?:[ ]*to)?[ ]*on[ ]*$"
+				},
+				{
+					"source": "[<turn>] [<the>] {entity} <light> <in> [<the>] {area} [to] on",
+					"ast": [
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "turn" }],
+										[{ "kind": "text", "value": "switch" }],
+										[{ "kind": "text", "value": "change" }],
+										[{ "kind": "text", "value": "bring" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "light" }],
+								[{ "kind": "text", "value": "lights" }],
+								[{ "kind": "text", "value": "lighting" }],
+								[{ "kind": "text", "value": "lamp" }],
+								[{ "kind": "text", "value": "lamps" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "in" }],
+								[{ "kind": "text", "value": "on" }],
+								[{ "kind": "text", "value": "at" }],
+								[{ "kind": "text", "value": "of" }],
+								[{ "kind": "text", "value": "across" }],
+								[{ "kind": "text", "value": "around" }],
+								[{ "kind": "text", "value": "throughout" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "to" }] },
+						{ "kind": "text", "value": "on" }
+					],
+					"prefilter": "^[ ]*(?:[ ]*(?:turn|switch|change|bring))?[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:light|lights|lighting|lamp|lamps)[ ]*(?:in|on|at|of|across|around|throughout)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:[ ]*to)?[ ]*on[ ]*$"
+				}
+			],
+			"slots": {
+				"area": { "kind": "context", "arg": "area", "key": "area" },
+				"entity": { "kind": "context", "arg": "entity", "key": "entity:light" }
+			},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 1
+		},
+		{
+			"tool": "HassTurnOff",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<close> [<the>] {coverClasses} <in> [<the>] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "close" }],
+								[{ "kind": "text", "value": "shut" }],
+								[{ "kind": "text", "value": "lower" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "up" }],
+										[{ "kind": "text", "value": "down" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "coverClasses" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "in" }],
+								[{ "kind": "text", "value": "on" }],
+								[{ "kind": "text", "value": "at" }],
+								[{ "kind": "text", "value": "of" }],
+								[{ "kind": "text", "value": "across" }],
+								[{ "kind": "text", "value": "around" }],
+								[{ "kind": "text", "value": "throughout" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:close|shut|lower)[ ]*(?:[ ]*(?:up|down))?[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:in|on|at|of|across|around|throughout)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "<close> [<the>] {area} {coverClasses}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "close" }],
+								[{ "kind": "text", "value": "shut" }],
+								[{ "kind": "text", "value": "lower" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "up" }],
+										[{ "kind": "text", "value": "down" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{ "kind": "slot", "name": "coverClasses" }
+					],
+					"prefilter": "^[ ]*(?:close|shut|lower)[ ]*(?:[ ]*(?:up|down))?[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": {
+				"area": { "kind": "context", "arg": "area", "key": "area" },
+				"coverClasses": {
+					"kind": "values",
+					"arg": "device_class",
+					"values": [
+						{ "phrase": "awning", "args": { "device_class": ["awning"] } },
+						{ "phrase": "awnings", "args": { "device_class": ["awning"] } },
+						{ "phrase": "blind", "args": { "device_class": ["blind"] } },
+						{ "phrase": "blinds", "args": { "device_class": ["blind"] } },
+						{ "phrase": "curtain", "args": { "device_class": ["curtain"] } },
+						{ "phrase": "curtains", "args": { "device_class": ["curtain"] } },
+						{ "phrase": "door", "args": { "device_class": ["door"] } },
+						{ "phrase": "doors", "args": { "device_class": ["door"] } },
+						{ "phrase": "garage door", "args": { "device_class": ["garage"] } },
+						{
+							"phrase": "garage doors",
+							"args": { "device_class": ["garage"] }
+						},
+						{ "phrase": "gate", "args": { "device_class": ["gate"] } },
+						{ "phrase": "gates", "args": { "device_class": ["gate"] } },
+						{ "phrase": "shade", "args": { "device_class": ["shade"] } },
+						{ "phrase": "shades", "args": { "device_class": ["shade"] } },
+						{ "phrase": "shutter", "args": { "device_class": ["shutter"] } },
+						{ "phrase": "shutters", "args": { "device_class": ["shutter"] } },
+						{ "phrase": "window", "args": { "device_class": ["window"] } },
+						{ "phrase": "windows", "args": { "device_class": ["window"] } }
+					]
+				}
+			},
+			"requiredKeywords": [],
+			"argDefaults": { "domain": ["cover"] },
+			"priority": 0
+		},
+		{
+			"tool": "HassTurnOff",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "[<the>] {area} <light> (off|out)",
+					"ast": [
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "light" }],
+								[{ "kind": "text", "value": "lights" }],
+								[{ "kind": "text", "value": "lighting" }],
+								[{ "kind": "text", "value": "lamp" }],
+								[{ "kind": "text", "value": "lamps" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "off" }],
+								[{ "kind": "text", "value": "out" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:light|lights|lighting|lamp|lamps)[ ]*(?:off|out)[ ]*$"
+				},
+				{
+					"source": "<light> (off|out) [<in>] [<the>] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "light" }],
+								[{ "kind": "text", "value": "lights" }],
+								[{ "kind": "text", "value": "lighting" }],
+								[{ "kind": "text", "value": "lamp" }],
+								[{ "kind": "text", "value": "lamps" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "off" }],
+								[{ "kind": "text", "value": "out" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "in" }],
+										[{ "kind": "text", "value": "on" }],
+										[{ "kind": "text", "value": "at" }],
+										[{ "kind": "text", "value": "of" }],
+										[{ "kind": "text", "value": "across" }],
+										[{ "kind": "text", "value": "around" }],
+										[{ "kind": "text", "value": "throughout" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:light|lights|lighting|lamp|lamps)[ ]*(?:off|out)[ ]*(?:[ ]*(?:in|on|at|of|across|around|throughout))?[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "<turn> (off|out) [<all>] [<the>] {area} <light>",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn" }],
+								[{ "kind": "text", "value": "switch" }],
+								[{ "kind": "text", "value": "change" }],
+								[{ "kind": "text", "value": "bring" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "off" }],
+								[{ "kind": "text", "value": "out" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{ "kind": "text", "value": "all" },
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "optional",
+														"body": [{ "kind": "text", "value": "of" }]
+													},
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "the" }],
+															[{ "kind": "text", "value": "my" }],
+															[{ "kind": "text", "value": "our" }]
+														]
+													}
+												]
+											}
+										],
+										[
+											{ "kind": "text", "value": "every" },
+											{
+												"kind": "optional",
+												"body": [{ "kind": "text", "value": "single" }]
+											}
+										],
+										[
+											{ "kind": "text", "value": "each" },
+											{
+												"kind": "optional",
+												"body": [{ "kind": "text", "value": "and every" }]
+											}
+										]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "light" }],
+								[{ "kind": "text", "value": "lights" }],
+								[{ "kind": "text", "value": "lighting" }],
+								[{ "kind": "text", "value": "lamp" }],
+								[{ "kind": "text", "value": "lamps" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:turn|switch|change|bring)[ ]*(?:off|out)[ ]*(?:[ ]*(?:all[ ]*(?:[ ]*(?:[ ]*of)?[ ]*(?:the|my|our))?|every[ ]*(?:[ ]*single)?|each[ ]*(?:[ ]*and[ ]+every)?))?[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:light|lights|lighting|lamp|lamps)[ ]*$"
+				},
+				{
+					"source": "<turn> (off|out) [(<all>|<the>)] <light> <in> [<the>] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn" }],
+								[{ "kind": "text", "value": "switch" }],
+								[{ "kind": "text", "value": "change" }],
+								[{ "kind": "text", "value": "bring" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "off" }],
+								[{ "kind": "text", "value": "out" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "group",
+												"alternatives": [
+													[
+														{ "kind": "text", "value": "all" },
+														{
+															"kind": "optional",
+															"body": [
+																{
+																	"kind": "optional",
+																	"body": [{ "kind": "text", "value": "of" }]
+																},
+																{
+																	"kind": "group",
+																	"alternatives": [
+																		[{ "kind": "text", "value": "the" }],
+																		[{ "kind": "text", "value": "my" }],
+																		[{ "kind": "text", "value": "our" }]
+																	]
+																}
+															]
+														}
+													],
+													[
+														{ "kind": "text", "value": "every" },
+														{
+															"kind": "optional",
+															"body": [{ "kind": "text", "value": "single" }]
+														}
+													],
+													[
+														{ "kind": "text", "value": "each" },
+														{
+															"kind": "optional",
+															"body": [{ "kind": "text", "value": "and every" }]
+														}
+													]
+												]
+											}
+										],
+										[
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "the" }],
+													[{ "kind": "text", "value": "my" }],
+													[{ "kind": "text", "value": "our" }]
+												]
+											}
+										]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "light" }],
+								[{ "kind": "text", "value": "lights" }],
+								[{ "kind": "text", "value": "lighting" }],
+								[{ "kind": "text", "value": "lamp" }],
+								[{ "kind": "text", "value": "lamps" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "in" }],
+								[{ "kind": "text", "value": "on" }],
+								[{ "kind": "text", "value": "at" }],
+								[{ "kind": "text", "value": "of" }],
+								[{ "kind": "text", "value": "across" }],
+								[{ "kind": "text", "value": "around" }],
+								[{ "kind": "text", "value": "throughout" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:turn|switch|change|bring)[ ]*(?:off|out)[ ]*(?:[ ]*(?:(?:all[ ]*(?:[ ]*(?:[ ]*of)?[ ]*(?:the|my|our))?|every[ ]*(?:[ ]*single)?|each[ ]*(?:[ ]*and[ ]+every)?)|(?:the|my|our)))?[ ]*(?:light|lights|lighting|lamp|lamps)[ ]*(?:in|on|at|of|across|around|throughout)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": { "area": { "kind": "context", "arg": "area", "key": "area" } },
+			"requiredKeywords": [],
+			"argDefaults": { "domain": ["light"] },
+			"priority": 0
+		},
+		{
+			"tool": "HassTurnOff",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<turn> off [(<all>|<the>)] (fan|fans) <in> [<the>] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn" }],
+								[{ "kind": "text", "value": "switch" }],
+								[{ "kind": "text", "value": "change" }],
+								[{ "kind": "text", "value": "bring" }]
+							]
+						},
+						{ "kind": "text", "value": "off" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "group",
+												"alternatives": [
+													[
+														{ "kind": "text", "value": "all" },
+														{
+															"kind": "optional",
+															"body": [
+																{
+																	"kind": "optional",
+																	"body": [{ "kind": "text", "value": "of" }]
+																},
+																{
+																	"kind": "group",
+																	"alternatives": [
+																		[{ "kind": "text", "value": "the" }],
+																		[{ "kind": "text", "value": "my" }],
+																		[{ "kind": "text", "value": "our" }]
+																	]
+																}
+															]
+														}
+													],
+													[
+														{ "kind": "text", "value": "every" },
+														{
+															"kind": "optional",
+															"body": [{ "kind": "text", "value": "single" }]
+														}
+													],
+													[
+														{ "kind": "text", "value": "each" },
+														{
+															"kind": "optional",
+															"body": [{ "kind": "text", "value": "and every" }]
+														}
+													]
+												]
+											}
+										],
+										[
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "the" }],
+													[{ "kind": "text", "value": "my" }],
+													[{ "kind": "text", "value": "our" }]
+												]
+											}
+										]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "fan" }],
+								[{ "kind": "text", "value": "fans" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "in" }],
+								[{ "kind": "text", "value": "on" }],
+								[{ "kind": "text", "value": "at" }],
+								[{ "kind": "text", "value": "of" }],
+								[{ "kind": "text", "value": "across" }],
+								[{ "kind": "text", "value": "around" }],
+								[{ "kind": "text", "value": "throughout" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:turn|switch|change|bring)[ ]*off[ ]*(?:[ ]*(?:(?:all[ ]*(?:[ ]*(?:[ ]*of)?[ ]*(?:the|my|our))?|every[ ]*(?:[ ]*single)?|each[ ]*(?:[ ]*and[ ]+every)?)|(?:the|my|our)))?[ ]*(?:fan|fans)[ ]*(?:in|on|at|of|across|around|throughout)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "<turn> off [<the>] {area} (fan|fans)",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn" }],
+								[{ "kind": "text", "value": "switch" }],
+								[{ "kind": "text", "value": "change" }],
+								[{ "kind": "text", "value": "bring" }]
+							]
+						},
+						{ "kind": "text", "value": "off" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "fan" }],
+								[{ "kind": "text", "value": "fans" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:turn|switch|change|bring)[ ]*off[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:fan|fans)[ ]*$"
+				},
+				{
+					"source": "[<turn>] [<all>] [<the>] {area} (fan|fans) off",
+					"ast": [
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "turn" }],
+										[{ "kind": "text", "value": "switch" }],
+										[{ "kind": "text", "value": "change" }],
+										[{ "kind": "text", "value": "bring" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{ "kind": "text", "value": "all" },
+											{
+												"kind": "optional",
+												"body": [
+													{
+														"kind": "optional",
+														"body": [{ "kind": "text", "value": "of" }]
+													},
+													{
+														"kind": "group",
+														"alternatives": [
+															[{ "kind": "text", "value": "the" }],
+															[{ "kind": "text", "value": "my" }],
+															[{ "kind": "text", "value": "our" }]
+														]
+													}
+												]
+											}
+										],
+										[
+											{ "kind": "text", "value": "every" },
+											{
+												"kind": "optional",
+												"body": [{ "kind": "text", "value": "single" }]
+											}
+										],
+										[
+											{ "kind": "text", "value": "each" },
+											{
+												"kind": "optional",
+												"body": [{ "kind": "text", "value": "and every" }]
+											}
+										]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "fan" }],
+								[{ "kind": "text", "value": "fans" }]
+							]
+						},
+						{ "kind": "text", "value": "off" }
+					],
+					"prefilter": "^[ ]*(?:[ ]*(?:turn|switch|change|bring))?[ ]*(?:[ ]*(?:all[ ]*(?:[ ]*(?:[ ]*of)?[ ]*(?:the|my|our))?|every[ ]*(?:[ ]*single)?|each[ ]*(?:[ ]*and[ ]+every)?))?[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:fan|fans)[ ]*off[ ]*$"
+				},
+				{
+					"source": "[<turn>] [(<all>|<the>)] (fan|fans) <in> [<the>] {area} off",
+					"ast": [
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "turn" }],
+										[{ "kind": "text", "value": "switch" }],
+										[{ "kind": "text", "value": "change" }],
+										[{ "kind": "text", "value": "bring" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[
+											{
+												"kind": "group",
+												"alternatives": [
+													[
+														{ "kind": "text", "value": "all" },
+														{
+															"kind": "optional",
+															"body": [
+																{
+																	"kind": "optional",
+																	"body": [{ "kind": "text", "value": "of" }]
+																},
+																{
+																	"kind": "group",
+																	"alternatives": [
+																		[{ "kind": "text", "value": "the" }],
+																		[{ "kind": "text", "value": "my" }],
+																		[{ "kind": "text", "value": "our" }]
+																	]
+																}
+															]
+														}
+													],
+													[
+														{ "kind": "text", "value": "every" },
+														{
+															"kind": "optional",
+															"body": [{ "kind": "text", "value": "single" }]
+														}
+													],
+													[
+														{ "kind": "text", "value": "each" },
+														{
+															"kind": "optional",
+															"body": [{ "kind": "text", "value": "and every" }]
+														}
+													]
+												]
+											}
+										],
+										[
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "the" }],
+													[{ "kind": "text", "value": "my" }],
+													[{ "kind": "text", "value": "our" }]
+												]
+											}
+										]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "fan" }],
+								[{ "kind": "text", "value": "fans" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "in" }],
+								[{ "kind": "text", "value": "on" }],
+								[{ "kind": "text", "value": "at" }],
+								[{ "kind": "text", "value": "of" }],
+								[{ "kind": "text", "value": "across" }],
+								[{ "kind": "text", "value": "around" }],
+								[{ "kind": "text", "value": "throughout" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{ "kind": "text", "value": "off" }
+					],
+					"prefilter": "^[ ]*(?:[ ]*(?:turn|switch|change|bring))?[ ]*(?:[ ]*(?:(?:all[ ]*(?:[ ]*(?:[ ]*of)?[ ]*(?:the|my|our))?|every[ ]*(?:[ ]*single)?|each[ ]*(?:[ ]*and[ ]+every)?)|(?:the|my|our)))?[ ]*(?:fan|fans)[ ]*(?:in|on|at|of|across|around|throughout)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*off[ ]*$"
+				}
+			],
+			"slots": { "area": { "kind": "context", "arg": "area", "key": "area" } },
+			"requiredKeywords": [],
+			"argDefaults": { "domain": ["fan"] },
+			"priority": 0
+		},
+		{
+			"tool": "HassTurnOff",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<turn> off [<the>] {area} [<the>] {entity}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn" }],
+								[{ "kind": "text", "value": "switch" }],
+								[{ "kind": "text", "value": "change" }],
+								[{ "kind": "text", "value": "bring" }]
+							]
+						},
+						{ "kind": "text", "value": "off" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" }
+					],
+					"prefilter": "^[ ]*(?:turn|switch|change|bring)[ ]*off[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "<turn> off [<the>] {entity} <in> [<the>] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn" }],
+								[{ "kind": "text", "value": "switch" }],
+								[{ "kind": "text", "value": "change" }],
+								[{ "kind": "text", "value": "bring" }]
+							]
+						},
+						{ "kind": "text", "value": "off" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "in" }],
+								[{ "kind": "text", "value": "on" }],
+								[{ "kind": "text", "value": "at" }],
+								[{ "kind": "text", "value": "of" }],
+								[{ "kind": "text", "value": "across" }],
+								[{ "kind": "text", "value": "around" }],
+								[{ "kind": "text", "value": "throughout" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:turn|switch|change|bring)[ ]*off[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:in|on|at|of|across|around|throughout)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "[<turn>] [<the>] {area} [<the>] {entity} [to] off",
+					"ast": [
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "turn" }],
+										[{ "kind": "text", "value": "switch" }],
+										[{ "kind": "text", "value": "change" }],
+										[{ "kind": "text", "value": "bring" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "to" }] },
+						{ "kind": "text", "value": "off" }
+					],
+					"prefilter": "^[ ]*(?:[ ]*(?:turn|switch|change|bring))?[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:[ ]*to)?[ ]*off[ ]*$"
+				},
+				{
+					"source": "[<turn>] [<the>] {entity} <in> [<the>] {area} [to] off",
+					"ast": [
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "turn" }],
+										[{ "kind": "text", "value": "switch" }],
+										[{ "kind": "text", "value": "change" }],
+										[{ "kind": "text", "value": "bring" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "in" }],
+								[{ "kind": "text", "value": "on" }],
+								[{ "kind": "text", "value": "at" }],
+								[{ "kind": "text", "value": "of" }],
+								[{ "kind": "text", "value": "across" }],
+								[{ "kind": "text", "value": "around" }],
+								[{ "kind": "text", "value": "throughout" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "to" }] },
+						{ "kind": "text", "value": "off" }
+					],
+					"prefilter": "^[ ]*(?:[ ]*(?:turn|switch|change|bring))?[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:in|on|at|of|across|around|throughout)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:[ ]*to)?[ ]*off[ ]*$"
+				}
+			],
+			"slots": {
+				"area": { "kind": "context", "arg": "area", "key": "area" },
+				"entity": {
+					"kind": "context",
+					"arg": "entity",
+					"key": "entity:climate,cover,fan,input_boolean,light,lock,switch,valve"
+				}
+			},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 1
+		},
+		{
+			"tool": "HassTurnOff",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "<turn> off [<the>] {area} [<the>] {entity} <light>",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn" }],
+								[{ "kind": "text", "value": "switch" }],
+								[{ "kind": "text", "value": "change" }],
+								[{ "kind": "text", "value": "bring" }]
+							]
+						},
+						{ "kind": "text", "value": "off" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "light" }],
+								[{ "kind": "text", "value": "lights" }],
+								[{ "kind": "text", "value": "lighting" }],
+								[{ "kind": "text", "value": "lamp" }],
+								[{ "kind": "text", "value": "lamps" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:turn|switch|change|bring)[ ]*off[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:light|lights|lighting|lamp|lamps)[ ]*$"
+				},
+				{
+					"source": "<turn> off [<the>] {entity} <light> <in> [<the>] {area}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn" }],
+								[{ "kind": "text", "value": "switch" }],
+								[{ "kind": "text", "value": "change" }],
+								[{ "kind": "text", "value": "bring" }]
+							]
+						},
+						{ "kind": "text", "value": "off" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "light" }],
+								[{ "kind": "text", "value": "lights" }],
+								[{ "kind": "text", "value": "lighting" }],
+								[{ "kind": "text", "value": "lamp" }],
+								[{ "kind": "text", "value": "lamps" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "in" }],
+								[{ "kind": "text", "value": "on" }],
+								[{ "kind": "text", "value": "at" }],
+								[{ "kind": "text", "value": "of" }],
+								[{ "kind": "text", "value": "across" }],
+								[{ "kind": "text", "value": "around" }],
+								[{ "kind": "text", "value": "throughout" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" }
+					],
+					"prefilter": "^[ ]*(?:turn|switch|change|bring)[ ]*off[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:light|lights|lighting|lamp|lamps)[ ]*(?:in|on|at|of|across|around|throughout)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "[<turn>] [<the>] {area} [<the>] {entity} <light> [to] off",
+					"ast": [
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "turn" }],
+										[{ "kind": "text", "value": "switch" }],
+										[{ "kind": "text", "value": "change" }],
+										[{ "kind": "text", "value": "bring" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "light" }],
+								[{ "kind": "text", "value": "lights" }],
+								[{ "kind": "text", "value": "lighting" }],
+								[{ "kind": "text", "value": "lamp" }],
+								[{ "kind": "text", "value": "lamps" }]
+							]
+						},
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "to" }] },
+						{ "kind": "text", "value": "off" }
+					],
+					"prefilter": "^[ ]*(?:[ ]*(?:turn|switch|change|bring))?[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:light|lights|lighting|lamp|lamps)[ ]*(?:[ ]*to)?[ ]*off[ ]*$"
+				},
+				{
+					"source": "[<turn>] [<the>] {entity} <light> <in> [<the>] {area} [to] off",
+					"ast": [
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "turn" }],
+										[{ "kind": "text", "value": "switch" }],
+										[{ "kind": "text", "value": "change" }],
+										[{ "kind": "text", "value": "bring" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "light" }],
+								[{ "kind": "text", "value": "lights" }],
+								[{ "kind": "text", "value": "lighting" }],
+								[{ "kind": "text", "value": "lamp" }],
+								[{ "kind": "text", "value": "lamps" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "in" }],
+								[{ "kind": "text", "value": "on" }],
+								[{ "kind": "text", "value": "at" }],
+								[{ "kind": "text", "value": "of" }],
+								[{ "kind": "text", "value": "across" }],
+								[{ "kind": "text", "value": "around" }],
+								[{ "kind": "text", "value": "throughout" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "to" }] },
+						{ "kind": "text", "value": "off" }
+					],
+					"prefilter": "^[ ]*(?:[ ]*(?:turn|switch|change|bring))?[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:light|lights|lighting|lamp|lamps)[ ]*(?:in|on|at|of|across|around|throughout)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:[ ]*to)?[ ]*off[ ]*$"
+				}
+			],
+			"slots": {
+				"area": { "kind": "context", "arg": "area", "key": "area" },
+				"entity": { "kind": "context", "arg": "entity", "key": "entity:light" }
+			},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 1
+		},
+		{
+			"tool": "HassSetPosition",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "(<numeric_value_set>|<open>|<close>) [<the>] {coverClasses} [position] (to {position} [(%|percent)] <in> [<the>] {area}|<in> [<the>] {area} to {position} [(%|percent)])",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "set" }],
+											[{ "kind": "text", "value": "change" }],
+											[
+												{ "kind": "text", "value": "turn" },
+												{
+													"kind": "optional",
+													"body": [
+														{
+															"kind": "group",
+															"alternatives": [
+																[{ "kind": "text", "value": "up" }],
+																[{ "kind": "text", "value": "down" }]
+															]
+														}
+													]
+												}
+											],
+											[{ "kind": "text", "value": "increase" }],
+											[{ "kind": "text", "value": "decrease" }],
+											[{ "kind": "text", "value": "make" }]
+										]
+									}
+								],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "open" }],
+											[{ "kind": "text", "value": "raise" }],
+											[{ "kind": "text", "value": "lift" }]
+										]
+									},
+									{
+										"kind": "optional",
+										"body": [{ "kind": "text", "value": "up" }]
+									}
+								],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "close" }],
+											[{ "kind": "text", "value": "shut" }],
+											[{ "kind": "text", "value": "lower" }]
+										]
+									},
+									{
+										"kind": "optional",
+										"body": [
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "up" }],
+													[{ "kind": "text", "value": "down" }]
+												]
+											}
+										]
+									}
+								]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "coverClasses" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "position" }]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[
+									{ "kind": "text", "value": "to" },
+									{ "kind": "slot", "name": "position" },
+									{
+										"kind": "optional",
+										"body": [
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "%" }],
+													[{ "kind": "text", "value": "percent" }]
+												]
+											}
+										]
+									},
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "in" }],
+											[{ "kind": "text", "value": "on" }],
+											[{ "kind": "text", "value": "at" }],
+											[{ "kind": "text", "value": "of" }],
+											[{ "kind": "text", "value": "across" }],
+											[{ "kind": "text", "value": "around" }],
+											[{ "kind": "text", "value": "throughout" }]
+										]
+									},
+									{
+										"kind": "optional",
+										"body": [
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "the" }],
+													[{ "kind": "text", "value": "my" }],
+													[{ "kind": "text", "value": "our" }]
+												]
+											}
+										]
+									},
+									{ "kind": "slot", "name": "area" }
+								],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "in" }],
+											[{ "kind": "text", "value": "on" }],
+											[{ "kind": "text", "value": "at" }],
+											[{ "kind": "text", "value": "of" }],
+											[{ "kind": "text", "value": "across" }],
+											[{ "kind": "text", "value": "around" }],
+											[{ "kind": "text", "value": "throughout" }]
+										]
+									},
+									{
+										"kind": "optional",
+										"body": [
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "the" }],
+													[{ "kind": "text", "value": "my" }],
+													[{ "kind": "text", "value": "our" }]
+												]
+											}
+										]
+									},
+									{ "kind": "slot", "name": "area" },
+									{ "kind": "text", "value": "to" },
+									{ "kind": "slot", "name": "position" },
+									{
+										"kind": "optional",
+										"body": [
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "%" }],
+													[{ "kind": "text", "value": "percent" }]
+												]
+											}
+										]
+									}
+								]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:(?:set|change|turn[ ]*(?:[ ]*(?:up|down))?|increase|decrease|make)|(?:open|raise|lift)[ ]*(?:[ ]*up)?|(?:close|shut|lower)[ ]*(?:[ ]*(?:up|down))?)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:[ ]*position)?[ ]*(?:to[ ]*(?:.+)[ ]*(?:[ ]*(?:%|percent))?[ ]*(?:in|on|at|of|across|around|throughout)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)|(?:in|on|at|of|across|around|throughout)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*to[ ]*(?:.+)[ ]*(?:[ ]*(?:%|percent))?)[ ]*$"
+				},
+				{
+					"source": "(<numeric_value_set>|<open>|<close>) [<the>] {area} {coverClasses} [position] to {position} [(%|percent)]",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "set" }],
+											[{ "kind": "text", "value": "change" }],
+											[
+												{ "kind": "text", "value": "turn" },
+												{
+													"kind": "optional",
+													"body": [
+														{
+															"kind": "group",
+															"alternatives": [
+																[{ "kind": "text", "value": "up" }],
+																[{ "kind": "text", "value": "down" }]
+															]
+														}
+													]
+												}
+											],
+											[{ "kind": "text", "value": "increase" }],
+											[{ "kind": "text", "value": "decrease" }],
+											[{ "kind": "text", "value": "make" }]
+										]
+									}
+								],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "open" }],
+											[{ "kind": "text", "value": "raise" }],
+											[{ "kind": "text", "value": "lift" }]
+										]
+									},
+									{
+										"kind": "optional",
+										"body": [{ "kind": "text", "value": "up" }]
+									}
+								],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "close" }],
+											[{ "kind": "text", "value": "shut" }],
+											[{ "kind": "text", "value": "lower" }]
+										]
+									},
+									{
+										"kind": "optional",
+										"body": [
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "up" }],
+													[{ "kind": "text", "value": "down" }]
+												]
+											}
+										]
+									}
+								]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "area" },
+						{ "kind": "slot", "name": "coverClasses" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "position" }]
+						},
+						{ "kind": "text", "value": "to" },
+						{ "kind": "slot", "name": "position" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "%" }],
+										[{ "kind": "text", "value": "percent" }]
+									]
+								}
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:(?:set|change|turn[ ]*(?:[ ]*(?:up|down))?|increase|decrease|make)|(?:open|raise|lift)[ ]*(?:[ ]*up)?|(?:close|shut|lower)[ ]*(?:[ ]*(?:up|down))?)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:.+)[ ]*(?:[ ]*position)?[ ]*to[ ]*(?:.+)[ ]*(?:[ ]*(?:%|percent))?[ ]*$"
+				}
+			],
+			"slots": {
+				"area": { "kind": "context", "arg": "area", "key": "area" },
+				"coverClasses": {
+					"kind": "values",
+					"arg": "device_class",
+					"values": [
+						{ "phrase": "awning", "args": { "device_class": ["awning"] } },
+						{ "phrase": "awnings", "args": { "device_class": ["awning"] } },
+						{ "phrase": "blind", "args": { "device_class": ["blind"] } },
+						{ "phrase": "blinds", "args": { "device_class": ["blind"] } },
+						{ "phrase": "curtain", "args": { "device_class": ["curtain"] } },
+						{ "phrase": "curtains", "args": { "device_class": ["curtain"] } },
+						{ "phrase": "door", "args": { "device_class": ["door"] } },
+						{ "phrase": "doors", "args": { "device_class": ["door"] } },
+						{ "phrase": "garage door", "args": { "device_class": ["garage"] } },
+						{
+							"phrase": "garage doors",
+							"args": { "device_class": ["garage"] }
+						},
+						{ "phrase": "gate", "args": { "device_class": ["gate"] } },
+						{ "phrase": "gates", "args": { "device_class": ["gate"] } },
+						{ "phrase": "shade", "args": { "device_class": ["shade"] } },
+						{ "phrase": "shades", "args": { "device_class": ["shade"] } },
+						{ "phrase": "shutter", "args": { "device_class": ["shutter"] } },
+						{ "phrase": "shutters", "args": { "device_class": ["shutter"] } },
+						{ "phrase": "window", "args": { "device_class": ["window"] } },
+						{ "phrase": "windows", "args": { "device_class": ["window"] } }
+					]
+				},
+				"position": { "kind": "range", "arg": "position", "min": 0, "max": 100 }
+			},
+			"requiredKeywords": [],
+			"argDefaults": { "domain": ["cover"] },
+			"priority": 0
+		},
+		{
+			"tool": "HassSetPosition",
+			"provider": "home-assistant",
+			"templates": [
+				{
+					"source": "(<numeric_value_set>|<open>|<close>) [<the>] {entity} [position] to {position} [(%|percent)]",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "set" }],
+											[{ "kind": "text", "value": "change" }],
+											[
+												{ "kind": "text", "value": "turn" },
+												{
+													"kind": "optional",
+													"body": [
+														{
+															"kind": "group",
+															"alternatives": [
+																[{ "kind": "text", "value": "up" }],
+																[{ "kind": "text", "value": "down" }]
+															]
+														}
+													]
+												}
+											],
+											[{ "kind": "text", "value": "increase" }],
+											[{ "kind": "text", "value": "decrease" }],
+											[{ "kind": "text", "value": "make" }]
+										]
+									}
+								],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "open" }],
+											[{ "kind": "text", "value": "raise" }],
+											[{ "kind": "text", "value": "lift" }]
+										]
+									},
+									{
+										"kind": "optional",
+										"body": [{ "kind": "text", "value": "up" }]
+									}
+								],
+								[
+									{
+										"kind": "group",
+										"alternatives": [
+											[{ "kind": "text", "value": "close" }],
+											[{ "kind": "text", "value": "shut" }],
+											[{ "kind": "text", "value": "lower" }]
+										]
+									},
+									{
+										"kind": "optional",
+										"body": [
+											{
+												"kind": "group",
+												"alternatives": [
+													[{ "kind": "text", "value": "up" }],
+													[{ "kind": "text", "value": "down" }]
+												]
+											}
+										]
+									}
+								]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }]
+									]
+								}
+							]
+						},
+						{ "kind": "slot", "name": "entity" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "position" }]
+						},
+						{ "kind": "text", "value": "to" },
+						{ "kind": "slot", "name": "position" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "%" }],
+										[{ "kind": "text", "value": "percent" }]
+									]
+								}
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:(?:set|change|turn[ ]*(?:[ ]*(?:up|down))?|increase|decrease|make)|(?:open|raise|lift)[ ]*(?:[ ]*up)?|(?:close|shut|lower)[ ]*(?:[ ]*(?:up|down))?)[ ]*(?:[ ]*(?:the|my|our))?[ ]*(?:.+)[ ]*(?:[ ]*position)?[ ]*to[ ]*(?:.+)[ ]*(?:[ ]*(?:%|percent))?[ ]*$"
+				}
+			],
+			"slots": {
+				"entity": {
+					"kind": "context",
+					"arg": "entity",
+					"key": "entity:cover,valve"
+				},
+				"position": { "kind": "range", "arg": "position", "min": 0, "max": 100 }
+			},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 1
+		},
+		{
+			"tool": "time",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "what time is it [right now]",
+					"ast": [
+						{ "kind": "text", "value": "what time is it" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "right now" }]
+						}
+					],
+					"prefilter": "^[ ]*what[ ]+time[ ]+is[ ]+it[ ]*(?:[ ]*right[ ]+now)?[ ]*$"
+				},
+				{
+					"source": "what time it is",
+					"ast": [{ "kind": "text", "value": "what time it is" }],
+					"prefilter": "^[ ]*what[ ]+time[ ]+it[ ]+is[ ]*$"
+				},
+				{
+					"source": "what's the time",
+					"ast": [{ "kind": "text", "value": "what s the time" }],
+					"prefilter": "^[ ]*what[ ]+s[ ]+the[ ]+time[ ]*$"
+				},
+				{
+					"source": "what is the [current] time",
+					"ast": [
+						{ "kind": "text", "value": "what is the" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "current" }]
+						},
+						{ "kind": "text", "value": "time" }
+					],
+					"prefilter": "^[ ]*what[ ]+is[ ]+the[ ]*(?:[ ]*current)?[ ]*time[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0,
+			"allowBlockedTokens": true
+		},
+		{
+			"tool": "date",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "what's the date [today]",
+					"ast": [
+						{ "kind": "text", "value": "what s the date" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "today" }]
+						}
+					],
+					"prefilter": "^[ ]*what[ ]+s[ ]+the[ ]+date[ ]*(?:[ ]*today)?[ ]*$"
+				},
+				{
+					"source": "what is the date [today]",
+					"ast": [
+						{ "kind": "text", "value": "what is the date" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "today" }]
+						}
+					],
+					"prefilter": "^[ ]*what[ ]+is[ ]+the[ ]+date[ ]*(?:[ ]*today)?[ ]*$"
+				},
+				{
+					"source": "what's today's date",
+					"ast": [{ "kind": "text", "value": "what s today s date" }],
+					"prefilter": "^[ ]*what[ ]+s[ ]+today[ ]+s[ ]+date[ ]*$"
+				},
+				{
+					"source": "what is today's date",
+					"ast": [{ "kind": "text", "value": "what is today s date" }],
+					"prefilter": "^[ ]*what[ ]+is[ ]+today[ ]+s[ ]+date[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0,
+			"allowBlockedTokens": true
+		},
+		{
+			"tool": "timer",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "(set|start) [a] timer for {duration}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "set" }],
+								[{ "kind": "text", "value": "start" }]
+							]
+						},
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "a" }] },
+						{ "kind": "text", "value": "timer for" },
+						{ "kind": "slot", "name": "duration" }
+					],
+					"prefilter": "^[ ]*(?:set|start)[ ]*(?:[ ]*a)?[ ]*timer[ ]+for[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "(set|start) [a] {duration} timer",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "set" }],
+								[{ "kind": "text", "value": "start" }]
+							]
+						},
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "a" }] },
+						{ "kind": "slot", "name": "duration" },
+						{ "kind": "text", "value": "timer" }
+					],
+					"prefilter": "^[ ]*(?:set|start)[ ]*(?:[ ]*a)?[ ]*(?:.+)[ ]*timer[ ]*$"
+				},
+				{
+					"source": "timer [for] {duration}",
+					"ast": [
+						{ "kind": "text", "value": "timer" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "for" }]
+						},
+						{ "kind": "slot", "name": "duration" }
+					],
+					"prefilter": "^[ ]*timer[ ]*(?:[ ]*for)?[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "[set] [a] countdown for {duration}",
+					"ast": [
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "set" }]
+						},
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "a" }] },
+						{ "kind": "text", "value": "countdown for" },
+						{ "kind": "slot", "name": "duration" }
+					],
+					"prefilter": "^[ ]*(?:[ ]*set)?[ ]*(?:[ ]*a)?[ ]*countdown[ ]+for[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": {
+				"duration": {
+					"kind": "duration",
+					"arg": "seconds",
+					"maxSeconds": 86400
+				}
+			},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "timer_cancel",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "cancel [(the|my)] timer",
+					"ast": [
+						{ "kind": "text", "value": "cancel" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "timer" }
+					],
+					"prefilter": "^[ ]*cancel[ ]*(?:[ ]*(?:the|my))?[ ]*timer[ ]*$"
+				},
+				{
+					"source": "stop [(the|my)] timer",
+					"ast": [
+						{ "kind": "text", "value": "stop" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "timer" }
+					],
+					"prefilter": "^[ ]*stop[ ]*(?:[ ]*(?:the|my))?[ ]*timer[ ]*$"
+				},
+				{
+					"source": "cancel [(the|my)] countdown",
+					"ast": [
+						{ "kind": "text", "value": "cancel" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "countdown" }
+					],
+					"prefilter": "^[ ]*cancel[ ]*(?:[ ]*(?:the|my))?[ ]*countdown[ ]*$"
+				},
+				{
+					"source": "cancel [(the|my)] timers",
+					"ast": [
+						{ "kind": "text", "value": "cancel" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "timers" }
+					],
+					"prefilter": "^[ ]*cancel[ ]*(?:[ ]*(?:the|my))?[ ]*timers[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "timer_status",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "how much time is left [on the timer]",
+					"ast": [
+						{ "kind": "text", "value": "how much time is left" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "on the timer" }]
+						}
+					],
+					"prefilter": "^[ ]*how[ ]+much[ ]+time[ ]+is[ ]+left[ ]*(?:[ ]*on[ ]+the[ ]+timer)?[ ]*$"
+				},
+				{
+					"source": "how much time is left on my timer",
+					"ast": [
+						{ "kind": "text", "value": "how much time is left on my timer" }
+					],
+					"prefilter": "^[ ]*how[ ]+much[ ]+time[ ]+is[ ]+left[ ]+on[ ]+my[ ]+timer[ ]*$"
+				},
+				{
+					"source": "how long [is left] on the timer",
+					"ast": [
+						{ "kind": "text", "value": "how long" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "is left" }]
+						},
+						{ "kind": "text", "value": "on the timer" }
+					],
+					"prefilter": "^[ ]*how[ ]+long[ ]*(?:[ ]*is[ ]+left)?[ ]*on[ ]+the[ ]+timer[ ]*$"
+				},
+				{
+					"source": "how long is left on my timer",
+					"ast": [{ "kind": "text", "value": "how long is left on my timer" }],
+					"prefilter": "^[ ]*how[ ]+long[ ]+is[ ]+left[ ]+on[ ]+my[ ]+timer[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0,
+			"allowBlockedTokens": true
+		},
+		{
+			"tool": "reminder",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "cancel [(the|my)] reminder",
+					"ast": [
+						{ "kind": "text", "value": "cancel" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "reminder" }
+					],
+					"prefilter": "^[ ]*cancel[ ]*(?:[ ]*(?:the|my))?[ ]*reminder[ ]*$"
+				},
+				{
+					"source": "cancel [(the|my)] reminders",
+					"ast": [
+						{ "kind": "text", "value": "cancel" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "reminders" }
+					],
+					"prefilter": "^[ ]*cancel[ ]*(?:[ ]*(?:the|my))?[ ]*reminders[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": { "action": "cancel" },
+			"priority": 0
+		},
+		{
+			"tool": "repeat",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "(repeat|say) that [again]",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "repeat" }],
+								[{ "kind": "text", "value": "say" }]
+							]
+						},
+						{ "kind": "text", "value": "that" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "again" }]
+						}
+					],
+					"prefilter": "^[ ]*(?:repeat|say)[ ]*that[ ]*(?:[ ]*again)?[ ]*$"
+				},
+				{
+					"source": "say it again",
+					"ast": [{ "kind": "text", "value": "say it again" }],
+					"prefilter": "^[ ]*say[ ]+it[ ]+again[ ]*$"
+				},
+				{
+					"source": "repeat [it]",
+					"ast": [
+						{ "kind": "text", "value": "repeat" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "it" }] }
+					],
+					"prefilter": "^[ ]*repeat[ ]*(?:[ ]*it)?[ ]*$"
+				},
+				{
+					"source": "what did you say",
+					"ast": [{ "kind": "text", "value": "what did you say" }],
+					"prefilter": "^[ ]*what[ ]+did[ ]+you[ ]+say[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0,
+			"allowBlockedTokens": true
+		},
+		{
+			"tool": "cancel",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "never mind",
+					"ast": [{ "kind": "text", "value": "never mind" }],
+					"prefilter": "^[ ]*never[ ]+mind[ ]*$"
+				},
+				{
+					"source": "nevermind",
+					"ast": [{ "kind": "text", "value": "nevermind" }],
+					"prefilter": "^[ ]*nevermind[ ]*$"
+				},
+				{
+					"source": "forget it",
+					"ast": [{ "kind": "text", "value": "forget it" }],
+					"prefilter": "^[ ]*forget[ ]+it[ ]*$"
+				},
+				{
+					"source": "cancel [(that|it)]",
+					"ast": [
+						{ "kind": "text", "value": "cancel" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "that" }],
+										[{ "kind": "text", "value": "it" }]
+									]
+								}
+							]
+						}
+					],
+					"prefilter": "^[ ]*cancel[ ]*(?:[ ]*(?:that|it))?[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0,
+			"allowBlockedTokens": true
+		},
+		{
+			"tool": "alarm",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "(set|start) an alarm (for|at) {clockTime}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "set" }],
+								[{ "kind": "text", "value": "start" }]
+							]
+						},
+						{ "kind": "text", "value": "an alarm" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "for" }],
+								[{ "kind": "text", "value": "at" }]
+							]
+						},
+						{ "kind": "slot", "name": "clockTime" }
+					],
+					"prefilter": "^[ ]*(?:set|start)[ ]*an[ ]+alarm[ ]*(?:for|at)[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "wake me up with an alarm (for|at) {clockTime}",
+					"ast": [
+						{ "kind": "text", "value": "wake me up with an alarm" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "for" }],
+								[{ "kind": "text", "value": "at" }]
+							]
+						},
+						{ "kind": "slot", "name": "clockTime" }
+					],
+					"prefilter": "^[ ]*wake[ ]+me[ ]+up[ ]+with[ ]+an[ ]+alarm[ ]*(?:for|at)[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "wake me [up] (at|for) {clockTime}",
+					"ast": [
+						{ "kind": "text", "value": "wake me" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "up" }] },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "at" }],
+								[{ "kind": "text", "value": "for" }]
+							]
+						},
+						{ "kind": "slot", "name": "clockTime" }
+					],
+					"prefilter": "^[ ]*wake[ ]+me[ ]*(?:[ ]*up)?[ ]*(?:at|for)[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "alarm (for|at) {clockTime}",
+					"ast": [
+						{ "kind": "text", "value": "alarm" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "for" }],
+								[{ "kind": "text", "value": "at" }]
+							]
+						},
+						{ "kind": "slot", "name": "clockTime" }
+					],
+					"prefilter": "^[ ]*alarm[ ]*(?:for|at)[ ]*(?:.+)[ ]*$"
+				}
+			],
+			"slots": { "clockTime": { "kind": "clockTime", "arg": "at" } },
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "alarm",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "(set|start) an alarm (for|at) {clockTime} every day",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "set" }],
+								[{ "kind": "text", "value": "start" }]
+							]
+						},
+						{ "kind": "text", "value": "an alarm" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "for" }],
+								[{ "kind": "text", "value": "at" }]
+							]
+						},
+						{ "kind": "slot", "name": "clockTime" },
+						{ "kind": "text", "value": "every day" }
+					],
+					"prefilter": "^[ ]*(?:set|start)[ ]*an[ ]+alarm[ ]*(?:for|at)[ ]*(?:.+)[ ]*every[ ]+day[ ]*$"
+				},
+				{
+					"source": "(set|start) an alarm every day at {clockTime}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "set" }],
+								[{ "kind": "text", "value": "start" }]
+							]
+						},
+						{ "kind": "text", "value": "an alarm every day at" },
+						{ "kind": "slot", "name": "clockTime" }
+					],
+					"prefilter": "^[ ]*(?:set|start)[ ]*an[ ]+alarm[ ]+every[ ]+day[ ]+at[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "(set|start) a daily alarm (for|at) {clockTime}",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "set" }],
+								[{ "kind": "text", "value": "start" }]
+							]
+						},
+						{ "kind": "text", "value": "a daily alarm" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "for" }],
+								[{ "kind": "text", "value": "at" }]
+							]
+						},
+						{ "kind": "slot", "name": "clockTime" }
+					],
+					"prefilter": "^[ ]*(?:set|start)[ ]*a[ ]+daily[ ]+alarm[ ]*(?:for|at)[ ]*(?:.+)[ ]*$"
+				},
+				{
+					"source": "wake me [up] (at|for) {clockTime} every day",
+					"ast": [
+						{ "kind": "text", "value": "wake me" },
+						{ "kind": "optional", "body": [{ "kind": "text", "value": "up" }] },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "at" }],
+								[{ "kind": "text", "value": "for" }]
+							]
+						},
+						{ "kind": "slot", "name": "clockTime" },
+						{ "kind": "text", "value": "every day" }
+					],
+					"prefilter": "^[ ]*wake[ ]+me[ ]*(?:[ ]*up)?[ ]*(?:at|for)[ ]*(?:.+)[ ]*every[ ]+day[ ]*$"
+				}
+			],
+			"slots": { "clockTime": { "kind": "clockTime", "arg": "at" } },
+			"requiredKeywords": [],
+			"argDefaults": { "daily": true },
+			"priority": 0
+		},
+		{
+			"tool": "alarm_cancel",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "cancel [(the|my)] alarm",
+					"ast": [
+						{ "kind": "text", "value": "cancel" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "alarm" }
+					],
+					"prefilter": "^[ ]*cancel[ ]*(?:[ ]*(?:the|my))?[ ]*alarm[ ]*$"
+				},
+				{
+					"source": "cancel [(the|my)] alarms",
+					"ast": [
+						{ "kind": "text", "value": "cancel" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "alarms" }
+					],
+					"prefilter": "^[ ]*cancel[ ]*(?:[ ]*(?:the|my))?[ ]*alarms[ ]*$"
+				},
+				{
+					"source": "(turn off|stop|remove|delete) [(the|my)] alarm",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn off" }],
+								[{ "kind": "text", "value": "stop" }],
+								[{ "kind": "text", "value": "remove" }],
+								[{ "kind": "text", "value": "delete" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "alarm" }
+					],
+					"prefilter": "^[ ]*(?:turn[ ]+off|stop|remove|delete)[ ]*(?:[ ]*(?:the|my))?[ ]*alarm[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "volume",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "(turn|set|put) your volume up",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn" }],
+								[{ "kind": "text", "value": "set" }],
+								[{ "kind": "text", "value": "put" }]
+							]
+						},
+						{ "kind": "text", "value": "your volume up" }
+					],
+					"prefilter": "^[ ]*(?:turn|set|put)[ ]*your[ ]+volume[ ]+up[ ]*$"
+				},
+				{
+					"source": "turn up your volume",
+					"ast": [{ "kind": "text", "value": "turn up your volume" }],
+					"prefilter": "^[ ]*turn[ ]+up[ ]+your[ ]+volume[ ]*$"
+				},
+				{
+					"source": "your volume up",
+					"ast": [{ "kind": "text", "value": "your volume up" }],
+					"prefilter": "^[ ]*your[ ]+volume[ ]+up[ ]*$"
+				},
+				{
+					"source": "(speak|talk) (louder|up)",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "speak" }],
+								[{ "kind": "text", "value": "talk" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "louder" }],
+								[{ "kind": "text", "value": "up" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:speak|talk)[ ]*(?:louder|up)[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": { "direction": "up" },
+			"priority": 0
+		},
+		{
+			"tool": "volume",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "(turn|set|put) your volume down",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "turn" }],
+								[{ "kind": "text", "value": "set" }],
+								[{ "kind": "text", "value": "put" }]
+							]
+						},
+						{ "kind": "text", "value": "your volume down" }
+					],
+					"prefilter": "^[ ]*(?:turn|set|put)[ ]*your[ ]+volume[ ]+down[ ]*$"
+				},
+				{
+					"source": "turn down your volume",
+					"ast": [{ "kind": "text", "value": "turn down your volume" }],
+					"prefilter": "^[ ]*turn[ ]+down[ ]+your[ ]+volume[ ]*$"
+				},
+				{
+					"source": "your volume down",
+					"ast": [{ "kind": "text", "value": "your volume down" }],
+					"prefilter": "^[ ]*your[ ]+volume[ ]+down[ ]*$"
+				},
+				{
+					"source": "(speak|talk) (quieter|softer|lower|more quietly)",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "speak" }],
+								[{ "kind": "text", "value": "talk" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "quieter" }],
+								[{ "kind": "text", "value": "softer" }],
+								[{ "kind": "text", "value": "lower" }],
+								[{ "kind": "text", "value": "more quietly" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:speak|talk)[ ]*(?:quieter|softer|lower|more[ ]+quietly)[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": { "direction": "down" },
+			"priority": 0
+		},
+		{
+			"tool": "volume",
+			"provider": "domia",
+			"templates": [
+				{
+					"source": "(set|put|turn) your volume to {level} [percent]",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "set" }],
+								[{ "kind": "text", "value": "put" }],
+								[{ "kind": "text", "value": "turn" }]
+							]
+						},
+						{ "kind": "text", "value": "your volume to" },
+						{ "kind": "slot", "name": "level" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "percent" }]
+						}
+					],
+					"prefilter": "^[ ]*(?:set|put|turn)[ ]*your[ ]+volume[ ]+to[ ]*(?:.+)[ ]*(?:[ ]*percent)?[ ]*$"
+				},
+				{
+					"source": "your volume to {level} [percent]",
+					"ast": [
+						{ "kind": "text", "value": "your volume to" },
+						{ "kind": "slot", "name": "level" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "percent" }]
+						}
+					],
+					"prefilter": "^[ ]*your[ ]+volume[ ]+to[ ]*(?:.+)[ ]*(?:[ ]*percent)?[ ]*$"
+				},
+				{
+					"source": "(speak|talk) at {level} percent",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "speak" }],
+								[{ "kind": "text", "value": "talk" }]
+							]
+						},
+						{ "kind": "text", "value": "at" },
+						{ "kind": "slot", "name": "level" },
+						{ "kind": "text", "value": "percent" }
+					],
+					"prefilter": "^[ ]*(?:speak|talk)[ ]*at[ ]*(?:.+)[ ]*percent[ ]*$"
+				}
+			],
+			"slots": {
+				"level": { "kind": "range", "arg": "level", "min": 0, "max": 100 }
+			},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "playback_pause",
+			"provider": "music-assistant",
+			"templates": [
+				{
+					"source": "(pause|stop) [<the>] <music>",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "pause" }],
+								[{ "kind": "text", "value": "stop" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }],
+										[{ "kind": "text", "value": "this" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "music" }],
+								[{ "kind": "text", "value": "song" }],
+								[{ "kind": "text", "value": "songs" }],
+								[{ "kind": "text", "value": "track" }],
+								[{ "kind": "text", "value": "playback" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:pause|stop)[ ]*(?:[ ]*(?:the|my|our|this))?[ ]*(?:music|song|songs|track|playback)[ ]*$"
+				},
+				{
+					"source": "turn off [<the>] <music>",
+					"ast": [
+						{ "kind": "text", "value": "turn off" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }],
+										[{ "kind": "text", "value": "this" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "music" }],
+								[{ "kind": "text", "value": "song" }],
+								[{ "kind": "text", "value": "songs" }],
+								[{ "kind": "text", "value": "track" }],
+								[{ "kind": "text", "value": "playback" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*turn[ ]+off[ ]*(?:[ ]*(?:the|my|our|this))?[ ]*(?:music|song|songs|track|playback)[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "playback_resume",
+			"provider": "music-assistant",
+			"templates": [
+				{
+					"source": "(resume|unpause) [<the>] <music>",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "resume" }],
+								[{ "kind": "text", "value": "unpause" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }],
+										[{ "kind": "text", "value": "this" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "music" }],
+								[{ "kind": "text", "value": "song" }],
+								[{ "kind": "text", "value": "songs" }],
+								[{ "kind": "text", "value": "track" }],
+								[{ "kind": "text", "value": "playback" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:resume|unpause)[ ]*(?:[ ]*(?:the|my|our|this))?[ ]*(?:music|song|songs|track|playback)[ ]*$"
+				},
+				{
+					"source": "(continue|keep) playing [<the>] <music>",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "continue" }],
+								[{ "kind": "text", "value": "keep" }]
+							]
+						},
+						{ "kind": "text", "value": "playing" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }],
+										[{ "kind": "text", "value": "this" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "music" }],
+								[{ "kind": "text", "value": "song" }],
+								[{ "kind": "text", "value": "songs" }],
+								[{ "kind": "text", "value": "track" }],
+								[{ "kind": "text", "value": "playback" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:continue|keep)[ ]*playing[ ]*(?:[ ]*(?:the|my|our|this))?[ ]*(?:music|song|songs|track|playback)[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "playback_next_track",
+			"provider": "music-assistant",
+			"templates": [
+				{
+					"source": "(next|skip) [<the>] (song|track)",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "next" }],
+								[{ "kind": "text", "value": "skip" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }],
+										[{ "kind": "text", "value": "this" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "song" }],
+								[{ "kind": "text", "value": "track" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:next|skip)[ ]*(?:[ ]*(?:the|my|our|this))?[ ]*(?:song|track)[ ]*$"
+				},
+				{
+					"source": "skip [<the>] <music>",
+					"ast": [
+						{ "kind": "text", "value": "skip" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }],
+										[{ "kind": "text", "value": "this" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "music" }],
+								[{ "kind": "text", "value": "song" }],
+								[{ "kind": "text", "value": "songs" }],
+								[{ "kind": "text", "value": "track" }],
+								[{ "kind": "text", "value": "playback" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*skip[ ]*(?:[ ]*(?:the|my|our|this))?[ ]*(?:music|song|songs|track|playback)[ ]*$"
+				},
+				{
+					"source": "play [<the>] next (song|track)",
+					"ast": [
+						{ "kind": "text", "value": "play" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }],
+										[{ "kind": "text", "value": "this" }]
+									]
+								}
+							]
+						},
+						{ "kind": "text", "value": "next" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "song" }],
+								[{ "kind": "text", "value": "track" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*play[ ]*(?:[ ]*(?:the|my|our|this))?[ ]*next[ ]*(?:song|track)[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "playback_previous_track",
+			"provider": "music-assistant",
+			"templates": [
+				{
+					"source": "(previous|last) (song|track)",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "previous" }],
+								[{ "kind": "text", "value": "last" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "song" }],
+								[{ "kind": "text", "value": "track" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:previous|last)[ ]*(?:song|track)[ ]*$"
+				},
+				{
+					"source": "play [<the>] (previous|last) (song|track)",
+					"ast": [
+						{ "kind": "text", "value": "play" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }],
+										[{ "kind": "text", "value": "this" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "previous" }],
+								[{ "kind": "text", "value": "last" }]
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "song" }],
+								[{ "kind": "text", "value": "track" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*play[ ]*(?:[ ]*(?:the|my|our|this))?[ ]*(?:previous|last)[ ]*(?:song|track)[ ]*$"
+				},
+				{
+					"source": "go back a (song|track)",
+					"ast": [
+						{ "kind": "text", "value": "go back a" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "song" }],
+								[{ "kind": "text", "value": "track" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*go[ ]+back[ ]+a[ ]*(?:song|track)[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "volume_volume_set",
+			"provider": "music-assistant",
+			"templates": [
+				{
+					"source": "(set|turn) [<the>] (volume|music) to {level} [percent]",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "set" }],
+								[{ "kind": "text", "value": "turn" }]
+							]
+						},
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }],
+										[{ "kind": "text", "value": "this" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "volume" }],
+								[{ "kind": "text", "value": "music" }]
+							]
+						},
+						{ "kind": "text", "value": "to" },
+						{ "kind": "slot", "name": "level" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "percent" }]
+						}
+					],
+					"prefilter": "^[ ]*(?:set|turn)[ ]*(?:[ ]*(?:the|my|our|this))?[ ]*(?:volume|music)[ ]*to[ ]*(?:.+)[ ]*(?:[ ]*percent)?[ ]*$"
+				},
+				{
+					"source": "set [<the>] <music> volume to {level} [percent]",
+					"ast": [
+						{ "kind": "text", "value": "set" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }],
+										[{ "kind": "text", "value": "this" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "music" }],
+								[{ "kind": "text", "value": "song" }],
+								[{ "kind": "text", "value": "songs" }],
+								[{ "kind": "text", "value": "track" }],
+								[{ "kind": "text", "value": "playback" }]
+							]
+						},
+						{ "kind": "text", "value": "volume to" },
+						{ "kind": "slot", "name": "level" },
+						{
+							"kind": "optional",
+							"body": [{ "kind": "text", "value": "percent" }]
+						}
+					],
+					"prefilter": "^[ ]*set[ ]*(?:[ ]*(?:the|my|our|this))?[ ]*(?:music|song|songs|track|playback)[ ]*volume[ ]+to[ ]*(?:.+)[ ]*(?:[ ]*percent)?[ ]*$"
+				}
+			],
+			"slots": {
+				"level": { "kind": "range", "arg": "level", "min": 0, "max": 100 }
+			},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "volume_volume_up",
+			"provider": "music-assistant",
+			"templates": [
+				{
+					"source": "turn up [<the>] (volume|music)",
+					"ast": [
+						{ "kind": "text", "value": "turn up" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }],
+										[{ "kind": "text", "value": "this" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "volume" }],
+								[{ "kind": "text", "value": "music" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*turn[ ]+up[ ]*(?:[ ]*(?:the|my|our|this))?[ ]*(?:volume|music)[ ]*$"
+				},
+				{
+					"source": "turn [<the>] (volume|music) up",
+					"ast": [
+						{ "kind": "text", "value": "turn" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }],
+										[{ "kind": "text", "value": "this" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "volume" }],
+								[{ "kind": "text", "value": "music" }]
+							]
+						},
+						{ "kind": "text", "value": "up" }
+					],
+					"prefilter": "^[ ]*turn[ ]*(?:[ ]*(?:the|my|our|this))?[ ]*(?:volume|music)[ ]*up[ ]*$"
+				},
+				{
+					"source": "louder",
+					"ast": [{ "kind": "text", "value": "louder" }],
+					"prefilter": "^[ ]*louder[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "volume_volume_down",
+			"provider": "music-assistant",
+			"templates": [
+				{
+					"source": "turn down [<the>] (volume|music)",
+					"ast": [
+						{ "kind": "text", "value": "turn down" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }],
+										[{ "kind": "text", "value": "this" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "volume" }],
+								[{ "kind": "text", "value": "music" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*turn[ ]+down[ ]*(?:[ ]*(?:the|my|our|this))?[ ]*(?:volume|music)[ ]*$"
+				},
+				{
+					"source": "turn [<the>] (volume|music) down",
+					"ast": [
+						{ "kind": "text", "value": "turn" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }],
+										[{ "kind": "text", "value": "this" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "volume" }],
+								[{ "kind": "text", "value": "music" }]
+							]
+						},
+						{ "kind": "text", "value": "down" }
+					],
+					"prefilter": "^[ ]*turn[ ]*(?:[ ]*(?:the|my|our|this))?[ ]*(?:volume|music)[ ]*down[ ]*$"
+				},
+				{
+					"source": "quieter",
+					"ast": [{ "kind": "text", "value": "quieter" }],
+					"prefilter": "^[ ]*quieter[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		},
+		{
+			"tool": "music_now_playing",
+			"provider": "music-assistant",
+			"templates": [
+				{
+					"source": "which (song|track) is (this|playing)",
+					"ast": [
+						{ "kind": "text", "value": "which" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "song" }],
+								[{ "kind": "text", "value": "track" }]
+							]
+						},
+						{ "kind": "text", "value": "is" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "this" }],
+								[{ "kind": "text", "value": "playing" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*which[ ]*(?:song|track)[ ]*is[ ]*(?:this|playing)[ ]*$"
+				},
+				{
+					"source": "(tell|name) me [<the>] (song|track)",
+					"ast": [
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "tell" }],
+								[{ "kind": "text", "value": "name" }]
+							]
+						},
+						{ "kind": "text", "value": "me" },
+						{
+							"kind": "optional",
+							"body": [
+								{
+									"kind": "group",
+									"alternatives": [
+										[{ "kind": "text", "value": "the" }],
+										[{ "kind": "text", "value": "my" }],
+										[{ "kind": "text", "value": "our" }],
+										[{ "kind": "text", "value": "this" }]
+									]
+								}
+							]
+						},
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "song" }],
+								[{ "kind": "text", "value": "track" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*(?:tell|name)[ ]*me[ ]*(?:[ ]*(?:the|my|our|this))?[ ]*(?:song|track)[ ]*$"
+				},
+				{
+					"source": "current (song|track)",
+					"ast": [
+						{ "kind": "text", "value": "current" },
+						{
+							"kind": "group",
+							"alternatives": [
+								[{ "kind": "text", "value": "song" }],
+								[{ "kind": "text", "value": "track" }]
+							]
+						}
+					],
+					"prefilter": "^[ ]*current[ ]*(?:song|track)[ ]*$"
+				}
+			],
+			"slots": {},
+			"requiredKeywords": [],
+			"argDefaults": {},
+			"priority": 0
+		}
+	]
+}

@@ -1,37 +1,65 @@
 import Image from "next/image"
 import { getTranslations } from "next-intl/server"
 
+import { BrowserFrame } from "@/components/explainers/console-tour/browser-frame"
 import { DemoLink } from "@/components/landing/demo-link"
-import { TypographyH1, TypographyXLarge } from "@/components/ui/typography"
+import { LinkButton, SectionHero } from "@/components/sections"
+import { loadConsoleTour } from "@/data"
+
+import {
+	HERO_IMAGE_QUALITY,
+	HERO_IMAGE_SIZES,
+	HERO_SCREEN_KEY,
+} from "./constants"
 
 export async function Hero() {
 	const t = await getTranslations("experience.hero")
+	const capture = loadConsoleTour().screens.find(
+		(screen) => screen.key === HERO_SCREEN_KEY,
+	)
 
 	return (
-		<div className="flex flex-col-reverse lg:flex-row">
-			<div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
-				<TypographyH1 className="leading-tight">{t("title")}</TypographyH1>
-
-				<TypographyXLarge className="max-w-md">
-					{t("subtitle")}
-				</TypographyXLarge>
-
-				<DemoLink variant="primary" label={t("demo")} />
-			</div>
-
-			<div className="flex flex-1 items-center justify-center">
-				<div className="relative">
-					<div className="animate-halo absolute inset-0 z-0 rounded-full bg-radial-[at_50%_75%] from-sky-200 via-blue-400 to-indigo-900 to-90% blur-2xl" />
-					<Image
-						src="/experience.webp"
-						alt={t("imageAlt")}
-						width={1024}
-						height={744}
-						priority
-						className="animate-domia-pulse relative z-10 h-auto w-full max-w-[500px]"
-					/>
-				</div>
-			</div>
-		</div>
+		<SectionHero
+			eyebrow={t("eyebrow")}
+			title={t("title")}
+			subtitle={t("subtitle")}
+			priority
+			actions={
+				<>
+					<DemoLink variant="primary" label={t("demo")} />
+					<LinkButton href="/run" size="lg" variant="outline">
+						{t("run")}
+					</LinkButton>
+				</>
+			}
+			art={
+				capture ? (
+					<div className="w-full max-w-[600px]">
+						<BrowserFrame route={capture.route}>
+							<Image
+								src={capture.image.light}
+								alt={t("imageAlt")}
+								width={capture.image.width}
+								height={capture.image.height}
+								sizes={HERO_IMAGE_SIZES}
+								quality={HERO_IMAGE_QUALITY}
+								priority
+								className="bg-muted h-auto w-full dark:hidden"
+							/>
+							<Image
+								src={capture.image.dark}
+								alt={t("imageAlt")}
+								width={capture.image.width}
+								height={capture.image.height}
+								sizes={HERO_IMAGE_SIZES}
+								quality={HERO_IMAGE_QUALITY}
+								priority
+								className="bg-muted hidden h-auto w-full dark:block"
+							/>
+						</BrowserFrame>
+					</div>
+				) : null
+			}
+		/>
 	)
 }

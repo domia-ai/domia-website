@@ -1,53 +1,52 @@
+import { useTranslations } from "next-intl"
 import { ArrowRight, ExternalLink } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { demoUrl } from "@/constants"
 
-type DemoLinkVariant = "primary" | "secondary" | "inline"
-
-type DemoLinkProps = {
-	path?: string
-	label?: string
-	variant?: DemoLinkVariant
-	className?: string
-}
+import type { DemoLinkProps } from "./types"
 
 export function DemoLink({
 	path = "/",
-	label = "Try the live demo",
+	label,
 	variant = "primary",
+	size,
 	className,
 }: DemoLinkProps) {
+	const t = useTranslations("nav")
 	const href = path.startsWith("/") ? `${demoUrl}${path}` : `${demoUrl}/${path}`
+	const anchor = (
+		<a href={href} target="_blank" rel="noopener noreferrer" role={undefined} />
+	)
+	const newTabNote = <span className="sr-only"> {t("opensInNewTab")}</span>
 
 	if (variant === "inline") {
 		return (
-			<a
-				href={href}
-				target="_blank"
-				rel="noopener noreferrer"
-				className={cn(
-					"text-primary hover:text-primary/80 inline-flex items-center gap-2 self-start text-sm font-medium transition-colors",
-					className,
-				)}
+			<Button
+				variant="link"
+				className={cn("h-auto gap-2 self-start p-0", className)}
+				nativeButton={false}
+				render={anchor}
 			>
 				{label}
-				<ArrowRight className="size-4" />
-			</a>
+				{newTabNote}
+				<ArrowRight aria-hidden="true" className="size-4" />
+			</Button>
 		)
 	}
 
 	return (
 		<Button
-			size={variant === "primary" ? "lg" : "sm"}
+			size={size ?? (variant === "primary" ? "lg" : "sm")}
 			variant={variant === "primary" ? "default" : "outline"}
 			className={className}
 			nativeButton={false}
-			render={<a href={href} target="_blank" rel="noopener noreferrer" />}
+			render={anchor}
 		>
 			{label}
-			<ExternalLink className="ml-2 size-4" />
+			{newTabNote}
+			<ExternalLink aria-hidden="true" className="ml-2 size-4" />
 		</Button>
 	)
 }

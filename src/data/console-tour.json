@@ -1,0 +1,371 @@
+{
+	"meta": {
+		"source": "console navigation (Overview, Fleet, Broadcast, Satellites, Templates, Conversations, Chat, Emotions, Memories, Analytics, Settings); all 22 captures taken 2026-09-28 at 1440x900 from the local build of the upcoming public demo; hotspot percentages checked against the light captures; liveRoute false marks screens not yet on the public demo (404 on 2026-09-28)",
+		"capturedAt": "2026-09-28T00:00:00.000Z",
+		"generator": "manual"
+	},
+	"screens": [
+		{
+			"key": "conversations",
+			"route": "/conversations",
+			"lead": true,
+			"image": {
+				"light": "/console/conversations-light.webp",
+				"dark": "/console/conversations-dark.webp",
+				"width": 1440,
+				"height": 900
+			},
+			"hotspots": [
+				{
+					"id": "turnList",
+					"x": 28.8,
+					"y": 51.7,
+					"w": 59.8,
+					"h": 5
+				},
+				{
+					"id": "stageTimings",
+					"x": 89.6,
+					"y": 51.7,
+					"w": 5.7,
+					"h": 30
+				},
+				{
+					"id": "replay",
+					"x": 59.5,
+					"y": 61.9,
+					"w": 3,
+					"h": 4.4
+				}
+			]
+		},
+		{
+			"key": "domias",
+			"route": "/domias",
+			"lead": true,
+			"image": {
+				"light": "/console/domias-light.webp",
+				"dark": "/console/domias-dark.webp",
+				"width": 1440,
+				"height": 900
+			},
+			"hotspots": [
+				{
+					"id": "glance",
+					"x": 19.4,
+					"y": 42.1,
+					"w": 25.6,
+					"h": 28.2
+				},
+				{
+					"id": "openDomia",
+					"x": 46.1,
+					"y": 42.1,
+					"w": 25.6,
+					"h": 28.2
+				},
+				{
+					"id": "thinClient",
+					"x": 72.8,
+					"y": 42.1,
+					"w": 25.6,
+					"h": 28.2
+				}
+			]
+		},
+		{
+			"key": "templates",
+			"route": "/templates",
+			"lead": true,
+			"image": {
+				"light": "/console/templates-light.webp",
+				"dark": "/console/templates-dark.webp",
+				"width": 1440,
+				"height": 900
+			},
+			"hotspots": [
+				{
+					"id": "systemTemplate",
+					"x": 19.4,
+					"y": 23.2,
+					"w": 25.6,
+					"h": 27.6
+				},
+				{
+					"id": "modelAndVoice",
+					"x": 47.2,
+					"y": 38.6,
+					"w": 10.4,
+					"h": 2.6
+				},
+				{
+					"id": "applyToNode",
+					"x": 73.9,
+					"y": 45.4,
+					"w": 23.3,
+					"h": 3.6
+				}
+			]
+		},
+		{
+			"key": "memories",
+			"route": "/memories",
+			"lead": true,
+			"image": {
+				"light": "/console/memories-light.webp",
+				"dark": "/console/memories-dark.webp",
+				"width": 1440,
+				"height": 900
+			},
+			"hotspots": [
+				{
+					"id": "layers",
+					"x": 19.6,
+					"y": 23.3,
+					"w": 33.8,
+					"h": 3.4
+				},
+				{
+					"id": "facts",
+					"x": 19.4,
+					"y": 34.8,
+					"w": 25.6,
+					"h": 25.3
+				},
+				{
+					"id": "trace",
+					"x": 73.8,
+					"y": 56,
+					"w": 23.4,
+					"h": 2.8
+				}
+			]
+		},
+		{
+			"key": "overview",
+			"route": "/",
+			"image": {
+				"light": "/console/overview-light.webp",
+				"dark": "/console/overview-dark.webp",
+				"width": 1440,
+				"height": 900
+			},
+			"hotspots": [
+				{
+					"id": "latency",
+					"x": 19.4,
+					"y": 26.8,
+					"w": 20.6,
+					"h": 11.8
+				},
+				{
+					"id": "localExecution",
+					"x": 41,
+					"y": 26.8,
+					"w": 20.6,
+					"h": 11.8
+				},
+				{
+					"id": "presence",
+					"x": 19.4,
+					"y": 59.1,
+					"w": 50.7,
+					"h": 40.9
+				}
+			]
+		},
+		{
+			"key": "broadcast",
+			"route": "/broadcast",
+			"liveRoute": false,
+			"image": {
+				"light": "/console/broadcast-light.webp",
+				"dark": "/console/broadcast-dark.webp",
+				"width": 1440,
+				"height": 900
+			},
+			"hotspots": [
+				{
+					"id": "intercom",
+					"x": 26.7,
+					"y": 23.3,
+					"w": 6.4,
+					"h": 3.4
+				},
+				{
+					"id": "composer",
+					"x": 20.6,
+					"y": 45.5,
+					"w": 44.6,
+					"h": 12.1
+				},
+				{
+					"id": "targets",
+					"x": 20.4,
+					"y": 71,
+					"w": 45,
+					"h": 7.8
+				}
+			]
+		},
+		{
+			"key": "satellites",
+			"route": "/satellites",
+			"liveRoute": false,
+			"image": {
+				"light": "/console/satellites-light.webp",
+				"dark": "/console/satellites-dark.webp",
+				"width": 1440,
+				"height": 900
+			},
+			"hotspots": [
+				{
+					"id": "summary",
+					"x": 19.4,
+					"y": 23.1,
+					"w": 79,
+					"h": 7.7
+				},
+				{
+					"id": "row",
+					"x": 19.5,
+					"y": 38,
+					"w": 52.9,
+					"h": 5
+				}
+			]
+		},
+		{
+			"key": "chat",
+			"route": "/chat",
+			"image": {
+				"light": "/console/chat-light.webp",
+				"dark": "/console/chat-dark.webp",
+				"width": 1440,
+				"height": 900
+			},
+			"hotspots": [
+				{
+					"id": "identityPicker",
+					"x": 20.6,
+					"y": 25.1,
+					"w": 15.5,
+					"h": 3.4
+				},
+				{
+					"id": "conversation",
+					"x": 19.4,
+					"y": 34.4,
+					"w": 52.1,
+					"h": 40.6
+				},
+				{
+					"id": "composer",
+					"x": 20.3,
+					"y": 76.4,
+					"w": 50.3,
+					"h": 16.2
+				}
+			]
+		},
+		{
+			"key": "emotions",
+			"route": "/emotions",
+			"image": {
+				"light": "/console/emotions-light.webp",
+				"dark": "/console/emotions-dark.webp",
+				"width": 1440,
+				"height": 900
+			},
+			"hotspots": [
+				{
+					"id": "axes",
+					"x": 19.4,
+					"y": 33,
+					"w": 52,
+					"h": 45
+				},
+				{
+					"id": "baseline",
+					"x": 73.2,
+					"y": 33,
+					"w": 25.1,
+					"h": 45
+				},
+				{
+					"id": "events",
+					"x": 19.4,
+					"y": 81.1,
+					"w": 78.9,
+					"h": 18.9
+				}
+			]
+		},
+		{
+			"key": "analytics",
+			"route": "/analytics",
+			"image": {
+				"light": "/console/analytics-light.webp",
+				"dark": "/console/analytics-dark.webp",
+				"width": 1440,
+				"height": 900
+			},
+			"hotspots": [
+				{
+					"id": "perceived",
+					"x": 19.4,
+					"y": 23.2,
+					"w": 19.2,
+					"h": 11.9
+				},
+				{
+					"id": "onDevice",
+					"x": 59.4,
+					"y": 23.2,
+					"w": 18.9,
+					"h": 11.9
+				},
+				{
+					"id": "breakdown",
+					"x": 20.5,
+					"y": 44.2,
+					"w": 76.9,
+					"h": 4.2
+				}
+			]
+		},
+		{
+			"key": "settings",
+			"route": "/settings",
+			"image": {
+				"light": "/console/settings-light.webp",
+				"dark": "/console/settings-dark.webp",
+				"width": 1440,
+				"height": 900
+			},
+			"hotspots": [
+				{
+					"id": "appearance",
+					"x": 19.4,
+					"y": 23.2,
+					"w": 38.7,
+					"h": 14.8
+				},
+				{
+					"id": "liveRefresh",
+					"x": 19.4,
+					"y": 40.6,
+					"w": 38.6,
+					"h": 15
+				},
+				{
+					"id": "secretRotation",
+					"x": 59.7,
+					"y": 40.6,
+					"w": 38.7,
+					"h": 46.9
+				}
+			]
+		}
+	]
+}

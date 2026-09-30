@@ -24,6 +24,7 @@
 	--color-input: var(--input);
 	--color-border: var(--border);
 	--color-destructive: var(--destructive);
+	--color-destructive-foreground: var(--destructive-foreground);
 	--color-accent-foreground: var(--accent-foreground);
 	--color-accent: var(--accent);
 	--color-muted-foreground: var(--muted-foreground);
@@ -36,6 +37,19 @@
 	--color-popover: var(--popover);
 	--color-card-foreground: var(--card-foreground);
 	--color-card: var(--card);
+	--color-audio: var(--audio);
+	--color-speech: var(--speech);
+	--color-model: var(--model);
+	--color-fast-path: var(--fast-path);
+	--color-tool: var(--tool);
+	--color-memory: var(--memory);
+	--color-mesh: var(--mesh);
+	--color-node-hub: var(--node-hub);
+	--color-node-satellite: var(--node-satellite);
+	--color-section-alt: var(--section-alt);
+	--color-halo-from: var(--halo-from);
+	--color-halo-via: var(--halo-via);
+	--color-halo-to: var(--halo-to);
 	--radius-sm: calc(var(--radius) - 4px);
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
@@ -50,7 +64,7 @@
 	--card-foreground: oklch(0.14 0.05 265);
 	--popover: oklch(1 0 0);
 	--popover-foreground: oklch(0.14 0.05 265);
-	--primary: oklch(0.3 0.17 260); /* Azul domia */
+	--primary: oklch(0.3 0.17 260);
 	--primary-foreground: oklch(0.98 0.01 255);
 	--secondary: oklch(0.92 0.02 270);
 	--secondary-foreground: oklch(0.16 0.04 265);
@@ -76,6 +90,19 @@
 	--sidebar-accent-foreground: oklch(0.16 0.04 265);
 	--sidebar-border: oklch(0.9 0.015 255);
 	--sidebar-ring: oklch(0.5 0.1 260);
+	--audio: oklch(0.55 0.13 165);
+	--speech: oklch(0.5 0.12 200);
+	--model: oklch(0.5 0.17 288);
+	--fast-path: oklch(0.6 0.16 60);
+	--tool: oklch(0.5 0.12 230);
+	--memory: oklch(0.55 0.14 330);
+	--mesh: oklch(0.45 0.1 265);
+	--node-hub: oklch(0.94 0.02 250);
+	--node-satellite: oklch(0.97 0.01 255);
+	--section-alt: oklch(0.955 0.012 255);
+	--halo-from: oklch(0.9 0.05 230);
+	--halo-via: oklch(0.7 0.15 255);
+	--halo-to: oklch(0.3 0.17 260);
 }
 
 .dark {
@@ -111,6 +138,19 @@
 	--sidebar-accent-foreground: oklch(0.98 0.01 255);
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.55 0.03 264);
+	--audio: oklch(0.83 0.13 165);
+	--speech: oklch(0.8 0.1 200);
+	--model: oklch(0.74 0.15 288);
+	--fast-path: oklch(0.8 0.15 75);
+	--tool: oklch(0.75 0.12 220);
+	--memory: oklch(0.78 0.13 330);
+	--mesh: oklch(0.78 0.09 265);
+	--node-hub: oklch(0.24 0.06 262);
+	--node-satellite: oklch(0.2 0.05 262);
+	--section-alt: oklch(0.16 0.05 262);
+	--halo-from: oklch(0.5 0.12 250);
+	--halo-via: oklch(0.4 0.15 265);
+	--halo-to: oklch(0.15 0.05 265);
 }
 
 @layer base {
@@ -119,6 +159,11 @@
 	}
 	body {
 		@apply bg-background text-foreground;
+	}
+	@media (prefers-reduced-motion: no-preference) {
+		html {
+			scroll-behavior: smooth;
+		}
 	}
 }
 
@@ -147,11 +192,27 @@
 		}
 	}
 
-	.animate-domia-pulse {
+	@keyframes mesh-dash {
+		to {
+			stroke-dashoffset: -32;
+		}
+	}
+}
+
+@utility animate-domia-pulse {
+	@media (prefers-reduced-motion: no-preference) {
 		animation: domia-pulse 3s ease-in-out infinite;
 	}
+}
 
-	.animate-halo {
+@utility animate-halo {
+	@media (prefers-reduced-motion: no-preference) {
 		animation: halo-fade 6s ease-in-out infinite;
+	}
+}
+
+@utility animate-mesh-dash {
+	@media (prefers-reduced-motion: no-preference) {
+		animation: mesh-dash 2.2s linear infinite;
 	}
 }

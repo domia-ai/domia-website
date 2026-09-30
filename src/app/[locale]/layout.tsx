@@ -42,33 +42,7 @@ export async function generateMetadata({
 			template: "%s | Domia",
 		},
 		description: t("home.description"),
-		keywords: [
-			"local voice AI",
-			"open source voice AI",
-			"open source Alexa alternative",
-			"local speech-to-speech AI",
-			"private voice assistant",
-			"offline AI assistant",
-			"on-device LLM",
-			"self-hosted voice AI",
-			"networked voice AI",
-			"multi-room voice AI",
-			"multi-room",
-			"voice satellite",
-			"ESPHome",
-			"Wyoming protocol",
-			"AI mesh",
-			"voice AI delegation",
-			"local AI companion",
-			"voice AI personality",
-			"Home Assistant voice AI",
-			"MCP voice assistant",
-			"TypeScript voice AI",
-			"sherpa-onnx",
-			"Ollama voice assistant",
-			"Domia",
-		],
-		creator: "Domia Team",
+		creator: "Domia",
 		metadataBase: new URL(SITE_URL),
 		alternates: {
 			canonical: alternates.canonical(locale),
@@ -116,43 +90,52 @@ const buildJsonLd = (locale: string, t: (key: string) => string) => ({
 	"@graph": [
 		{
 			"@type": "Organization",
-			"@id": "https://domia.ai/#organization",
+			"@id": `${SITE_URL}/#organization`,
 			name: "Domia",
-			url: "https://domia.ai",
-			logo: "https://domia.ai/og-image.png",
-			sameAs: ["https://x.com/domia_ai", "https://github.com/domia-ai"],
+			url: SITE_URL,
+			logo: {
+				"@type": "ImageObject",
+				url: `${SITE_URL}/logo.png`,
+				width: 512,
+				height: 512,
+			},
+			sameAs: [
+				"https://x.com/domia_ai",
+				"https://github.com/domia-ai",
+				"https://discord.gg/Sx4ACEMSyv",
+			],
 		},
 		{
 			"@type": "WebSite",
-			"@id": "https://domia.ai/#website",
+			"@id": `${SITE_URL}/#website`,
 			name: "Domia",
 			url: localizedUrl("/", locale),
 			description: t("jsonLd.websiteDescription"),
-			publisher: { "@id": "https://domia.ai/#organization" },
+			publisher: { "@id": `${SITE_URL}/#organization` },
 			inLanguage: locale,
 		},
 		{
 			"@type": "SoftwareApplication",
+			"@id": `${SITE_URL}/#software`,
 			name: "Domia",
-			applicationCategory: "MultimediaApplication",
-			operatingSystem: "macOS, Linux, Raspberry Pi OS",
+			applicationCategory: "UtilitiesApplication",
 			description: t("jsonLd.appDescription"),
 			url: localizedUrl("/", locale),
 			inLanguage: locale,
-			publisher: { "@id": "https://domia.ai/#organization" },
+			publisher: { "@id": `${SITE_URL}/#organization` },
 			offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
 			isAccessibleForFree: true,
 			license: "https://www.apache.org/licenses/LICENSE-2.0",
 		},
 		{
 			"@type": "SoftwareSourceCode",
-			"@id": "https://domia.ai/#sourcecode",
+			"@id": `${SITE_URL}/#sourcecode`,
 			name: "Domia",
 			codeRepository: "https://github.com/domia-ai/domia-core",
 			programmingLanguage: "TypeScript",
 			runtimePlatform: "Node.js",
 			license: "https://www.apache.org/licenses/LICENSE-2.0",
-			about: { "@id": "https://domia.ai/#organization" },
+			about: { "@id": `${SITE_URL}/#organization` },
 		},
 	],
 })
@@ -168,19 +151,14 @@ export default async function LocaleLayout({
 	if (!hasLocale(routing.locales, locale)) notFound()
 	setRequestLocale(locale)
 	const t = await getTranslations({ locale, namespace: "meta" })
-	const { nav, landing, contact } = (await getMessages({ locale })) as {
+	const tNav = await getTranslations({ locale, namespace: "nav" })
+	const { nav } = (await getMessages({ locale })) as {
 		nav: AbstractIntlMessages
-		landing: { askAi: AbstractIntlMessages }
-		contact: { form: AbstractIntlMessages }
 	}
-	const clientMessages = {
-		nav,
-		landing: { askAi: landing.askAi },
-		contact: { form: contact.form },
-	}
+	const clientMessages = { nav }
 
 	return (
-		<html lang={locale} suppressHydrationWarning>
+		<html lang={locale} data-scroll-behavior="smooth" suppressHydrationWarning>
 			<head>
 				<script
 					type="application/ld+json"
@@ -190,6 +168,12 @@ export default async function LocaleLayout({
 				/>
 			</head>
 			<body className={`${outfitSans.className} antialiased`}>
+				<a
+					href="#main"
+					className="focus:bg-background focus:ring-ring/50 sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:px-3 focus:py-2 focus:ring-3"
+				>
+					{tNav("skipToContent")}
+				</a>
 				<SpeedInsights />
 				<Analytics />
 				<NextIntlClientProvider messages={clientMessages}>
@@ -200,8 +184,8 @@ export default async function LocaleLayout({
 						disableTransitionOnChange
 					>
 						<Navbar />
-						<main className="flex justify-center px-2">
-							<div className="w-full max-w-7xl">{children}</div>
+						<main id="main" className="flex min-h-[60vh] flex-col">
+							{children}
 						</main>
 						<Toaster />
 						<Footer />

@@ -1,34 +1,48 @@
 import Image from "next/image"
 import { getTranslations } from "next-intl/server"
 
-import { TypographyH1, TypographyXLarge } from "@/components/ui/typography"
+import { SectionHero } from "@/components/sections"
+import { Button } from "@/components/ui/button"
+import { casesHeroImageSide, casesHeroImageSizes } from "@/constants/pages"
+
+import { RouteLegend } from "./route-legend"
 
 export async function Hero() {
 	const t = await getTranslations("cases.hero")
 
 	return (
-		<div className="flex flex-col-reverse lg:flex-row">
-			<div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
-				<TypographyH1 className="leading-tight">{t("title")}</TypographyH1>
-
-				<TypographyXLarge className="max-w-md">
-					{t("subtitle")}
-				</TypographyXLarge>
-			</div>
-
-			<div className="flex flex-1 items-center justify-center">
-				<div className="relative">
-					<div className="animate-halo absolute inset-0 z-0 rounded-full bg-radial-[at_50%_75%] from-sky-200 via-blue-400 to-indigo-900 to-90% blur-2xl" />
-					<Image
-						src="/cases.webp"
-						alt={t("imageAlt")}
-						width={500}
-						height={500}
-						priority
-						className="animate-domia-pulse relative z-10 h-auto w-full max-w-[500px]"
-					/>
-				</div>
-			</div>
-		</div>
+		<SectionHero
+			eyebrow={t("eyebrow")}
+			title={t("title")}
+			subtitle={t("subtitle")}
+			priority
+			actions={
+				<>
+					<Button size="lg" nativeButton={false} render={<a href="#home" />}>
+						{t("homeAnchor")}
+					</Button>
+					<Button
+						size="lg"
+						variant="outline"
+						nativeButton={false}
+						render={<a href="#hospitality" />}
+					>
+						{t("hospitalityAnchor")}
+					</Button>
+				</>
+			}
+			art={
+				<Image
+					src="/cases.webp"
+					alt={t("imageAlt")}
+					width={casesHeroImageSide}
+					height={casesHeroImageSide}
+					sizes={casesHeroImageSizes}
+					priority
+					className="animate-domia-pulse h-auto w-full max-w-60 lg:max-w-105"
+				/>
+			}
+			below={<RouteLegend />}
+		/>
 	)
 }

@@ -1,0 +1,34 @@
+{
+	"meta": {
+		"source": "domia-core/docs/ARCHITECTURE.md (The companion: tiered memory, two-brain reflection pass); domia-core/src/modules/prompt-context-builder/controller/index.ts (WHO YOU'RE TALKING TO and PREVIOUSLY sections: user model and episodes loaded once per session)",
+		"capturedAt": "2026-09-28T00:00:00.000Z",
+		"generator": "manual"
+	},
+	"layers": [
+		{
+			"id": "recentTurns",
+			"writtenBy": "turn",
+			"recalledBy": "always"
+		},
+		{
+			"id": "facts",
+			"writtenBy": "reflection",
+			"recalledBy": "relevance"
+		},
+		{
+			"id": "knowledge",
+			"writtenBy": "author",
+			"recalledBy": "relevance"
+		},
+		{
+			"id": "episodes",
+			"writtenBy": "reflection",
+			"recalledBy": "session"
+		},
+		{
+			"id": "userModel",
+			"writtenBy": "reflection",
+			"recalledBy": "session"
+		}
+	]
+}

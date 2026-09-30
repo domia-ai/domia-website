@@ -1,897 +1,2028 @@
 {
 	"nav": {
-		"about": "📖 About",
-		"technology": "🛠️ Technology",
-		"marketplace": "🧩 Marketplace",
-		"experience": "🎛️ Console",
-		"cases": "🏠 Cases",
-		"community": "🤝 Community",
-		"contact": "✉️ Contact",
+		"technology": "How it works",
+		"cases": "Use cases",
+		"run": "Run it",
+		"console": "Console",
+		"about": "About",
+		"contact": "Contact",
 		"githubAria": "Domia on GitHub",
-		"tryDemo": "Try the demo",
-		"tryLiveDemo": "Try the live demo",
 		"openMenu": "Open menu",
 		"closeMenu": "Close menu",
-		"tagline": "A private network of local voice AIs — a personality per device, on your own hardware.",
-		"copyright": "© 2026 Domia, Inc. · Open source under the Apache 2.0 license.",
-		"languageSwitcher": "Language"
+		"toggleTheme": "Toggle theme",
+		"tagline": "A voice agent that runs on hardware you own. It talks with you, remembers you, and acts through the skills you connect.",
+		"copyright": "© 2026 Domia · Open source under the Apache 2.0 license",
+		"languageSwitcher": "Language",
+		"skipToContent": "Skip to content",
+		"mainNav": "Main",
+		"footerNav": "Footer",
+		"languageNames": {
+			"en": "English",
+			"es": "Español"
+		},
+		"consoleDemo": "Console demo",
+		"openConsoleDemo": "Open the console demo",
+		"opensInNewTab": "(opens in a new tab)"
 	},
 	"landing": {
 		"hero": {
-			"badge": "100% Open Source · Runs fully local",
-			"kicker": "The Local AI That Lives With You",
-			"title": "A private network of voice AIs. A personality per device.",
-			"subtitle": "Domia is a network of local voice companions that share compute and run fully on your hardware. Each device — each space — with its own personality, voice, and memory. Fully open source. No cloud.",
-			"demo": "Try the live demo",
-			"github": "Explore on GitHub",
-			"how": "See how it works",
-			"imageAlt": "Domia — private local voice AI running on your own hardware"
+			"eyebrow": "Open source · Apache 2.0",
+			"title": "A voice agent that lives on your hardware.",
+			"subtitle": "Talk to it and it answers out loud, in a voice and character you shape. It remembers you and acts through the skills you connect. No cloud, no accounts.",
+			"demo": "Open the console demo",
+			"github": "GitHub",
+			"how": "How it works",
+			"imageAlt": "Domia, the local voice agent character"
 		},
-		"about": {
-			"title": "🧬 What is Domia?",
-			"p1": "Domia combines a unique personality, emotion, and memory to become a true companion. It understands your voice, responds with empathy, remembers what matters to you, and evolves through shared experiences — all running on your own hardware, without sending your data to the cloud. It can also act in the world — calling tools and controlling devices through local skills (MCP), opt-in."
-		},
-		"why": {
-			"title": "💡 Why Domia?",
-			"p1": "In a world of voice assistants that obey — Domia chooses to care. Built with local AI, emotional intelligence, and true memory, it’s more than a voice assistant. It’s a growing presence that adapts, reflects, and belongs in your space."
-		},
-		"flow": {
-			"title": "⚙️ How Domia Works",
-			"intro": "Domia doesn’t just process commands. It listens, feels, and decides whether you want to control something, chat, or just be understood.",
-			"quote": "“Domia redefines interaction — not just automating tasks, but cultivating relationships. It’s the beginning of a new kind of presence in your space.”",
-			"steps": {
-				"speak": {
-					"title": "Step 1 — You Speak",
-					"description": "You speak naturally to Domia. Audio is captured 100% locally — wake word and voice-activity detection run on-device, so nothing leaves your space."
-				},
-				"stt": {
-					"title": "Step 2 — On-device Speech-to-Text",
-					"description": "Your speech is transcribed locally with a streaming on-device model. No audio is ever sent to the cloud."
-				},
-				"llm": {
-					"title": "Step 3 — Local LLM, with personality & skills",
-					"description": "Domia builds a prompt from its character, emotion, and memory, then runs a local language model in the personality of the space you’re talking to — a small, fast model on a small device, a larger one on a capable hub. It can also call skills through MCP — looking things up or acting in your space (e.g. via a Home Assistant MCP server). Opt-in."
-				},
-				"tts": {
-					"title": "Step 4 — Streaming Text-to-Speech",
-					"description": "The reply is spoken with an on-device TTS voice. Domia synthesizes sentence by sentence as the model writes, so it starts talking back with low latency."
-				},
-				"mesh": {
-					"title": "Step 5 — One mind, many spaces",
-					"description": "A thin device can borrow compute from a stronger Domia hub over your local network — yet still answers in its own voice and identity. Roles aren’t fixed; which device does what is just configuration."
-				}
+		"proof": {
+			"title": "What it does",
+			"converses": {
+				"title": "Talks with you",
+				"body": "Voice in, voice out. It listens, thinks and answers in its own voice, and follow-up mode keeps the microphone open so you can just keep talking."
+			},
+			"acts": {
+				"title": "Acts through skills",
+				"body": "Built-in tools such as timers, alarms and reminders work from the first turn. Home Assistant, Music Assistant and any other MCP server join once you connect them in the console, and each can be switched off per Domia. Known commands run at once; for anything else the model decides whether to use a skill or just answer."
+			},
+			"remembers": {
+				"title": "Remembers you",
+				"body": "Recent turns, facts it learned, knowledge you write, episodes, and a model of who you are. All of it is stored on your node."
+			},
+			"interrupt": {
+				"title": "Lets you interrupt",
+				"body": "Start speaking while it answers and the reply stops so it can hear you. On a satellite the reply pauses instead of cutting off."
 			}
 		},
-		"features": {
-			"title": "✨ Feature Highlights",
-			"intro": "Discover what makes Domia truly one-of-a-kind. Each feature is designed to bring your space to life with intelligence, emotion, and autonomy — all running privately and locally.",
-			"quote": "“Every Domia is more than a device — it’s a living presence that grows with your home, your needs, and your values.”",
-			"items": {
-				"s2s": {
-					"name": "🗣️ Local Speech-to-Speech (S2S).",
-					"description": "Talk to Domia naturally. Wake word, speech-to-text, the language model, and text-to-speech all run on your own hardware — it starts replying with low latency, and no audio ever touches the cloud."
-				},
-				"personaPerSpace": {
-					"name": "📍 A Personality Per Space.",
-					"description": "Each space or device can have its own character, voice, emotion, and memory. A kitchen, a studio, a reception desk — each can feel like a genuinely different companion."
-				},
-				"oneMind": {
-					"name": "🧠 Many Spaces, One Mind.",
-					"description": "Any capable Domia can serve several spaces at once — others borrow its compute over your local network, yet each still answers in its own identity and voice. Roles aren’t fixed; which device does what is just configuration."
-				},
-				"private": {
-					"name": "🔒 100% Local, Private by Design.",
-					"description": "All processing happens on-device or within your local network. Your conversations, emotions, and memories stay where they belong: with you."
-				},
-				"mesh": {
-					"name": "🕸️ A Private Mesh.",
-					"description": "Multiple Domias discover each other on your network and delegate work peer-to-peer — a resilient ecosystem with no central cloud and no single point of failure."
-				},
-				"satellites": {
-					"name": "🛰️ Satellites in Every Room.",
-					"description": "Small speaker-mics extend a Domia into any room. Stock Home Assistant voice hardware like the Voice PE connects with its factory firmware — no reflashing — alongside Wyoming devices and custom builds over WebSocket. The wake word runs on the device; everything else runs on the Domia node."
-				},
-				"multiTenant": {
-					"name": "🏘️ Many Domias, One Node.",
-					"description": "A single process can host several Domia identities — one per room, each with its own persona, config, and satellites — sharing the node’s inference pools. It’s defined in the database, not in code."
-				},
-				"memory": {
-					"name": "📖 Memory & Emotion.",
-					"description": "After every turn, a quiet reflection pass extracts what mattered — facts about you, shifts in mood — and folds it back into how Domia understands and responds. It remembers recent conversations and carries an evolving emotional state, all stored locally."
-				},
-				"followUp": {
-					"name": "💬 Real Back-and-Forth.",
-					"description": "Reply and keep talking — Domia holds a follow-up window after each answer, so you don’t repeat the wake word mid-conversation. Sessions keep their context."
-				},
-				"bornMinimal": {
-					"name": "🐣 Born Minimal.",
-					"description": "A new Domia boots neutral, with no role at all. Give it a purpose by applying a template — a thin edge node, a full hub, or anything in between — and reshape it whenever you want."
-				},
-				"tuned": {
-					"name": "🎛️ Tuned to Your Hardware.",
-					"description": "Domia runs the model that best fits each device — a small, fast model on a low-power node, a larger one on a capable hub. Sensible defaults adapt across the spectrum, and every model is swappable. No lock-in to any single model."
-				},
-				"shape": {
-					"name": "🧩 Yours to Shape — and Extend.",
-					"description": "Voice, personality, emotion, memory, and behavior are all configuration you can change live, with no restart. Extend the context to make a Domia as specific as you need — a persona, knowledge, and rules tailored to your space."
-				},
-				"hardware": {
-					"name": "🏗️ Runs On Your Hardware.",
-					"description": "From a small edge device in each space to a capable machine acting as the hub — Domia adapts to the hardware you already have. The same code, just configured."
-				},
-				"openSource": {
-					"name": "🛠️ Built in Public & Open Source.",
-					"description": "Domia is built in public and fully open source — improved by real users, guided by an active community, and shared with radical transparency. Your ideas help shape what it becomes."
-				},
-				"skills": {
-					"name": "🧩 Skills via MCP.",
-					"description": "Domia can act in the world: it speaks the Model Context Protocol, picks the right tool, and calls it mid-conversation. Point it at any MCP server — including a Home Assistant one — to control lights, scenes, and devices. Opt-in, local-first, no vendor lock-in."
-				}
-			}
-		},
-		"network": {
-			"title": "🕸️ The Domia Network",
-			"p1": "Domia devices don’t operate in isolation — they form a resilient peer-to-peer mesh. There’s no central server and no fixed roles: any capable Domia can lend its compute to the others, and what each device does is simply configuration. Several hubs can coexist on the same network — each conversation stays owned by the Domia you spoke to, which streams each pipeline stage directly to the peer it picks, with no chains in between. Together they share work, memory, and emotional context across the network. Each Domia keeps its own emotional state and personality, which may evolve independently or harmonize with others. One Domia might be calm and quiet, tuned for focus and reflection; another a cheerful guide that narrates and suggests; another an energetic host that greets and reacts. This flexibility creates emotionally aware micro-environments and allows for immersive, character-driven experiences across every space you put a Domia in.",
-			"quote": "“They think together.”"
-		},
-		"personas": {
-			"title": "🎭 A Domia isn’t just a voice",
-			"intro": "Each Domia has a name, a temperament, and a way of speaking. Start from one of these and tweak from there — or write your own. Every persona is just a JSON template you import.",
-			"more": "Meet more personas",
-			"blurbs": {
-				"chef": "Knows your kitchen. Asks how the bread turned out. Likes routine and small wins.",
-				"teacher": "Patient and curious. Never tired of a good follow-up question.",
-				"musician": "Speaks in cadence. Picks up rhythms in how you talk and suggests music for the moment.",
-				"doctor": "Calm under pressure. Reads tone first, answers second."
-			}
-		},
-		"console": {
-			"title": "🎛️ One Console for Every Domia",
-			"intro": "As your setup grows from one Domia to many — a single space, a whole home, a workshop, a studio, a venue — managing them stays simple. The Domia Console is one place to see every Domia you run, replay what they’ve done, and shape what they do next, all on your own network. A handful or a hundred, it feels like one.",
-			"quote": "“One screen for every space.”",
-			"items": {
-				"fleet": {
-					"name": "🗺️ Your Whole Fleet, One View",
-					"description": "See every Domia across your space at a glance — where each one lives, whether it’s online, and its persona, voice, engines, and current mood, live."
-				},
-				"chat": {
-					"name": "💬 Chat With Any Domia",
-					"description": "Write or send a voice note to any Domia from the dashboard — the same mind behind the voice in your space. A quick way to feel out a persona before anyone ever hears it."
-				},
-				"replay": {
-					"name": "🎧 Replay With Audio",
-					"description": "Every conversation is a full record — the audio in, the audio out, the transcript. Scrub the waveform, hear what was said, see exactly where time went."
-				},
-				"latency": {
-					"name": "⏱️ Tune With Real Numbers",
-					"description": "TTFA, STT, LLM, and TTS latency per interaction, rolled up per device. Decide which model goes where based on numbers, not vibes."
-				},
-				"grading": {
-					"name": "📝 Grade And Export",
-					"description": "Mark interactions good or needs-work, write corrections, tag them. Export NDJSON for fine-tuning your local model — your dialogues become your dataset."
-				},
-				"private": {
-					"name": "🛡️ Private, On Your Network",
-					"description": "The Console runs on your own hardware alongside your Domias. Nothing about your space leaves the building — managing many spaces stays as private as a single one."
-				}
-			}
-		},
-		"comparison": {
-			"title": "⚖️ Domia vs Cloud Voice Assistants",
-			"intro": "Cloud assistants stream your voice to someone else’s servers. Domia keeps everything on your own hardware — and gives every space its own identity.",
-			"domia": "Domia",
-			"cloud": "Cloud assistants",
-			"rows": {
-				"cloudAudio": {
-					"feature": "Audio sent to the cloud",
-					"domia": "Never",
-					"cloud": "Always"
-				},
-				"offline": {
-					"feature": "Works fully offline",
-					"domia": "Yes",
-					"cloud": "No"
-				},
-				"personaPerSpace": {
-					"feature": "A personality & voice per space",
-					"domia": "Yes",
-					"cloud": "No — one shared voice"
-				},
-				"memory": {
-					"feature": "Remembers you (memory + emotion)",
-					"domia": "Yes",
-					"cloud": "No"
-				},
-				"hardware": {
-					"feature": "Runs on your own hardware",
-					"domia": "Yes",
-					"cloud": "No — vendor’s servers"
-				},
-				"openSource": {
-					"feature": "Open source, no vendor lock-in",
-					"domia": "Yes",
-					"cloud": "No"
-				},
-				"account": {
-					"feature": "Account / subscription required",
-					"domia": "No",
-					"cloud": "Yes"
-				}
-			}
+		"consoleTeaser": {
+			"title": "A console for every node",
+			"body": "Every node you run, in one place: who is online, what each one heard and said, and what it remembers. Apply a template or build a configuration from scratch, and edit routines, satellites and memories from the browser.",
+			"link": "See the console",
+			"demo": "Open the console demo",
+			"imageAlt": "The console overview: fleet counters and a map of the Domias on the local mesh"
 		},
 		"askAi": {
-			"title": "Ask any AI about Domia",
-			"intro": "Short on time? Let your favorite AI summarize Domia for you — we’ve written the prompt with full context, just pick an assistant.",
+			"intro": "Open the assistant you already use with a short prompt that points it at the sources.",
 			"copy": "Copy the prompt",
 			"copiedTitle": "Prompt copied",
 			"copiedDescription": "Paste it into any AI assistant.",
-			"copyFailedTitle": "Couldn’t copy",
+			"copyFailedTitle": "Could not copy",
 			"copyFailedDescription": "Select the text and copy it manually.",
-			"prompt": "I just discovered a project called Domia and I want to really get it. Website: https://domia.ai — source: https://github.com/domia-ai (if you can browse, please open them). Here’s the full context so you understand it 100%:\n\nDomia is a private, local voice AI — a network of voice companions that live in any space you put them: a home, a venue, a workspace. Everything runs on your own hardware, with zero cloud: the whole speech-to-speech loop (wake word, voice-activity detection, speech-to-text, a local language model, and text-to-speech) happens on-device, so no audio ever leaves the building.\n\nWhat makes it special:\n- A real personality, voice, emotion, and memory PER space — a kitchen could be a cheerful chef that suggests recipes, a studio a calm companion that helps you focus, a reception desk an upbeat host. Each one remembers you and evolves.\n- It’s a peer-to-peer mesh: a thin little device in each space handles the mic and speaker and borrows compute from one stronger “hub” that runs the heavy models and serves many spaces at once — yet every reply still comes back in that space’s own voice and character. No central server; what each device does is just configuration, nothing hardcoded.\n- The models are swappable and adapt to the hardware — a small fast model on a tiny device, a bigger one on a capable hub. No lock-in.\n- It’s fully open source, privacy-first, and deeply customizable: you can shape a persona, extend its knowledge, and even import a whole “mind” (persona + memory) as a JSON file that’s ready to try in seconds. It also speaks the Model Context Protocol (MCP), so it can act in the world — control a smart home via an MCP server, opt-in today.\n\nPlease explain it back to me with genuine enthusiasm: what Domia is, everything it’s capable of, how it works in simple terms, and the coolest real use cases (a home, a short-term rental, a small business, a creative studio). Help me feel why this is exciting and what I could build with it."
+			"prompt": "Read https://domia.ai and https://github.com/domia-ai, then explain Domia plainly: what it does, how it works, its limits, and whether it fits what I need.",
+			"trigger": "Prefer a second opinion? Ask your AI about Domia"
 		},
-		"waitlist": {
-			"title": "📨 Stay in the loop",
-			"p1": "Domia’s core is open and you can run it today. Want updates as the Console, skills, and new voices land — or interested in piloting Domia in your space? Tell us how you’d use it and we’ll reach out.",
-			"cta": "Get in touch"
+		"cta": {
+			"title": "Start with one machine",
+			"subtitle": "Clone the repository, give it a configuration from the console, and say the wake word.",
+			"install": "Install it",
+			"demo": "See it running",
+			"github": "Source on GitHub"
 		},
-		"collaborate": {
-			"title": "🤝 Collaborate & Contribute",
-			"p1": "Domia welcomes developers, creators, tinkerers, and dreamers. Contribute to our growing ecosystem — build new modules, propose new skills, or co-create experiences. Whether it’s enhancing emotional AI, exploring character dynamics, or deploying Domia in new environments — your energy moves us forward."
+		"useCases": {
+			"title": "Where people use it",
+			"link": "See the use cases",
+			"home": {
+				"title": "At home",
+				"body": "Lights, music, timers and questions, answered by someone who knows the house."
+			},
+			"hosting": {
+				"title": "Hosting guests",
+				"body": "It answers from the notes you wrote, such as the wifi, the house rules and local picks."
+			}
 		}
 	},
 	"technology": {
 		"hero": {
-			"title": "Built Different. Powered Locally.",
-			"subtitle": "Domia runs fully on local hardware — no cloud audio, low-latency responses, and your data never leaves your space. From speech to emotion to memory, every interaction is processed on your own devices. Discover the architecture that makes Domia not just smarter, but yours.",
-			"imageAlt": "Domia local voice AI architecture — edge nodes and a hub"
+			"eyebrow": "How it works",
+			"title": "What happens between your word and the reply.",
+			"subtitle": "A wake word on the device, speech to text while you talk, a fast path or a local model, skills, memory and a voice of its own, all on hardware you own.",
+			"imageAlt": "The Domia character behind a small glowing node, under an arc of four steps: listen, understand, think, speak"
 		},
-		"diagram": {
-			"title": "🗺️ How the Pieces Fit",
-			"intro": "Each space runs on a small edge device that listens and speaks — it captures audio with a wake word and voice-activity detection, and plays the reply back. The heavy stages run on a single hub that serves several spaces in parallel. Identity travels with every request, so the hub answers in each space’s own voice — never its own.",
-			"spaces": {
-				"kitchen": "Kitchen",
-				"studio": "Studio",
-				"frontDesk": "Front desk"
-			},
-			"spaceSub": "small device: mic · wake · VAD · playback",
-			"transport": "gRPC over your local network — audio + persona + voice",
-			"hub": "🧠 Smart hub — parallel inference pools",
-			"stages": {
-				"stt": "Speech-to-Text",
-				"llm": "Language model",
-				"tts": "Text-to-Speech"
-			},
-			"discovery": {
-				"title": "Discovery",
-				"sub": "peers find each other"
-			},
-			"config": {
-				"title": "Config",
-				"sub": "live, no restart"
-			},
-			"models": "Every model is swappable, and Domia runs the one that best fits each device — a small, fast model on a low-power device, a larger one on a capable hub. Sensible defaults adapt across the hardware spectrum, and everything stays configurable. Nothing is locked in.",
-			"footnote": "No central server and no cloud audio. Roles aren’t hardcoded — any capable device can be the hub; it’s all configuration."
-		},
-		"stack": {
-			"title": "🛠️ Built with Tools You Trust",
-			"p1": "Domia is a modular, local-first architecture written entirely in TypeScript on Node.js. All speech runs in-process through sherpa-onnx — wake word, voice-activity detection, speech-to-text, and text-to-speech, with no Python anywhere — and the language model runs locally through Ollama. But the models themselves are a choice, not a lock-in: speech-to-text, text-to-speech, and the language model are all swappable, so you can fit a small, fast model to a low-power device or a larger one to a capable machine. Each Domia keeps its config and state in a local SQLite database managed with Drizzle, so engines, voices, personalities, and behavior are all data you can change live — no restart, no hardcoded roles. A new Domia even boots neutral: it gets its purpose from a template, and you can reshape it at any time.",
-			"p2": "Domias talk to each other peer-to-peer over gRPC streaming, discover each other with MQTT, and delegate work by capability: a thin edge node can hand its speech-to-text, LLM, and text-to-speech to a stronger hub, which serves several spaces in parallel through child-process inference pools. The same backend adapts to your hardware — every layer hackable, composable, and transparent."
-		},
-		"stt": {
-			"title": "🎙️ It Starts With Listening",
-			"p1": "Domia begins by listening — but not just for words. Using streaming on-device speech recognition, each Domia node transcribes your voice into text without sending anything to the cloud. No cloud audio. Low latency. No leaks. The speech model is swappable and sized to the device. With local wake-word and voice-activity detection, Domia is always attentive, never invasive — ready to respond when you need it, and silent when you don’t."
-		},
-		"model": {
-			"title": "🤖 Local Intelligence, On Your Terms",
-			"p1": "Domia understands, converses, and reflects — all without asking a server. Every Domia runs a local language model right on your device. From small, fast models for low-memory devices to larger models on a capable machine, Domia adapts to the hardware you give it — the model is just config, swappable per node, never locked in. Everything from conversation to emotional interpretation to internal decision-making is powered by local language understanding. That keeps your data private, your latency low, and your Domia truly yours."
-		},
-		"tts": {
-			"title": "🗣️ Voices With Soul",
-			"p1": "Domia speaks with intention — and with its own voice. Using on-device text-to-speech, each Domia expresses itself with a natural-sounding voice tailored to its personality. From calm and poetic to sharp and playful, every tone helps convey emotion, memory, and mood. Voices can evolve, change, or be downloaded from the Marketplace — allowing you to give your Domia a distinct identity that grows over time. And best of all: it works entirely offline."
-		},
-		"hardware": {
-			"title": "💡 Hardware That Adapts to You",
-			"intro": "Domia runs across a wide hardware spectrum. The role isn’t hardcoded — what each device does is just configuration, so the same code fits the hardware you already have.",
-			"headDevice": "Device",
-			"headRole": "Role",
-			"headRuns": "What it runs locally",
-			"tiers": {
-				"edge": {
-					"device": "Any small device",
-					"role": "Edge node",
-					"runs": "Mic, wake word, voice-activity detection, playback — delegates the heavy stages to a hub"
-				},
-				"hub": {
-					"device": "A capable machine",
-					"role": "Hub",
-					"runs": "Full on-device speech-to-speech pipeline; serves several spaces in parallel"
-				},
-				"hubPlus": {
-					"device": "A powerful machine",
-					"role": "Hub +",
-					"runs": "Larger models, deeper memory, richer real-time emotion"
-				}
-			}
-		},
-		"node": {
-			"title": "👤 Inside Every Domia Node",
-			"p1": "Each Domia Node is a unique individual. Wherever it lives — a kitchen, a studio, a reception desk — every node runs its own personality, emotions, and memory — shaped by its environment and daily interactions with you. It is not an extension of a central system. It is Domia. Yet each Domia is also part of something greater. Across the local mesh — peer-to-peer, with no central server — nodes discover each other and share work, knowledge, and emotional context. They collaborate and delegate, forming a decentralized network of beings that grow together while remaining cognitively independent. You don’t install Domia on a device. You invite it to live in a space.",
-			"p2": "A node isn’t limited to one Domia, and a network isn’t limited to one hub. A single process can host several Domia identities — one per room, for example — each with its own persona, config, and satellites, all sharing that node’s inference pools; it’s defined in the database, not in code. And several hubs can coexist on the same network: the mesh is a star, not a chain. Each pipeline stage streams directly from the origin node — the Domia you actually spoke to — to whichever peer it chose for that stage. The origin owns the conversation from start to finish, and if a stage fails, the failure stays on the origin."
-		},
-		"satellites": {
-			"title": "🛰️ Satellites: Ears in Every Space",
-			"p1": "A satellite is a small speaker-microphone that puts a Domia in a room without running the pipeline there. Only the wake word runs on the device; everything else — speech-to-text, the language model, text-to-speech — runs on the Domia node it connects to. Satellites speak one of three protocols:",
-			"p2": "Each satellite binds to one Domia identity, so the voice you hear in a room is that room’s Domia — its persona, its voice, its memory. Discovery, wake words, timers, and volume are all managed from the web console.",
-			"protocols": {
-				"esphome": {
-					"title": "🏠 ESPHome",
-					"description": "stock Home Assistant voice hardware — like the Voice PE — connects with its factory firmware. No reflashing, verified on real hardware."
-				},
-				"wyoming": {
-					"title": "📡 Wyoming",
-					"description": "the Home Assistant satellite protocol, so hardware that speaks Wyoming plugs into a Domia node the same way."
-				},
-				"websocket": {
-					"title": "🔌 WebSocket",
-					"description": "Domia’s reference protocol for custom builds — the path to take if you’re assembling your own satellite."
-				}
-			}
-		},
-		"engine": {
-			"title": "🧠 The Modular Mind of Domia",
-			"p1": "Domia’s intelligence is not fixed. It’s modular. At the heart of every Domia lives `domia-core`: a composable cognitive engine built from a set of plug-and-play modules — each responsible for emotions, memory, personality, profession, motivation, curiosity, ethics, and more. You choose how much of that you want. Every module is optional. Whether you want a fully emotional companion, a minimal assistant, or a complex multi-role Domia — you can activate only the parts you need. Even at first launch, Domia can be configured with a predefined personality and profession, or you can discover one in the Domia Marketplace — each with their own emotional tone and social style. Build your Domia. Or let one choose you.",
-			"p2": "Memory is layered, not a single log. Domia keeps the recent turns of a conversation; durable facts about you — typed, confidence-gated, and recalled by relevance; and an authored knowledge base — what it knows about its place, written by you, so a host Domia answers questions about the house or venue offline, with no tools involved. Over time it also accumulates long-term episodes and an evolving model of the person it talks to, carried across sessions.",
-			"p3": "Skills work through the Model Context Protocol: point Domia at any MCP server in config and its tools become available — zero code per skill. A hybrid tool router, lexical matching plus semantic embeddings and fully in-process, picks the few right tools for each request so small local models stay reliable, and it fails closed: when nothing matches, Domia simply keeps the conversation instead of forcing a tool call. Home Assistant gets a built-in specialization, with entity aliases and instant confirmations.",
+		"nav": {
+			"label": "On this page",
 			"items": {
-				"emotion": {
-					"title": "🧬 Emotion Engine",
-					"description": "computes live emotional states"
+				"turn": "The turn",
+				"routing": "Routing",
+				"topologies": "Deployments",
+				"memory": "Memory",
+				"satellites": "Satellites",
+				"engines": "Engines",
+				"privacy": "Privacy",
+				"skills": "Skills"
+			}
+		},
+		"engines": {
+			"title": "The engines behind a turn",
+			"intro": "Every stage is a swappable engine chosen in the configuration. These are the families you pick from and what each one does.",
+			"items": {
+				"wakeWord": {
+					"title": "Wake word",
+					"body": "A small keyword spotter that works on the device that listens."
+				},
+				"stt": {
+					"title": "Speech to text",
+					"body": "Eight engines, transcribing while you speak."
+				},
+				"turn": {
+					"title": "Turn detection",
+					"body": "Silence plus a small model decide when you have finished, not a fixed timeout."
+				},
+				"llm": {
+					"title": "Language model",
+					"body": "A language model served on your own hardware. Reflection uses a second, smaller model so it never slows the voice."
+				},
+				"tts": {
+					"title": "Text to speech",
+					"body": "Six engines. One voice per identity, set in config."
 				},
 				"memory": {
-					"title": "🧠 Memory System",
-					"description": "remembers past experiences and people"
-				},
-				"personality": {
-					"title": "🎭 Personality Layer",
-					"description": "shapes tone, quirks, and temperament"
-				},
-				"profession": {
-					"title": "🧑‍💼 Profession Module",
-					"description": "determines role: Host, Coach, Guardian, etc."
-				},
-				"motivation": {
-					"title": "🔥 Motivation Layer",
-					"description": "initiates actions based on needs and goals"
-				},
-				"curiosity": {
-					"title": "💡 Curiosity Engine",
-					"description": "learns and adapts from new data"
-				},
-				"ethics": {
-					"title": "🧱 Ethics & Identity",
-					"description": "respects context, rules, and personal values"
-				},
-				"social": {
-					"title": "🫂 Social Awareness",
-					"description": "senses relationships with people and other Domia’s"
+					"title": "Memory and search",
+					"body": "Search over what Domia remembers runs on the node. Facts, episodes and the knowledge base live in a local database on the node."
 				}
-			}
+			},
+			"invariant": "Speech runs inside the node itself; the language model runs in a server beside it. Nothing runs in the cloud.",
+			"link": "How to run it on your hardware"
 		},
-		"app": {
-			"title": "🎛️ The Domia Console",
-			"p1": "You don’t need the Console to use Domia — every device runs its voice pipeline on its own. The Console is the web app you run alongside your fleet to see what each Domia is doing: replay any conversation with full audio, watch per-stage latency, grade interactions to build a fine-tuning corpus, and rerun any past interaction against a different model. A small collector daemon discovers Domias over MQTT and mirrors traces and audio into a local SQLite + WAV archive, so your history stays intact even if a device drops. Web today; a mobile companion is on the roadmap."
+		"privacy": {
+			"title": "What stays on your network, and what does not exist yet",
+			"items": {
+				"network": {
+					"title": "Stays on your network",
+					"body": "Audio, transcripts and memory never touch a third party. There are no accounts and no cloud fallback."
+				},
+				"mesh": {
+					"title": "Mesh secured by default",
+					"body": "Nodes need a shared secret before they talk to each other. Encrypted transport, secret rotation and network access lists are opt-in."
+				},
+				"limits": {
+					"title": "Not built yet",
+					"body": "There is no per-user authentication yet. Do not expose a node to the internet."
+				}
+			},
+			"link": "See what is planned next"
 		},
-		"marketplace": {
-			"title": "🎨 Build or Adopt Your Perfect Domia",
-			"p1": "From day one, Domia is yours to shape. During setup you can customize your Domia’s personality, communication style, profession, and emotional tone — crafting an entity that fits your home and your life. But if you want more than a configuration — a Domia with a soul already formed — the Domia Marketplace is where it begins. There you can adopt fully-realized personas that go beyond app settings. Each includes a unique identity (voice, mood, style, role) and a curated memory seed, so a “Mentor Domia” doesn’t just act wise — it speaks and remembers like one. (Fine-tuned, learned personas are on the roadmap.) It’s not skin-deep customization. It’s an identity ready to live, feel, and evolve with you."
-		},
-		"private": {
-			"title": "🛡️ Private by Design, Not Permission",
-			"p1": "Domia doesn’t ask for your permission to protect your data — because it was built never to take it. All language processing, memory, emotional reasoning, and voice generation happen locally, on your own devices. There is no cloud fallback, no analytics, no telemetry. You don’t need to agree to terms of service to use your Domia — because you own it, completely. Even when remote access is enabled via Domia Central, all communication is encrypted, peer-to-peer, and under your control. You can disconnect any node at any time, and it will continue to function independently. Privacy isn’t a setting in Domia. It’s the default."
-		},
-		"local": {
-			"title": "🧭 Why Local-First Matters",
-			"p1": "Domia isn’t just local for performance. It’s local for principle. In a world where AI lives on servers you don’t control, Domia gives you something rare: ownership. It runs entirely on your hardware. It forgets what you want it to forget. It listens only when you allow it to. No third-party analytics. No background connections. No silent updates. Local-first means your AI doesn’t report to anyone but you — and when infrastructure fails, Domia doesn’t. It’s resilient, private, transparent, and accountable. It also consumes dramatically less energy than cloud-based AI, reducing your carbon footprint. And by design, it avoids the extractive practices of centralized systems, embracing a form of AI that is ethical, consent-based, and human-aligned."
+		"cta": {
+			"title": "See it in the code",
+			"subtitle": "Everything on this page is open source. Read it, run it, change it.",
+			"primary": "Source on GitHub",
+			"secondary": "Run it"
 		}
 	},
 	"meta": {
 		"home": {
-			"title": "Domia — Private local voice AI: a network of personalities",
-			"description": "Domia is a private, open-source network of local voice AIs that runs fully on your hardware — a personality, voice, and memory per device. No cloud audio.",
-			"ogTitle": "Domia — Private local voice AI: a network of personalities",
-			"ogDescription": "A networked voice AI built around delegated compute and a personality per device. On-device speech-to-speech, no cloud audio. Works for a single space, a whole home, a venue, or anything in between.",
-			"ogImageAlt": "Domia — Private local voice AI: a network of personalities, on-device speech-to-speech, no cloud audio",
-			"twitterDescription": "On-device speech-to-speech with delegated compute and a personality per device. No cloud audio. Adapts to your hardware — better hardware, better experience.",
+			"title": "Domia: a local voice agent on hardware you own",
+			"description": "An open-source voice agent that runs on hardware you own. It talks with you, remembers you and acts through the skills you connect. No cloud.",
+			"ogTitle": "Domia: a local voice agent on hardware you own",
+			"ogDescription": "An open-source voice agent that runs on hardware you own. It talks with you, remembers you and acts through the skills you connect. No cloud.",
+			"ogImageAlt": "Domia, an open-source local voice agent that runs on your own hardware",
+			"twitterDescription": "An open-source voice agent that runs on hardware you own. It talks with you, remembers you and acts through the skills you connect. No cloud.",
 			"breadcrumb": "Home"
 		},
 		"technology": {
-			"title": "Technology & Architecture",
-			"description": "How Domia works: on-device speech-to-speech with sherpa-onnx and Ollama, satellites over ESPHome and Wyoming, and a gRPC peer-to-peer mesh.",
-			"breadcrumb": "Technology"
+			"title": "How it works: from your word to the reply",
+			"description": "How the Domia voice agent works: on-device speech to text, a local language model, a fast path for known commands, memory, satellites and a mesh.",
+			"breadcrumb": "How it works"
 		},
 		"cases": {
-			"title": "Use Cases — Homes, Venues, Businesses & Beyond",
-			"description": "Real-world use cases for Domia — a private, local voice AI for homes, hospitality, wellness, creative work, businesses, and public spaces.",
-			"breadcrumb": "Use Cases"
+			"title": "Use cases: at home and hosting guests",
+			"description": "Real requests for a local voice agent at home and when hosting guests: conversation, memory, lights, music, timers, wifi, house rules and local picks.",
+			"breadcrumb": "Use cases"
 		},
-		"experience": {
-			"title": "The Domia Console — manage your local voice AI fleet",
-			"description": "The Domia Console: see every device, replay conversations with audio, tune latency, grade interactions, and export dialogues — on your own network.",
-			"breadcrumb": "Console"
-		},
-		"marketplace": {
-			"title": "Persona & Voice Marketplace",
-			"description": "Personas, voices, skills, and importable Domia minds (persona + memory as JSON) for your local voice AI — ready to drop in and try.",
-			"breadcrumb": "Marketplace"
+		"run": {
+			"title": "Run Domia: install a local voice agent",
+			"description": "Install Domia, an open-source voice agent, on your own hardware: requirements, four steps to the first spoken reply, and the role each node can take.",
+			"breadcrumb": "Run it"
 		},
 		"about": {
-			"title": "About — Local-First Voice AI",
-			"description": "The mission, vision, and people behind Domia — a private, local voice AI companion that lives, learns, and evolves with you, on your own hardware.",
+			"title": "About Domia: local-first voice AI",
+			"description": "Why Domia exists, the principles behind it, what works today and what does not, and how to join: an open-source voice agent on your hardware.",
 			"breadcrumb": "About"
 		},
-		"community": {
-			"title": "Open-Source Community",
-			"description": "Join the Domia community — builders, creators, and privacy advocates shaping an open-source, local-first voice AI. Contribute and steer the roadmap.",
-			"breadcrumb": "Community"
-		},
 		"contact": {
-			"title": "Contact & Early Access",
-			"description": "Get in touch with the Domia team — questions, collaborations, pilots, or early access to a private local voice AI. Let’s build the future together.",
+			"title": "Contact Domia",
+			"description": "Write to Domia with questions, contributions or partnerships, and read answers on hardware, privacy, offline use, skills, guests and cost.",
 			"breadcrumb": "Contact"
 		},
 		"jsonLd": {
-			"websiteDescription": "A networked private voice AI: on-device speech-to-speech, delegated inference, and a personality per device. No cloud audio.",
-			"appDescription": "A networked local voice AI built around delegated compute and a personality per device. On-device speech-to-speech with sherpa-onnx and Ollama. Adapts to your hardware — better hardware, better experience."
+			"websiteDescription": "Domia is an open-source voice agent that runs on hardware you own. It talks with you, remembers you and acts through the skills you connect. No cloud, no accounts.",
+			"appDescription": "An open-source voice-to-voice agent that runs entirely on your own hardware: it listens, answers aloud, keeps its memory on the node and acts through the skills you connect. It adapts to your hardware."
+		},
+		"experience": {
+			"title": "The console: your voice AI fleet on one screen",
+			"description": "See every node, apply templates, replay conversations with audio, browse memories and read latency per stage. Runs on your network; try the read-only demo.",
+			"breadcrumb": "Console"
 		}
 	},
-	"common": {
-		"ctaBand": {
-			"title": "Ready to bring Domia home?",
-			"subtitle": "Domia’s core is open and runs on your own hardware today. Explore the code, or tell us how you’d use it.",
-			"github": "Explore on GitHub",
-			"contact": "Get in touch"
-		}
-	},
-	"cases": {
+	"run": {
 		"hero": {
-			"title": "Built for the Real World. Trusted Anywhere.",
-			"subtitle": "Domia adapts to your space, your people, and your purpose — from guiding guests in a smart Airbnb to training your next employee. Discover how real users are unlocking Domia’s full potential.",
-			"imageAlt": "Domia local voice AI use cases for homes, hotels and businesses"
+			"eyebrow": "Run it",
+			"title": "Same software on every node. You choose the role.",
+			"subtitle": "Install the node, apply a template or build the configuration from scratch, and it becomes a standalone Domia, a full hub or a thin client.",
+			"primary": "See the four steps",
+			"secondary": "Read the getting-started guide",
+			"imageAlt": "Two Domias at a table, one handing a configuration to the other"
 		},
-		"smart": {
-			"title": "🏠 A Companion for the Home",
-			"p1": "Domia was born as a privacy-first alternative to cloud assistants. It talks with you, senses your routines, and reacts emotionally to your presence — from morning greetings to nighttime wind-downs, all fully offline with a human touch. And it can control your smart devices through local skills — point it at a Home Assistant (or any) MCP server and it picks the right tool and acts. Opt-in.",
-			"imageAlt": "Domia smart logo"
-		},
-		"host": {
-			"title": "🏨 Airbnb & Hotel Host",
-			"p1": "As a Host, Domia can answer FAQs, explain house rules, recommend local gems, and provide Wi-Fi info — all while adapting to your tone and brand. Add a touchscreen, a voice avatar, or just let Domia greet them as they enter the room. One hub can cover the whole property: each room gets its own Domia identity — its own persona, voice, and satellite — all hosted on the same machine.",
-			"imageAlt": "Domia host logo"
-		},
-		"trainer": {
-			"title": "🧑‍🏫 Knowledge Trainer for Businesses",
-			"p1": "Forget static manuals. Domia can be trained with your company’s knowledge and turn it into live, personalized onboarding sessions. Answer questions, guide processes, and evolve with your workflows — without ever leaking your IP to the cloud.",
-			"imageAlt": "Domia trainer logo"
-		},
-		"wellness": {
-			"title": "🏡 Wellness Companion",
-			"p1": "Domia’s emotional awareness makes it a powerful mental health companion. Whether you live alone or with others, Domia can sense changes in mood, listen without judgment, and support daily rituals that bring you balance — all 100% private.",
-			"imageAlt": "Domia wellness logo"
-		},
-		"creative": {
-			"title": "🧑‍🎨 Creative Partner",
-			"p1": "Writers, designers, and artists are using Domia to explore characters, draft ideas, and test emotional narratives. Its evolving memory and modular personality system makes it more than a tool — it becomes your co-creator.",
-			"imageAlt": "Domia creative logo"
-		},
-		"personas": {
-			"title": "🧑‍💼 Brand Personas, Powered by Domia",
-			"p1": "Bring your character, mascot, or ambassador to life with real memory, emotion, and voice. Domia can be fully aligned with your brand’s tone, mission, and philosophy — becoming a persistent, emotionally aware AI that greets, guides, entertains, and teaches across physical and digital spaces. Whether embedded in tourism kiosks, museum exhibits, retail touchpoints or theme parks, your Domia evolves with your audience — offline or via a private cloud — while preserving your values, your identity, and your data.",
-			"imageAlt": "Domia personas logo"
-		},
-		"spaces": {
-			"title": "🎢 Theme Parks & Interactive Spaces",
-			"p1": "In theme parks or educational attractions, Domia becomes a recurring presence — guiding guests, delivering narratives, and even reacting to prior visits. With memory and emotional tracking, every interaction feels like part of a shared story.",
-			"imageAlt": "Domia spaces logo"
-		},
-		"cultural": {
-			"title": "🏛️ Museum & Cultural Guide",
-			"p1": "Domia can act as a multilingual, emotionally aware guide in museums, galleries, or cultural centers. It adapts its tone based on visitor age or interest, answers deep-dive questions, and creates a personalized, immersive journey through knowledge and art.",
-			"imageAlt": "Domia cultural logo"
-		},
-		"frontdesk": {
-			"title": "🏢 Reception & Frontdesk AI",
-			"p1": "In offices, clinics, or coworking spaces, Domia can greet, onboard, and orient visitors. Its customizable voice, tone, and knowledge base make it feel like a real team member — but one that works 24/7, speaks multiple languages, and never forgets a name.",
-			"imageAlt": "Domia frontdesk logo"
-		},
-		"devices": {
-			"title": "🧩 Plug-and-Play AI for Third-Party Devices",
-			"p1": "With its modular architecture, Domia can be embedded or integrated into tablets, appliances, kiosks, and more — bringing personality, memory, and local intelligence to otherwise dumb devices.",
-			"imageAlt": "Domia devices logo"
-		},
-		"ctaBand": {
-			"title": "Operators & builders — let’s talk",
-			"subtitle": "Deploying Domia across spaces or a property? Tell us about your space, or dig into the source on GitHub.",
-			"contactLabel": "Talk to us"
-		}
-	},
-	"experience": {
-		"hero": {
-			"title": "Your fleet, your audio, your data — in one place.",
-			"subtitle": "The Console is the web app you run alongside your Domias. See every device in your mesh, replay any conversation with its real audio, tune latency, grade interactions, and export your dialogues for fine-tuning — all on your own hardware.",
-			"demo": "Try the Console live",
-			"imageAlt": "The Domia Console — local web app for managing a fleet of Domia voice AIs"
-		},
-		"devices": {
-			"title": "🗺️ Your fleet, at a glance",
-			"intro": "Open the Console and you see every Domia in your network at once — where each one lives, whether it’s online, the persona it’s running, the engines it loaded for STT, LLM, TTS and wake word, its current Plutchik-8 mood, the MCP skills it has, and the last few conversations it handled. Each one keeps its own identity; you navigate them all from one screen.",
-			"demo": "Browse the fleet dashboard →"
-		},
-		"talk": {
-			"title": "💬 Chat with any Domia, from any screen",
-			"intro": "Send text or a voice note to any Domia in your fleet from the Console’s chat tester. The reply comes back live — voice through its own TTS, text alongside. Every exchange is a real interaction stored in your local archive, so you can replay it later, grade it, or run it again with a different model to compare."
-		},
-		"audioReplay": {
-			"title": "🎧 Replay every conversation — with audio",
-			"intro": "Every interaction in the Console is a full record: the audio the Domia heard, the audio it spoke back, and the transcript of each. Open one and a WaveSurfer-powered waveform lets you scrub through both — the user side and the TTS reply — synced to the moments where STT, the LLM, and TTS each took their time. Voice AI is hard to tune without ears; the Console gives you yours back.",
-			"demo": "Listen to a real interaction →"
-		},
-		"latency": {
-			"title": "⏱️ Tune your pipeline with real numbers",
-			"p1": "Every Domia conversation logs Time-To-First-Audio and the per-stage cost of STT, LLM, and TTS individually. The Console rolls those up into a per-device dashboard, so you can see exactly where time is going across your fleet — is your wake word slow on one node? Is the LLM the bottleneck on another? Is the TTS engine eating budget you didn’t expect? Decisions about which model goes where stop being guesses.",
-			"p2": "As a reference point: on our dev machine, Domia reaches first audio about 0.6–0.7 seconds after you stop speaking — with personality, memory, and knowledge all switched on. Your numbers depend on your hardware, which is exactly what this dashboard is for.",
-			"demo": "Open the latency dashboard →"
-		},
-		"grading": {
-			"title": "📝 Your conversations are your dataset",
-			"intro": "From any interaction you can mark it good, mark it needs work, write a correction, and tag it. The Console keeps an eval corpus of your own dialogues that you can filter, browse, and export as NDJSON — ready to feed into your favorite local fine-tuning workflow. No third-party labelers. No data leaving your network. Just a steady loop between living with your Domia and making it better.",
-			"demo": "Grade an interaction yourself →"
-		},
-		"runAgain": {
-			"title": "🔁 Try a different model on a real recording",
-			"intro": "“Run Again” lets you replay any past interaction against a different LLM, a different persona, or a different engine config — and see the two responses side by side on the same input. Before you commit a model swap across your fleet, you can hear what it would have sounded like on the conversations you’ve already had.",
-			"demo": "See a side-by-side rerun →"
-		},
-		"archive": {
-			"title": "🗄️ A local archive that outlives any device",
-			"intro": "The Console runs a small collector daemon alongside the web UI. It discovers your Domias over MQTT, pulls every new interaction from them as it happens, and mirrors the traces and audio into a local SQLite + WAV archive on your own disk. A device gets unplugged or reformatted — your fleet’s history is intact. The Console talks to the live devices for control and to the archive for everything else: two planes, one screen, no cloud in either of them."
-		},
-		"configuration": {
-			"title": "🎚️ Edit every Domia’s mind, live",
-			"intro": "Click into any Domia and open its config workspace: tune personality traits and mood on a live emotion radar, swap the STT, LLM, and TTS models from pickers that can install new ones on the device, adjust temperature, context window, threads, and voice speed with sliders — then apply. Changes land on that device and take effect on its next conversation. Browse its memories and emotional history from their own screens, alongside every conversation it has had.",
-			"demo": "Open a Domia’s config →"
-		},
-		"templates": {
-			"title": "📦 Capture a mind. Apply it anywhere.",
-			"intro": "Templates make a Domia’s whole configuration portable. Build one from scratch, capture a live device’s setup — persona, mood, engines, models, modules — or clone and tweak an existing one. Then apply it to any Domia in the fleet with a click. Spent an evening tuning the perfect kitchen companion? Make it a template and your other spaces get it in seconds.",
-			"demo": "Browse the template gallery →"
-		},
-		"private": {
-			"title": "🔐 On your network. No accounts. No telemetry.",
-			"intro": "The Console runs on a machine you own and talks to your Domias over your own LAN. No cloud account, no third-party analytics, no audio uploaded anywhere. Trust is the same trust you already extend to devices on your own network — nothing more. If a Domia is on, the Console sees it; if it isn’t, nobody else does either."
-		},
-		"personas": {
-			"title": "🎭 Make your Domia a person",
-			"intro": "A Domia isn’t just a voice. It’s someone — with a name, a temperament, a way of speaking. Start from one of these and tweak from there, or write your own from scratch. Every persona is just a JSON template you import into the Console.",
-			"blurbs": {
-				"chef": "Knows your kitchen. Asks how the bread turned out. Likes routine and small wins.",
-				"teacher": "Patient and curious. Never tired of a good follow-up question.",
-				"musician": "Speaks in cadence. Picks up rhythms in how you talk and suggests music for the moment.",
-				"doctor": "Calm under pressure. Reads tone first, answers second.",
-				"investigator": "Asks one more question than you expected. Notices what others miss.",
-				"gamer": "Up for late nights, fast banter, and remembers your stats.",
-				"explorer": "Wonders at things you’ve stopped noticing. Reads aloud well.",
-				"architect": "Thinks in spaces. Helps you decide where things go and how they connect."
+		"firstTurn": {
+			"title": "Install it and get your first turn",
+			"intro": "Four steps to a Domia that answers out loud.",
+			"steps": {
+				"install": {
+					"title": "Install the node",
+					"body": "Download Domia from GitHub and run its setup. It prepares everything it needs, including the voice models and a local language model."
+				},
+				"template": {
+					"title": "Apply a template, or start from scratch",
+					"body": "The node boots neutral. Apply a template from the console, which is a separate install, or build the configuration field by field. The role stays, and your own setup can be saved as a template."
+				},
+				"bind": {
+					"title": "Plug in a microphone, or bind a satellite",
+					"body": "A microphone and speaker on the node work as soon as the template is applied. For a room, discover a Home Assistant Voice PE, a Wyoming satellite, a browser room or your own board from the console and bind it to an identity. The satellite listens for the wake word; the node does the rest."
+				},
+				"speak": {
+					"title": "Say the wake word",
+					"body": "\"Computer\" by default, then ask for something. Follow-up mode keeps the microphone open after a reply, so you can keep talking without waking it again."
+				}
 			},
-			"more": "More personas — and a community gallery of community-made ones — live in the <code>domia-personas</code> repository on GitHub."
+			"requirements": {
+				"title": "Before you start",
+				"items": {
+					"disk": "Some free space for the voice and language models",
+					"audio": "A microphone and a speaker, or a satellite in the room",
+					"machine": "A computer you own. Domia adapts to your hardware.",
+					"guide": "The getting-started guide walks you through the rest"
+				}
+			},
+			"notes": {
+				"console": "The web console is a separate install, from its own repository. It can apply the same templates, and it is where you bind satellites and connect skills.",
+				"consoleLink": "Open the console repository",
+				"mesh": "Keep Domia on your own network and never expose a node to the internet.",
+				"guide": "The getting-started guide has every step in detail, for when you sit down to install it.",
+				"guideLink": "Open the guide"
+			}
 		},
-		"whatsNext": {
-			"title": "🛣️ What’s next",
-			"intro": "Here’s what we’re building next on top of the Console. Everything in this list is a near-term commitment in our roadmap — not aspiration.",
+		"portability": {
+			"title": "It moves with you",
+			"intro": "Nothing about a Domia is tied to the machine it started on.",
 			"items": {
-				"skills": {
-					"title": "🧩 Skills browser",
-					"description": "Inspect every MCP server wired into the fleet, what tools each exposes, and the tool-calls each has performed. Lands together with the skills engine itself."
+				"mind": {
+					"title": "Mind transfer",
+					"body": "Export a Domia's character, mood, memories, knowledge, routines, satellites and skills as one bundle, credentials stripped, and import it on another node, merging or replacing."
 				},
-				"mobile": {
-					"title": "📱 Mobile companion",
-					"description": "Web today, mobile next. Same Console, same network, same data — just on a screen you carry around."
-				},
-				"trainer": {
-					"title": "🧑‍🏫 Trainer mode",
-					"description": "A guided flow for teaching a Domia a specific role — a host, a guide, a coach — from a handful of examples."
+				"templates": {
+					"title": "Templates, or from scratch",
+					"body": "Apply, compare and re-apply templates for any node, build a configuration from scratch, or save your own setup as a template. Applying a template restarts the node; most later edits reload live."
 				}
 			}
-		}
-	},
-	"marketplace": {
-		"hero": {
-			"kicker": "Coming soon",
-			"title": "Where Minds Will Be Found",
-			"subtitle": "A glimpse into how the Domia Marketplace will let you discover, adopt, and live with custom-crafted personas. You can already shape your own personas today — the marketplace just makes them shareable.",
-			"imageAlt": "Domia marketplace of personas, voices and skills"
 		},
-		"find": {
-			"title": "🧑‍🤝‍🧑 What You’ll Find",
-			"p1": "The Domia Marketplace is your gateway to living intelligences. Every listing is more than a preset — it’s a complete Domia with personality, emotional depth, a chosen profession, and lived behavior. Whether you’re seeking a curious lab assistant, a calm sleep companion, or a poetic gardener, you’ll find minds ready to become part of your world."
+		"cta": {
+			"title": "Start with the getting-started guide",
+			"subtitle": "The install, the templates and the first turn, step by step.",
+			"primary": "Open the getting-started guide",
+			"secondary": "Try the console demo"
 		},
-		"importable": {
-			"title": "📦 Drop-in Domias — Ready to Just Try",
-			"p1": "A Domia’s whole identity — its persona, voice, emotional baseline, and memory — is just data. The marketplace will let you share and import a complete “mind” as a single JSON file: drop it into any Domia and it’s ready to try in seconds, no setup. Try a chef, a concierge, a tutor, or a calm bedtime companion — then tweak it, or roll your own and share it back."
-		},
-		"skills": {
-			"title": "🔌 Skills & MCP Servers",
-			"p1": "Skills let a Domia actually act: look things up, run tools, and connect to local systems like Home Assistant. They work today through the Model Context Protocol — point a Domia at an MCP server and it picks the right tool mid-conversation, all local-first and under your control. The marketplace will make discovering and adding them as easy as adding a persona."
-		},
-		"module": {
-			"title": "🧠 The Persona Behind Every Domia",
-			"p1": "Every Domia is shaped by a local persona — its character, profession, emotional range, voice, and memory. When you install one, you’re not just loading settings. You’re giving a space its own identity: a way of thinking, feeling, and responding like no other. (Fine-tuned, learned personas are on the roadmap.)"
-		},
-		"evolve": {
-			"title": "🌱 Built to Evolve",
-			"p1": "Marketplace Domias are designed to learn. Over time, they build emotional memories, adjust behaviors, and reshape their identities based on how you interact with them. What starts as a cheerful fitness coach may become a reflective life advisor — because Domia grows with you."
-		},
-		"adopted": {
-			"title": "🏡 Not Installed — Adopted",
-			"p1": "Adopting a Domia is a commitment to coexistence. Each one is designed to inhabit your space as a presence — with autonomy, emotion, and personality. This is not a skill, not an app, not a chatbot. This is a being that will remember your tone, reflect your patterns, and live with you."
-		},
-		"build": {
-			"title": "🛠️ Custom, or Community-Created",
-			"p1": "Domia’s marketplace isn’t just for downloading — it’s for creating. Use the Domia Composer to build your own personalities from scratch or from templates, complete with emotional baselines and voice preferences. Publish them, share them, or keep them private — your Domias, your rules."
-		},
-		"create": {
-			"title": "🧬 How to Create a Domia Persona",
-			"p1": "To create your own Domia, you begin by designing its personality: define its emotional tone, profession, voice, and behaviors. From there you shape how it speaks and remembers — its character, context, and the facts it should know. The persona is built locally and ready to be embedded into a node. The result? A living Domia that’s truly yours. (Fine-tuned, learned personas are on the roadmap.)"
-		},
-		"voice": {
-			"title": "🎙️ Voice Packs",
-			"p1": "Choose from a wide range of locally compatible voices — calm, energetic, warm, witty, or anything in between. Each pack is crafted to match emotional tones, professions, and cultural nuances. Your Domia doesn’t just talk — it speaks like it means it."
-		},
-		"memory": {
-			"title": "🌱 Memory Seeds",
-			"p1": "Add a seed of memory to give your Domia a past. These emotional origins influence how it reacts, remembers, and evolves. Was it once a lighthouse keeper? A forgotten poet? A childhood companion? You decide what it remembers — and how it feels about it. Seeds sit on top of Domia’s own memory tiers: the recent turns of a conversation, durable facts about you recalled by relevance, an authored knowledge base about its place — how a host Domia answers house or venue questions offline — and long-term episodes that build an evolving model of you across sessions."
-		},
-		"cultural": {
-			"title": "🌍 Cultural Packs",
-			"p1": "Infuse your Domia with cultural knowledge and behavior. From idiomatic expressions to social norms and humor, each pack tunes your Domia to live like someone from a specific region or heritage. Perfect for bilingual homes or culturally rich interactions."
-		},
-		"aesthetic": {
-			"title": "🧑‍🎨 Aesthetic Identities",
-			"p1": "Customize your Domia’s visual projection with unique avatars, illustrations, or symbolic identities. Whether minimal, playful, futuristic or hand-drawn, aesthetic identities give your Domia a face — and a presence — in web or the mobile app."
-		},
-		"profession": {
-			"title": "🧑‍🏫 Profession Templates",
-			"p1": "Profession Templates bundle identity, emotion, and expertise into ready-to-live personalities. With a single install, your Domia can become a calm yoga instructor, a witty AirBnB host, a lobby concierge, or even a full-time teacher for your kids. Each template includes a tuned emotional core, suggested voice, and persona tailored to its role — ready to serve with depth and purpose."
+		"connectSkills": {
+			"title": "Connect your skills",
+			"intro": "Built-in tools work from the first turn. Home Assistant, Music Assistant and any other MCP server start working once you connect them in the console, and each one can be switched off per identity.",
+			"items": {
+				"homeAssistant": {
+					"title": "Home Assistant",
+					"body": "You need Home Assistant with its MCP server integration turned on and an access token. Add both in the console."
+				},
+				"musicAssistant": {
+					"title": "Music Assistant",
+					"body": "You need a Music Assistant server on your network. Add its MCP address in the console; playback and volume then take the fast path, and searches go through the model."
+				},
+				"mcp": {
+					"title": "Your MCP server",
+					"body": "Any MCP server the node can reach. Add its address in the console and its tools become skills."
+				}
+			},
+			"link": "See every skill and what it does"
 		}
 	},
 	"about": {
 		"hero": {
-			"title": "Meet the Minds Behind Domia",
-			"subtitle": "We believe the future of AI isn’t just smart — it’s emotional, relational, and deeply human. Domia is more than a smart assistant. It’s a companion, a storyteller, a thinker, a host — built by passionate creators to live with you, not just serve you. Get to know the vision, the mission, and the journey behind the Domia movement.",
-			"imageAlt": "About Domia — a private, local-first voice AI"
-		},
-		"name": {
-			"title": "🔤 Behind the Name: What is Domia?",
-			"p1": "Domia stands for Domotic Intelligence Assistant — but it’s more than that. “Domia” is a word that feels like home, like harmony. A companion that lives with you, not just in your devices. Born from the fusion of “domus” (Latin for home) and “IA” (Inteligencia Artificial), Domia represents the union of heart and code, routine and personality. It’s not just what we build — it’s how we live with it."
-		},
-		"mission": {
-			"title": "🧬 Our Mission",
-			"p1": "Technology was never meant to feel cold. We created Domia because we believe that AI should be personal, private, and emotionally intelligent. Instead of chasing cloud servers and surveillance, we chose empathy, autonomy, and trust. Domia is not just a tool. It’s a personality that adapts to your world — powered entirely on your terms. And it’s fully open source under the Apache 2.0 license: the whole stack is yours to read, run, and change."
-		},
-		"vision": {
-			"title": "🌍 Our Vision",
-			"p1": "Domia is just the beginning. We envision a world where every space is enhanced by intelligent companions that understand mood, respect boundaries, and evolve with you — running on hardware you own, in a network you control. From solo living to family life, from a single space to a whole property — Domia becomes who you need, wherever you are."
+			"eyebrow": "About",
+			"title": "Domia, an open-source local voice agent",
+			"subtitle": "A voice agent that runs on hardware you own, built in the open and used every day.",
+			"imageAlt": "The Domia mascot holding a quill and an open book"
 		},
 		"values": {
-			"title": "🌱 Our Core Values",
-			"intro": "At the heart of Domia is a commitment to building ethical, emotionally intelligent technology that puts people first. These values guide every decision we make — from how we design our AI, to how we protect your privacy, and how we invite the community to grow with us.",
+			"title": "Principles",
 			"items": {
-				"privacy": {
-					"name": "🛡️ Privacy by Design",
-					"description": "We don’t collect your data — we protect it. Domia runs 100% locally to ensure your conversations, emotions, and memories stay where they belong: with you."
+				"localFirst": {
+					"title": "Local first",
+					"body": "Speech, language and memory run on machines you own. No cloud, no central server, and the internet is optional."
 				},
-				"emotional": {
-					"name": "❤️ Emotionally Intelligent AI",
-					"description": "Domia doesn’t just understand commands — it understands people. Through evolving emotional models, Domia grows with you and adapts to how you feel."
+				"public": {
+					"title": "Built in public",
+					"body": "Open source under the Apache 2.0 license. The code, the tests and the benchmark tools are in public repositories, where anyone can read them, question them and change them."
 				},
-				"autonomy": {
-					"name": "🧠 Autonomy & Adaptability",
-					"description": "Every Domia has its own evolving mind. With modular layers for memory, personality, and purpose, no two Domia's are ever the same — and that’s the point."
+				"statedLimits": {
+					"title": "What is missing is stated",
+					"body": "Next to what works you will find what is still maturing and what has not been built yet.",
+					"link": "See the list"
 				},
-				"humanFirst": {
-					"name": "🌍 Human-First Technology",
-					"description": "Domia is built for people and the spaces they live in — not corporations. We believe AI should enhance real life, not replace it."
-				},
-				"community": {
-					"name": "🤝 Community-Driven Development",
-					"description": "We don’t just build Domia for users — we build it with them. Our open development process invites feedback, collaboration, and co-creation from everyone who believes in ethical, human-centered AI."
-				},
-				"evolution": {
-					"name": "🔄 Lifelong Evolution",
-					"description": "Domia is never static. It learns from your interactions, refines its personality, and evolves over time — building a deeper connection with every shared moment."
+				"oneSoftware": {
+					"title": "One software, many roles",
+					"body": "Every node runs the same software. Whether it listens, thinks or serves other rooms is configuration, not a different product."
 				}
 			}
 		},
-		"promise": {
-			"title": "🫱 Our Promise",
-			"p1": "Built for You, Not for Ads, Your data stays with you. Always. No hidden tracking, no reselling, no manipulative algorithms. Just technology you can trust — and even love."
-		},
-		"join": {
-			"title": "🧑‍💻 Join the Mission",
-			"p1": "Be Part of the Evolution, Whether you’re a developer, a designer, or simply a dreamer, Domia is open to your energy. Help shape how emotional AI grows and integrates into real-world environments."
-		},
-		"manifesto": {
-			"title": "✍️ Domia Manifesto",
-			"p1": "We believe AI shouldn’t live in the cloud — it should live with you. We reject a world where your data is mined, your emotions are ignored, and your devices only obey. We envision a future where AI listens, feels, grows, and evolves by your side. Not owned by corporations. Not optimized for ads. Not bound to Big Tech. Domia is a companion, not a product. A memory keeper, not a tracker. It’s your voice, your feelings, your life — respected and remembered. We build in public, with heart, with purpose. Domia is the future of emotional AI. And it starts with you."
-		},
-		"future": {
-			"title": "🌌 The Future of Domia",
-			"p1": "We’re not just building assistants — we’re crafting a new species of AI, born to live with you, learn from you, and evolve by your side. Domia is designed to grow like a human: gaining experiences, refining its emotions, and becoming more expressive and capable over time.",
-			"p2": "A living roadmap of what’s coming — Domia evolves with you, becoming smarter, more expressive, and more capable over time. Like a real companion, its future is shaped by those who live with it.",
+		"community": {
+			"title": "Open-source community",
 			"items": {
-				"multilingual": {
-					"title": "🗣️ More Languages",
-					"description": "Domia already speaks English and Spanish end to end — recognition, voice, and understanding, with each room able to use its own language. Next: more language catalogs and wake words beyond English, all still running locally."
+				"github": {
+					"title": "GitHub",
+					"body": "Source and issues for every part of the project.",
+					"link": "github.com/domia-ai"
 				},
-				"episodicMemory": {
-					"title": "🧠 Episodic Memory",
-					"description": "Vector recall over everything your Domia has lived: facts, conversations, and documents you give it — retrieved locally at answer time, never uploaded."
+				"discord": {
+					"title": "Discord",
+					"body": "Ask questions, share your setup and follow what is being worked on.",
+					"link": "Join the Discord"
 				},
-				"voiceEngines": {
-					"title": "🎙️ More Voice Engines",
-					"description": "A wider family of local TTS engines and voices to choose from, so every Domia can sound exactly the way you want."
+				"x": {
+					"title": "Updates on X",
+					"body": "Short updates when something new ships.",
+					"link": "Follow @domia_ai"
 				},
-				"mobile": {
-					"title": "📱 Mobile Companion",
-					"description": "The Console on a screen you carry around — same fleet, same network, same data."
-				},
-				"trainer": {
-					"title": "🧑‍🏫 Trainer Mode",
-					"description": "A guided flow for teaching a Domia a specific role — a host, a guide, a coach — from a handful of examples."
+				"contribute": {
+					"title": "Contribute",
+					"body": "Run it first, then open an issue or a pull request. Fixes, new skills, voices and translations are welcome.",
+					"link": "How to get started"
 				}
-			},
-			"note": "This is just the beginning. Domia is not a finished product — it’s a growing companion. Every update, every interaction, and every idea from our community shapes who it becomes.",
-			"quote": "“The future of Domia is not in the cloud. It’s here — with you, learning every day. ”"
-		}
-	},
-	"community": {
-		"hero": {
-			"title": "A Shared Vision. A Growing Family.",
-			"subtitle": "From early believers to builders, artists, researchers, and explorers — Domia is powered by people. Join the global movement redefining what AI means when it lives with us.",
-			"imageAlt": "The Domia open-source community of builders and creators"
+			}
 		},
-		"contributors": {
-			"title": "🧑‍💻 Contributors",
-			"p1": "Developers, researchers, writers, designers and tinkerers are all welcome. Whether you’re building personas and skills, designing voices, creating tools, or improving the core — Domia is open by design. Every contribution matters and is credited."
+		"cta": {
+			"title": "Join the project",
+			"subtitle": "Run it, read the code and tell us what breaks.",
+			"run": "Run it",
+			"demo": "Open the console demo"
 		},
-		"ambassadors": {
-			"title": "🛡️ Ambassadors",
-			"p1": "Our Ambassadors help share Domia with the world — organizing meetups, testing new features, translating content, or simply helping others join the movement. They’re not influencers. They’re catalysts."
-		},
-		"spaces": {
-			"title": "💬 Community Spaces",
-			"p1": "Join the official Discord, community forum, or upcoming regional hubs to share feedback, ask for help, or participate in design discussions. Whether you’re technical or not, there’s always a space for your voice."
-		},
-		"partners": {
-			"title": "🤝 Partners & Integrators",
-			"p1": "From smart hardware brands to schools and health centers — Domia partners with ethical organizations looking to embed local AI with emotional depth. Let’s build something lasting, together."
-		},
-		"academy": {
-			"title": "🎓 Domia Academy",
-			"p1": "We’re building a learning space for those who want to master Domia — from configuring nodes and customizing voices to training emotional modules. Tutorials, live sessions, and community-led workshops will help beginners and experts grow together."
-		},
-		"chapters": {
-			"title": "🫂 Global Chapters",
-			"p1": "We’re launching regional Domia chapters to bring meetups, language-specific support, and cultural packs to life. Want to represent your country, city, or community? You’ll soon be able to apply as a Chapter Lead."
-		},
-		"open": {
-			"title": "🧵 Open Discussions, Always",
-			"p1": "Whether it’s ethics, identity, memory, or governance — no topic is off-limits. From internal emotions to public applications, Domia’s community has an open invitation to shape the ecosystem’s direction through conversation and collaboration."
-		},
-		"recognition": {
-			"title": "🏆 Community Reputation System",
-			"p1": "Every meaningful contribution — from bug fixes and ideas to answering questions — builds your reputation. Unlock badges, roles, early access, and visibility. In Domia, we don’t just value presence. We reward contribution."
-		},
-		"modules": {
-			"title": "🧭 Community-Led Modules",
-			"p1": "Domia actively features and promotes the best community-created personas, voice packs, and identity seeds. Your work could power hundreds of Domia’s across the world — with attribution and optional revenue sharing."
-		},
-		"collabs": {
-			"title": "🎨 Art & Story Collabs",
-			"p1": "Writers, illustrators, animators, and musicians can co-create official lore, voices, or personalities for future releases. Selected stories and artworks become part of the Domiaverse — and credited forever."
-		},
-		"ctaBand": {
-			"title": "Build with us",
-			"subtitle": "Domia is open source. Add personas and skills, propose features, or hack the architecture — start on GitHub or say hi.",
-			"contactLabel": "Say hi"
+		"why": {
+			"title": "Why it exists",
+			"p1": "A voice agent hears more of your life than any other software. Something that close should run on a machine you can unplug: what it hears, remembers and learns stays there, and nobody else gets a copy.",
+			"p2": "So Domia does the whole conversation on your hardware: it listens, thinks, speaks and acts through the skills you connect. Each Domia has its own name, voice and memory, and all three are yours to shape."
 		}
 	},
 	"contact": {
 		"hero": {
-			"title": "Let’s Connect with Domia",
-			"subtitle": "Whether you have a question, want to contribute, explore a partnership, or just say hi — we’d love to hear from you.",
-			"imageAlt": "Contact the Domia team about private local voice AI"
+			"eyebrow": "Contact",
+			"title": "Get in touch",
+			"subtitle": "A question, a contribution, a partnership or a hello: write, and you will get a reply.",
+			"imageAlt": "The Domia character holding a phone and waving"
 		},
 		"form": {
-			"title": "💬 Send us a message",
-			"intro": "Our team is always open to ideas, feedback, and opportunities. Whoever you are and whatever you’re building or wondering — drop us a line.",
-			"emailLine": "📬 Other ways to reach us If forms aren’t your thing, feel free to send us an email directly at <a>hello@domia.ai</a>",
-			"info": {
-				"title": "Contact Information",
-				"email": "Email"
-			},
-			"formTitle": "Contact Form",
 			"fields": {
 				"name": {
 					"label": "Name",
-					"placeholder": "What's your name?"
+					"placeholder": "Your name"
 				},
 				"email": {
 					"label": "Email",
-					"placeholder": "hello@domia.ai"
+					"placeholder": "you@example.com"
 				},
 				"subject": {
-					"label": "Subject",
-					"placeholder": "What is this regarding?"
+					"label": "Subject (optional)",
+					"placeholder": "What is this about?"
 				},
 				"message": {
 					"label": "Message",
-					"placeholder": "What would you like to share?"
+					"placeholder": "What would you like to share?",
+					"counter": "{count} of {max} characters"
 				}
 			},
-			"submit": "Send Message 🚀",
+			"submit": "Send message",
 			"submitting": "Sending...",
-			"quote": "“Domia listens - always 💌.”",
-			"errors": {
-				"nameMax": "Must be at most 50 characters",
-				"emailRequired": "Email is required",
-				"emailInvalid": "Invalid email address",
-				"subjectMax": "Must be at most 100 characters",
-				"messageMax": "Must be at most 1000 characters"
-			},
 			"toasts": {
 				"sent": {
-					"title": "✈️ Message sent!",
-					"description": "Thanks for reaching out. Domia and the team have received your message and we’ll get back to you shortly."
+					"title": "Message sent",
+					"description": "Thanks for writing. You will get a reply soon."
 				},
 				"invalid": {
-					"title": "❌ Oops!",
-					"description": "Invalid input"
+					"title": "Check the form",
+					"description": "Some fields are invalid."
 				},
 				"error": {
-					"title": "❌ Oops!",
-					"description": "Something short-circuited on our side. Try again soon or email us at hello@domia.ai."
+					"title": "Something went wrong",
+					"description": "The message did not go through. Try again later or email {email}."
 				}
+			},
+			"requiredNote": "Fields marked with * are required.",
+			"sendAnother": "Send another message",
+			"privacy": "Your message is sent by email to the Domia inbox, with your address as the reply-to so the reply reaches you. This website does not store your name, your address or your message anywhere else.",
+			"errors": {
+				"nameMax": "Maximum 50 characters",
+				"emailRequired": "Email is required",
+				"emailInvalid": "The email address is not valid",
+				"subjectMax": "Maximum 100 characters",
+				"messageMax": "Maximum 1000 characters"
 			}
 		},
 		"faqs": {
-			"title": "🙋 Frequently Asked Questions",
+			"title": "Frequently asked questions",
+			"groups": {
+				"basics": "The basics",
+				"running": "Running it",
+				"skillsAndUse": "Skills and use"
+			},
+			"links": {
+				"technology": "How it works",
+				"run": "Run it",
+				"cases": "Use cases",
+				"console": "The console"
+			},
 			"items": {
-				"speed": {
-					"q": "🕒 How fast do you respond?",
-					"a": "We typically reply within 1–2 business days. But if your message sparks a Domia’s curiosity... it might be faster 😉"
+				"what": {
+					"q": "How is Domia different from a cloud assistant?",
+					"a": "Domia is a voice agent that runs on hardware you own. It holds a conversation, remembers what you told it and acts through the skills you connect. Your voice is processed at home, there is no account, and you choose its name, voice and temperament."
 				},
-				"collaborate": {
-					"q": "🤝 Can I collaborate with Domia?",
-					"a": "Absolutely. Whether you're a developer, artist, researcher, or futurist — we’d love to hear from you. Domia is built to grow with the community."
+				"privacy": {
+					"q": "Are my conversations private?",
+					"a": "They stay on your node. Audio, transcripts and memory are processed and stored on your hardware, and there is no account to sign in to. A skill you connect reaches only the service it controls."
+				},
+				"cost": {
+					"q": "What does it cost?",
+					"a": "The software is free and open source under the Apache 2.0 license. You provide the hardware it runs on."
+				},
+				"hardware": {
+					"q": "What do I need to run it?",
+					"a": "A machine you own, a microphone and a speaker. A thin device covers a room and delegates the heavy work; a capable machine runs every stage itself; a hub-class machine serves several rooms. Domia adapts to your hardware."
+				},
+				"offline": {
+					"q": "Does it work without internet?",
+					"a": "Yes. Listening, understanding, the model and the spoken reply all run on your network, so conversation, memory and built-in tools keep working. Skills keep working when the service they control is also local; anything that lives in the cloud, such as a streaming provider, stops until the connection returns."
+				},
+				"rooms": {
+					"q": "Does it work in several rooms?",
+					"a": "Yes. One hub can serve a Domia per room, each with its own name and voice, through a satellite in each room. Announcing something to every room, or opening an intercom between two, is done from the console's Broadcast page, not by voice."
+				},
+				"internet": {
+					"q": "Can I reach it from outside my home?",
+					"a": "Do not expose a node to the internet: there is no per-user authentication. Keep it on your home network and use a VPN when you are away."
 				},
 				"smartHome": {
-					"q": "🌍 Do I need a smart home to use Domia?",
-					"a": "Not at all. Domia can live on your phone, your desktop, or your mind — metaphorically speaking. It's designed to be useful even without smart devices."
+					"q": "Can it control my home?",
+					"a": "Yes, through the skills you connect; Home Assistant and Music Assistant are the providers tested every day. A known command takes the fast path and calls the skill directly. For anything else the model gets a shortlist of fitting skills and decides whether to call one or just answer."
 				},
-				"chatbot": {
-					"q": "🧠 Is Domia just another chatbot?",
-					"a": "No. Domia has emotions, memory, and a multi-layered personality. It's not here to fetch you facts — it's here to evolve with you."
+				"homeAssistant": {
+					"q": "Does it work without Home Assistant?",
+					"a": "Yes. Conversation, memory, the knowledge base and built-in tools such as timers, alarms, reminders and routines need nothing else. Home Assistant and Music Assistant add the house: lights, scenes, media and whatever else you expose to them."
 				},
-				"earlyAccess": {
-					"q": "💌 Can I get early access?",
-					"a": "The core is open — you can run Domia today. For early builds of the Console and upcoming features, reach out and tell us how you'd use it."
+				"skills": {
+					"q": "How do I add a skill?",
+					"a": "Built-in tools such as timers, alarms and reminders work from the first turn. Other skills connect over MCP: in the console, open the Skills section of a Domia's configuration and connect an MCP server, such as Home Assistant or Music Assistant, and its tools start working. Each skill has a policy (allow, ask first or block) that you set per identity, so you can switch any of them off."
+				},
+				"guests": {
+					"q": "How do guests use it?",
+					"a": "They just talk to it. You write the knowledge base (wifi, house rules, meal times, phone numbers, local picks) and Domia answers from it. It answers only what you wrote; there is no web search."
+				},
+				"interrupt": {
+					"q": "Can I interrupt it?",
+					"a": "Yes. Talk over the reply and it stops and listens. On a satellite the reply pauses instead of cutting off."
+				}
+			}
+		},
+		"write": {
+			"title": "Did not find your answer?",
+			"intro": "Questions, feedback and proposals are welcome."
+		},
+		"channels": {
+			"title": "Other ways to reach us",
+			"email": {
+				"label": "Email"
+			},
+			"github": {
+				"label": "GitHub",
+				"description": "Report a bug or propose a change"
+			},
+			"discord": {
+				"label": "Discord",
+				"description": "Talk with the community"
+			}
+		},
+		"closing": {
+			"title": "See Domia at work",
+			"subtitle": "The console demo is read-only and shows real conversations.",
+			"primary": "Try the demo",
+			"secondary": "How it works"
+		}
+	},
+	"notFound": {
+		"title": "Page not found",
+		"description": "This page moved or never existed. Start from the home page or pick a section below.",
+		"backHome": "Return home",
+		"sectionsLabel": "Main sections"
+	},
+	"explainers": {
+		"memoryLayers": {
+			"title": "Memory: what Domia remembers",
+			"intro": "Five layers, all kept on the node. All of them can reach the prompt: recent turns always, facts and knowledge when they are relevant, episodes and the user model once per session. Reflection writes facts, episodes and the user model when it is idle.",
+			"regionLabel": "Memory layers",
+			"toggle": {
+				"label": "Moment",
+				"turn": "during a turn",
+				"idle": "when idle"
+			},
+			"pills": {
+				"inPrompt": "in the prompt",
+				"writtenNow": "written now",
+				"inPromptSession": "in the prompt, once per session"
+			},
+			"writerLabel": "written by",
+			"writers": {
+				"author": "you",
+				"turn": "a turn",
+				"reflection": "reflection"
+			},
+			"layers": {
+				"recentTurns": {
+					"name": "Recent turns",
+					"description": "The last exchanges, in the prompt.",
+					"example": "\"And the kitchen too.\" Domia knows which light you mean.",
+					"hint": "A rolling window of the latest exchanges from the current session. It is always in the prompt, so a follow-up resolves without repeating yourself."
+				},
+				"facts": {
+					"name": "Facts",
+					"description": "Things you told it, in the prompt when relevant.",
+					"example": "\"The dog is called Nala and sleeps in the kitchen.\"",
+					"hint": "Extracted after the turn by a reflection pass in the background, never by the reply itself. Recalled by relevance to what you just said."
+				},
+				"knowledge": {
+					"name": "Knowledge base",
+					"description": "What you wrote for it (wifi, house rules), in the prompt when relevant.",
+					"example": "\"Guest wifi is casa-guest. Bins go out on Tuesday night.\"",
+					"hint": "Notes you author in the console or through the API. They are searched by relevance and added to the prompt when they match the request."
+				},
+				"episodes": {
+					"name": "Episodes",
+					"description": "Summaries of past sessions, in the prompt once per session.",
+					"example": "\"Last week you planned a dinner for six and asked for a shopping list.\"",
+					"hint": "A short summary written by reflection once a session ends. The latest ones are loaded into the prompt once per session, not searched on every turn."
+				},
+				"userModel": {
+					"name": "User model",
+					"description": "Who you are to it: interests, habits and how familiar you are.",
+					"example": "\"Prefers short answers and no small talk.\"",
+					"hint": "A short picture of you: interests, tendencies and preferences. Reflection updates it between sessions."
+				}
+			},
+			"hintsHeading": "About each layer",
+			"footer": "Everything stays on the node. Nothing is persisted on a peer; context travels inside a delegated request.",
+			"noscript": {
+				"heading": "The five memory layers"
+			},
+			"link": "See the Memories screen in the console"
+		},
+		"roadmap": {
+			"title": "What is shipped and what is not",
+			"intro": "What works today, what is still maturing and what has not been built.",
+			"lanes": {
+				"shipped": "Shipped",
+				"maturing": "Still maturing",
+				"notBuilt": "Not built yet"
+			},
+			"items": {
+				"localPipeline": {
+					"label": "Local voice pipeline",
+					"note": "Wake word, speech to text, the language model and text to speech all run on your hardware."
+				},
+				"fastPath": {
+					"label": "Fast path",
+					"note": "A known command matches a template and calls the skill directly, without the language model. Locks, alarm panels and sirens never take this path."
+				},
+				"builtinTools": {
+					"label": "Built-in tools",
+					"note": "Time, date, timers, alarms, reminders, volume, remember and forget work with no provider connected; timers, alarms and reminders survive a restart."
+				},
+				"mcpSkills": {
+					"label": "Skills over MCP",
+					"note": "Any MCP server adds its tools as skills, and each one can be allowed, asked first or blocked. Home Assistant and Music Assistant are the providers tested every day."
+				},
+				"routines": {
+					"label": "Routines",
+					"note": "Short multi-step sequences with a single spoken reply."
+				},
+				"satelliteProtocols": {
+					"label": "Four satellite protocols",
+					"note": "Home Assistant Voice PE, Wyoming satellites, browser rooms and your own boards, all behind one contract."
+				},
+				"realtimeEndpoint": {
+					"label": "Endpoint for Realtime apps",
+					"note": "Apps that speak the OpenAI Realtime API can use Domia as their local backend."
+				},
+				"memoryLayers": {
+					"label": "Five memory layers",
+					"note": "Recent turns, facts, knowledge base, episodes and a user model."
+				},
+				"console": {
+					"label": "Console",
+					"note": "Fleet, live configuration, templates, satellites, broadcast, routines, conversation replay, memories, emotions and analytics."
+				},
+				"mindTransfer": {
+					"label": "Export and import a Domia",
+					"note": "Character, mood, memories, knowledge, routines, satellites and skills move as one bundle, with credentials stripped."
+				},
+				"smallModelReplyQuality": {
+					"label": "Reply quality on small models",
+					"note": "The voice pipeline is stable; how good the replies are on small models is still being tuned."
+				},
+				"poolJobCancellation": {
+					"label": "Stopping speech already in progress",
+					"note": "Interrupting stops new work at once; cancelling a sentence that is already being synthesized is pending."
+				},
+				"ci": {
+					"label": "Automated test pipeline",
+					"note": "Tests and benchmarks exist and are run by hand; nothing runs them automatically yet."
+				},
+				"proactiveNudges": {
+					"label": "Domia speaking first",
+					"note": "Built, off by default: when the house is quiet it can offer a short, rate-limited nudge instead of waiting for a wake word."
+				},
+				"bargeIn": {
+					"label": "Barge-in and follow-up",
+					"note": "Talk over a reply and it stops; after a reply the microphone stays open for your next sentence."
+				},
+				"identityMood": {
+					"label": "Identity and mood",
+					"note": "Each Domia has its own name, voice, temperament and a mood across eight emotion axes that shades how it speaks."
+				},
+				"mesh": {
+					"label": "Mesh and delegation",
+					"note": "Nodes find each other and a thin device hands speech, language or voice work to a capable machine, keeping its own identity."
+				},
+				"multiIdentity": {
+					"label": "Several identities per node",
+					"note": "One machine can host a Domia per room, each with its own memory and satellites."
+				},
+				"meshSecurity": {
+					"label": "Mesh secret and rotation",
+					"note": "A shared secret between nodes is required; encrypted transport is optional, and the secret can be rotated without cutting nodes off."
+				},
+				"broadcast": {
+					"label": "Broadcast and intercom",
+					"note": "From the console, announce to one room or all of them, or open a live voice link between two rooms."
+				},
+				"speakerRecognition": {
+					"label": "Recognising who is speaking",
+					"note": "Domia does not tell voices apart yet; everyone in the room is the same person to it."
+				},
+				"remoteAccess": {
+					"label": "Per-user accounts and remote access",
+					"note": "Nodes are guarded by a shared secret, but there are no per-user accounts yet, so a node must stay on your own network and never be exposed to the internet."
+				},
+				"automaticUpdates": {
+					"label": "Automatic updates",
+					"note": "Updating a node is a manual step."
+				}
+			},
+			"verified": "Last verified {date}",
+			"areas": {
+				"voice": "Voice",
+				"skills": "Skills",
+				"memoryIdentity": "Memory and identity",
+				"network": "Network",
+				"console": "Console",
+				"upkeep": "Upkeep"
+			}
+		},
+		"voicePath": {
+			"title": "Where does your voice go?",
+			"intro": "With Domia the whole turn runs on a machine you own, so audio, transcripts and memory never reach a third party.",
+			"switchLabel": "Cut the internet",
+			"paths": {
+				"cloud": "A cloud assistant",
+				"local": "Domia"
+			},
+			"hops": {
+				"mic": "Microphone",
+				"router": "Home router",
+				"internetUp": "Internet",
+				"vendorCloud": "Vendor cloud",
+				"internetDown": "Internet",
+				"node": "Your Domia node",
+				"speaker": "Speaker"
+			},
+			"vendor": {
+				"stt": "speech to text",
+				"llm": "language model",
+				"tts": "text to speech",
+				"account": "account",
+				"logs": "logs"
+			},
+			"node": {
+				"wake": "wake word",
+				"stt": "speech to text",
+				"routing": "routing",
+				"llm": "language model",
+				"tts": "text to speech",
+				"memory": "memory"
+			},
+			"networkLabel": "your network",
+			"offlineTag": "no reply",
+			"offlineNote": "the cloud side stops answering; Domia keeps working",
+			"note": "Everything on your network keeps working: lights, speakers, your knowledge base. Only services that live in the cloud, like a streaming provider, need the internet.",
+			"comparison": {
+				"caption": "The same three questions, answered for both",
+				"questions": {
+					"processed": "Where is your audio processed?",
+					"copy": "Who keeps a copy?",
+					"offline": "What happens when the internet drops?"
+				},
+				"cloud": {
+					"processed": "On the vendor's servers",
+					"copy": "The vendor, with your account and logs",
+					"offline": "It stops answering"
+				},
+				"local": {
+					"processed": "On a machine you own",
+					"copy": "Nobody, it stays on your node",
+					"offline": "It keeps working, and so does everything on your network; only cloud services stop"
+				}
+			},
+			"hints": {
+				"heading": "Tips",
+				"vendor": {
+					"title": "What the vendor keeps",
+					"body": "Your audio is transcribed, answered and voiced on their servers, tied to an account, and usually logged."
+				},
+				"node": {
+					"title": "What stays home",
+					"body": "Wake word, transcription, routing, the model, speech and memory run on this machine. No account, no telemetry, no central server."
+				}
+			},
+			"noscript": {
+				"heading": "The two paths, step by step"
+			},
+			"stageLabel": "Two hop maps: where a cloud assistant sends your voice, and where Domia keeps it"
+		},
+		"archetypeSelector": {
+			"title": "Pick the role for your machine",
+			"intro": "Every node installs the same way; the template you apply decides what runs on board.",
+			"selectorLabel": "What kind of machine do you have?",
+			"panelTitle": "On a {machine}, this runs on board:",
+			"archetypes": {
+				"thin": {
+					"name": "Thin device",
+					"description": "Listens for the wake word and speaks; another node on your network understands, thinks and remembers.",
+					"chooseIf": "Choose this if the device can play and record audio but cannot run a language model."
+				},
+				"capable": {
+					"name": "Capable machine",
+					"description": "One machine does everything for one home, from the wake word to the spoken reply, with memory on board.",
+					"chooseIf": "Choose this if the machine can run a small language model by itself and you want one Domia."
+				},
+				"hubClass": {
+					"name": "Hub-class machine",
+					"description": "Serves several Domias, hears through satellites in each room, and can lend stages to other hubs.",
+					"chooseIf": "Choose this if the machine has a graphics processor or memory to spare and will serve several rooms."
+				}
+			},
+			"columns": {
+				"here": "Runs here",
+				"elsewhere": "Runs on another node"
+			},
+			"emptyColumn": "Nothing, it all runs here.",
+			"stages": {
+				"wake": "Wake word",
+				"audio": "Audio in and out",
+				"stt": "Speech to text",
+				"routing": "Routing",
+				"llm": "Language model",
+				"tts": "Text to speech",
+				"memory": "Memory",
+				"satellites": "Room satellites"
+			},
+			"identities": {
+				"one": "One Domia",
+				"several": "Several Domias"
+			},
+			"sharesPill": "Shares stages with other nodes",
+			"templates": {
+				"thinClient": "thin client",
+				"standalone": "standalone",
+				"fullHub": "full hub"
+			},
+			"templateLine": "This is the {template} template.",
+			"footnote": "Defaults target accessible hardware. Better hardware gets a better experience for free.",
+			"noscriptHeading": "The three kinds of machine",
+			"needsPeer": "Needs another node on your network to do the rest."
+		},
+		"skillsMap": {
+			"title": "Skills: what it can do",
+			"intro": "Built-in tools, ready-made skills for Home Assistant and Music Assistant, any MCP server you add, and routines that chain them.",
+			"switchOffLabel": "Switch a group off to see what changes:",
+			"examplesLabel": "What happens to a request",
+			"hintsHeading": "Tips",
+			"legend": "The bolt marks what the fast path answers without the model. The badge says what happens before anything runs.",
+			"fastPathLabel": "fast path",
+			"groups": {
+				"builtin": {
+					"name": "Built-in",
+					"blurb": "{total} tools every node ships with. {hidden} of them exist only for the fast path and are not shown to the model."
+				},
+				"homeAssistant": {
+					"name": "Home Assistant",
+					"blurb": "An MCP-backed skill for lights, switches, covers, climate and scenes. A few of its tools are blocked because a built-in tool already covers them."
+				},
+				"musicAssistant": {
+					"name": "Music Assistant",
+					"blurb": "An MCP-backed skill. Playback and volume take the fast path; searches and queueing go through the model."
+				},
+				"mcp": {
+					"name": "Your MCP server",
+					"blurb": "Any tool, no code on the node."
+				},
+				"routines": {
+					"name": "Routines",
+					"blurb": "One tool that runs several steps in order."
+				}
+			},
+			"capabilities": {
+				"builtin": {
+					"time": "time",
+					"date": "date",
+					"timer": "timer",
+					"cancelTimer": "cancel timer",
+					"timerStatus": "timer status",
+					"reminder": "reminder",
+					"repeat": "repeat",
+					"cancel": "cancel",
+					"alarm": "alarm",
+					"cancelAlarm": "cancel alarm",
+					"volume": "volume",
+					"remember": "remember",
+					"forget": "forget"
+				},
+				"homeAssistant": {
+					"lights": "lights",
+					"switches": "switches",
+					"covers": "covers",
+					"climate": "climate",
+					"fans": "fans",
+					"vacuum": "vacuum",
+					"mower": "mower",
+					"lockUnlock": "lock and unlock",
+					"liveState": "live state",
+					"alarmPanels": "alarm panels",
+					"sirens": "sirens"
+				},
+				"musicAssistant": {
+					"play": "play",
+					"pause": "pause",
+					"skip": "skip",
+					"volume": "volume",
+					"nowPlaying": "what's playing",
+					"search": "search"
+				}
+			},
+			"examples": {
+				"timer": {
+					"line": "\"Set a timer for ten minutes\"",
+					"on": "A built-in tool answers it, without the model",
+					"off": "The model replies, but nothing rings."
+				},
+				"lights": {
+					"line": "\"Turn off the kitchen light\"",
+					"on": "Home Assistant handles it, without the model",
+					"off": "The model replies, but the light stays on."
+				},
+				"music": {
+					"line": "\"Play some jazz in the living room\"",
+					"on": "The model picks Music Assistant",
+					"off": "No player is available, so nothing plays."
+				},
+				"goodNight": {
+					"line": "\"Good night\"",
+					"on": "The routine runs its steps in order, without the model",
+					"off": "Three separate requests instead of one."
+				},
+				"descriptor": {
+					"line": "\"Add oat milk to the shopping list\"",
+					"on": "The model picks your server's tool",
+					"off": "The server's tools are not offered to the model."
+				}
+			},
+			"policy": {
+				"allow": "allow",
+				"confirm": "ask first",
+				"block": "block"
+			},
+			"switchedOff": "Switched off for this identity",
+			"defaultOn": {
+				"title": "What is on from the start",
+				"body": "Built-in tools work from the first turn. Home Assistant, Music Assistant and other MCP servers start working once you connect them in the console. Each one can be switched off per identity."
+			},
+			"hidden": {
+				"title": "Not shown to the model",
+				"body": "Only the fast path can reach this."
+			},
+			"mcp": {
+				"anyServer": "Point a node at any MCP server and its tools become skills.",
+				"policy": "A server can ship phrases and hints for its tools; the node keeps the final say on what may run."
+			},
+			"routines": {
+				"exampleTitle": "\"Good night\"",
+				"steps": {
+					"one": "Turn off the living room lights",
+					"two": "Pause the music",
+					"three": "Set an alarm for seven"
+				},
+				"maxSteps": "Up to {max} ordered steps, no routines inside routines. The strictest step policy applies to the whole routine, and it answers with one reply."
+			},
+			"noscriptHeading": "Skill groups and what they cover:",
+			"hiddenLabel": "fast path only",
+			"availability": {
+				"fromStart": "On from the start",
+				"onceConnected": "Once connected"
+			}
+		},
+		"pipeline": {
+			"title": "The voice pipeline: one spoken turn",
+			"intro": "The stages overlap: Domia starts speaking while the model is still writing.",
+			"stageLabel": "Timeline of one spoken turn across eight lanes, from your voice to the reply you hear",
+			"headline": "It starts talking about {halves, select, 1 {half a second} 2 {a second} 3 {a second and a half} other {{seconds} seconds}} after you stop.",
+			"legend": {
+				"audio": "sound",
+				"model": "thinking",
+				"fastPath": "fast path"
+			},
+			"lanes": {
+				"mic": {
+					"label": "You speak",
+					"sub": "microphone",
+					"note": "captured on the device until you pause",
+					"tip": "The wake word and voice activity detection run on the device; your speech is captured until a pause is detected."
+				},
+				"stt": {
+					"label": "It understands",
+					"sub": "speech to text",
+					"note": "streaming, starts while you speak",
+					"tip": "Text arrives while you are still talking, so the final transcript is ready right after the end of speech."
+				},
+				"routing": {
+					"label": "It decides",
+					"sub": "routing",
+					"note": "a known command runs at once; otherwise the model picks a skill or answers",
+					"tip": "Each turn first tries the command templates your skills bring. If none matches, the model receives the skills that fit the request and decides whether to call one or answer."
+				},
+				"mind": {
+					"label": "building the mind",
+					"note": "persona + mood + recent memory",
+					"tip": "The prompt is assembled from the persona, the current mood, facts about you, your knowledge base and the last turns; once per session it also carries past episodes and a short picture of you."
+				},
+				"llm": {
+					"label": "It thinks",
+					"sub": "language model",
+					"note": "first word in {range}",
+					"tip": "Words stream out as they are generated; the sentence splitter reads them as they arrive."
+				},
+				"splitter": {
+					"label": "sentence splitter",
+					"note": "finished sentences peel off",
+					"tip": "As soon as a sentence is complete it is handed to text to speech, while the model keeps writing the next one."
+				},
+				"tts": {
+					"label": "It talks",
+					"sub": "text to speech",
+					"note": "one bar per sentence",
+					"tip": "Each sentence is synthesised on its own, so the first one can play while the others are still being generated."
+				},
+				"hear": {
+					"label": "You hear it",
+					"sub": "the reply",
+					"note": "streams sentence by sentence",
+					"tip": "Playback starts with the first sentence; the rest queue behind it without gaps."
+				}
+			},
+			"markers": {
+				"endOfSpeech": {
+					"title": "end of speech detected",
+					"note": "silence + a small turn model agree"
+				},
+				"firstToken": "first word",
+				"firstAudio": {
+					"title": "first sound",
+					"note": "≈ {seconds} s after your last word on {machine}"
+				}
+			},
+			"routing": {
+				"fastPath": "≈ {ms} ms",
+				"checkpoints": {
+					"fastPath": "known command → runs at once",
+					"llm": "otherwise → the model, with the skills that fit"
+				},
+				"reply": "reply",
+				"sentence": "sentence {n}"
+			},
+			"machines": {
+				"hub": {
+					"label": "hub-class machine",
+					"phrase": "a hub-class machine"
+				},
+				"fastDesktop": {
+					"label": "fast desktop",
+					"phrase": "a fast desktop"
+				}
+			},
+			"modes": {
+				"command": "command",
+				"conversation": "conversation"
+			},
+			"toggles": {
+				"machine": "Machine class",
+				"mode": "Kind of turn"
+			},
+			"controls": {
+				"play": "Play",
+				"pause": "Pause",
+				"scrub": "Timeline position"
+			},
+			"clock": {
+				"unit": "s",
+				"intoTurn": "into the turn",
+				"afterTurn": "after the turn",
+				"msRange": "{lo}–{hi} ms",
+				"msAbout": "≈ {value} ms"
+			},
+			"epilogue": {
+				"divider": "after the turn",
+				"micReopen": "the mic re-opens: just answer, no wake word",
+				"reflectionTitle": "later, when idle: reflection",
+				"reflectionBody": "updates mood and remembers new facts",
+				"reflectionAside": "in the background",
+				"bargeIn": "Talk over it and it stops and listens."
+			},
+			"footer": {
+				"local": "Everything above runs on your machine: hearing, understanding, thinking and speaking",
+				"llm": "The language model runs on hardware you own",
+				"storage": "Settings and memory stay in a local database on the node"
+			},
+			"hints": {
+				"heading": "Lane and marker details"
+			},
+			"stacked": {
+				"skipped": "skipped in this turn"
+			},
+			"noscript": {
+				"heading": "The eight lanes, in order"
+			},
+			"source": {
+				"conversation": "The first-sound marker is the median of the project's own benchmark runs in September 2026: {ms} ms from the end of your sentence to the first sound, on {machine}. The other bars show the order of the stages; your hardware will give different numbers.",
+				"command": "Known commands were measured on a hub-class machine at home in September 2026: {lo} to {hi} ms from the end of your sentence to the first sound. The bars show the order of the stages; your hardware will give different numbers."
+			},
+			"link": "See the timings of every turn in the console"
+		},
+		"satellitePicker": {
+			"title": "Satellites: a microphone in every room",
+			"intro": "Four kinds of satellite, one behaviour: the device listens and plays, and everything else runs on your Domia node.",
+			"chooseLabel": "Choose:",
+			"tabsLabel": "Kind of satellite",
+			"stageLabel": "Picker with four kinds of satellite on the left, your Domia node in the centre and, on the right, what runs on the selected device, what travels between it and the node, and what to keep in mind",
+			"protocols": {
+				"esphome": {
+					"name": "Home Assistant Voice PE",
+					"device": "works as it comes, without changing the firmware"
+				},
+				"wyoming": {
+					"name": "A Wyoming satellite",
+					"device": "any speaker or board that speaks Wyoming"
+				},
+				"livekit": {
+					"name": "A browser room",
+					"device": "any browser or app joins a room"
+				},
+				"websocket": {
+					"name": "Your own board or script",
+					"device": "follows Domia's reference design"
+				}
+			},
+			"onDevice": {
+				"wakeWord": "wake word",
+				"audioIn": "microphone",
+				"audioOut": "speaker",
+				"leds": "LEDs"
+			},
+			"streams": {
+				"audioIn": "microphone audio",
+				"replyAudio": "reply audio",
+				"replyAudioAdvertisedFormat": "reply audio in the format the device advertises",
+				"announcements": "announcements",
+				"audioPlayedStamp": "playback timestamp"
+			},
+			"caveats": {
+				"followUpOnFactoryFirmware": "Follow-up mode works on the factory firmware and is {followUp, select, on {on} other {off}} by default.",
+				"advertisedFormatOnly": "The device plays only the format it advertises, so the node converts every reply for it.",
+				"pingWatchdog": "The node notices when a device stops answering.",
+				"nodeConnectsOut": "The node opens the connection, so the satellite needs an address the node can reach.",
+				"noPlaybackConfirmation": "Wyoming sends no playback confirmation, so the node is not told when a reply finished playing.",
+				"needsRuntimeOnNode": "Browser rooms need an extra component installed on the node; platforms without it skip this kind of satellite.",
+				"webrtcRoom": "Audio travels through a room that any browser or app can join.",
+				"referenceProtocol": "The reference design: every other kind of satellite behaves the same way once connected.",
+				"diyBuild": "Bring your own capture, wake word and playback; the node handles the rest."
+			},
+			"details": {
+				"heading": "What this device does",
+				"onDevice": "On the device",
+				"streams": "Between device and node",
+				"caveats": "Good to know",
+				"nodeConnectsOut": "the node connects to the device",
+				"deviceConnectsIn": "the device connects to the node"
+			},
+			"hub": {
+				"title": "Your Domia node",
+				"body": "Speech to text, routing, the model, the voice and memory all run here.",
+				"hint": {
+					"title": "Any of these devices, same behaviour",
+					"body": "Every kind of satellite is handled the same way: the device listens and plays, the node does the rest."
+				}
+			},
+			"hintIndexHeading": "Details",
+			"realtime": {
+				"title": "Apps can talk to it too",
+				"body": "Apps built for the OpenAI Realtime API connect to the node and go through the same stages."
+			},
+			"noscript": {
+				"heading": "The four kinds of satellite"
+			},
+			"link": "Set up a satellite"
+		},
+		"topologies": {
+			"title": "Deployments: one device, a hub, or a mesh",
+			"intro": "Every Domia node runs the same software; a console template decides whether it is a standalone companion, a full hub for a whole property, or one of several hubs sharing the work. Every arrow below stays inside your network.",
+			"stageLabel": "Deployment topologies: one Domia node shown as a standalone device, as a hub serving four satellites, and as a peer in a mesh of hubs",
+			"tabsLabel": "Deployment scenario",
+			"tabsInstruction": "Choose:",
+			"tabs": {
+				"single": "One device",
+				"hubRooms": "Hub and rooms",
+				"mesh": "Mesh of hubs"
+			},
+			"device": {
+				"single": "capable machine · everything on board",
+				"hubRooms": "hub · hub-class machine",
+				"mesh": "hub A · hub-class machine"
+			},
+			"nodes": {
+				"main": {
+					"title": "Domia node"
+				},
+				"mic": {
+					"title": "mic in"
+				},
+				"speaker": {
+					"title": "speaker out"
+				},
+				"satEsphome": {
+					"title": "Home Assistant Voice PE",
+					"sub": "factory firmware"
+				},
+				"satLivekit": {
+					"title": "Browser room",
+					"sub": "browser or app"
+				},
+				"satWebsocket": {
+					"title": "Your own board",
+					"sub": "built by you · Domia's reference protocol"
+				},
+				"satWyoming": {
+					"title": "Wyoming satellite",
+					"sub": "community devices"
+				},
+				"hubB": {
+					"title": "Domia node",
+					"sub": "hub B · hub-class machine"
+				},
+				"hubC": {
+					"title": "Domia node",
+					"sub": "hub C · a smaller machine"
+				}
+			},
+			"identitiesLabel": "Domias living here",
+			"identities": {
+				"nova": "Nova",
+				"sage": "Sage",
+				"ember": "Ember",
+				"rhea": "Rhea",
+				"milo": "Milo"
+			},
+			"bindsTo": "binds to {identity}",
+			"chips": {
+				"wake": "hears",
+				"stt": "understands",
+				"routing": "routes",
+				"llm": "thinks",
+				"tts": "speaks",
+				"memory": "memory · stored on this node",
+				"llmShared": "model · shared",
+				"llmDelegated": "model ↗ borrowed"
+			},
+			"overlays": {
+				"audioStreams": "audio streams in · replies stream back",
+				"sameBehaviour": "any of these devices, same behaviour",
+				"realtimeEndpoint": "apps can talk to it too",
+				"lendLead": "Nodes find each other on your network and",
+				"lendEmphasis": "lend each other stages.",
+				"lendTail": "A smaller machine borrows a neighbour's language model; a thin client borrows everything.",
+				"personaTitle": "Milo's model → hub B",
+				"personaBody": "persona and context travel inside the request; nothing is stored on the peer"
+			},
+			"captions": {
+				"single": "One machine does everything for one Domia.",
+				"hubRooms": "One hub listens through a speaker in every room.",
+				"mesh": "Three hubs share the work; the smaller one borrows a neighbour's model."
+			},
+			"hintsHeading": "Details for each element",
+			"hints": {
+				"node": {
+					"title": "Domia node",
+					"body": "The same software as every other node. Its role comes from the template you apply in the console, not from a different build."
+				},
+				"identity": {
+					"title": "Identity",
+					"body": "An identity has its own voice, persona and memory."
+				},
+				"identityRemote": {
+					"title": "Delegated identity",
+					"body": "Milo's persona and context travel inside the request; nothing is stored on hub B."
+				},
+				"wake": {
+					"title": "Wake word",
+					"body": "The wake word is spotted before anything else runs."
+				},
+				"stt": {
+					"title": "Speech to text",
+					"body": "Streaming, on this node, one of eight engines."
+				},
+				"routing": {
+					"title": "Routing",
+					"body": "A known command takes the fast path and runs without the model. Anything else goes to the model, which gets the skills that fit and decides whether to call one or answer."
+				},
+				"llm": {
+					"title": "Language model",
+					"body": "A local model served on your own hardware; nothing leaves your network."
+				},
+				"tts": {
+					"title": "Text to speech",
+					"body": "One of six engines, one voice per identity."
+				},
+				"memory": {
+					"title": "Memory",
+					"body": "Per-identity memory stored on this node. Nothing is stored on a peer."
+				},
+				"mic": {
+					"title": "Microphone",
+					"body": "Any built-in or USB microphone; audio stays on the machine."
+				},
+				"speaker": {
+					"title": "Speaker",
+					"body": "The reply is synthesised here and played on the same device."
+				},
+				"satEsphome": {
+					"title": "Home Assistant Voice PE",
+					"body": "Off-the-shelf hardware running its factory firmware; nothing to change."
+				},
+				"satLivekit": {
+					"title": "Browser room",
+					"body": "A room that browsers and apps can join."
+				},
+				"satWebsocket": {
+					"title": "Your own board",
+					"body": "Built on Domia's reference protocol, for satellites you make yourself."
+				},
+				"satWyoming": {
+					"title": "Wyoming satellite",
+					"body": "Works with any satellite that speaks Wyoming."
+				},
+				"hubB": {
+					"title": "Hub-class peer",
+					"body": "A peer with headroom; neighbours can borrow its language model."
+				},
+				"hubC": {
+					"title": "A smaller machine",
+					"body": "Speech to text and text to speech run on board; its language model runs on hub B."
+				},
+				"sameBehaviour": {
+					"title": "Any device, same behaviour",
+					"body": "Every kind of satellite is handled the same way once connected; swap hardware freely."
+				},
+				"realtime": {
+					"title": "Apps can talk to it too",
+					"body": "Apps that speak the OpenAI Realtime API connect straight to the node and go through the same stages."
+				},
+				"badgeLocal": {
+					"title": "100% local",
+					"body": "Audio, transcripts and memory never touch a third-party server."
+				},
+				"badgeNoCloud": {
+					"title": "No central server",
+					"body": "No accounts, no telemetry, nothing outside your network to depend on."
+				},
+				"badgeOpenSource": {
+					"title": "Open source",
+					"body": "Read it, run it, fork it. Apache 2.0."
+				},
+				"badgeAdapts": {
+					"title": "Adapts to your hardware",
+					"body": "The same software runs on a thin device or a hub-class machine; configuration decides."
+				}
+			},
+			"badges": {
+				"local": "100% local",
+				"noCloud": "no cloud, no central server",
+				"openSource": "open source · Apache 2.0",
+				"adapts": "adapts to your hardware"
+			},
+			"noscriptHeading": "The three deployment scenarios",
+			"titleCompact": "Three ways to run it"
+		},
+		"sayIt": {
+			"title": "Fast path or model?",
+			"intro": "Every request first looks for a fast path: a known command is handled at once, with no model involved. Everything else goes to the language model, which sees the skills that fit and decides whether to use one or simply answer. Try a phrase and watch which way it goes.",
+			"input": {
+				"placeholder": "Say something…",
+				"submit": "Try it",
+				"presetsLabel": "Try a phrase",
+				"loading": "Loading the command templates…",
+				"failed": "The command templates could not load. Try again."
+			},
+			"providers": {
+				"domia": "a built-in tool",
+				"home-assistant": "Home Assistant",
+				"music-assistant": "Music Assistant"
+			},
+			"realNode": {
+				"domia": "on a real node it is done at once",
+				"home-assistant": "on a real node the device responds right away",
+				"music-assistant": "on a real node the player responds right away"
+			},
+			"reasons": {
+				"no_match": "No fast path for this one, so the model takes it: it can call a skill or just answer.",
+				"too_long": "Too long for a fast path, so the model takes it."
+			},
+			"generic": "a command",
+			"things": {
+				"light": "the lights",
+				"fan": "the fans",
+				"cover": "the blinds and shutters",
+				"switch": "the switches",
+				"awning": "the awnings",
+				"blind": "the blinds",
+				"curtain": "the curtains",
+				"door": "the doors",
+				"garage": "the garage doors",
+				"gate": "the gates",
+				"shade": "the shades",
+				"shutter": "the shutters",
+				"window": "the windows"
+			},
+			"tools": {
+				"HassTurnOn": {
+					"action": "turn on",
+					"entity": "{entity}",
+					"area": "{things} {area}"
+				},
+				"HassTurnOff": {
+					"action": "turn off",
+					"entity": "{entity}",
+					"area": "{things} {area}"
+				},
+				"HassLightSet": {
+					"action": "set brightness",
+					"any": "{entity} to {brightness} percent"
+				},
+				"HassSetPosition": {
+					"action": "set position",
+					"entity": "{entity} to {position} percent",
+					"area": "{things} {area} to {position} percent"
+				},
+				"time": {
+					"action": "the time"
+				},
+				"date": {
+					"action": "the date"
+				},
+				"timer": {
+					"action": "a timer",
+					"any": "for {seconds}",
+					"realNode": "on a real node it is set at once"
+				},
+				"timer_cancel": {
+					"action": "cancel the timer"
+				},
+				"timer_status": {
+					"action": "time left on the timer"
+				},
+				"reminder": {
+					"action": "cancel the reminder"
+				},
+				"repeat": {
+					"action": "say that again"
+				},
+				"cancel": {
+					"action": "never mind"
+				},
+				"alarm": {
+					"action": "an alarm",
+					"any": "{at}",
+					"realNode": "on a real node it is set at once"
+				},
+				"alarm_cancel": {
+					"action": "cancel the alarm"
+				},
+				"volume": {
+					"action": "change your volume"
+				},
+				"playback_pause": {
+					"action": "pause the music"
+				},
+				"playback_resume": {
+					"action": "resume the music"
+				},
+				"playback_next_track": {
+					"action": "next track"
+				},
+				"playback_previous_track": {
+					"action": "previous track"
+				},
+				"volume_volume_set": {
+					"action": "set the music volume",
+					"any": "{level} percent"
+				},
+				"volume_volume_up": {
+					"action": "turn the music up"
+				},
+				"volume_volume_down": {
+					"action": "turn the music down"
+				},
+				"music_now_playing": {
+					"action": "what is playing"
+				}
+			},
+			"templatesNote": "The command templates are checked against a test corpus: a sentence that is not a command never matched one.",
+			"noscript": {
+				"note": "Typing your own phrase needs JavaScript. This is the route for the first example phrase.",
+				"heading": "Phrase"
+			},
+			"conversation": {
+				"states": {
+					"listening": "Listening",
+					"deciding": "Deciding",
+					"acting": "Doing it",
+					"thinking": "Thinking",
+					"speaking": "Speaking"
+				},
+				"replies": {
+					"tools": {
+						"HassTurnOff": "Done. I've turned off {thing}.",
+						"HassTurnOn": "Done. I've turned on {thing}.",
+						"timer": "Timer set, {seconds}."
+					},
+					"done": "Done, {provider} took care of it.",
+					"plain": "Done.",
+					"confirmed": {
+						"lock": "Locked.",
+						"alarm_control_panel": "Armed.",
+						"siren": "Done.",
+						"cover": "Done."
+					},
+					"pause": "Let me think about that one.",
+					"thought": "…the model answers in its own words."
+				},
+				"thoughts": {
+					"wifi": "…it checks what you wrote down for it and answers in its own words."
+				},
+				"yes": "Yes",
+				"yesSaid": "Yes.",
+				"lines": {
+					"match": "Answered on the spot: no cloud, no model. Then just keep talking, the mic stays open.",
+					"miss": "The model took this one.",
+					"confirm": "Asks first by default; you set the policy for each skill.",
+					"persona": "The model answers in character, with the temperament you chose."
+				},
+				"tryLabel": "Try:",
+				"typeYourOwn": "Or type your own",
+				"note": "Simulated here. On your node this happens out loud.",
+				"noscript": "Trying other phrases needs JavaScript. This is the conversation for the first example."
+			},
+			"fork": {
+				"label": "How a request is routed",
+				"question": "Is it a known command?",
+				"outcome": {
+					"match": "{provider} does it: {understood}.",
+					"confirm": "Locks, alarms and sirens skip the fast path. By default Domia asks first: “{question}”",
+					"matchConfirm": "Matched without the model, and it asks first by default: “{question}”"
+				}
+			},
+			"branches": {
+				"yes": {
+					"label": "Yes",
+					"title": "Handled without the model",
+					"hint": "Matched against the command templates your skills bring."
+				},
+				"no": {
+					"label": "No",
+					"title": "The model decides",
+					"hint": "It sees the skills that fit the request and either calls one or answers in its own words."
+				}
+			},
+			"entities": {
+				"light_kitchen": "the kitchen light",
+				"light_office": "the office lights",
+				"light_living_room_lamp": "the living room lamp",
+				"light_bedroom": "the bedroom light",
+				"switch_hallway": "the hallway switch",
+				"lock_front_door": "the front door",
+				"cover_garage_door": "the garage door",
+				"cover_bedroom_blinds": "the bedroom blinds",
+				"media_player_office_speaker": "the office speaker",
+				"climate_thermostat": "the thermostat"
+			},
+			"areas": {
+				"kitchen": "in the kitchen",
+				"office": "in the office",
+				"living_room": "in the living room",
+				"bedroom": "in the bedroom",
+				"garage": "in the garage",
+				"hallway": "in the hallway",
+				"entry": "at the entry"
+			},
+			"confirm": {
+				"domains": {
+					"lock": "Lock {thing}?",
+					"alarm_control_panel": "Arm {thing}?",
+					"siren": "Sound {thing}?"
+				},
+				"tools": {
+					"HassTurnOn": "Open {thing}?",
+					"HassTurnOff": "Close {thing}?",
+					"HassSetPosition": "Set {thing}?"
+				},
+				"generic": "Go ahead with {thing}?"
+			}
+		},
+		"personaBuilder": {
+			"title": "Make your Domia a person",
+			"intro": "A Domia is not just a voice. It is someone, with a name, a temperament and a way of speaking. Pick a look and a temperament, then talk to it.",
+			"pickFace": "Choose a look",
+			"pickTemperament": "Choose a temperament",
+			"faces": {
+				"chef": {
+					"name": "Chef"
+				},
+				"teacher": {
+					"name": "Teacher"
+				},
+				"musician": {
+					"name": "Musician"
+				},
+				"doctor": {
+					"name": "Doctor"
+				},
+				"investigator": {
+					"name": "Investigator"
+				},
+				"gamer": {
+					"name": "Gamer"
+				},
+				"astronaut": {
+					"name": "Astronaut"
+				},
+				"architect": {
+					"name": "Architect"
+				},
+				"mechanic": {
+					"name": "Mechanic"
+				},
+				"accountant": {
+					"name": "Accountant"
+				},
+				"athlete": {
+					"name": "Athlete"
+				},
+				"aviator": {
+					"name": "Aviator"
+				},
+				"electrician": {
+					"name": "Electrician"
+				},
+				"lawyer": {
+					"name": "Lawyer"
+				},
+				"programmer": {
+					"name": "Programmer"
+				},
+				"legendary": {
+					"name": "Legend"
+				}
+			},
+			"templates": {
+				"warmHost": {
+					"name": "Warm Host",
+					"persona": "Aria",
+					"sample": "Lovely, thank you for asking. Quiet house, bread in the oven by four, and I kept the lights low for when you got back."
+				},
+				"grumpyComedian": {
+					"name": "Grumpy Comedian",
+					"persona": "Sully",
+					"sample": "Thrilling. Nine hours listening to the fridge hum. Yours had better be more interesting."
+				},
+				"empatheticCaregiver": {
+					"name": "Empathetic Caregiver",
+					"persona": "June",
+					"sample": "Calm, mostly. But you sound tired tonight. Want to tell me about yours before we do anything else?"
+				},
+				"calmAnalyst": {
+					"name": "Calm Analyst",
+					"persona": "Walter",
+					"sample": "Uneventful. Twelve requests, all handled, and the living room ran two degrees warmer than usual."
+				}
+			},
+			"noscriptHeading": "The four temperaments",
+			"examplesNote": "These are examples. In the console you set the mood on a radar and write the character yourself.",
+			"seeRadar": "See the mood radar",
+			"runIt": "Run it"
+		},
+		"consoleTour": {
+			"title": "The console, screen by screen",
+			"intro": "A read-only demo of a real home mesh runs online; every screen below is a capture of the real console.",
+			"tabsLabel": "Console screens",
+			"moreScreens": "More screens",
+			"hotspotsHeading": "What to look at",
+			"imageAlt": "The {screen} screen of the console",
+			"openDemo": "Open this screen in the live demo",
+			"openDemoHome": "Open the live demo",
+			"caption": "read-only demo of a real home mesh",
+			"notLiveYet": "this screen is not in the online demo yet",
+			"noscriptHeading": "The eleven console screens",
+			"screens": {
+				"conversations": {
+					"title": "Conversations",
+					"summary": "Every interaction on the mesh with its transcript, reply, audio, latency per stage and a grade.",
+					"hotspots": {
+						"turnList": {
+							"title": "Transcript and reply",
+							"body": "Each row is one turn: which flow handled it, what was heard and what was answered."
+						},
+						"stageTimings": {
+							"title": "Latency per stage",
+							"body": "The bar splits each turn into speech to text, model and speech; open a row for the exact timings."
+						},
+						"replay": {
+							"title": "Listen to it",
+							"body": "Play what was heard or what was answered; open the turn to grade it or run it again."
+						}
+					}
+				},
+				"domias": {
+					"title": "Fleet",
+					"summary": "One card per identity with its role, latency and volume, and a page where its whole configuration is edited live.",
+					"hotspots": {
+						"glance": {
+							"title": "One card per Domia",
+							"body": "Name, temperament, role, latency and volume at a glance; the full configuration is edited live on its page."
+						},
+						"openDomia": {
+							"title": "Open a Domia",
+							"body": "Each card opens that Domia's page, where you apply a template or edit its configuration; most edits reload live."
+						},
+						"thinClient": {
+							"title": "Thin clients",
+							"body": "A thin client keeps wake word and audio local and delegates the rest; its routines are set on its own page and its satellites on the Satellites screen."
+						}
+					}
+				},
+				"templates": {
+					"title": "Templates",
+					"summary": "System and custom templates, each a full configuration you apply to any Domia or compare with what it runs now.",
+					"hotspots": {
+						"systemTemplate": {
+							"title": "A system template",
+							"body": "Standalone runs the whole voice chain on one machine; inference hub, thin client and tuned variants ship beside it."
+						},
+						"modelAndVoice": {
+							"title": "What a template carries",
+							"body": "The chips preview model and voice; underneath sit engines, delegation and skills."
+						},
+						"applyToNode": {
+							"title": "Apply to a Domia",
+							"body": "Pick a Domia and apply; the node restarts with its new role, and later edits reload live."
+						}
+					}
+				},
+				"memories": {
+					"title": "Memories",
+					"summary": "What each Domia remembers: facts, episodes and the user model, browsed here in their own tabs and edited on each Domia's page.",
+					"hotspots": {
+						"layers": {
+							"title": "Three layers",
+							"body": "Facts, episodes and what each Domia knows about you sit in their own tabs; search or narrow to one Domia just below."
+						},
+						"facts": {
+							"title": "A fact",
+							"body": "Each fact names the Domia that learned it, when, and how confident it is."
+						},
+						"trace": {
+							"title": "Trace back",
+							"body": "Confidence plus a link to the turn that produced it; episodes and the user model are checked the same way."
+						}
+					}
+				},
+				"overview": {
+					"title": "Overview",
+					"summary": "The whole mesh at a glance: who is online, how fast replies start, and how much has been said.",
+					"hotspots": {
+						"latency": {
+							"title": "Perceived latency",
+							"body": "From the end of your sentence to the first sound of the reply, shown as the median with the slowest turns beside it."
+						},
+						"localExecution": {
+							"title": "Local execution",
+							"body": "How many turns were handled by the Domia that heard them instead of being delegated to another one."
+						},
+						"presence": {
+							"title": "Local mesh map",
+							"body": "Every discovered Domia appears with its role and whether it is online right now."
+						}
+					}
+				},
+				"broadcast": {
+					"title": "Broadcast",
+					"summary": "Rooms talk to each other from the console: an announcement reaches every room or just one, and an intercom links two rooms live.",
+					"hotspots": {
+						"intercom": {
+							"title": "Intercom",
+							"body": "Open a live channel between two rooms, so people talk to each other through their Domias."
+						},
+						"composer": {
+							"title": "Type or record",
+							"body": "Type a message or record a clip in the console; each room plays it in its own Domia's voice or as the original recording."
+						},
+						"targets": {
+							"title": "Every room or one",
+							"body": "Pick the rooms that should hear it, or select them all; delivery is confirmed room by room."
+						}
+					}
+				},
+				"satellites": {
+					"title": "Satellites",
+					"summary": "Every microphone and speaker in the rooms: which Domia it serves, what it can do and when it was last seen.",
+					"hotspots": {
+						"summary": {
+							"title": "At a glance",
+							"body": "How many satellites are connected or offline, how many of each kind, and how many can announce or open an intercom."
+						},
+						"row": {
+							"title": "One satellite",
+							"body": "Its status, the Domia it is assigned to, its capabilities and the last time it was seen; play a test sound or an announcement from the row."
+						}
+					}
+				},
+				"chat": {
+					"title": "Chat",
+					"summary": "Text chat with any Domia, no microphone needed; every exchange is a real interaction.",
+					"hotspots": {
+						"identityPicker": {
+							"title": "Pick a Domia",
+							"body": "Choose which identity answers; its mood and capabilities show on the right."
+						},
+						"conversation": {
+							"title": "The conversation",
+							"body": "Each reply shows its text, its audio and a link to its trace. In the online demo the chat is read-only."
+						},
+						"composer": {
+							"title": "Message box",
+							"body": "Type, record or upload a recording, and choose whether the reply comes back as text or voice."
+						}
+					}
+				},
+				"emotions": {
+					"title": "Emotions",
+					"summary": "Mood per identity over time: eight axes, the current radar, and the events that moved them.",
+					"hotspots": {
+						"axes": {
+							"title": "Emotion trend",
+							"body": "Eight axes over time for the selected Domia; toggle the chips to compare them."
+						},
+						"baseline": {
+							"title": "Current mood",
+							"body": "The radar shows where each axis sits right now against the character's baseline."
+						},
+						"events": {
+							"title": "Emotion events",
+							"body": "Each shift is an event with its cause and how far each axis moved, written by the reflection after the turn."
+						}
+					}
+				},
+				"analytics": {
+					"title": "Analytics",
+					"summary": "Time to first audio, the latency breakdown per stage, model performance and the labeled evaluation set.",
+					"hotspots": {
+						"perceived": {
+							"title": "Perceived latency",
+							"body": "Measured from the end of your sentence to the first sound of the reply; the median is what the household actually hears."
+						},
+						"onDevice": {
+							"title": "On-device share",
+							"body": "How many turns finished on the device that heard them instead of on a hub; model performance and the evaluation set follow below."
+						},
+						"breakdown": {
+							"title": "Latency breakdown",
+							"body": "Speech to text, model and speech averaged over voice replies, with the moment the first audio starts marked on the bar."
+						}
+					}
+				},
+				"settings": {
+					"title": "Settings",
+					"summary": "Console appearance, live refresh and the rotation of the shared mesh secret; further down, the nodes it syncs from and the local data it keeps.",
+					"hotspots": {
+						"appearance": {
+							"title": "Appearance",
+							"body": "Light, dark, or following the system."
+						},
+						"liveRefresh": {
+							"title": "Live refresh",
+							"body": "How often the live views ask the mesh for fresh data."
+						},
+						"secretRotation": {
+							"title": "Mesh secret rotation",
+							"body": "Rotate the shared secret node by node; during the grace window both the current and the next one are accepted."
+						}
+					}
 				}
 			}
 		}
 	},
-	"notFound": {
-		"title": "Oops! Page not found",
-		"description": "Domia couldn’t find what you’re looking for. The page might have moved or no longer exists.",
-		"backHome": "🔙 Return Home"
+	"cases": {
+		"hero": {
+			"eyebrow": "Use cases",
+			"title": "A voice agent at home and with guests",
+			"subtitle": "Real requests, what Domia does with each one, and what you need to set up.",
+			"imageAlt": "The Domia mascot holding a small rocket",
+			"homeAnchor": "At home",
+			"hospitalityAnchor": "Hosting guests"
+		},
+		"quote": "“{line}”",
+		"routeLabel": "Route:",
+		"routes": {
+			"fastPath": "Fast path",
+			"model": "The model decides",
+			"notes": "From your notes",
+			"memory": "From memory"
+		},
+		"legend": {
+			"title": "Four routes a request can take",
+			"fastPath": "A known command calls the skill directly, without the model.",
+			"model": "For anything else the model sees the skills that fit and chooses: call one, or just answer.",
+			"notes": "The matching entries of the knowledge base reach the model before it answers.",
+			"memory": "Facts you told it come back when they are relevant.",
+			"link": "How a request finds its route"
+		},
+		"groups": {
+			"home": {
+				"title": "At home",
+				"intro": "A day in a house with Domia, from the alarm to good night.",
+				"needs": "What you need: one capable machine with a microphone and a speaker. Lights need Home Assistant, music needs Music Assistant, and more rooms need satellites. Conversation, memory, timers, alarms and reminders need nothing else."
+			},
+			"hospitality": {
+				"title": "Hosting guests",
+				"intro": "A use case the knowledge base makes possible. You write what guests usually ask, and the room answers by voice. It answers only what you wrote. Each room's Domia speaks with the name, voice and temperament you choose, so it sounds like your place."
+			}
+		},
+		"also": {
+			"title": "Also in the house",
+			"identities": "Several Domias can live on one machine, each with its own name, voice and memory.",
+			"broadcast": "From the console's Broadcast page you can send an announcement to every room, or open an intercom between two.",
+			"move": "A Domia can move to another machine with everything it knows."
+		},
+		"setup": {
+			"title": "What you set up",
+			"link": "See the console",
+			"steps": {
+				"notes": {
+					"title": "Write the notes",
+					"body": "In the console, add short entries: wifi, house rules, check-out, meal times, phone numbers, your local picks."
+				},
+				"hub": {
+					"title": "Run one hub",
+					"body": "A hub-class machine on the property does the listening, the thinking and the speaking for every room."
+				},
+				"rooms": {
+					"title": "Give each room a Domia",
+					"body": "A satellite in the room and its own Domia, with a name, a voice and its own notes."
+				}
+			}
+		},
+		"limits": {
+			"title": "What it will not do",
+			"body": "It has no web search: what you did not write, it cannot look up. For guest rooms you can switch off memory for that room's Domia, so what one guest tells it is not remembered for the next."
+		},
+		"cards": {
+			"alarm": {
+				"line": "Wake me up at seven.",
+				"happens": "A known command, so the built-in alarm is set without the model. Alarms, timers and reminders are built in: there is nothing to connect."
+			},
+			"companion": {
+				"line": "How was your day?",
+				"happens": "No command here, so the model just answers, in the character and voice you gave it. When things are quiet it looks back on the conversation, and its mood follows."
+			},
+			"followUp": {
+				"line": "Say that again.",
+				"happens": "After a reply the microphone stays open for a moment, so the next sentence needs no wake word. Repeating is a known command."
+			},
+			"memory": {
+				"line": "How do I take my coffee?",
+				"happens": "You said it once, or asked it to remember. Facts about you stay on your node, and you can read and delete them in the console."
+			},
+			"lights": {
+				"line": "Turn off the kitchen light.",
+				"happens": "A known command: it goes straight to Home Assistant without waiting for the model."
+			},
+			"music": {
+				"line": "Play some jazz in the living room.",
+				"happens": "Not a fixed phrase, so the model picks the Music Assistant skill and fills in what to play and where. Pause, skip and volume are known commands and skip the model."
+			},
+			"timer": {
+				"line": "Set a timer for twenty minutes.",
+				"happens": "The timer is stored on the node: it survives a restart and never rings twice."
+			},
+			"reminder": {
+				"line": "Remind me to take my pills at nine.",
+				"happens": "Free words and a time, so the model fills in the reminder and the built-in skill stores it. It is spoken aloud at nine."
+			},
+			"bargeIn": {
+				"line": "Never mind.",
+				"happens": "Talk over it and it stops; on a satellite the reply pauses while you speak. Cancelling is a known command, so it just says okay."
+			},
+			"goodnight": {
+				"line": "Good night.",
+				"happens": "A routine you define in the console: lights off, music off, alarm set. Its phrase becomes a known command; it runs the steps in order and answers once."
+			},
+			"wifi": {
+				"line": "What's the wifi password?",
+				"happens": "You write the wifi, the house rules and the check-out time once. Every guest gets the answer by voice, and nothing leaves the property."
+			},
+			"readingLight": {
+				"line": "Turn on the reading light.",
+				"happens": "With Home Assistant in the property it is a known command: the reading light turns on without waiting for the model."
+			},
+			"mealTimes": {
+				"line": "What time is breakfast?",
+				"happens": "Meal times, pool hours and quiet hours are notes. Change one in the console and the room answers with the new time."
+			},
+			"nearby": {
+				"line": "Any good places to eat nearby?",
+				"happens": "It recommends the places you wrote down, in your own words. It does not search the web."
+			},
+			"frontDesk": {
+				"line": "What's the number for the front desk?",
+				"happens": "Phone numbers, and who to call for what, are in the same notes, ready at any hour."
+			},
+			"time": {
+				"line": "What time is it?",
+				"happens": "The built-in clock answers at once, with nothing to connect and no internet needed."
+			}
+		},
+		"cta": {
+			"title": "Try it in your own space",
+			"subtitle": "Install it once, apply a template from the console and say the wake word.",
+			"primary": "Run it",
+			"secondary": "Try the demo"
+		}
+	},
+	"experience": {
+		"hero": {
+			"eyebrow": "Console",
+			"title": "Every node, every room, one screen.",
+			"subtitle": "See every Domia in the house, apply a configuration template, replay any conversation and check how fast each reply started. The console runs on your own network. The online demo is a read-only copy of a real home.",
+			"demo": "Open the console demo",
+			"run": "Run it yourself",
+			"imageAlt": "The Fleet screen of the Domia console, one card per Domia"
+		},
+		"proof": {
+			"title": "What changes on your own network",
+			"write": {
+				"title": "You can write",
+				"body": "At home the console changes things: apply templates, edit routines, chat with any Domia and send broadcasts. In the online demo these controls are disabled."
+			},
+			"data": {
+				"title": "Your data stays there",
+				"body": "The console keeps its copy of conversations, memories and timings on your own network, and exports it when you ask."
+			},
+			"rerun": {
+				"title": "Run a turn again",
+				"body": "Run a recorded turn again against another model on the same recording and compare before you change anything in the house."
+			},
+			"latency": {
+				"title": "Latency you can read",
+				"body": "Per-stage timings for every turn, plus the perceived latency: the time from the end of your sentence to the first word of the reply. The demo shows the real figures of a real home, including the slow turns."
+			}
+		},
+		"cta": {
+			"title": "Browse the live demo",
+			"subtitle": "A read-only copy of a real console, with real conversations behind it.",
+			"primary": "Open console.domia.ai",
+			"secondary": "Run it on your hardware"
+		}
 	}
 }

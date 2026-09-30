@@ -1,0 +1,33 @@
+{
+	"meta": {
+		"source": "domia-core/templates/thin-client.json, standalone.json, full-hub.json (capabilities flags); CLAUDE.md hardware spectrum; domia-core/docs/ARCHITECTURE.md (mesh delegation)",
+		"capturedAt": "2026-09-24T00:00:00.000Z",
+		"generator": "manual"
+	},
+	"archetypes": [
+		{
+			"id": "thin",
+			"onBoard": ["wake", "audio"],
+			"delegates": ["stt", "routing", "llm", "tts", "memory"],
+			"identities": "one",
+			"sharesStages": false,
+			"template": "thin-client"
+		},
+		{
+			"id": "capable",
+			"onBoard": ["wake", "audio", "stt", "routing", "llm", "tts", "memory"],
+			"delegates": [],
+			"identities": "one",
+			"sharesStages": false,
+			"template": "standalone"
+		},
+		{
+			"id": "hubClass",
+			"onBoard": ["stt", "routing", "llm", "tts", "memory", "satellites"],
+			"delegates": [],
+			"identities": "several",
+			"sharesStages": true,
+			"template": "full-hub"
+		}
+	]
+}

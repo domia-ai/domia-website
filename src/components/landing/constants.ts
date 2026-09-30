@@ -1,0 +1,1 @@
+export const MOBILE_MENU_STAGGER_MS = 50

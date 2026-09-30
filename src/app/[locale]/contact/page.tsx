@@ -1,8 +1,10 @@
 import { getTranslations } from "next-intl/server"
 
-import { Hero, Form, Faqs } from "@/components/contact"
+import { ContactSection, Faqs, Hero } from "@/components/contact"
+import { contactFaqGroups } from "@/components/contact/constants"
+import { CtaBand } from "@/components/sections"
 import { BreadcrumbsJsonLd } from "@/components/seo/breadcrumbs"
-import { contactFaqIds } from "@/constants"
+import { demoUrl } from "@/constants"
 import { localizedMetadata, pageLocale } from "@/i18n/page"
 
 export const generateMetadata = localizedMetadata("/contact", "contact")
@@ -10,21 +12,23 @@ export const generateMetadata = localizedMetadata("/contact", "contact")
 export default async function Contact(props: PageProps<"/[locale]/contact">) {
 	const locale = await pageLocale(props.params)
 
-	const t = await getTranslations({ locale, namespace: "contact.faqs" })
+	const t = await getTranslations({ locale, namespace: "contact" })
 	const tMeta = await getTranslations({ locale, namespace: "meta" })
 
 	const faqJsonLd = {
 		"@context": "https://schema.org",
 		"@type": "FAQPage",
-		mainEntity: contactFaqIds.map((id) => ({
-			"@type": "Question",
-			name: t(`items.${id}.q`).replace(/^\p{Extended_Pictographic}+\s*/u, ""),
-			acceptedAnswer: { "@type": "Answer", text: t(`items.${id}.a`) },
-		})),
+		mainEntity: contactFaqGroups
+			.flatMap((group) => group.faqIds)
+			.map((id) => ({
+				"@type": "Question",
+				name: t(`faqs.items.${id}.q`),
+				acceptedAnswer: { "@type": "Answer", text: t(`faqs.items.${id}.a`) },
+			})),
 	}
 
 	return (
-		<div className="flex flex-col gap-10">
+		<>
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
@@ -33,8 +37,14 @@ export default async function Contact(props: PageProps<"/[locale]/contact">) {
 				items={[{ name: tMeta("contact.breadcrumb"), path: "/contact" }]}
 			/>
 			<Hero />
-			<Form />
 			<Faqs />
-		</div>
+			<ContactSection />
+			<CtaBand
+				title={t("closing.title")}
+				subtitle={t("closing.subtitle")}
+				primary={{ href: demoUrl, label: t("closing.primary") }}
+				secondary={{ href: "/technology", label: t("closing.secondary") }}
+			/>
+		</>
 	)
 }

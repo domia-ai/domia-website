@@ -1,0 +1,37 @@
+{
+	"meta": {
+		"source": "domia-core/docs/ARCHITECTURE.md (What Domia is, The voice pipeline, The mesh); plan E8 contract",
+		"capturedAt": "2026-09-24T00:00:00.000Z",
+		"generator": "manual"
+	},
+	"paths": {
+		"cloud": {
+			"hops": [
+				{ "id": "mic", "kind": "device" },
+				{ "id": "router", "kind": "network" },
+				{ "id": "internetUp", "kind": "internet" },
+				{
+					"id": "vendorCloud",
+					"kind": "vendor",
+					"stores": ["stt", "llm", "tts", "account", "logs"]
+				},
+				{ "id": "internetDown", "kind": "internet" },
+				{ "id": "speaker", "kind": "device" }
+			]
+		},
+		"local": {
+			"hops": [
+				{ "id": "mic", "kind": "device" },
+				{
+					"id": "node",
+					"kind": "node",
+					"stores": ["wake", "stt", "routing", "llm", "tts", "memory"]
+				},
+				{ "id": "speaker", "kind": "device" }
+			],
+			"boundary": "yourNetwork"
+		}
+	},
+	"offlineBreaks": ["internetUp", "internetDown"],
+	"comparison": { "questions": ["processed", "copy", "offline"] }
+}
