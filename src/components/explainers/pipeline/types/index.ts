@@ -6,6 +6,9 @@ import type {
 	PipelineLaneId,
 	PipelineMachineId,
 	PipelineModeId,
+	ReplayData,
+	ReplayId,
+	ReplayTurn,
 } from "@/data/types"
 
 import type { getTranslations } from "next-intl/server"
@@ -68,6 +71,7 @@ export type PipelineCopy = {
 		skipped: string
 	}
 	noscript: { heading: string }
+	replay: ReplayCopy
 }
 
 export type PipelineSelection = {
@@ -81,6 +85,7 @@ export type PipelineExplainerProps = {
 
 export type PipelineIslandProps = {
 	data: PipelineData
+	replay: ReplayData
 	copy: PipelineCopy
 }
 
@@ -111,6 +116,7 @@ export type LegendProps = {
 export type HeadlineProps = {
 	copy: PipelineCopy
 	selection: PipelineSelection
+	override: string | null
 }
 
 export type FooterChipsProps = {
@@ -120,12 +126,14 @@ export type FooterChipsProps = {
 export type SourceCaptionProps = {
 	copy: PipelineCopy
 	selection: PipelineSelection
+	override: string | null
 }
 
 export type FrameInput = {
 	data: PipelineData
 	selection: PipelineSelection
 	t: number
+	replay?: ReplayFrameInput
 }
 
 export type Bar = FillSpan & {
@@ -226,4 +234,43 @@ export type LaneTone = {
 	stroke: string
 	text: string
 	swatch: string
+}
+
+export type ReplayCopy = {
+	label: string
+	play: string
+	stop: string
+	turns: Record<ReplayId, string>
+	headline: string
+	note: string
+	live: Record<ReplayPhase, string>
+}
+
+export type ReplayPhase =
+	"idle" | "listening" | "thinking" | "speaking" | "done"
+
+export type ReplayState = {
+	id: ReplayId | null
+	t: number
+	phase: ReplayPhase
+}
+
+export type ReplayPlayer = {
+	start: (turn: ReplayTurn) => void
+	stop: () => void
+	dispose: () => void
+}
+
+export type ReplayFrameInput = {
+	turn: ReplayTurn
+	t: number
+}
+
+export type ReplayControlsProps = {
+	turns: ReplayTurn[]
+	copy: ReplayCopy
+	selected: ReplayId
+	running: boolean
+	onSelect: (id: ReplayId) => void
+	onToggle: () => void
 }

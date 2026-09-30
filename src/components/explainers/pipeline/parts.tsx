@@ -11,18 +11,22 @@ import type {
 	SourceCaptionProps,
 } from "./types"
 
-export function Headline({ copy, selection }: HeadlineProps) {
+export function Headline({ copy, selection, override }: HeadlineProps) {
 	return (
 		<TypographyH3 className="max-w-3xl text-2xl text-balance sm:text-3xl">
-			{pickCopy(copy.headline, selection)}
+			{override ?? pickCopy(copy.headline, selection)}
 		</TypographyH3>
 	)
 }
 
-export function SourceCaption({ copy, selection }: SourceCaptionProps) {
+export function SourceCaption({
+	copy,
+	selection,
+	override,
+}: SourceCaptionProps) {
 	return (
 		<p className="text-muted-foreground max-w-3xl text-xs text-balance">
-			{pickCopy(copy.source, selection)}
+			{override ?? pickCopy(copy.source, selection)}
 		</p>
 	)
 }

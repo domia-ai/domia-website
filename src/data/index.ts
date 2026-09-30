@@ -6,11 +6,13 @@ import {
 	parseData,
 	personasSchema,
 	pipelineSchema,
-	roadmapSchema,
+	replaySchema,
 	satellitesSchema,
 	skillsSchema,
 	topologiesSchema,
+	turnsSchema,
 	voicePathSchema,
+	voicesSchema,
 } from "@/schemas/data"
 
 import archetypesJson from "./archetypes.json"
@@ -19,11 +21,13 @@ import fastPathJson from "./fast-path.json"
 import memoryJson from "./memory.json"
 import personasJson from "./personas.json"
 import pipelineJson from "./pipeline.json"
-import roadmapJson from "./roadmap.json"
+import replayJson from "./replay.json"
 import satellitesJson from "./satellites.json"
 import skillsJson from "./skills.json"
 import topologiesJson from "./topologies.json"
+import turnsJson from "./turns.json"
 import voicePathJson from "./voice-path.json"
+import voicesJson from "./voices.json"
 
 const memoise = <T>(load: () => T): (() => T) => {
 	let cached: T | undefined
@@ -53,10 +57,12 @@ export const loadArchetypes = memoise(() =>
 export const loadVoicePath = memoise(() =>
 	parseData(voicePathSchema, voicePathJson),
 )
-export const loadRoadmap = memoise(() => parseData(roadmapSchema, roadmapJson))
 export const loadConsoleTour = memoise(() =>
 	parseData(consoleTourSchema, consoleTourJson),
 )
 export const loadPersonas = memoise(() =>
 	parseData(personasSchema, personasJson),
 )
+export const loadTurns = memoise(() => parseData(turnsSchema, turnsJson))
+export const loadVoices = memoise(() => parseData(voicesSchema, voicesJson))
+export const loadReplay = memoise(() => parseData(replaySchema, replayJson))

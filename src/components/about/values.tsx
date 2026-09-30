@@ -1,16 +1,16 @@
 import { getTranslations } from "next-intl/server"
-import { Globe, HardDrive, Layers, ListChecks } from "lucide-react"
+import { Globe, HardDrive, Layers, MapPin } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
 import { ProofGrid, Section } from "@/components/sections"
 import { TypographyH2 } from "@/components/ui/typography"
 
-import { valueHrefs, valueIds } from "./constants"
+import { valueIds } from "./constants"
 import type { ValueId } from "./types"
 
 const valueIcons: Record<ValueId, LucideIcon> = {
 	localFirst: HardDrive,
-	statedLimits: ListChecks,
+	anyPlace: MapPin,
 	oneSoftware: Layers,
 	public: Globe,
 }
@@ -31,8 +31,6 @@ export async function Values() {
 						title: t(`items.${id}.title`),
 						body: t(`items.${id}.body`),
 						icon: valueIcons[id],
-						href: valueHrefs[id],
-						hrefLabel: valueHrefs[id] ? t(`items.${id}.link`) : undefined,
 					}))}
 				/>
 			</div>

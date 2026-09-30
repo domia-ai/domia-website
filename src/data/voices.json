@@ -1,0 +1,73 @@
+{
+	"meta": {
+		"source": "domia-core TTS CLI (KOKORO kokoro-multi-lang-v1_0), lines written for the website sampler; loudnorm -18 LUFS, AAC 64k",
+		"capturedAt": "2026-09-30T20:23:09.102Z",
+		"generator": "domia-demo/script/website-voices.ts"
+	},
+	"voices": [
+		{
+			"face": "chef",
+			"voice": "af_bella",
+			"line": "Dinner is at eight. Bring your appetite, magnifique!",
+			"audio": "/audio/voices/chef.m4a",
+			"avatar": "/collection/chef.webp",
+			"durationMs": 2731
+		},
+		{
+			"face": "investigator",
+			"voice": "am_michael",
+			"line": "Tonight's film? Something with a twist. I never spoil it.",
+			"audio": "/audio/voices/investigator.m4a",
+			"avatar": "/collection/investigator.webp",
+			"durationMs": 3600
+		},
+		{
+			"face": "legendary",
+			"voice": "bm_george",
+			"line": "The house is quiet and the doors are locked. Good night.",
+			"audio": "/audio/voices/legendary.m4a",
+			"avatar": "/collection/legendary.webp",
+			"durationMs": 3600
+		},
+		{
+			"face": "astronaut",
+			"voice": "bf_emma",
+			"line": "The stars are out tonight. Shall I tell you about one?",
+			"audio": "/audio/voices/astronaut.m4a",
+			"avatar": "/collection/astronaut.webp",
+			"durationMs": 3200
+		},
+		{
+			"face": "teacher",
+			"voice": "af_heart",
+			"line": "Good morning! Ready for a new word today?",
+			"audio": "/audio/voices/teacher.m4a",
+			"avatar": "/collection/teacher.webp",
+			"durationMs": 2326
+		},
+		{
+			"face": "musician",
+			"voice": "am_fenrir",
+			"line": "Say the word and the living room gets some jazz.",
+			"audio": "/audio/voices/musician.m4a",
+			"avatar": "/collection/musician.webp",
+			"durationMs": 2655
+		},
+		{
+			"face": "doctor",
+			"voice": "af_nicole",
+			"line": "Time to stretch. You have been sitting for two hours.",
+			"audio": "/audio/voices/doctor.m4a",
+			"avatar": "/collection/doctor.webp",
+			"durationMs": 3400
+		},
+		{
+			"face": "gamer",
+			"voice": "am_puck",
+			"line": "Game night is on. I have the timer and the snack list.",
+			"audio": "/audio/voices/gamer.m4a",
+			"avatar": "/collection/gamer.webp",
+			"durationMs": 2814
+		}
+	]
+}

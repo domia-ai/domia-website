@@ -3,7 +3,11 @@ import { getTranslations } from "next-intl/server"
 
 import { SectionHero } from "@/components/sections"
 import { Button } from "@/components/ui/button"
-import { casesHeroImageSide, casesHeroImageSizes } from "@/constants/pages"
+import {
+	caseGroupIds,
+	casesHeroImageSide,
+	casesHeroImageSizes,
+} from "@/constants/pages"
 
 import { RouteLegend } from "./route-legend"
 
@@ -18,17 +22,17 @@ export async function Hero() {
 			priority
 			actions={
 				<>
-					<Button size="lg" nativeButton={false} render={<a href="#home" />}>
-						{t("homeAnchor")}
-					</Button>
-					<Button
-						size="lg"
-						variant="outline"
-						nativeButton={false}
-						render={<a href="#hospitality" />}
-					>
-						{t("hospitalityAnchor")}
-					</Button>
+					{caseGroupIds.map((group, index) => (
+						<Button
+							key={group}
+							size="lg"
+							variant={index === 0 ? "default" : "outline"}
+							nativeButton={false}
+							render={<a href={`#${group}`} />}
+						>
+							{t(`anchors.${group}`)}
+						</Button>
+					))}
 				</>
 			}
 			art={

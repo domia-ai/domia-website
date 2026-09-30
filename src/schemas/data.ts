@@ -34,8 +34,6 @@ import type {
 	PipelineRouting,
 	PipelineSentence,
 	PipelineSpan,
-	RoadmapData,
-	RoadmapEntry,
 	SatelliteProtocol,
 	SatellitesData,
 	SkillDomain,
@@ -53,7 +51,14 @@ import type {
 	TopologyPoint,
 	TopologyRect,
 	TopologyScenario,
+	Turn,
+	TurnsData,
+	ReplayData,
+	ReplayTurn,
+	TurnTimings,
+	Voice,
 	VoiceHop,
+	VoicesData,
 	VoicePathData,
 } from "@/data/types"
 
@@ -438,28 +443,6 @@ export const voicePathSchema: z.ZodType<VoicePathData> = z.object({
 	comparison: z.object({ questions: z.array(z.string().min(1)) }),
 })
 
-const roadmapEntrySchema: z.ZodType<RoadmapEntry> = z.object({
-	id: z.string().min(1),
-	area: z.enum([
-		"voice",
-		"skills",
-		"memoryIdentity",
-		"network",
-		"console",
-		"upkeep",
-	]),
-})
-
-export const roadmapSchema: z.ZodType<RoadmapData> = z.object({
-	meta: metaSchema,
-	verifiedAt: z.string().min(1),
-	lanes: z.object({
-		shipped: z.array(roadmapEntrySchema),
-		maturing: z.array(roadmapEntrySchema),
-		notBuilt: z.array(roadmapEntrySchema),
-	}),
-})
-
 const hotspotSchema: z.ZodType<ConsoleHotspot> = z.object({
 	id: z.string().min(1),
 	x: z.number().min(0).max(100),
@@ -525,6 +508,75 @@ export const personasSchema: z.ZodType<PersonasData> = z.object({
 	meta: metaSchema,
 	faces: z.array(personaFaceSchema).min(1),
 	templates: z.array(personaTemplateSchema).min(1),
+})
+
+const turnTimingsSchema: z.ZodType<TurnTimings> = z.object({
+	sttMs: z.number().nullable(),
+	llmTtftMs: z.number().nullable(),
+	ttsFirstChunkMs: z.number().nullable(),
+	ttfaMs: z.number().nullable(),
+	totalMs: z.number().nullable(),
+})
+
+const turnSchema: z.ZodType<Turn> = z.object({
+	id: z.string().min(1),
+	video: z.string().min(1),
+	identity: z.string().min(1),
+	avatar: z.string().min(1),
+	room: z.enum([
+		"kitchen",
+		"cinema",
+		"hallway",
+		"guest",
+		"entrance",
+		"terrace",
+	]),
+	path: z.enum(["fast", "tool", "llm", "memory", "knowledge", "routine"]),
+	userText: z.string().min(1),
+	replyText: z.string().min(1),
+	userAudio: z.string().min(1),
+	replyAudio: z.string().min(1),
+	userDurationMs: z.number().positive(),
+	replyDurationMs: z.number().positive(),
+	timings: turnTimingsSchema,
+	tools: z.array(z.string()),
+})
+
+export const turnsSchema: z.ZodType<TurnsData> = z.object({
+	meta: metaSchema,
+	turns: z.array(turnSchema).min(1),
+})
+
+const voiceSchema: z.ZodType<Voice> = z.object({
+	face: z.string().min(1),
+	voice: z.string().min(1),
+	line: z.string().min(1),
+	audio: z.string().min(1),
+	avatar: z.string().min(1),
+	durationMs: z.number().positive(),
+})
+
+export const voicesSchema: z.ZodType<VoicesData> = z.object({
+	meta: metaSchema,
+	voices: z.array(voiceSchema).min(1),
+})
+
+const replayTurnSchema: z.ZodType<ReplayTurn> = z.object({
+	id: z.enum(["fast", "knowledge", "conversation"]),
+	turnId: z.string().min(1),
+	identity: z.string().min(1),
+	path: z.enum(["fast", "tool", "llm", "memory", "knowledge", "routine"]),
+	userText: z.string().min(1),
+	replyText: z.string().min(1),
+	userAudio: z.string().min(1),
+	replyAudio: z.string().min(1),
+	maxSeconds: z.number().positive(),
+	mode: modeSchema,
+})
+
+export const replaySchema: z.ZodType<ReplayData> = z.object({
+	meta: metaSchema,
+	turns: z.array(replayTurnSchema).min(1),
 })
 
 export const parseData = <T>(schema: z.ZodType<T>, json: unknown): T =>

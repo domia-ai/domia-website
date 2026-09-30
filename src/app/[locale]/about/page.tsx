@@ -4,9 +4,9 @@ import { localizedMetadata, pageLocale } from "@/i18n/page"
 import { localizedUrl, SITE_URL } from "@/i18n/urls"
 import { demoUrl } from "@/constants"
 import { Community, Hero, Values, WhyItExists } from "@/components/about"
-import { RoadmapExplainer } from "@/components/explainers"
 import { CtaBand } from "@/components/sections"
 import { BreadcrumbsJsonLd } from "@/components/seo/breadcrumbs"
+import { JsonLd } from "@/components/seo/json-ld"
 
 export const generateMetadata = localizedMetadata("/about", "about")
 
@@ -30,17 +30,13 @@ export default async function About(props: PageProps<"/[locale]/about">) {
 
 	return (
 		<div className="flex flex-col">
-			<script
-				type="application/ld+json"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }}
-			/>
+			<JsonLd data={aboutJsonLd} />
 			<BreadcrumbsJsonLd
 				items={[{ name: t("about.breadcrumb"), path: "/about" }]}
 			/>
 			<Hero />
 			<WhyItExists />
 			<Values />
-			<RoadmapExplainer tone="alt" />
 			<Community />
 			<CtaBand
 				title={cta("title")}

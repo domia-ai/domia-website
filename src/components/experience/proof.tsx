@@ -8,7 +8,7 @@ export async function Proof() {
 	const t = await getTranslations("experience.proof")
 
 	return (
-		<Section tone="base" labelledBy="experience-proof-title">
+		<Section tone="alt" labelledBy="experience-proof-title">
 			<div className="flex flex-col gap-10">
 				<TypographyH2 id="experience-proof-title" className="max-w-3xl">
 					{t("title")}

@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 
 import { ExplainerSection, LinkButton } from "@/components/sections"
-import { loadPipeline } from "@/data"
+import { loadPipeline, loadReplay } from "@/data"
 import type {
 	PipelineData,
 	PipelineLaneId,
@@ -182,11 +182,31 @@ const buildCopy = (t: PipelineTranslator, data: PipelineData): PipelineCopy => {
 		hints: { heading: t("hints.heading") },
 		stacked: { skipped: t("stacked.skipped") },
 		noscript: { heading: t("noscript.heading") },
+		replay: {
+			label: t("replay.label"),
+			play: t("replay.play"),
+			stop: t("replay.stop"),
+			turns: {
+				fast: t("replay.turns.fast"),
+				knowledge: t("replay.turns.knowledge"),
+				conversation: t("replay.turns.conversation"),
+			},
+			headline: t("replay.headline"),
+			note: t("replay.note"),
+			live: {
+				idle: t("replay.live.idle"),
+				listening: t("replay.live.listening"),
+				thinking: t("replay.live.thinking"),
+				speaking: t("replay.live.speaking"),
+				done: t("replay.live.done"),
+			},
+		},
 	}
 }
 
 export async function PipelineExplainer({ tone }: PipelineExplainerProps) {
 	const data = loadPipeline()
+	const replay = loadReplay()
 	const t = await getTranslations("explainers.pipeline")
 	const copy = buildCopy(t, data)
 
@@ -198,7 +218,7 @@ export async function PipelineExplainer({ tone }: PipelineExplainerProps) {
 			tone={tone}
 		>
 			<div className="flex flex-col gap-6">
-				<PipelineIsland data={data} copy={copy} />
+				<PipelineIsland data={data} replay={replay} copy={copy} />
 				<LinkButton
 					href="/console"
 					variant="link"

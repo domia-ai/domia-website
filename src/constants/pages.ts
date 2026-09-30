@@ -12,7 +12,7 @@ export const caseRouteIds = ["fastPath", "model", "notes", "memory"] as const
 
 export const caseBadgeIds = caseRouteIds
 
-export const caseGroupIds = ["home", "hospitality"] as const
+export const caseGroupIds = ["home", "hospitality", "venues"] as const
 
 export const homeCaseIds = [
 	"alarm",
@@ -33,10 +33,26 @@ export const hospitalityCaseIds = [
 	"readingLight",
 	"mealTimes",
 	"nearby",
-	"frontDesk",
 ] as const
 
-export const caseIds = [...homeCaseIds, ...hospitalityCaseIds] as const
+export const venueCaseIds = [
+	"character",
+	"showTimes",
+	"visitorMemory",
+	"exhibit",
+] as const
+
+export const caseIds = [
+	...homeCaseIds,
+	...hospitalityCaseIds,
+	...venueCaseIds,
+] as const
+
+export const caseGroupCaseIds: Record<CaseGroupId, readonly CaseId[]> = {
+	home: homeCaseIds,
+	hospitality: hospitalityCaseIds,
+	venues: venueCaseIds,
+}
 
 export const caseRoutes: Record<CaseId, CaseRouteId> = {
 	alarm: "fastPath",
@@ -54,7 +70,10 @@ export const caseRoutes: Record<CaseId, CaseRouteId> = {
 	readingLight: "fastPath",
 	mealTimes: "notes",
 	nearby: "notes",
-	frontDesk: "notes",
+	character: "model",
+	showTimes: "notes",
+	visitorMemory: "memory",
+	exhibit: "notes",
 }
 
 export const homeAlsoIds = ["identities", "broadcast", "move"] as const
@@ -64,6 +83,7 @@ export const hostingSetupStepIds = ["notes", "hub", "rooms"] as const
 export const caseGroupAvatars: Record<CaseGroupId, string> = {
 	home: "/collection/teacher.webp",
 	hospitality: "/collection/architect.webp",
+	venues: "/collection/astronaut.webp",
 }
 
 export const caseBadgeClassName: Record<CaseBadgeId, string> = {

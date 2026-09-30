@@ -4,6 +4,7 @@ import { localizedMetadata, pageLocale } from "@/i18n/page"
 import { Hero, Proof, Cta } from "@/components/experience"
 import { ConsoleTourExplainer } from "@/components/explainers"
 import { BreadcrumbsJsonLd } from "@/components/seo/breadcrumbs"
+import { DemoVideoJsonLd, DemoVideoSection } from "@/components/video"
 
 export const generateMetadata = localizedMetadata("/console", "experience")
 
@@ -18,8 +19,10 @@ export default async function Experience(
 			<BreadcrumbsJsonLd
 				items={[{ name: t("experience.breadcrumb"), path: "/console" }]}
 			/>
+			<DemoVideoJsonLd video="console" />
 			<Hero />
-			<ConsoleTourExplainer tone="alt" />
+			<DemoVideoSection video="console" tone="alt" />
+			<ConsoleTourExplainer tone="base" />
 			<Proof />
 			<Cta />
 		</div>

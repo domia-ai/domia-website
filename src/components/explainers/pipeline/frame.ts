@@ -229,16 +229,21 @@ export const deriveFrame = ({
 	data,
 	selection,
 	t,
+	replay,
 }: FrameInput): PipelineFrame => {
 	const { axis: axisData, lanes, epilogue } = data
+	const maxSeconds = replay ? replay.turn.maxSeconds : axisData.maxSeconds
+	const sweepSeconds = replay ? replay.turn.maxSeconds : axisData.sweepSeconds
 	const axis = createAxis({
 		x0: axisData.x0,
 		width: axisData.width,
-		max: axisData.maxSeconds,
+		max: maxSeconds,
 	})
-	const u = loopToTurn(t, axisData.sweepSeconds, axisData.maxSeconds)
-	const mode = selectedMode(data, selection)
-	const fallback = data.machines[selection.machine].modes.conversation
+	const u = loopToTurn(t, sweepSeconds, maxSeconds)
+	const mode = replay ? replay.turn.mode : selectedMode(data, selection)
+	const fallback = replay
+		? replay.turn.mode
+		: data.machines[selection.machine].modes.conversation
 
 	const mic = laneById(lanes, "mic")
 	const routing = laneById(lanes, "routing")
@@ -252,18 +257,24 @@ export const deriveFrame = ({
 	const chipKind = splitterActive ? "sentence" : "reply"
 
 	const playheadOpacity =
-		t < axisData.sweepSeconds
+		t < sweepSeconds
 			? layout.playhead.opacity
 			: Math.max(
 					0,
 					layout.playhead.opacity -
-						(t - axisData.sweepSeconds) * layout.playhead.fadePerSecond,
+						(t - sweepSeconds) * layout.playhead.fadePerSecond,
 				)
+	const gridStep =
+		maxSeconds > 8
+			? layout.grid.step * 4
+			: maxSeconds > 4
+				? layout.grid.step * 2
+				: layout.grid.step
 
 	return {
 		u,
 		axis,
-		ticks: axis.ticks(layout.grid.step),
+		ticks: axis.ticks(gridStep),
 		lanes: deriveLanes(lanes, mode, fallback, axis, u),
 		wave: deriveWave(mode.spans.mic?.[0], mic.y, axis, u),
 		tokenTicks: deriveTokenTicks(
@@ -293,7 +304,9 @@ export const deriveFrame = ({
 			},
 		},
 		playhead: { x: axis.x(u), opacity: playheadOpacity },
-		epilogue: deriveEpilogue(t, epilogue.micReopenAt, epilogue.reflectionAt),
+		epilogue: replay
+			? deriveEpilogue(0, epilogue.micReopenAt, epilogue.reflectionAt)
+			: deriveEpilogue(t, epilogue.micReopenAt, epilogue.reflectionAt),
 		laneY: {
 			mic: mic.y,
 			stt: laneById(lanes, "stt").y,

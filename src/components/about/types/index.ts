@@ -1,6 +1,6 @@
 import type { ComponentType } from "react"
 
-export type ValueId = "localFirst" | "statedLimits" | "oneSoftware" | "public"
+export type ValueId = "localFirst" | "anyPlace" | "oneSoftware" | "public"
 
 export type CommunityLinkId = "github" | "discord" | "x" | "contribute"
 

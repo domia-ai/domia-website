@@ -11,6 +11,7 @@ import {
 } from "@/components/run"
 import { ArchetypeSelectorExplainer } from "@/components/explainers"
 import { BreadcrumbsJsonLd } from "@/components/seo/breadcrumbs"
+import { JsonLd } from "@/components/seo/json-ld"
 import { requirementIds, stepIds } from "@/constants/run"
 
 export const generateMetadata = localizedMetadata("/run", "run")
@@ -47,10 +48,7 @@ export default async function Run(props: PageProps<"/[locale]/run">) {
 			<BreadcrumbsJsonLd
 				items={[{ name: t("run.breadcrumb"), path: "/run" }]}
 			/>
-			<script
-				type="application/ld+json"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(howTo) }}
-			/>
+			<JsonLd data={howTo} />
 			<Hero />
 			<FirstTurn />
 			<ArchetypeSelectorExplainer tone="base" />

@@ -1,4 +1,4 @@
-import { ArrowRight, House, KeyRound } from "lucide-react"
+import { ArrowRight, House, KeyRound, Ticket } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 
 import { LinkButton, ProofGrid, Section } from "@/components/sections"
@@ -9,6 +9,7 @@ import type { ProofEntry } from "./types"
 const useCaseItems: ProofEntry[] = [
 	{ id: "home", icon: House },
 	{ id: "hosting", icon: KeyRound },
+	{ id: "venues", icon: Ticket },
 ]
 
 export async function UseCasesStrip() {
@@ -21,7 +22,7 @@ export async function UseCasesStrip() {
 					{t("title")}
 				</TypographyH2>
 				<ProofGrid
-					columns={2}
+					columns={3}
 					items={useCaseItems.map(({ id, icon }) => ({
 						id,
 						icon,

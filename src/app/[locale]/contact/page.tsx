@@ -4,6 +4,7 @@ import { ContactSection, Faqs, Hero } from "@/components/contact"
 import { contactFaqGroups } from "@/components/contact/constants"
 import { CtaBand } from "@/components/sections"
 import { BreadcrumbsJsonLd } from "@/components/seo/breadcrumbs"
+import { JsonLd } from "@/components/seo/json-ld"
 import { demoUrl } from "@/constants"
 import { localizedMetadata, pageLocale } from "@/i18n/page"
 
@@ -29,10 +30,7 @@ export default async function Contact(props: PageProps<"/[locale]/contact">) {
 
 	return (
 		<>
-			<script
-				type="application/ld+json"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-			/>
+			<JsonLd data={faqJsonLd} />
 			<BreadcrumbsJsonLd
 				items={[{ name: tMeta("contact.breadcrumb"), path: "/contact" }]}
 			/>

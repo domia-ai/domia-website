@@ -1,16 +1,15 @@
-import { KeyRound, ShieldCheck, TriangleAlert } from "lucide-react"
+import { KeyRound, ShieldCheck, UserRound } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 
 import { ProofGrid, Section } from "@/components/sections"
 import { TypographyH2 } from "@/components/ui/typography"
 
-import { RelatedLink } from "./related-link"
 import type { IconItem } from "./types"
 
 const privacyItems: IconItem[] = [
 	{ id: "network", icon: ShieldCheck },
 	{ id: "mesh", icon: KeyRound },
-	{ id: "limits", icon: TriangleAlert },
+	{ id: "identities", icon: UserRound },
 ]
 
 export async function Privacy() {
@@ -30,7 +29,6 @@ export async function Privacy() {
 						body: t(`items.${id}.body`),
 					}))}
 				/>
-				<RelatedLink href="/about#roadmap" label={t("link")} />
 			</div>
 		</Section>
 	)

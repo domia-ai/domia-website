@@ -82,13 +82,72 @@
 			"link": "See the use cases",
 			"home": {
 				"title": "At home",
-				"body": "Lights, music, timers and questions, answered by someone who knows the house."
+				"body": "Lights, music, timers and questions, answered by someone who knows the place."
 			},
 			"hosting": {
-				"title": "Hosting guests",
-				"body": "It answers from the notes you wrote, such as the wifi, the house rules and local picks."
+				"title": "Hospitality",
+				"body": "Each room answers guests from the notes you wrote: wifi, rules, local picks."
+			},
+			"venues": {
+				"title": "Attractions and guides",
+				"body": "A character at a park or a guide in a museum, in character, with its own voice and notes."
 			}
 		}
+	},
+	"videos": {
+		"unsupported": "Your browser cannot play this video.",
+		"evening": {
+			"title": "See it work",
+			"body": "One evening at home, as one example: a light, the time, someone it remembers, a film and a good night. Every reply and every timing in the video is what Domia produced as it ran.",
+			"videoLabel": "Domia demo video: one evening with three Domias at home"
+		},
+		"hosting": {
+			"title": "Guests just ask",
+			"body": "Guests arrive at a rental and ask the place about the rules, the wifi, the lights and where to park. It answers from the notes the host wrote. Nobody installs anything.",
+			"videoLabel": "Domia demo video: guests asking the house for the wifi, the rules and parking"
+		},
+		"console": {
+			"title": "A tour of the console",
+			"body": "Every screen in this video is a capture of the real console: the fleet, a conversation with its timings, memories, templates, satellites, broadcast and analytics.",
+			"videoLabel": "Domia console tour: real screens with the cursor pointing at each feature"
+		}
+	},
+	"listen": {
+		"title": "Hear it answer",
+		"body": "Real turns from the demo setup. Press play: you hear the question, the wait, and the reply exactly as Domia produced it.",
+		"play": "Play this turn",
+		"stop": "Stop",
+		"phases": {
+			"idle": "Ready",
+			"listening": "Listening",
+			"thinking": "Thinking",
+			"speaking": "Speaking"
+		},
+		"paths": {
+			"fast": "fast path · no model",
+			"tool": "built-in tool",
+			"llm": "language model",
+			"memory": "remembered",
+			"knowledge": "knowledge base",
+			"routine": "routine"
+		},
+		"rooms": {
+			"kitchen": "Kitchen",
+			"cinema": "Cinema",
+			"hallway": "Hallway",
+			"guest": "Guest room",
+			"entrance": "Entrance",
+			"terrace": "Terrace"
+		},
+		"firstAudio": "first audio in {time}",
+		"replayNote": "The questions are synthetic voices; every reply and every timing came out of the pipeline as it ran, on a capable desktop machine."
+	},
+	"voices": {
+		"title": "Every Domia has its own voice",
+		"body": "Tap a face. Each identity you create picks its voice, its temperament and its room; these are eight of the voices that ship with it.",
+		"play": "Play",
+		"stop": "Stop",
+		"note": "Synthesised on a laptop with the same text-to-speech engine Domia uses on your node. No recordings of real people."
 	},
 	"technology": {
 		"hero": {
@@ -143,7 +202,7 @@
 			"link": "How to run it on your hardware"
 		},
 		"privacy": {
-			"title": "What stays on your network, and what does not exist yet",
+			"title": "What stays on your network",
 			"items": {
 				"network": {
 					"title": "Stays on your network",
@@ -153,12 +212,11 @@
 					"title": "Mesh secured by default",
 					"body": "Nodes need a shared secret before they talk to each other. Encrypted transport, secret rotation and network access lists are opt-in."
 				},
-				"limits": {
-					"title": "Not built yet",
-					"body": "There is no per-user authentication yet. Do not expose a node to the internet."
+				"identities": {
+					"title": "Each Domia keeps its own memory",
+					"body": "Every identity has its own facts, notes and mood. What one room hears is not shared with another unless you decide so, and memory can be switched off per identity."
 				}
-			},
-			"link": "See what is planned next"
+			}
 		},
 		"cta": {
 			"title": "See it in the code",
@@ -183,8 +241,8 @@
 			"breadcrumb": "How it works"
 		},
 		"cases": {
-			"title": "Use cases: at home and hosting guests",
-			"description": "Real requests for a local voice agent at home and when hosting guests: conversation, memory, lights, music, timers, wifi, house rules and local picks.",
+			"title": "Use cases: a voice agent wherever people talk",
+			"description": "Real requests for a local voice agent at home, in hospitality and at attractions and guides: conversation, memory, lights, timers, notes and characters.",
 			"breadcrumb": "Use cases"
 		},
 		"run": {
@@ -317,14 +375,13 @@
 					"title": "Built in public",
 					"body": "Open source under the Apache 2.0 license. The code, the tests and the benchmark tools are in public repositories, where anyone can read them, question them and change them."
 				},
-				"statedLimits": {
-					"title": "What is missing is stated",
-					"body": "Next to what works you will find what is still maturing and what has not been built yet.",
-					"link": "See the list"
-				},
 				"oneSoftware": {
 					"title": "One software, many roles",
 					"body": "Every node runs the same software. Whether it listens, thinks or serves other rooms is configuration, not a different product."
+				},
+				"anyPlace": {
+					"title": "Wherever people talk",
+					"body": "A home, a hotel room, a booth at a park, a workshop, a reception desk: the same software, with a different name, voice and set of notes for each place."
 				}
 			}
 		},
@@ -458,8 +515,8 @@
 					"a": "Yes. One hub can serve a Domia per room, each with its own name and voice, through a satellite in each room. Announcing something to every room, or opening an intercom between two, is done from the console's Broadcast page, not by voice."
 				},
 				"internet": {
-					"q": "Can I reach it from outside my home?",
-					"a": "Do not expose a node to the internet: there is no per-user authentication. Keep it on your home network and use a VPN when you are away."
+					"q": "Can I reach it from outside my network?",
+					"a": "It is made for your local network. When you are away, connect to that network through a VPN; the console is the way in."
 				},
 				"smartHome": {
 					"q": "Can it control my home?",
@@ -574,118 +631,6 @@
 			},
 			"link": "See the Memories screen in the console"
 		},
-		"roadmap": {
-			"title": "What is shipped and what is not",
-			"intro": "What works today, what is still maturing and what has not been built.",
-			"lanes": {
-				"shipped": "Shipped",
-				"maturing": "Still maturing",
-				"notBuilt": "Not built yet"
-			},
-			"items": {
-				"localPipeline": {
-					"label": "Local voice pipeline",
-					"note": "Wake word, speech to text, the language model and text to speech all run on your hardware."
-				},
-				"fastPath": {
-					"label": "Fast path",
-					"note": "A known command matches a template and calls the skill directly, without the language model. Locks, alarm panels and sirens never take this path."
-				},
-				"builtinTools": {
-					"label": "Built-in tools",
-					"note": "Time, date, timers, alarms, reminders, volume, remember and forget work with no provider connected; timers, alarms and reminders survive a restart."
-				},
-				"mcpSkills": {
-					"label": "Skills over MCP",
-					"note": "Any MCP server adds its tools as skills, and each one can be allowed, asked first or blocked. Home Assistant and Music Assistant are the providers tested every day."
-				},
-				"routines": {
-					"label": "Routines",
-					"note": "Short multi-step sequences with a single spoken reply."
-				},
-				"satelliteProtocols": {
-					"label": "Four satellite protocols",
-					"note": "Home Assistant Voice PE, Wyoming satellites, browser rooms and your own boards, all behind one contract."
-				},
-				"realtimeEndpoint": {
-					"label": "Endpoint for Realtime apps",
-					"note": "Apps that speak the OpenAI Realtime API can use Domia as their local backend."
-				},
-				"memoryLayers": {
-					"label": "Five memory layers",
-					"note": "Recent turns, facts, knowledge base, episodes and a user model."
-				},
-				"console": {
-					"label": "Console",
-					"note": "Fleet, live configuration, templates, satellites, broadcast, routines, conversation replay, memories, emotions and analytics."
-				},
-				"mindTransfer": {
-					"label": "Export and import a Domia",
-					"note": "Character, mood, memories, knowledge, routines, satellites and skills move as one bundle, with credentials stripped."
-				},
-				"smallModelReplyQuality": {
-					"label": "Reply quality on small models",
-					"note": "The voice pipeline is stable; how good the replies are on small models is still being tuned."
-				},
-				"poolJobCancellation": {
-					"label": "Stopping speech already in progress",
-					"note": "Interrupting stops new work at once; cancelling a sentence that is already being synthesized is pending."
-				},
-				"ci": {
-					"label": "Automated test pipeline",
-					"note": "Tests and benchmarks exist and are run by hand; nothing runs them automatically yet."
-				},
-				"proactiveNudges": {
-					"label": "Domia speaking first",
-					"note": "Built, off by default: when the house is quiet it can offer a short, rate-limited nudge instead of waiting for a wake word."
-				},
-				"bargeIn": {
-					"label": "Barge-in and follow-up",
-					"note": "Talk over a reply and it stops; after a reply the microphone stays open for your next sentence."
-				},
-				"identityMood": {
-					"label": "Identity and mood",
-					"note": "Each Domia has its own name, voice, temperament and a mood across eight emotion axes that shades how it speaks."
-				},
-				"mesh": {
-					"label": "Mesh and delegation",
-					"note": "Nodes find each other and a thin device hands speech, language or voice work to a capable machine, keeping its own identity."
-				},
-				"multiIdentity": {
-					"label": "Several identities per node",
-					"note": "One machine can host a Domia per room, each with its own memory and satellites."
-				},
-				"meshSecurity": {
-					"label": "Mesh secret and rotation",
-					"note": "A shared secret between nodes is required; encrypted transport is optional, and the secret can be rotated without cutting nodes off."
-				},
-				"broadcast": {
-					"label": "Broadcast and intercom",
-					"note": "From the console, announce to one room or all of them, or open a live voice link between two rooms."
-				},
-				"speakerRecognition": {
-					"label": "Recognising who is speaking",
-					"note": "Domia does not tell voices apart yet; everyone in the room is the same person to it."
-				},
-				"remoteAccess": {
-					"label": "Per-user accounts and remote access",
-					"note": "Nodes are guarded by a shared secret, but there are no per-user accounts yet, so a node must stay on your own network and never be exposed to the internet."
-				},
-				"automaticUpdates": {
-					"label": "Automatic updates",
-					"note": "Updating a node is a manual step."
-				}
-			},
-			"verified": "Last verified {date}",
-			"areas": {
-				"voice": "Voice",
-				"skills": "Skills",
-				"memoryIdentity": "Memory and identity",
-				"network": "Network",
-				"console": "Console",
-				"upkeep": "Upkeep"
-			}
-		},
 		"voicePath": {
 			"title": "Where does your voice go?",
 			"intro": "With Domia the whole turn runs on a machine you own, so audio, transcripts and memory never reach a third party.",
@@ -747,7 +692,7 @@
 					"body": "Your audio is transcribed, answered and voiced on their servers, tied to an account, and usually logged."
 				},
 				"node": {
-					"title": "What stays home",
+					"title": "What stays local",
 					"body": "Wake word, transcription, routing, the model, speech and memory run on this machine. No account, no telemetry, no central server."
 				}
 			},
@@ -769,7 +714,7 @@
 				},
 				"capable": {
 					"name": "Capable machine",
-					"description": "One machine does everything for one home, from the wake word to the spoken reply, with memory on board.",
+					"description": "One machine does everything for one place, from the wake word to the spoken reply, with memory on board.",
 					"chooseIf": "Choose this if the machine can run a small language model by itself and you want one Domia."
 				},
 				"hubClass": {
@@ -1069,9 +1014,28 @@
 			},
 			"source": {
 				"conversation": "The first-sound marker is the median of the project's own benchmark runs in September 2026: {ms} ms from the end of your sentence to the first sound, on {machine}. The other bars show the order of the stages; your hardware will give different numbers.",
-				"command": "Known commands were measured on a hub-class machine at home in September 2026: {lo} to {hi} ms from the end of your sentence to the first sound. The bars show the order of the stages; your hardware will give different numbers."
+				"command": "Known commands were measured on a hub-class machine in a real installation in September 2026: {lo} to {hi} ms from the end of your sentence to the first sound. The bars above are drawn to that scale."
 			},
-			"link": "See the timings of every turn in the console"
+			"link": "See the timings of every turn in the console",
+			"replay": {
+				"label": "Replay a real turn",
+				"play": "Play with sound",
+				"stop": "Stop",
+				"turns": {
+					"fast": "A light (fast path)",
+					"knowledge": "The wifi (knowledge)",
+					"conversation": "A film pick (model)"
+				},
+				"headline": "This turn, as it happened: first sound {seconds} s after the last word.",
+				"note": "Real timing from the pipeline trace of one captured turn on a capable desktop machine, played at real speed with its audio. The slow-motion view above uses representative timings.",
+				"live": {
+					"idle": "Ready",
+					"listening": "You speak",
+					"thinking": "Domia works",
+					"speaking": "Domia speaks",
+					"done": "Done"
+				}
+			}
 		},
 		"satellitePicker": {
 			"title": "Satellites: a microphone in every room",
@@ -1645,14 +1609,14 @@
 		},
 		"consoleTour": {
 			"title": "The console, screen by screen",
-			"intro": "A read-only demo of a real home mesh runs online; every screen below is a capture of the real console.",
+			"intro": "A read-only demo of a real mesh of Domias runs online; every screen below is a capture of the real console.",
 			"tabsLabel": "Console screens",
 			"moreScreens": "More screens",
 			"hotspotsHeading": "What to look at",
 			"imageAlt": "The {screen} screen of the console",
 			"openDemo": "Open this screen in the live demo",
 			"openDemoHome": "Open the live demo",
-			"caption": "read-only demo of a real home mesh",
+			"caption": "read-only demo of a real mesh",
 			"notLiveYet": "this screen is not in the online demo yet",
 			"noscriptHeading": "The eleven console screens",
 			"screens": {
@@ -1820,7 +1784,7 @@
 					"hotspots": {
 						"perceived": {
 							"title": "Perceived latency",
-							"body": "Measured from the end of your sentence to the first sound of the reply; the median is what the household actually hears."
+							"body": "Measured from the end of your sentence to the first sound of the reply; the median is what people actually hear."
 						},
 						"onDevice": {
 							"title": "On-device share",
@@ -1856,11 +1820,14 @@
 	"cases": {
 		"hero": {
 			"eyebrow": "Use cases",
-			"title": "A voice agent at home and with guests",
-			"subtitle": "Real requests, what Domia does with each one, and what you need to set up.",
+			"title": "A voice agent wherever people talk",
+			"subtitle": "Real requests from three kinds of places, what Domia does with each one, and what you set up.",
 			"imageAlt": "The Domia mascot holding a small rocket",
-			"homeAnchor": "At home",
-			"hospitalityAnchor": "Hosting guests"
+			"anchors": {
+				"home": "At home",
+				"hospitality": "Hospitality",
+				"venues": "Attractions and guides"
+			}
 		},
 		"quote": "“{line}”",
 		"routeLabel": "Route:",
@@ -1881,16 +1848,20 @@
 		"groups": {
 			"home": {
 				"title": "At home",
-				"intro": "A day in a house with Domia, from the alarm to good night.",
+				"intro": "A day at home with Domia, from the alarm to good night.",
 				"needs": "What you need: one capable machine with a microphone and a speaker. Lights need Home Assistant, music needs Music Assistant, and more rooms need satellites. Conversation, memory, timers, alarms and reminders need nothing else."
 			},
 			"hospitality": {
-				"title": "Hosting guests",
-				"intro": "A use case the knowledge base makes possible. You write what guests usually ask, and the room answers by voice. It answers only what you wrote. Each room's Domia speaks with the name, voice and temperament you choose, so it sounds like your place."
+				"title": "Hospitality",
+				"intro": "Hotel rooms, rentals, a lodge: you write what guests usually ask and each room answers by voice, only from what you wrote, with the name, voice and temperament you chose for that place."
+			},
+			"venues": {
+				"title": "Attractions and guides",
+				"intro": "A character at a theme park, a guide in a park or a museum, a booth at a fair. One Domia per spot, in character, with its own voice and its own notes. Visitors just talk to it."
 			}
 		},
 		"also": {
-			"title": "Also in the house",
+			"title": "Also, in any place",
 			"identities": "Several Domias can live on one machine, each with its own name, voice and memory.",
 			"broadcast": "From the console's Broadcast page you can send an announcement to every room, or open an intercom between two.",
 			"move": "A Domia can move to another machine with everything it knows."
@@ -1901,21 +1872,17 @@
 			"steps": {
 				"notes": {
 					"title": "Write the notes",
-					"body": "In the console, add short entries: wifi, house rules, check-out, meal times, phone numbers, your local picks."
+					"body": "In the console, add short entries: wifi, rules, opening hours, meal or show times, phone numbers, your local picks."
 				},
 				"hub": {
 					"title": "Run one hub",
-					"body": "A hub-class machine on the property does the listening, the thinking and the speaking for every room."
+					"body": "A hub-class machine on site does the listening, the thinking and the speaking for every spot."
 				},
 				"rooms": {
-					"title": "Give each room a Domia",
-					"body": "A satellite in the room and its own Domia, with a name, a voice and its own notes."
+					"title": "Give each spot a Domia",
+					"body": "A satellite in the room or booth and its own Domia, with a name, a voice and its own notes."
 				}
 			}
-		},
-		"limits": {
-			"title": "What it will not do",
-			"body": "It has no web search: what you did not write, it cannot look up. For guest rooms you can switch off memory for that room's Domia, so what one guest tells it is not remembered for the next."
 		},
 		"cards": {
 			"alarm": {
@@ -1974,17 +1941,29 @@
 				"line": "Any good places to eat nearby?",
 				"happens": "It recommends the places you wrote down, in your own words. It does not search the web."
 			},
-			"frontDesk": {
-				"line": "What's the number for the front desk?",
-				"happens": "Phone numbers, and who to call for what, are in the same notes, ready at any hour."
-			},
 			"time": {
 				"line": "What time is it?",
 				"happens": "The built-in clock answers at once, with nothing to connect and no internet needed."
+			},
+			"character": {
+				"line": "Nova, do dragons really breathe fire?",
+				"happens": "No command here, so the model answers as the character you wrote: its name, its voice, its way of speaking. Children talk to it like a friend, at a booth or in a queue."
+			},
+			"showTimes": {
+				"line": "When is the next show?",
+				"happens": "Show times, opening hours and where things are come from the notes you wrote for that spot. It answers only what is there."
+			},
+			"visitorMemory": {
+				"line": "It's my birthday today!",
+				"happens": "What a visitor says stays with that Domia for the visit, so it can bring it up later. For public spots you can switch memory off, and nothing is kept."
+			},
+			"exhibit": {
+				"line": "Who painted this one?",
+				"happens": "A Domia per room or per piece, with the notes you wrote about it. Visitors ask in their own words; the model answers from those notes."
 			}
 		},
 		"cta": {
-			"title": "Try it in your own space",
+			"title": "Try it in your own place",
 			"subtitle": "Install it once, apply a template from the console and say the wake word.",
 			"primary": "Run it",
 			"secondary": "Try the demo"
@@ -1994,7 +1973,7 @@
 		"hero": {
 			"eyebrow": "Console",
 			"title": "Every node, every room, one screen.",
-			"subtitle": "See every Domia in the house, apply a configuration template, replay any conversation and check how fast each reply started. The console runs on your own network. The online demo is a read-only copy of a real home.",
+			"subtitle": "See every Domia you run, apply a configuration template, replay any conversation and check how fast each reply started. The console runs on your network, next to the nodes.",
 			"demo": "Open the console demo",
 			"run": "Run it yourself",
 			"imageAlt": "The Fleet screen of the Domia console, one card per Domia"
@@ -2003,7 +1982,7 @@
 			"title": "What changes on your own network",
 			"write": {
 				"title": "You can write",
-				"body": "At home the console changes things: apply templates, edit routines, chat with any Domia and send broadcasts. In the online demo these controls are disabled."
+				"body": "On your own console it changes things: apply templates, edit routines, chat with any Domia and send broadcasts. In the online demo these controls are disabled."
 			},
 			"data": {
 				"title": "Your data stays there",
@@ -2011,7 +1990,7 @@
 			},
 			"rerun": {
 				"title": "Run a turn again",
-				"body": "Run a recorded turn again against another model on the same recording and compare before you change anything in the house."
+				"body": "Run a recorded turn again against another model on the same recording and compare before you change anything in production."
 			},
 			"latency": {
 				"title": "Latency you can read",

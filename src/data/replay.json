@@ -1,0 +1,129 @@
+{
+	"meta": {
+		"source": "interaction_trace stage timestamps of captured video turns (out-video/<name>/audio/*.trace.json), seconds from the start of the user's audio; audio clips shared with turns.json",
+		"capturedAt": "2026-09-30T20:31:26.982Z",
+		"generator": "domia-demo/script/website-media.ts"
+	},
+	"turns": [
+		{
+			"id": "conversation",
+			"turnId": "evening-recommend",
+			"identity": "Marlowe",
+			"path": "memory",
+			"userText": "Marlowe, what should I watch tonight? One pick, and tell me why.",
+			"replyText": "\"The Third Man\", it's a masterpiece, Laura - a dark, witty, and visually stunning tale of espionage and loyalty, with that iconic theme music.",
+			"userAudio": "/audio/turns/evening/recommend.user.m4a",
+			"replyAudio": "/audio/turns/evening/recommend.reply.m4a",
+			"maxSeconds": 15.8,
+			"mode": {
+				"spans": {
+					"mic": [[0, 3.39]],
+					"stt": [[3.39, 3.534]],
+					"routing": [[3.534, 3.536]],
+					"mind": [[3.534, 3.535]],
+					"llm": [[3.535, 4.055]],
+					"splitter": [[3.775, 4.055]],
+					"tts": [[4.088, 6.812]],
+					"hear": [[6.812, 15.438]]
+				},
+				"sentences": [
+					{
+						"at": 3.775,
+						"row": 0,
+						"tts": [4.088, 6.812]
+					}
+				],
+				"markers": {
+					"endOfSpeech": 3.39,
+					"sttFinal": 3.534,
+					"firstToken": 3.775,
+					"firstAudio": 6.812
+				},
+				"routing": {
+					"fastPathMs": 1,
+					"fastPathEnd": 3.536,
+					"llmStart": 3.535
+				}
+			}
+		},
+		{
+			"id": "knowledge",
+			"turnId": "hosting-wifi",
+			"identity": "Atlas",
+			"path": "knowledge",
+			"userText": "What's the wifi password?",
+			"replyText": "sunflower twenty twenty six.",
+			"userAudio": "/audio/turns/hosting/wifi.user.m4a",
+			"replyAudio": "/audio/turns/hosting/wifi.reply.m4a",
+			"maxSeconds": 5,
+			"mode": {
+				"spans": {
+					"mic": [[0, 1.396]],
+					"stt": [[1.396, 1.542]],
+					"routing": [[1.542, 1.544]],
+					"mind": [[1.542, 1.546]],
+					"llm": [[1.546, 1.83]],
+					"splitter": [[1.83, 1.88]],
+					"tts": [[1.845, 2.644]],
+					"hear": [[2.644, 4.694]]
+				},
+				"sentences": [
+					{
+						"at": 1.83,
+						"row": 0,
+						"tts": [1.845, 2.644]
+					}
+				],
+				"markers": {
+					"endOfSpeech": 1.396,
+					"sttFinal": 1.542,
+					"firstToken": 1.736,
+					"firstAudio": 2.644
+				},
+				"routing": {
+					"fastPathMs": 1,
+					"fastPathEnd": 1.544,
+					"llmStart": 1.546
+				}
+			}
+		},
+		{
+			"id": "fast",
+			"turnId": "hosting-terrace",
+			"identity": "Atlas",
+			"path": "fast",
+			"userText": "Turn on the terrace lights.",
+			"replyText": "Done, I turned on Terrace Lights.",
+			"userAudio": "/audio/turns/hosting/terrace.user.m4a",
+			"replyAudio": "/audio/turns/hosting/terrace.reply.m4a",
+			"maxSeconds": 4.9,
+			"mode": {
+				"spans": {
+					"mic": [[0, 1.344]],
+					"stt": [[1.344, 1.419]],
+					"routing": [[1.419, 1.442]],
+					"tts": [[1.442, 2.277]],
+					"hear": [[2.277, 4.592]]
+				},
+				"sentences": [
+					{
+						"at": 1.442,
+						"row": 0,
+						"tts": [1.442, 2.277]
+					}
+				],
+				"markers": {
+					"endOfSpeech": 1.344,
+					"sttFinal": 1.419,
+					"firstToken": null,
+					"firstAudio": 2.277
+				},
+				"routing": {
+					"fastPathMs": 7,
+					"fastPathEnd": 1.442,
+					"llmStart": null
+				}
+			}
+		}
+	]
+}

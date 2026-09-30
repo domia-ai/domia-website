@@ -1,0 +1,256 @@
+{
+	"meta": {
+		"source": "domia-demo video captures (out-video/<name>) via domia-video/public/demo/<name>/manifest.json; audio and timings from the real pipeline",
+		"capturedAt": "2026-09-30T20:31:26.982Z",
+		"generator": "domia-demo/script/website-media.ts"
+	},
+	"turns": [
+		{
+			"id": "evening-kitchen-light",
+			"video": "evening",
+			"identity": "Atlas",
+			"avatar": "/collection/legendary.webp",
+			"room": "kitchen",
+			"path": "fast",
+			"userText": "Turn off the kitchen light.",
+			"replyText": "Done, I turned off Kitchen Light.",
+			"userAudio": "/audio/turns/evening/kitchen-light.user.m4a",
+			"replyAudio": "/audio/turns/evening/kitchen-light.reply.m4a",
+			"userDurationMs": 1316,
+			"replyDurationMs": 2223,
+			"timings": {
+				"sttMs": 71,
+				"llmTtftMs": null,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 854,
+				"totalMs": 3197
+			},
+			"tools": ["home-assistant__HassTurnOff"]
+		},
+		{
+			"id": "evening-time",
+			"video": "evening",
+			"identity": "Sous",
+			"avatar": "/collection/chef.webp",
+			"room": "kitchen",
+			"path": "tool",
+			"userText": "Chef, what time is it?",
+			"replyText": "It's nine thirty-two in the evening.",
+			"userAudio": "/audio/turns/evening/time.user.m4a",
+			"replyAudio": "/audio/turns/evening/time.reply.m4a",
+			"userDurationMs": 1269,
+			"replyDurationMs": 1772,
+			"timings": {
+				"sttMs": 89,
+				"llmTtftMs": null,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 1788,
+				"totalMs": 3382
+			},
+			"tools": ["domia__time"]
+		},
+		{
+			"id": "evening-intro",
+			"video": "evening",
+			"identity": "Marlowe",
+			"avatar": "/collection/investigator.webp",
+			"room": "cinema",
+			"path": "memory",
+			"userText": "My name is Laura, and I can't stand horror films.",
+			"replyText": "Laura, you're a cinephile at heart, I take it?",
+			"userAudio": "/audio/turns/evening/intro.user.m4a",
+			"replyAudio": "/audio/turns/evening/intro.reply.m4a",
+			"userDurationMs": 2630,
+			"replyDurationMs": 2707,
+			"timings": {
+				"sttMs": 116,
+				"llmTtftMs": 173,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 1447,
+				"totalMs": 1448
+			},
+			"tools": []
+		},
+		{
+			"id": "evening-recommend",
+			"video": "evening",
+			"identity": "Marlowe",
+			"avatar": "/collection/investigator.webp",
+			"room": "cinema",
+			"path": "memory",
+			"userText": "Marlowe, what should I watch tonight? One pick, and tell me why.",
+			"replyText": "\"The Third Man\", it's a masterpiece, Laura - a dark, witty, and visually stunning tale of espionage and loyalty, with that iconic theme music.",
+			"userAudio": "/audio/turns/evening/recommend.user.m4a",
+			"replyAudio": "/audio/turns/evening/recommend.reply.m4a",
+			"userDurationMs": 3390,
+			"replyDurationMs": 8626,
+			"timings": {
+				"sttMs": 144,
+				"llmTtftMs": 240,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 3422,
+				"totalMs": 3425
+			},
+			"tools": []
+		},
+		{
+			"id": "evening-guest-wifi",
+			"video": "evening",
+			"identity": "Atlas",
+			"avatar": "/collection/legendary.webp",
+			"room": "guest",
+			"path": "knowledge",
+			"userText": "What's the guest wifi password?",
+			"replyText": "sunflower twenty twenty six",
+			"userAudio": "/audio/turns/evening/guest-wifi.user.m4a",
+			"replyAudio": "/audio/turns/evening/guest-wifi.reply.m4a",
+			"userDurationMs": 1661,
+			"replyDurationMs": 2213,
+			"timings": {
+				"sttMs": 81,
+				"llmTtftMs": 178,
+				"ttsFirstChunkMs": 747,
+				"ttfaMs": 1145,
+				"totalMs": 3408
+			},
+			"tools": []
+		},
+		{
+			"id": "evening-goodnight-0",
+			"video": "evening",
+			"identity": "Atlas",
+			"avatar": "/collection/legendary.webp",
+			"room": "hallway",
+			"path": "routine",
+			"userText": "Good night.",
+			"replyText": "You want me to run the Good night routine. Do you want me to go ahead with that?",
+			"userAudio": "/audio/turns/evening/goodnight-0.user.m4a",
+			"replyAudio": "/audio/turns/evening/goodnight-0.reply.m4a",
+			"userDurationMs": 846,
+			"replyDurationMs": 4434,
+			"timings": {
+				"sttMs": 57,
+				"llmTtftMs": null,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 979,
+				"totalMs": 6110
+			},
+			"tools": []
+		},
+		{
+			"id": "evening-goodnight-1",
+			"video": "evening",
+			"identity": "Atlas",
+			"avatar": "/collection/legendary.webp",
+			"room": "hallway",
+			"path": "routine",
+			"userText": "Yes.",
+			"replyText": "Lights off, front door locked and the alarm is set for seven. Sleep well.",
+			"userAudio": "/audio/turns/evening/goodnight-1.user.m4a",
+			"replyAudio": "/audio/turns/evening/goodnight-1.reply.m4a",
+			"userDurationMs": 619,
+			"replyDurationMs": 4690,
+			"timings": {
+				"sttMs": 43,
+				"llmTtftMs": null,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 1258,
+				"totalMs": 6408
+			},
+			"tools": [
+				"domia__routine_good_night",
+				"home-assistant__HassTurnOff",
+				"home-assistant__HassLockDoor",
+				"domia__alarm"
+			]
+		},
+		{
+			"id": "hosting-arrival",
+			"video": "hosting",
+			"identity": "Atlas",
+			"avatar": "/collection/legendary.webp",
+			"room": "entrance",
+			"path": "knowledge",
+			"userText": "Hi, we just got in. Is there anything we should know about the house?",
+			"replyText": "Shoes off at the door, please.",
+			"userAudio": "/audio/turns/hosting/arrival.user.m4a",
+			"replyAudio": "/audio/turns/hosting/arrival.reply.m4a",
+			"userDurationMs": 3359,
+			"replyDurationMs": 2281,
+			"timings": {
+				"sttMs": 200,
+				"llmTtftMs": 175,
+				"ttsFirstChunkMs": 732,
+				"ttfaMs": 1298,
+				"totalMs": 3639
+			},
+			"tools": []
+		},
+		{
+			"id": "hosting-wifi",
+			"video": "hosting",
+			"identity": "Atlas",
+			"avatar": "/collection/legendary.webp",
+			"room": "guest",
+			"path": "knowledge",
+			"userText": "What's the wifi password?",
+			"replyText": "sunflower twenty twenty six.",
+			"userAudio": "/audio/turns/hosting/wifi.user.m4a",
+			"replyAudio": "/audio/turns/hosting/wifi.reply.m4a",
+			"userDurationMs": 1396,
+			"replyDurationMs": 2050,
+			"timings": {
+				"sttMs": 146,
+				"llmTtftMs": 190,
+				"ttsFirstChunkMs": 798,
+				"ttfaMs": 1248,
+				"totalMs": 3413
+			},
+			"tools": []
+		},
+		{
+			"id": "hosting-terrace",
+			"video": "hosting",
+			"identity": "Atlas",
+			"avatar": "/collection/legendary.webp",
+			"room": "terrace",
+			"path": "fast",
+			"userText": "Turn on the terrace lights.",
+			"replyText": "Done, I turned on Terrace Lights.",
+			"userAudio": "/audio/turns/hosting/terrace.user.m4a",
+			"replyAudio": "/audio/turns/hosting/terrace.reply.m4a",
+			"userDurationMs": 1344,
+			"replyDurationMs": 2315,
+			"timings": {
+				"sttMs": 75,
+				"llmTtftMs": null,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 933,
+				"totalMs": 3363
+			},
+			"tools": ["home-assistant__HassTurnOn"]
+		},
+		{
+			"id": "hosting-parking",
+			"video": "hosting",
+			"identity": "Atlas",
+			"avatar": "/collection/legendary.webp",
+			"room": "entrance",
+			"path": "knowledge",
+			"userText": "Where should we park the car?",
+			"replyText": "The driveway on the left side, please.",
+			"userAudio": "/audio/turns/hosting/parking.user.m4a",
+			"replyAudio": "/audio/turns/hosting/parking.reply.m4a",
+			"userDurationMs": 1334,
+			"replyDurationMs": 3108,
+			"timings": {
+				"sttMs": 88,
+				"llmTtftMs": 197,
+				"ttsFirstChunkMs": 696,
+				"ttfaMs": 1082,
+				"totalMs": 4281
+			},
+			"tools": []
+		}
+	]
+}

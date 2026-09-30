@@ -329,24 +329,6 @@ export type VoicePathData = {
 	comparison: { questions: string[] }
 }
 
-export type RoadmapArea =
-	"voice" | "skills" | "memoryIdentity" | "network" | "console" | "upkeep"
-
-export type RoadmapEntry = {
-	id: string
-	area: RoadmapArea
-}
-
-export type RoadmapData = {
-	meta: DataMeta
-	verifiedAt: string
-	lanes: {
-		shipped: RoadmapEntry[]
-		maturing: RoadmapEntry[]
-		notBuilt: RoadmapEntry[]
-	}
-}
-
 export type ConsoleHotspot = {
 	id: string
 	x: number
@@ -401,4 +383,74 @@ export type PersonasData = {
 	meta: DataMeta
 	faces: PersonaFace[]
 	templates: PersonaTemplate[]
+}
+
+export type TurnRoom =
+	"kitchen" | "cinema" | "hallway" | "guest" | "entrance" | "terrace"
+
+export type TurnPath =
+	"fast" | "tool" | "llm" | "memory" | "knowledge" | "routine"
+
+export type TurnTimings = {
+	sttMs: number | null
+	llmTtftMs: number | null
+	ttsFirstChunkMs: number | null
+	ttfaMs: number | null
+	totalMs: number | null
+}
+
+export type Turn = {
+	id: string
+	video: string
+	identity: string
+	avatar: string
+	room: TurnRoom
+	path: TurnPath
+	userText: string
+	replyText: string
+	userAudio: string
+	replyAudio: string
+	userDurationMs: number
+	replyDurationMs: number
+	timings: TurnTimings
+	tools: string[]
+}
+
+export type TurnsData = {
+	meta: DataMeta
+	turns: Turn[]
+}
+
+export type Voice = {
+	face: string
+	voice: string
+	line: string
+	audio: string
+	avatar: string
+	durationMs: number
+}
+
+export type VoicesData = {
+	meta: DataMeta
+	voices: Voice[]
+}
+
+export type ReplayId = "fast" | "knowledge" | "conversation"
+
+export type ReplayTurn = {
+	id: ReplayId
+	turnId: string
+	identity: string
+	path: TurnPath
+	userText: string
+	replyText: string
+	userAudio: string
+	replyAudio: string
+	maxSeconds: number
+	mode: PipelineMode
+}
+
+export type ReplayData = {
+	meta: DataMeta
+	turns: ReplayTurn[]
 }

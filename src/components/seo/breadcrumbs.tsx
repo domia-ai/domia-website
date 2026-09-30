@@ -1,3 +1,4 @@
+import { JsonLd } from "@/components/seo/json-ld"
 import { getLocale, getTranslations } from "next-intl/server"
 
 import { localizedUrl } from "@/i18n/urls"
@@ -21,10 +22,5 @@ export async function BreadcrumbsJsonLd({ items }: BreadcrumbsJsonLdProps) {
 		),
 	}
 
-	return (
-		<script
-			type="application/ld+json"
-			dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-		/>
-	)
+	return <JsonLd data={jsonLd} />
 }

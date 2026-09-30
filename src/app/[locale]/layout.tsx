@@ -1,3 +1,4 @@
+import { JsonLd } from "@/components/seo/json-ld"
 import type { Metadata } from "next"
 import { outfitSans } from "@/fonts"
 import { notFound } from "next/navigation"
@@ -160,12 +161,7 @@ export default async function LocaleLayout({
 	return (
 		<html lang={locale} data-scroll-behavior="smooth" suppressHydrationWarning>
 			<head>
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{
-						__html: JSON.stringify(buildJsonLd(locale, t)),
-					}}
-				/>
+				<JsonLd data={buildJsonLd(locale, t)} />
 			</head>
 			<body className={`${outfitSans.className} antialiased`}>
 				<a

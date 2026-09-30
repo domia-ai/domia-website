@@ -6,14 +6,10 @@ import type { CommunityIcon, CommunityLink, ValueId } from "./types"
 
 export const valueIds: readonly ValueId[] = [
 	"localFirst",
-	"statedLimits",
+	"anyPlace",
 	"oneSoftware",
 	"public",
 ]
-
-export const valueHrefs: Partial<Record<ValueId, string>> = {
-	statedLimits: "/about#roadmap",
-}
 
 const socialLink = (name: string): { href: string; icon: CommunityIcon } => {
 	const link = socialMediaLinks.find((candidate) => candidate.name === name)
