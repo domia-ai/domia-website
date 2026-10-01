@@ -1,7 +1,7 @@
 {
 	"meta": {
 		"source": "interaction_trace stage timestamps of captured video turns (out-video/<name>/audio/*.trace.json), seconds from the start of the user's audio; audio clips shared with turns.json",
-		"capturedAt": "2026-09-30T20:31:26.982Z",
+		"capturedAt": "2026-10-01T19:44:51.411Z",
 		"generator": "domia-demo/script/website-media.ts"
 	},
 	"turns": [
@@ -10,39 +10,37 @@
 			"turnId": "evening-recommend",
 			"identity": "Marlowe",
 			"path": "memory",
-			"userText": "Marlowe, what should I watch tonight? One pick, and tell me why.",
-			"replyText": "\"The Third Man\", it's a masterpiece, Laura - a dark, witty, and visually stunning tale of espionage and loyalty, with that iconic theme music.",
+			"userText": "Marlowe, what do you remember about me?",
+			"replyText": "Laura, you mentioned you can't stand horror films, and we just talked about it.",
 			"userAudio": "/audio/turns/evening/recommend.user.m4a",
 			"replyAudio": "/audio/turns/evening/recommend.reply.m4a",
-			"maxSeconds": 15.8,
+			"maxSeconds": 8.7,
 			"mode": {
 				"spans": {
-					"mic": [[0, 3.39]],
-					"stt": [[3.39, 3.534]],
-					"routing": [[3.534, 3.536]],
-					"mind": [[3.534, 3.535]],
-					"llm": [[3.535, 4.055]],
-					"splitter": [[3.775, 4.055]],
-					"tts": [[4.088, 6.812]],
-					"hear": [[6.812, 15.438]]
+					"mic": [[0, 1.908]],
+					"stt": [[1.908, 2.045]],
+					"routing": [[2.045, 2.047]],
+					"llm": [[2.045, 2.489]],
+					"tts": [[2.502, 4.063]],
+					"hear": [[4.063, 8.304]]
 				},
 				"sentences": [
 					{
-						"at": 3.775,
+						"at": 2.289,
 						"row": 0,
-						"tts": [4.088, 6.812]
+						"tts": [2.502, 4.063]
 					}
 				],
 				"markers": {
-					"endOfSpeech": 3.39,
-					"sttFinal": 3.534,
-					"firstToken": 3.775,
-					"firstAudio": 6.812
+					"endOfSpeech": 1.908,
+					"sttFinal": 2.045,
+					"firstToken": 2.289,
+					"firstAudio": 4.063
 				},
 				"routing": {
 					"fastPathMs": 1,
-					"fastPathEnd": 3.536,
-					"llmStart": 3.535
+					"fastPathEnd": 2.047,
+					"llmStart": 2.05
 				}
 			}
 		},
@@ -61,9 +59,7 @@
 					"mic": [[0, 1.396]],
 					"stt": [[1.396, 1.542]],
 					"routing": [[1.542, 1.544]],
-					"mind": [[1.542, 1.546]],
-					"llm": [[1.546, 1.83]],
-					"splitter": [[1.83, 1.88]],
+					"llm": [[1.542, 1.83]],
 					"tts": [[1.845, 2.644]],
 					"hear": [[2.644, 4.694]]
 				},
@@ -122,6 +118,49 @@
 					"fastPathMs": 7,
 					"fastPathEnd": 1.442,
 					"llmStart": null
+				}
+			}
+		},
+		{
+			"id": "skill",
+			"turnId": "skills-door",
+			"identity": "Atlas",
+			"path": "skill",
+			"userText": "Is the front door locked?",
+			"replyText": "The front door is locked.",
+			"userAudio": "/audio/turns/skills/door.user.m4a",
+			"replyAudio": "/audio/turns/skills/door.reply.m4a",
+			"maxSeconds": 5.3,
+			"mode": {
+				"spans": {
+					"mic": [[0, 1.348]],
+					"stt": [[1.348, 1.421]],
+					"routing": [[1.421, 1.425]],
+					"llm": [
+						[1.425, 2.075],
+						[2.082, 2.413]
+					],
+					"skill": [[2.075, 2.082]],
+					"tts": [[2.413, 3.105]],
+					"hear": [[3.105, 4.902]]
+				},
+				"sentences": [
+					{
+						"at": 2.413,
+						"row": 0,
+						"tts": [2.413, 3.105]
+					}
+				],
+				"markers": {
+					"endOfSpeech": 1.348,
+					"sttFinal": 1.421,
+					"firstToken": null,
+					"firstAudio": 3.105
+				},
+				"routing": {
+					"fastPathMs": 1,
+					"fastPathEnd": 1.423,
+					"llmStart": 1.425
 				}
 			}
 		}

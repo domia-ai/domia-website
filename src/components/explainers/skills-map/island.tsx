@@ -5,10 +5,9 @@ import { Zap } from "lucide-react"
 
 import type { SkillGroupId } from "@/data/types"
 
-import { HintIndex, HintProvider } from "../shared"
+import { HintIndex, HintProvider } from "@/components/explainers/shared"
 import { CapabilityChip } from "./capability-chip"
 import { groupSpanClassName } from "./constants"
-import { ExampleCard } from "./example-card"
 import { GroupCard } from "./group-card"
 import { McpDetails, RoutinesDetails } from "./group-details"
 import { GroupSwitch } from "./group-switch"
@@ -16,7 +15,6 @@ import type { SkillsMapIslandProps, SkillsMapState } from "./types"
 
 export function SkillsMapIsland({ view, copy }: SkillsMapIslandProps) {
 	const switchesLabelId = useId()
-	const examplesLabelId = useId()
 	const [state, setState] = useState<SkillsMapState>(() => ({
 		active: new Set(view.groups.map((group) => group.id)),
 	}))
@@ -61,29 +59,6 @@ export function SkillsMapIsland({ view, copy }: SkillsMapIslandProps) {
 						/>
 						<span className="text-pretty">{copy.legend}</span>
 					</p>
-				</div>
-
-				<div className="flex flex-col gap-3">
-					<p
-						id={examplesLabelId}
-						className="text-muted-foreground text-sm font-medium"
-					>
-						{copy.examplesLabel}
-					</p>
-					<ul
-						aria-labelledby={examplesLabelId}
-						aria-live="polite"
-						className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
-					>
-						{view.examples.map((example) => (
-							<ExampleCard
-								key={example.id}
-								example={example}
-								active={state.active.has(example.group)}
-								copy={copy}
-							/>
-						))}
-					</ul>
 				</div>
 
 				<div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-6">

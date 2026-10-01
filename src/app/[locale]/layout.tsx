@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import { outfitSans } from "@/fonts"
 import { notFound } from "next/navigation"
 import { hasLocale, NextIntlClientProvider } from "next-intl"
-import type { AbstractIntlMessages } from "next-intl"
 import {
 	getMessages,
 	getTranslations,
@@ -16,11 +15,13 @@ import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/providers/theme"
 import { Footer, Navbar } from "@/components/landing"
 import { Toaster } from "@/components/ui/sonner"
+import { coreRepoUrl, discordUrl, githubUrl, xUrl } from "@/constants"
 import { routing } from "@/i18n/routing"
+import type { LocaleLayoutPropsType, LocalePagePropsType } from "@/i18n/types"
 import {
 	alternatesFor,
 	localizedUrl,
-	ogAlternateLocale,
+	ogAlternateLocales,
 	ogLocale,
 } from "@/i18n/urls"
 
@@ -30,9 +31,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({
 	params,
-}: {
-	params: Promise<{ locale: string }>
-}): Promise<Metadata> {
+}: LocalePagePropsType): Promise<Metadata> {
 	const { locale } = await params
 	const alternates = alternatesFor("/")
 	const t = await getTranslations({ locale, namespace: "meta" })
@@ -63,7 +62,7 @@ export async function generateMetadata({
 				},
 			],
 			locale: ogLocale(locale),
-			alternateLocale: ogAlternateLocale(locale),
+			alternateLocale: ogAlternateLocales(locale),
 			type: "website",
 		},
 		twitter: {
@@ -100,11 +99,7 @@ const buildJsonLd = (locale: string, t: (key: string) => string) => ({
 				width: 512,
 				height: 512,
 			},
-			sameAs: [
-				"https://x.com/domia_ai",
-				"https://github.com/domia-ai",
-				"https://discord.gg/Sx4ACEMSyv",
-			],
+			sameAs: [xUrl, githubUrl, discordUrl],
 		},
 		{
 			"@type": "WebSite",
@@ -132,7 +127,7 @@ const buildJsonLd = (locale: string, t: (key: string) => string) => ({
 			"@type": "SoftwareSourceCode",
 			"@id": `${SITE_URL}/#sourcecode`,
 			name: "Domia",
-			codeRepository: "https://github.com/domia-ai/domia-core",
+			codeRepository: coreRepoUrl,
 			programmingLanguage: "TypeScript",
 			runtimePlatform: "Node.js",
 			license: "https://www.apache.org/licenses/LICENSE-2.0",
@@ -144,19 +139,14 @@ const buildJsonLd = (locale: string, t: (key: string) => string) => ({
 export default async function LocaleLayout({
 	children,
 	params,
-}: Readonly<{
-	children: React.ReactNode
-	params: Promise<{ locale: string }>
-}>) {
+}: LocaleLayoutPropsType) {
 	const { locale } = await params
 	if (!hasLocale(routing.locales, locale)) notFound()
 	setRequestLocale(locale)
 	const t = await getTranslations({ locale, namespace: "meta" })
 	const tNav = await getTranslations({ locale, namespace: "nav" })
-	const { nav } = (await getMessages({ locale })) as {
-		nav: AbstractIntlMessages
-	}
-	const clientMessages = { nav }
+	const messages = await getMessages({ locale })
+	const clientMessages = { nav: messages.nav }
 
 	return (
 		<html lang={locale} data-scroll-behavior="smooth" suppressHydrationWarning>

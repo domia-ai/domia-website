@@ -11,7 +11,6 @@ export async function Hero() {
 			eyebrow={t("eyebrow")}
 			title={t("title")}
 			subtitle={t("subtitle")}
-			priority
 			art={
 				<Image
 					src="/technology-variant.webp"
@@ -20,7 +19,7 @@ export async function Hero() {
 					height={1200}
 					sizes="(min-width: 640px) 440px, 205px"
 					priority
-					className="animate-domia-pulse mx-auto h-60 w-auto sm:h-auto sm:w-full sm:max-w-[440px]"
+					className="animate-domia-pulse mx-auto h-60 w-auto sm:h-auto sm:w-full sm:max-w-110"
 				/>
 			}
 		/>

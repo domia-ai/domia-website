@@ -1,4 +1,4 @@
-import type { ReactElement, ReactNode, RefObject } from "react"
+import type { ReactElement, ReactNode } from "react"
 
 export type StageBreakpoint = "sm" | "md" | "lg"
 
@@ -59,60 +59,6 @@ export type MachineToggleProps = {
 	onValueChange: (v: string) => void
 	items: OptionItem[]
 	label: string
-	className?: string
-}
-
-export type PlayerControlsLabels = {
-	play: string
-	pause: string
-	scrub: string
-}
-
-export type PlayerControlsProps = {
-	playing: boolean
-	onToggle: () => void
-	t: number
-	max: number
-	onSeek: (t: number) => void
-	labels: PlayerControlsLabels
-	formatValue: (t: number) => string
-}
-
-export type RafClockOptions = {
-	duration: number
-	speed?: number
-	autoplay?: boolean
-	frozenAt: number
-	ref: RefObject<HTMLElement | null>
-}
-
-export type RafClock = {
-	t: number
-	playing: boolean
-	play: () => void
-	pause: () => void
-	toggle: () => void
-	seek: (t: number) => void
-}
-
-export type ClockMode = "auto" | "playing" | "paused"
-
-export type ClockConfig = {
-	duration: number
-	speed: number
-}
-
-export type CreateClockOptions = {
-	initial: number
-	config: ClockConfig
-	onTick: (t: number) => void
-}
-
-export type Clock = {
-	start: () => void
-	stop: () => void
-	seek: (t: number) => void
-	configure: (config: ClockConfig) => void
 }
 
 export type AxisOptions = {
@@ -135,4 +81,9 @@ export type Axis = {
 export type FillSpan = {
 	x: number
 	width: number
+}
+
+export type LazyIslandProps = {
+	fallback: ReactNode
+	children: ReactNode
 }

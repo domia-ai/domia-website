@@ -41,8 +41,3 @@ export const stageClassName =
 
 export const frameClassName =
 	"absolute top-0 left-0 motion-safe:transition-transform motion-safe:duration-700 motion-safe:ease-out"
-
-export const badgeClassName = cn(
-	badgeVariants({ variant: "outline" }),
-	"border-foreground/15 text-foreground/80 h-auto gap-1.5 px-3 py-1 font-normal",
-)

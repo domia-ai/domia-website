@@ -1,6 +1,7 @@
 "use client"
 
 import { Brain, Zap } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
 
 import { useReducedMotion } from "@/components/explainers/shared"
 import { Badge } from "@/components/ui/badge"
@@ -27,7 +28,7 @@ const branchX: Record<SayItForkBranch, number> = {
 const branchPath = (branch: SayItForkBranch) =>
 	`M${width / 2} 0 C${width / 2} ${height * 0.65} ${branchX[branch]} ${height * 0.35} ${branchX[branch]} ${height}`
 
-const branchIcon: Record<SayItForkBranch, typeof Zap> = {
+const branchIcon: Record<SayItForkBranch, LucideIcon> = {
 	yes: Zap,
 	no: Brain,
 }
@@ -38,7 +39,7 @@ const activeCardClassName: Record<SayItForkBranch, string> = {
 }
 
 const labelClassName: Record<SayItForkBranch, string> = {
-	yes: "bg-fast-path text-background",
+	yes: "bg-fast-path-text text-background",
 	no: "bg-model text-background",
 }
 
@@ -67,10 +68,9 @@ function BranchCard({
 
 	return (
 		<Card
-			aria-current={active ? "true" : undefined}
 			className={cn(
-				"min-h-40 motion-safe:transition-[opacity,box-shadow,background-color] motion-safe:duration-300",
-				active ? activeCardClassName[branch] : "opacity-60",
+				"min-h-40 motion-safe:transition-[box-shadow,background-color] motion-safe:duration-300",
+				active ? activeCardClassName[branch] : "bg-muted/40",
 			)}
 		>
 			<CardContent className="flex flex-1 flex-col gap-2">

@@ -54,7 +54,7 @@ function TypographyLarge({ className, ...props }: React.ComponentProps<"p">) {
 }
 
 function TypographyMedium({ className, ...props }: React.ComponentProps<"p">) {
-	return <p className={cn("text-md", className)} {...props} />
+	return <p className={cn("text-base", className)} {...props} />
 }
 
 function TypographySmall({ className, ...props }: React.ComponentProps<"p">) {
@@ -67,7 +67,7 @@ function TypographyBlockquote({
 }: React.ComponentProps<"blockquote">) {
 	return (
 		<blockquote
-			className={cn("text-md border-l-2 pl-6 italic", className)}
+			className={cn("border-l-2 pl-6 text-base italic", className)}
 			{...props}
 		/>
 	)

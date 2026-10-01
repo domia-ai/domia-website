@@ -1,8 +1,8 @@
 import { GitPullRequest } from "lucide-react"
 
-import { socialMediaLinks } from "@/constants/landing"
+import { gettingStartedUrl, socialMediaLinks } from "@/constants"
 
-import type { CommunityIcon, CommunityLink, ValueId } from "./types"
+import type { CommunityLink, CommunityLinkTarget, ValueId } from "./types"
 
 export const valueIds: readonly ValueId[] = [
 	"localFirst",
@@ -11,15 +11,13 @@ export const valueIds: readonly ValueId[] = [
 	"public",
 ]
 
-const socialLink = (name: string): { href: string; icon: CommunityIcon } => {
+const socialLink = (name: string): CommunityLinkTarget => {
 	const link = socialMediaLinks.find((candidate) => candidate.name === name)
 	if (!link) throw new Error(`Missing social link: ${name}`)
 	return { href: link.href, icon: link.icon }
 }
 
 const github = socialLink("GitHub")
-
-const gettingStartedUrl = `${github.href}/domia-core/blob/main/GETTING_STARTED.md`
 
 export const communityLinks: CommunityLink[] = [
 	{ id: "github", ...github },

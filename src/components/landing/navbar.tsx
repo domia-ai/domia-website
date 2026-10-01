@@ -26,7 +26,7 @@ export function Navbar() {
 			<div className="mx-auto flex h-16 w-full max-w-7xl items-center px-4">
 				<div className="mr-4 flex">
 					<Link href="/" className="group flex items-center space-x-2">
-						<span className="from-primary to-primary/70 group-hover:from-primary/80 group-hover:to-primary bg-gradient-to-r bg-clip-text text-xl font-bold text-transparent transition-colors duration-300">
+						<span className="from-primary to-primary/70 group-hover:from-primary/80 group-hover:to-primary bg-linear-to-r bg-clip-text text-xl font-bold text-transparent transition-colors duration-300">
 							Domia
 						</span>
 					</Link>
@@ -104,16 +104,16 @@ export function Navbar() {
 						onClick={() => setIsOpen(!isOpen)}
 						className="hover:bg-primary/10 size-10 transition-colors duration-200"
 					>
-						<div className="relative h-5 w-5">
+						<div className="relative size-5">
 							<Menu
 								className={cn(
-									"absolute inset-0 h-5 w-5 duration-300 motion-safe:transition-all",
+									"absolute inset-0 size-5 duration-300 motion-safe:transition-all",
 									isOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100",
 								)}
 							/>
 							<X
 								className={cn(
-									"absolute inset-0 h-5 w-5 duration-300 motion-safe:transition-all",
+									"absolute inset-0 size-5 duration-300 motion-safe:transition-all",
 									isOpen ? "rotate-0 opacity-100" : "-rotate-90 opacity-0",
 								)}
 							/>
@@ -144,9 +144,8 @@ export function Navbar() {
 							className={cn(
 								"group relative flex items-center overflow-hidden rounded-lg px-4 py-3 text-base font-medium duration-200 motion-safe:transition-all",
 								"hover:bg-primary/10 hover:text-primary motion-safe:hover:translate-x-1",
-								pathname === route
-									? "bg-primary/15 text-primary border-primary border-l-2"
-									: "hover:bg-accent hover:text-accent-foreground",
+								pathname === route &&
+									"bg-primary/15 text-primary border-primary border-l-2",
 								"motion-safe:animate-in motion-safe:slide-in-from-left-5 motion-safe:fade-in-0 motion-safe:fill-mode-both motion-safe:[animation-delay:var(--stagger)]",
 							)}
 							style={
@@ -157,7 +156,7 @@ export function Navbar() {
 							onClick={() => setIsOpen(false)}
 						>
 							<span className="relative z-10">{t(route.slice(1))}</span>
-							<div className="from-primary/5 absolute inset-0 bg-gradient-to-r to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+							<div className="from-primary/5 absolute inset-0 bg-linear-to-r to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 						</Link>
 					))}
 					<div className="mt-2 flex items-center justify-center gap-2">

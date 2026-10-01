@@ -5,12 +5,9 @@ import type { Button } from "@/components/ui/button"
 
 export type SectionTone = "base" | "alt" | "accent"
 
-export type SectionDensity = "default" | "compact"
-
 export type SectionProps = {
 	id?: string
 	tone?: SectionTone
-	density?: SectionDensity
 	labelledBy?: string
 	className?: string
 	children: ReactNode
@@ -25,7 +22,6 @@ export type SectionHeroProps = {
 	artPosition?: "right" | "below"
 	below?: ReactNode
 	halo?: boolean
-	priority?: boolean
 	className?: string
 }
 
@@ -51,8 +47,6 @@ export type ProofItem = {
 	title: string
 	body: string
 	icon?: LucideIcon
-	href?: string
-	hrefLabel?: string
 }
 
 export type ProofGridProps = {
@@ -73,12 +67,10 @@ export type StepItem = {
 export type StepProps = {
 	step: StepItem
 	index: number
-	ordered: boolean
 }
 
 export type StepListProps = {
 	steps: StepItem[]
-	ordered?: boolean
 }
 
 export type CtaLink = {

@@ -11,7 +11,13 @@ export function ThemeToggle({ label }: ThemeToggleProps) {
 	const toggle = () => setTheme(resolvedTheme === "dark" ? "light" : "dark")
 
 	return (
-		<Button variant="ghost" size="icon" aria-label={label} onClick={toggle}>
+		<Button
+			variant="ghost"
+			size="icon"
+			aria-label={label}
+			onClick={toggle}
+			className="max-lg:size-10"
+		>
 			<Sun className="dark:hidden" />
 			<Moon className="hidden dark:block" />
 		</Button>

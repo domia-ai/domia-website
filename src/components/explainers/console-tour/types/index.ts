@@ -19,9 +19,7 @@ export type ScreenCopy = {
 
 export type DemoLinkCopy = {
 	openScreen: string
-	openHome: string
 	caption: string
-	notLiveYet: string
 }
 
 export type ConsoleTourCopy = {

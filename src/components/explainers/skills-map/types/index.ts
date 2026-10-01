@@ -1,7 +1,7 @@
 import type { ReactNode } from "react"
 
 import type { SectionTone } from "@/components/sections"
-import type { SkillExampleId, SkillGroupId, ToolPolicy } from "@/data/types"
+import type { SkillGroupId, ToolPolicy } from "@/data/types"
 
 export type SkillCapabilityKey = string
 
@@ -28,15 +28,8 @@ export type SkillsMapGroupView = {
 	capabilities: SkillCapability[]
 }
 
-export type SkillsMapExampleView = {
-	id: SkillExampleId
-	group: SkillGroupId
-	fastPath: boolean
-}
-
 export type SkillsMapView = {
 	groups: SkillsMapGroupView[]
-	examples: SkillsMapExampleView[]
 }
 
 export type SkillsMapHintCopy = {
@@ -49,19 +42,11 @@ export type SkillsMapGroupCopy = {
 	blurb: string
 }
 
-export type SkillsMapExampleCopy = {
-	line: string
-	on: string
-	off: string
-}
-
 export type SkillsMapCopy = {
 	switchOffLabel: string
-	examplesLabel: string
 	hintsHeading: string
 	groups: Record<SkillGroupId, SkillsMapGroupCopy>
-	examples: Record<SkillExampleId, SkillsMapExampleCopy>
-	policy: Record<ToolPolicy, string>
+	policy: Record<Exclude<ToolPolicy, "allow">, string>
 	fastPathLabel: string
 	hiddenLabel: string
 	legend: string
@@ -100,12 +85,6 @@ export type GroupSwitchProps = {
 	groupId: SkillGroupId
 	checked: boolean
 	onCheckedChange: (groupId: SkillGroupId, checked: boolean) => void
-	copy: SkillsMapCopy
-}
-
-export type ExampleCardProps = {
-	example: SkillsMapExampleView
-	active: boolean
 	copy: SkillsMapCopy
 }
 

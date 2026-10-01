@@ -5,6 +5,8 @@ import {
 	EmailIcon,
 } from "@/components/landing/icons"
 
+import { githubUrl } from "./run"
+
 export const contactEmail = "hello@domia.ai"
 
 export const routes = [
@@ -16,20 +18,26 @@ export const routes = [
 	"/contact",
 ] as const
 
+export const footerRoutes = [...routes, "/privacy"] as const
+
+export const discordUrl = "https://discord.gg/Sx4ACEMSyv"
+
+export const xUrl = "https://x.com/domia_ai"
+
 export const socialMediaLinks = [
 	{
 		name: "X",
-		href: "https://x.com/domia_ai",
+		href: xUrl,
 		icon: XIcon,
 	},
 	{
 		name: "GitHub",
-		href: "https://github.com/domia-ai",
+		href: githubUrl,
 		icon: GithubIcon,
 	},
 	{
 		name: "Discord",
-		href: "https://discord.gg/Sx4ACEMSyv",
+		href: discordUrl,
 		icon: DiscordIcon,
 	},
 	{

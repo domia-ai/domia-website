@@ -2,6 +2,7 @@ import Image from "next/image"
 import { getTranslations } from "next-intl/server"
 
 import { SectionHero } from "@/components/sections"
+import { Button } from "@/components/ui/button"
 
 import { HERO_ART_SIZE } from "./constants"
 
@@ -14,6 +15,15 @@ export async function Hero() {
 			title={t("title")}
 			subtitle={t("subtitle")}
 			className="py-10 md:py-14"
+			actions={
+				<Button
+					size="lg"
+					nativeButton={false}
+					render={<a href="#form" role={undefined} />}
+				>
+					{t("write")}
+				</Button>
+			}
 			art={
 				<Image
 					src="/contact.webp"

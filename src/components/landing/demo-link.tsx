@@ -1,8 +1,7 @@
 import { useTranslations } from "next-intl"
-import { ArrowRight, ExternalLink } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
 import { demoUrl } from "@/constants"
 
 import type { DemoLinkProps } from "./types"
@@ -21,21 +20,6 @@ export function DemoLink({
 	)
 	const newTabNote = <span className="sr-only"> {t("opensInNewTab")}</span>
 
-	if (variant === "inline") {
-		return (
-			<Button
-				variant="link"
-				className={cn("h-auto gap-2 self-start p-0", className)}
-				nativeButton={false}
-				render={anchor}
-			>
-				{label}
-				{newTabNote}
-				<ArrowRight aria-hidden="true" className="size-4" />
-			</Button>
-		)
-	}
-
 	return (
 		<Button
 			size={size ?? (variant === "primary" ? "lg" : "sm")}
@@ -46,7 +30,7 @@ export function DemoLink({
 		>
 			{label}
 			{newTabNote}
-			<ExternalLink aria-hidden="true" className="ml-2 size-4" />
+			<ExternalLink data-icon="inline-end" aria-hidden="true" />
 		</Button>
 	)
 }

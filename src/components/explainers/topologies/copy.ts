@@ -2,7 +2,9 @@ import { getTranslations } from "next-intl/server"
 
 import type { TopologiesData, TopologyScenarioId } from "@/data/types"
 
-import { hintKeys, nodeKeyList, recordFrom, scenarioIds } from "./derive"
+import { recordFrom } from "@/lib/record"
+
+import { hintKeys, nodeKeyList, scenarioIds } from "./derive"
 import type { TopologiesCopy } from "./types"
 
 export const buildTopologiesCopy = async (
@@ -29,7 +31,6 @@ export const buildTopologiesCopy = async (
 
 	return {
 		title: t("title"),
-		titleCompact: t("titleCompact"),
 		intro: t("intro"),
 		stageLabel: t("stageLabel"),
 		tabsLabel: t("tabsLabel"),
@@ -70,12 +71,6 @@ export const buildTopologiesCopy = async (
 			title: t(`hints.${key}.title`),
 			body: t(`hints.${key}.body`),
 		})),
-		badges: {
-			local: t("badges.local"),
-			noCloud: t("badges.noCloud"),
-			openSource: t("badges.openSource"),
-			adapts: t("badges.adapts"),
-		},
 		noscriptHeading: t("noscriptHeading"),
 	}
 }

@@ -35,7 +35,7 @@ export async function AskAi() {
 
 	return (
 		<details className="group w-full max-w-xl">
-			<summary className="text-muted-foreground hover:text-foreground focus-visible:ring-ring/50 mx-auto flex w-fit cursor-pointer list-none items-center gap-1.5 rounded-md px-2 py-1 text-sm outline-none focus-visible:ring-[3px] [&::-webkit-details-marker]:hidden">
+			<summary className="text-muted-foreground hover:text-foreground focus-visible:ring-ring/50 mx-auto flex w-fit cursor-pointer list-none items-center gap-1.5 rounded-md px-2 py-1 text-sm outline-none focus-visible:ring-3 [&::-webkit-details-marker]:hidden">
 				{t("trigger")}
 				<ChevronDown
 					className="size-4 group-open:rotate-180 motion-safe:transition-transform"
@@ -59,6 +59,7 @@ export async function AskAi() {
 										href={`${href}${query}`}
 										target="_blank"
 										rel="noopener noreferrer"
+										role={undefined}
 									/>
 								}
 							>

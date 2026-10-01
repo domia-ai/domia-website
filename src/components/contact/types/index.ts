@@ -5,7 +5,8 @@ import type { ContactFormType } from "@/types"
 
 export type ContactFaqId = (typeof contactFaqIds)[number]
 
-export type ContactFaqPage = "technology" | "run" | "cases" | "console"
+export type ContactFaqPage =
+	"technology" | "run" | "cases" | "console" | "privacy"
 
 export type ContactFaqGroup = {
 	id: "basics" | "running" | "skillsAndUse"

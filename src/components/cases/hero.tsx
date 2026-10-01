@@ -19,16 +19,15 @@ export async function Hero() {
 			eyebrow={t("eyebrow")}
 			title={t("title")}
 			subtitle={t("subtitle")}
-			priority
 			actions={
 				<>
-					{caseGroupIds.map((group, index) => (
+					{caseGroupIds.map((group) => (
 						<Button
 							key={group}
 							size="lg"
-							variant={index === 0 ? "default" : "outline"}
+							variant="outline"
 							nativeButton={false}
-							render={<a href={`#${group}`} />}
+							render={<a href={`#${group}`} role={undefined} />}
 						>
 							{t(`anchors.${group}`)}
 						</Button>
@@ -43,7 +42,7 @@ export async function Hero() {
 					height={casesHeroImageSide}
 					sizes={casesHeroImageSizes}
 					priority
-					className="animate-domia-pulse h-auto w-full max-w-60 lg:max-w-105"
+					className="animate-domia-pulse aspect-square w-60 max-w-full lg:w-105"
 				/>
 			}
 			below={<RouteLegend />}

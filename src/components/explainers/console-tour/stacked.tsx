@@ -77,7 +77,7 @@ export function ConsoleTourStacked({ groups, copy }: ConsoleTourViewProps) {
 				<Accordion>
 					{groups.more.map((screen) => (
 						<AccordionItem key={screen.key} value={screen.key}>
-							<AccordionTrigger className="min-h-11 text-base">
+							<AccordionTrigger heading={<h4 />} className="min-h-11 text-base">
 								{copy.screens[screen.key].title}
 							</AccordionTrigger>
 							<AccordionContent>

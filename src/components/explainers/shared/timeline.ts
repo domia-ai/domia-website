@@ -33,9 +33,3 @@ export const fillBetween = (
 	const x = axis.x(start)
 	return { x, width: axis.x(reached) - x }
 }
-
-export const loopToTurn = (
-	tLoop: number,
-	sweepSeconds: number,
-	maxSeconds: number,
-) => clamp01(tLoop / sweepSeconds) * maxSeconds

@@ -1,7 +1,6 @@
-import type { Ref } from "react"
 import type { getTranslations } from "next-intl/server"
 
-import type { FastPathAstNode, PersonaFace } from "@/data/types"
+import type { FastPathAstNode } from "@/data/types"
 import type { SectionTone } from "@/components/sections"
 
 export type SayItTranslator = Awaited<ReturnType<typeof getTranslations>>
@@ -187,50 +186,6 @@ export type SayItCopy = {
 	noscript: { note: string; heading: string }
 }
 
-export type SayItConversationState =
-	"idle" | "listening" | "deciding" | "acting" | "thinking" | "speaking"
-
-export type SayItConversationLiveState = Exclude<SayItConversationState, "idle">
-
-export type SayItConversationPhase =
-	"listening" | "deciding" | "working" | "speaking" | "done"
-
-export type SayItConversationRepliesCopy = {
-	tools: Record<string, string>
-	done: string
-	plain: string
-	confirmed: Record<string, string>
-	pause: string
-	thought: string
-}
-
-export type SayItConversationLine = "match" | "miss" | "confirm" | "persona"
-
-export type SayItConversationCopy = {
-	states: Record<SayItConversationLiveState, string>
-	replies: SayItConversationRepliesCopy
-	thoughts: Record<string, string>
-	yes: string
-	yesSaid: string
-	lines: Record<SayItConversationLine, string>
-	tryLabel: string
-	typeYourOwn: string
-	note: string
-	noscript: string
-}
-
-export type SayItConversationCardCopy = {
-	phrases: SayItPhraseCopy
-	input: SayItInputCopy
-	conversation: SayItConversationCopy
-}
-
-export type SayItConversationTurn =
-	| { kind: "act"; reply: string; line: string }
-	| { kind: "think"; pause: string; reply: string; line: string }
-	| { kind: "chat"; reply: string; line: string }
-	| { kind: "ask"; reply: string; confirmed: string; line: string }
-
 export type SayItPreset = { id: string; text: string }
 
 export type SayItInitial = {
@@ -248,29 +203,10 @@ export type SayItSource = {
 	initial: SayItInitial
 }
 
-export type SayItConversationRun = {
-	id: number
-	text: string
-	presetId: string | null
-	verdict: SayItVerdict
-	answered: boolean
-}
-
 export type SayItForkShown = {
 	run: number
 	text: string
 	verdict: SayItVerdict
-}
-
-export type SayItPersona = {
-	face: PersonaFace
-	name: string
-	sample: string
-}
-
-export type SayItAvatarFaces = {
-	current: PersonaFace
-	previous: PersonaFace | null
 }
 
 export type SayItIslandProps = SayItSource & { copy: SayItCopy }
@@ -286,8 +222,6 @@ export type SayItFreeTextProps = {
 	copy: SayItInputCopy
 	draft: string
 	status: SayItMatcherStatus
-	lockUntilReady?: boolean
-	inputRef?: Ref<HTMLInputElement>
 	onDraftChange: (value: string) => void
 	onFocus?: () => void
 	onSubmit: () => void
@@ -321,41 +255,6 @@ export type SayItBranchCardProps = {
 	run: number
 }
 
-export type SayItConversationSource = SayItSource & {
-	copy: SayItConversationCardCopy
-}
-
-export type SayItConversationProps = SayItConversationSource & {
-	persona: SayItPersona
-	replayKey: string
-}
-
-export type SayItConversationAvatarProps = {
-	state: SayItConversationState
-	persona: SayItPersona
-	copy: SayItConversationCopy
-}
-
-export type SayItConversationChatProps = {
-	run: SayItConversationRun
-	turn: SayItConversationTurn
-	phase: SayItConversationPhase
-	typedChars: number
-	copy: SayItConversationCopy
-	onYes: () => void
-}
-
-export type SayItConversationWaveformProps = {
-	live: boolean
-}
-
-export type SayItConversationBubbleProps = {
-	side: "user" | "domia"
-	text: string
-	italic?: boolean
-	live?: boolean
-}
-
 export type SayItNoScriptProps = {
 	copy: SayItCopy
 	locale: string
@@ -364,4 +263,9 @@ export type SayItNoScriptProps = {
 
 export type SayItExplainerProps = {
 	tone?: SectionTone
+}
+
+export type SayItResolvedArgs = {
+	args: Record<string, unknown>
+	resolved: Record<string, unknown>
 }

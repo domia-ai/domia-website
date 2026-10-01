@@ -24,7 +24,7 @@ export function LanguageSwitcher() {
 					size="sm"
 					nativeButton={false}
 					className={cn(
-						"uppercase",
+						"uppercase max-lg:h-10 max-lg:px-3",
 						target === locale
 							? "text-primary bg-primary/10"
 							: "text-muted-foreground hover:text-primary hover:bg-primary/5",

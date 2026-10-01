@@ -17,13 +17,14 @@ export async function Hero() {
 	const capture = loadConsoleTour().screens.find(
 		(screen) => screen.key === HERO_SCREEN_KEY,
 	)
+	if (!capture) throw new Error(`Console screen ${HERO_SCREEN_KEY} is missing`)
 
 	return (
 		<SectionHero
 			eyebrow={t("eyebrow")}
 			title={t("title")}
 			subtitle={t("subtitle")}
-			priority
+			artPosition="below"
 			actions={
 				<>
 					<DemoLink variant="primary" label={t("demo")} />
@@ -33,32 +34,30 @@ export async function Hero() {
 				</>
 			}
 			art={
-				capture ? (
-					<div className="w-full max-w-[600px]">
-						<BrowserFrame route={capture.route}>
-							<Image
-								src={capture.image.light}
-								alt={t("imageAlt")}
-								width={capture.image.width}
-								height={capture.image.height}
-								sizes={HERO_IMAGE_SIZES}
-								quality={HERO_IMAGE_QUALITY}
-								priority
-								className="bg-muted h-auto w-full dark:hidden"
-							/>
-							<Image
-								src={capture.image.dark}
-								alt={t("imageAlt")}
-								width={capture.image.width}
-								height={capture.image.height}
-								sizes={HERO_IMAGE_SIZES}
-								quality={HERO_IMAGE_QUALITY}
-								priority
-								className="bg-muted hidden h-auto w-full dark:block"
-							/>
-						</BrowserFrame>
-					</div>
-				) : null
+				<div className="mx-auto w-full max-w-5xl">
+					<BrowserFrame route={capture.route}>
+						<Image
+							src={capture.image.light}
+							alt={t("imageAlt")}
+							width={capture.image.width}
+							height={capture.image.height}
+							sizes={HERO_IMAGE_SIZES}
+							quality={HERO_IMAGE_QUALITY}
+							priority
+							className="bg-muted h-auto w-full dark:hidden"
+						/>
+						<Image
+							src={capture.image.dark}
+							alt={t("imageAlt")}
+							width={capture.image.width}
+							height={capture.image.height}
+							sizes={HERO_IMAGE_SIZES}
+							quality={HERO_IMAGE_QUALITY}
+							loading="eager"
+							className="bg-muted hidden h-auto w-full dark:block"
+						/>
+					</BrowserFrame>
+				</div>
 			}
 		/>
 	)

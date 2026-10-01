@@ -4,7 +4,11 @@ export const coreRepoUrl = `${githubUrl}/domia-core`
 
 export const gettingStartedUrl = `${coreRepoUrl}/blob/main/GETTING_STARTED.md`
 
+export const issuesUrl = `${coreRepoUrl}/issues`
+
 export const consoleRepoUrl = `${githubUrl}/domia-app`
+
+export const websiteRepoUrl = `${githubUrl}/domia-website`
 
 export const skillsMapHref = "/technology#skills"
 

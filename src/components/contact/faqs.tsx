@@ -37,7 +37,10 @@ export async function Faqs() {
 										value={id}
 										className="bg-background rounded-lg border px-6 py-2"
 									>
-										<AccordionTrigger className="text-left hover:no-underline">
+										<AccordionTrigger
+											heading={<h4 />}
+											className="text-left hover:no-underline"
+										>
 											<span className="text-lg font-medium">
 												{t(`items.${id}.q`)}
 											</span>

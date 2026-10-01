@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import type { MemoryLayer } from "@/data/types"
 
-import { Hint } from "../shared"
+import { Hint } from "@/components/explainers/shared"
 import type { MemoryBandProps, MemoryPhase } from "./types"
 
 const writerIcons: Record<MemoryLayer["writtenBy"], LucideIcon> = {
@@ -53,7 +53,7 @@ export function MemoryBand({ layer, copy, phase }: MemoryBandProps) {
 							id={hintId(layer.id)}
 							title={layerCopy.name}
 							body={layerCopy.hint}
-							className="decoration-memory/60 focus-visible:ring-ring/50 rounded-sm text-left font-medium text-balance underline decoration-dotted underline-offset-4 focus-visible:ring-[3px] focus-visible:outline-none"
+							className="decoration-memory/60 focus-visible:ring-ring/50 rounded-sm text-left font-medium text-balance underline decoration-dotted underline-offset-4 focus-visible:ring-3 focus-visible:outline-none"
 						>
 							{layerCopy.name}
 						</Hint>

@@ -6,28 +6,33 @@ import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { formatMs } from "@/lib/format"
+import { fillTemplate } from "@/lib/template"
 import { cn } from "@/lib/utils"
 
 import type { TurnCardProps } from "./types"
 
-const formatMs = (ms: number): string =>
-	ms >= 1000 ? `${(ms / 1000).toFixed(1)} s` : `${ms} ms`
-
 const phaseClassName = {
 	idle: "",
-	listening: "border-speech/60 ring-2 ring-speech/30",
-	thinking: "border-model/60 ring-2 ring-model/20",
-	speaking: "border-audio/60 ring-2 ring-audio/30",
+	listening: "ring-speech/50 ring-2",
+	thinking: "ring-model/40 ring-2",
+	speaking: "ring-audio/50 ring-2",
 } as const
 
-export function TurnCard({ turn, copy, phase, onToggle }: TurnCardProps) {
+export function TurnCard({
+	turn,
+	copy,
+	phase,
+	prominent = false,
+	onToggle,
+}: TurnCardProps) {
 	const active = phase !== "idle"
 	const ttfa = turn.timings.ttfaMs
 
 	return (
 		<Card
 			className={cn(
-				"h-full gap-4 py-5 transition-[border-color,box-shadow] duration-300 motion-reduce:transition-none",
+				"h-full gap-4 py-5 transition-shadow duration-300 motion-reduce:transition-none",
 				phaseClassName[phase],
 			)}
 		>
@@ -48,11 +53,12 @@ export function TurnCard({ turn, copy, phase, onToggle }: TurnCardProps) {
 					</div>
 					<Button
 						type="button"
-						size="icon"
-						variant={active ? "default" : "outline"}
+						size="icon-xl"
+						variant={active || prominent ? "default" : "outline"}
 						aria-pressed={active}
-						aria-label={active ? copy.stop : copy.play}
+						aria-label={`${active ? copy.stop : copy.play}: ${turn.identity}, ${turn.userText}`}
 						onClick={onToggle}
+						className={cn(prominent && "size-12")}
 					>
 						{active ? <Pause /> : <Play />}
 					</Button>
@@ -68,10 +74,8 @@ export function TurnCard({ turn, copy, phase, onToggle }: TurnCardProps) {
 				<p
 					aria-live="polite"
 					className={cn(
-						"text-muted-foreground min-h-12 text-sm transition-opacity duration-300",
-						phase === "speaking" || phase === "idle"
-							? "opacity-100"
-							: "opacity-40",
+						"text-muted-foreground min-h-12 text-sm",
+						phase === "listening" && "invisible",
 					)}
 				>
 					{phase === "thinking" ? copy.phases.thinking : turn.replyText}
@@ -80,7 +84,9 @@ export function TurnCard({ turn, copy, phase, onToggle }: TurnCardProps) {
 					<Badge variant="secondary">{copy.paths[turn.path]}</Badge>
 					{ttfa !== null ? (
 						<Badge variant="outline">
-							{copy.firstAudio.replace("{time}", formatMs(ttfa))}
+							{fillTemplate(copy.firstAudio, {
+								time: formatMs(ttfa, copy.locale),
+							})}
 						</Badge>
 					) : null}
 				</div>

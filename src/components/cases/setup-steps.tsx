@@ -1,26 +1,19 @@
 import { getTranslations } from "next-intl/server"
 
 import { LinkButton } from "@/components/sections"
-import {
-	TypographyH3,
-	TypographyH4,
-	TypographyP,
-} from "@/components/ui/typography"
-import { hostingSetupStepIds } from "@/constants/pages"
+import { TypographyH3, TypographyP } from "@/components/ui/typography"
+import { caseSetupStepIds } from "@/constants/pages"
 
 export async function SetupSteps() {
 	const t = await getTranslations("cases.setup")
 
 	return (
 		<div className="flex flex-col gap-5">
-			<TypographyH3 id="setup-title" className="text-xl">
-				{t("title")}
-			</TypographyH3>
 			<ol
 				aria-labelledby="setup-title"
 				className="grid list-none grid-cols-1 gap-6 md:grid-cols-3"
 			>
-				{hostingSetupStepIds.map((id, index) => (
+				{caseSetupStepIds.map((id, index) => (
 					<li key={id} className="flex gap-4">
 						<span
 							aria-hidden="true"
@@ -29,9 +22,9 @@ export async function SetupSteps() {
 							{index + 1}
 						</span>
 						<div className="flex flex-col gap-1">
-							<TypographyH4 className="text-lg">
+							<TypographyH3 className="text-lg">
 								{t(`steps.${id}.title`)}
-							</TypographyH4>
+							</TypographyH3>
 							<TypographyP className="text-muted-foreground mt-0 leading-6">
 								{t(`steps.${id}.body`)}
 							</TypographyP>

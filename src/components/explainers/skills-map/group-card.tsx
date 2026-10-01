@@ -27,8 +27,8 @@ export function GroupCard({
 			data-group={groupId}
 			data-active={active}
 			className={cn(
-				"h-full motion-safe:transition-opacity motion-safe:duration-300",
-				active ? "opacity-100" : "opacity-60",
+				"h-full motion-safe:transition-colors motion-safe:duration-300",
+				!active && "bg-muted/40 [&_svg]:opacity-50",
 				className,
 			)}
 		>

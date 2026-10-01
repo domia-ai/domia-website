@@ -1,27 +1,22 @@
-"use client"
-
 import { Hint } from "@/components/explainers/shared"
 import { cn } from "@/lib/utils"
 
 import { laneTone, layout } from "./geometry"
-import { laneHintBody } from "./lane-copy"
 import type { LaneLabelsProps } from "./types"
 
-export function LaneLabels({ data, copy, selection, frame }: LaneLabelsProps) {
+export function LaneLabels({ data, copy, turn }: LaneLabelsProps) {
 	const width = data.axis.x0 - layout.label.x - layout.label.gap
 
 	return (
 		<div className="pointer-events-none absolute inset-0">
-			{frame.lanes.map((lane) => {
+			{data.lanes.map((lane) => {
 				const laneCopy = copy.lanes[lane.id]
 				const tone = laneTone[lane.color]
+				const active = (turn.mode.spans[lane.id] ?? []).length > 0
 				return (
 					<div
 						key={lane.id}
-						className={cn(
-							"pointer-events-auto absolute",
-							!lane.active && "opacity-70",
-						)}
+						className="pointer-events-auto absolute"
 						style={{
 							top: lane.y - layout.label.offsetY,
 							left: layout.label.x,
@@ -31,34 +26,31 @@ export function LaneLabels({ data, copy, selection, frame }: LaneLabelsProps) {
 						<Hint
 							id={`pipeline-${lane.id}`}
 							title={laneCopy.label}
-							body={laneHintBody(laneCopy, selection.machine)}
+							body={`${laneCopy.tip} ${laneCopy.note}`}
 							side="right"
-							className="focus-visible:ring-ring flex w-full cursor-help flex-col items-start gap-0.5 rounded-sm text-left outline-none focus-visible:ring-2"
+							className="focus-visible:ring-ring/50 flex w-full cursor-help flex-col items-start gap-0.5 rounded-sm text-left outline-none focus-visible:ring-3"
 						>
-							{lane.active ? null : (
-								<span className="sr-only">{copy.stacked.skipped}</span>
-							)}
 							<span className="flex items-center gap-2">
 								<span
 									aria-hidden="true"
-									className={cn("size-2 shrink-0 rounded-[2px]", tone.swatch)}
+									className={cn(
+										"size-2 shrink-0 rounded-xs",
+										tone.swatch,
+										!active && "opacity-40",
+									)}
 								/>
 								<span
 									className={cn(
-										"leading-tight",
-										laneCopy.sub === null
-											? "text-muted-foreground text-[11px] font-medium"
-											: "text-foreground text-[13px] font-semibold",
+										"text-[13px] leading-tight font-semibold",
+										active ? "text-foreground" : "text-muted-foreground",
 									)}
 								>
 									{laneCopy.label}
 								</span>
 							</span>
-							{laneCopy.sub === null ? null : (
-								<span className="text-muted-foreground block text-[10px] leading-tight">
-									{laneCopy.sub}
-								</span>
-							)}
+							<span className="text-muted-foreground block text-[12px] leading-tight">
+								{active ? laneCopy.sub : copy.stacked.skipped}
+							</span>
 						</Hint>
 					</div>
 				)

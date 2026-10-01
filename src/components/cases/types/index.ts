@@ -1,5 +1,4 @@
-import type { ReactNode } from "react"
-
+import type { SectionTone } from "@/components/sections"
 import type {
 	caseBadgeIds,
 	caseGroupIds,
@@ -27,14 +26,18 @@ export type CaseCardProps = {
 	badges: CaseBadgeProps[]
 }
 
-export type CaseNoteCardProps = {
-	title: string
-	children: ReactNode
-}
-
 export type CaseGroupHeaderProps = {
 	id: CaseGroupId
 	title: string
 	intro: string
 	needs?: string
+}
+
+export type CaseGroupProps = {
+	group: CaseGroupId
+	tone: SectionTone
+}
+
+export type SetupAlsoProps = {
+	tone: SectionTone
 }

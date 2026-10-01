@@ -21,43 +21,29 @@
 			"es": "Español"
 		},
 		"consoleDemo": "Console demo",
-		"openConsoleDemo": "Open the console demo",
-		"opensInNewTab": "(opens in a new tab)"
+		"openConsoleDemo": "Explore the console",
+		"opensInNewTab": "(opens in a new tab)",
+		"privacy": "Privacy",
+		"madeByDomia": "Every reply, voice and timing you hear on this site was produced by Domia running on its own hardware.",
+		"email": "Email"
 	},
 	"landing": {
 		"hero": {
 			"eyebrow": "Open source · Apache 2.0",
 			"title": "A voice agent that lives on your hardware.",
-			"subtitle": "Talk to it and it answers out loud, in a voice and character you shape. It remembers you and acts through the skills you connect. No cloud, no accounts.",
-			"demo": "Open the console demo",
-			"github": "GitHub",
-			"how": "How it works",
-			"imageAlt": "Domia, the local voice agent character"
-		},
-		"proof": {
-			"title": "What it does",
-			"converses": {
-				"title": "Talks with you",
-				"body": "Voice in, voice out. It listens, thinks and answers in its own voice, and follow-up mode keeps the microphone open so you can just keep talking."
-			},
-			"acts": {
-				"title": "Acts through skills",
-				"body": "Built-in tools such as timers, alarms and reminders work from the first turn. Home Assistant, Music Assistant and any other MCP server join once you connect them in the console, and each can be switched off per Domia. Known commands run at once; for anything else the model decides whether to use a skill or just answer."
-			},
-			"remembers": {
-				"title": "Remembers you",
-				"body": "Recent turns, facts it learned, knowledge you write, episodes, and a model of who you are. All of it is stored on your node."
-			},
-			"interrupt": {
-				"title": "Lets you interrupt",
-				"body": "Start speaking while it answers and the reply stops so it can hear you. On a satellite the reply pauses instead of cutting off."
-			}
+			"subtitle": "Talk to it and it answers out loud, in a voice and character you shape. It remembers you, acts through the skills you connect, and stops to listen when you talk over it. No cloud, no accounts.",
+			"demo": "Explore the console",
+			"imageAlt": "Domia, the local voice agent character",
+			"run": "Run it",
+			"previous": "Previous example",
+			"next": "Next example",
+			"show": "Example"
 		},
 		"consoleTeaser": {
 			"title": "A console for every node",
 			"body": "Every node you run, in one place: who is online, what each one heard and said, and what it remembers. Apply a template or build a configuration from scratch, and edit routines, satellites and memories from the browser.",
 			"link": "See the console",
-			"demo": "Open the console demo",
+			"demo": "Explore the console",
 			"imageAlt": "The console overview: fleet counters and a map of the Domias on the local mesh"
 		},
 		"askAi": {
@@ -72,13 +58,13 @@
 		},
 		"cta": {
 			"title": "Start with one machine",
-			"subtitle": "Clone the repository, give it a configuration from the console, and say the wake word.",
-			"install": "Install it",
-			"demo": "See it running",
+			"subtitle": "Follow the guide, give it a configuration from the console, and say the wake word.",
+			"install": "Run it",
+			"demo": "Explore the console",
 			"github": "Source on GitHub"
 		},
 		"useCases": {
-			"title": "Where people use it",
+			"title": "Where it fits",
 			"link": "See the use cases",
 			"home": {
 				"title": "At home",
@@ -98,7 +84,7 @@
 		"unsupported": "Your browser cannot play this video.",
 		"evening": {
 			"title": "See it work",
-			"body": "One evening at home, as one example: a light, the time, someone it remembers, a film and a good night. Every reply and every timing in the video is what Domia produced as it ran.",
+			"body": "One evening at home, as one example: a light, someone it remembers, a guest asking for the wifi and a good night. Every reply and every timing in the video is what Domia produced as it ran.",
 			"videoLabel": "Domia demo video: one evening with three Domias at home"
 		},
 		"hosting": {
@@ -110,11 +96,13 @@
 			"title": "A tour of the console",
 			"body": "Every screen in this video is a capture of the real console: the fleet, a conversation with its timings, memories, templates, satellites, broadcast and analytics.",
 			"videoLabel": "Domia console tour: real screens with the cursor pointing at each feature"
-		}
+		},
+		"play": "Play",
+		"captions": "English"
 	},
 	"listen": {
 		"title": "Hear it answer",
-		"body": "Real turns from the demo setup. Press play: you hear the question, the wait, and the reply exactly as Domia produced it.",
+		"body": "Real turns from the demo setup. Press play: you hear the question, the wait and the reply.",
 		"play": "Play this turn",
 		"stop": "Stop",
 		"phases": {
@@ -129,7 +117,8 @@
 			"llm": "language model",
 			"memory": "remembered",
 			"knowledge": "knowledge base",
-			"routine": "routine"
+			"routine": "routine",
+			"skill": "the model calls a skill"
 		},
 		"rooms": {
 			"kitchen": "Kitchen",
@@ -140,14 +129,8 @@
 			"terrace": "Terrace"
 		},
 		"firstAudio": "first audio in {time}",
-		"replayNote": "The questions are synthetic voices; every reply and every timing came out of the pipeline as it ran, on a capable desktop machine."
-	},
-	"voices": {
-		"title": "Every Domia has its own voice",
-		"body": "Tap a face. Each identity you create picks its voice, its temperament and its room; these are eight of the voices that ship with it.",
-		"play": "Play",
-		"stop": "Stop",
-		"note": "Synthesised on a laptop with the same text-to-speech engine Domia uses on your node. No recordings of real people."
+		"more": "More turns",
+		"less": "Fewer turns"
 	},
 	"technology": {
 		"hero": {
@@ -171,7 +154,7 @@
 		},
 		"engines": {
 			"title": "The engines behind a turn",
-			"intro": "Every stage is a swappable engine chosen in the configuration. These are the families you pick from and what each one does.",
+			"intro": "Every stage is a swappable engine chosen in the configuration. These are the ones Domia ships with or talks to.",
 			"items": {
 				"wakeWord": {
 					"title": "Wake word",
@@ -179,7 +162,7 @@
 				},
 				"stt": {
 					"title": "Speech to text",
-					"body": "Eight engines, transcribing while you speak."
+					"body": "Transcribes while you speak, inside the node or through a local speech server."
 				},
 				"turn": {
 					"title": "Turn detection",
@@ -187,19 +170,20 @@
 				},
 				"llm": {
 					"title": "Language model",
-					"body": "A language model served on your own hardware. Reflection uses a second, smaller model so it never slows the voice."
+					"body": "A language model served on your own hardware. Reflection can use a second, smaller model so it stays out of the way of the voice."
 				},
 				"tts": {
 					"title": "Text to speech",
-					"body": "Six engines. One voice per identity, set in config."
+					"body": "One voice per identity, set in the configuration."
 				},
 				"memory": {
 					"title": "Memory and search",
 					"body": "Search over what Domia remembers runs on the node. Facts, episodes and the knowledge base live in a local database on the node."
 				}
 			},
-			"invariant": "Speech runs inside the node itself; the language model runs in a server beside it. Nothing runs in the cloud.",
-			"link": "How to run it on your hardware"
+			"invariant": "Speech engines run inside the node or in a local server beside it, and the language model runs in a local server.",
+			"link": "How to run it on your hardware",
+			"worksWith": "Works with"
 		},
 		"privacy": {
 			"title": "What stays on your network",
@@ -242,17 +226,17 @@
 		},
 		"cases": {
 			"title": "Use cases: a voice agent wherever people talk",
-			"description": "Real requests for a local voice agent at home, in hospitality and at attractions and guides: conversation, memory, lights, timers, notes and characters.",
+			"description": "Typical requests for a local voice agent at home, in hospitality and at attractions and guides: conversation, memory, lights, timers, notes and characters.",
 			"breadcrumb": "Use cases"
 		},
 		"run": {
 			"title": "Run Domia: install a local voice agent",
-			"description": "Install Domia, an open-source voice agent, on your own hardware: requirements, four steps to the first spoken reply, and the role each node can take.",
+			"description": "Install Domia, an open-source voice agent, on your own hardware: it installs from a terminal by following a guide, then four steps take you to the first spoken reply.",
 			"breadcrumb": "Run it"
 		},
 		"about": {
 			"title": "About Domia: local-first voice AI",
-			"description": "Why Domia exists, the principles behind it, what works today and what does not, and how to join: an open-source voice agent on your hardware.",
+			"description": "Why Domia exists, the principles behind it and how to join: an open-source voice agent that runs on hardware you own, built in public.",
 			"breadcrumb": "About"
 		},
 		"contact": {
@@ -268,24 +252,29 @@
 			"title": "The console: your voice AI fleet on one screen",
 			"description": "See every node, apply templates, replay conversations with audio, browse memories and read latency per stage. Runs on your network; try the read-only demo.",
 			"breadcrumb": "Console"
+		},
+		"privacy": {
+			"title": "Privacy: what this site collects and what Domia keeps",
+			"description": "What the Domia website collects (a contact email, anonymous page statistics) and what the product keeps, all of it on hardware you own.",
+			"breadcrumb": "Privacy"
 		}
 	},
 	"run": {
 		"hero": {
 			"eyebrow": "Run it",
 			"title": "Same software on every node. You choose the role.",
-			"subtitle": "Install the node, apply a template or build the configuration from scratch, and it becomes a standalone Domia, a full hub or a thin client.",
-			"primary": "See the four steps",
-			"secondary": "Read the getting-started guide",
+			"subtitle": "Domia installs from a terminal by following a guide, step by step. Then apply a template or build the configuration from scratch, and the node becomes a standalone Domia, a full hub or a thin client.",
+			"primary": "Open the getting-started guide",
+			"secondary": "See the four steps",
 			"imageAlt": "Two Domias at a table, one handing a configuration to the other"
 		},
 		"firstTurn": {
 			"title": "Install it and get your first turn",
-			"intro": "Four steps to a Domia that answers out loud.",
+			"intro": "Four steps to a Domia that answers out loud. The first one is the long one: it happens in a terminal, and most of the wait is the models downloading.",
 			"steps": {
 				"install": {
 					"title": "Install the node",
-					"body": "Download Domia from GitHub and run its setup. It prepares everything it needs, including the voice models and a local language model."
+					"body": "Download Domia from GitHub and follow the guide in a terminal: seven steps that install it, download the voice models and a local language model, and start the node."
 				},
 				"template": {
 					"title": "Apply a template, or start from scratch",
@@ -306,7 +295,7 @@
 					"disk": "Some free space for the voice and language models",
 					"audio": "A microphone and a speaker, or a satellite in the room",
 					"machine": "A computer you own. Domia adapts to your hardware.",
-					"guide": "The getting-started guide walks you through the rest"
+					"guide": "Being comfortable following steps in a terminal; the guide has every one"
 				}
 			},
 			"notes": {
@@ -315,6 +304,19 @@
 				"mesh": "Keep Domia on your own network and never expose a node to the internet.",
 				"guide": "The getting-started guide has every step in detail, for when you sit down to install it.",
 				"guideLink": "Open the guide"
+			},
+			"help": {
+				"notReady": {
+					"title": "Not ready to install?",
+					"body": "The console demo is read-only: browse a fleet, replay real conversations with their audio and read what each Domia remembers.",
+					"link": "Explore the console"
+				},
+				"stuck": {
+					"title": "Stuck on a step?",
+					"body": "Ask in the Discord or open an issue with the step and what you saw.",
+					"discord": "Ask on Discord",
+					"issues": "Open an issue"
+				}
 			}
 		},
 		"portability": {
@@ -323,7 +325,7 @@
 			"items": {
 				"mind": {
 					"title": "Mind transfer",
-					"body": "Export a Domia's character, mood, memories, knowledge, routines, satellites and skills as one bundle, credentials stripped, and import it on another node, merging or replacing."
+					"body": "Export a Domia's character, mood, memories, knowledge, routines, satellites and skill connections as one bundle, credentials stripped, and import it on another node, merging or replacing. Engine settings stay with the machine."
 				},
 				"templates": {
 					"title": "Templates, or from scratch",
@@ -335,7 +337,7 @@
 			"title": "Start with the getting-started guide",
 			"subtitle": "The install, the templates and the first turn, step by step.",
 			"primary": "Open the getting-started guide",
-			"secondary": "Try the console demo"
+			"secondary": "Explore the console"
 		},
 		"connectSkills": {
 			"title": "Connect your skills",
@@ -360,7 +362,7 @@
 	"about": {
 		"hero": {
 			"eyebrow": "About",
-			"title": "Domia, an open-source local voice agent",
+			"title": "Domia, an open‑source local voice agent",
 			"subtitle": "A voice agent that runs on hardware you own, built in the open and used every day.",
 			"imageAlt": "The Domia mascot holding a quill and an open book"
 		},
@@ -412,9 +414,9 @@
 		},
 		"cta": {
 			"title": "Join the project",
-			"subtitle": "Run it, read the code and tell us what breaks.",
+			"subtitle": "Run it, read the code and report what breaks.",
 			"run": "Run it",
-			"demo": "Open the console demo"
+			"demo": "Explore the console"
 		},
 		"why": {
 			"title": "Why it exists",
@@ -427,7 +429,8 @@
 			"eyebrow": "Contact",
 			"title": "Get in touch",
 			"subtitle": "A question, a contribution, a partnership or a hello: write, and you will get a reply.",
-			"imageAlt": "The Domia character holding a phone and waving"
+			"imageAlt": "The Domia character holding a phone and waving",
+			"write": "Write a message"
 		},
 		"form": {
 			"fields": {
@@ -473,8 +476,10 @@
 				"emailRequired": "Email is required",
 				"emailInvalid": "The email address is not valid",
 				"subjectMax": "Maximum 100 characters",
-				"messageMax": "Maximum 1000 characters"
-			}
+				"messageMax": "Maximum 1000 characters",
+				"messageRequired": "Write a message"
+			},
+			"noscript": "This form needs JavaScript. Without it, write to {email}."
 		},
 		"faqs": {
 			"title": "Frequently asked questions",
@@ -487,7 +492,8 @@
 				"technology": "How it works",
 				"run": "Run it",
 				"cases": "Use cases",
-				"console": "The console"
+				"console": "The console",
+				"privacy": "Privacy"
 			},
 			"items": {
 				"what": {
@@ -496,7 +502,7 @@
 				},
 				"privacy": {
 					"q": "Are my conversations private?",
-					"a": "They stay on your node. Audio, transcripts and memory are processed and stored on your hardware, and there is no account to sign in to. A skill you connect reaches only the service it controls."
+					"a": "They stay on your node. Audio, transcripts and memory are processed and stored on your hardware, and there is no account to sign in to. A skill you connect reaches only the service it controls. The privacy page says what is kept and for how long."
 				},
 				"cost": {
 					"q": "What does it cost?",
@@ -561,7 +567,7 @@
 		"closing": {
 			"title": "See Domia at work",
 			"subtitle": "The console demo is read-only and shows real conversations.",
-			"primary": "Try the demo",
+			"primary": "Explore the console",
 			"secondary": "How it works"
 		}
 	},
@@ -681,7 +687,7 @@
 				},
 				"local": {
 					"processed": "On a machine you own",
-					"copy": "Nobody, it stays on your node",
+					"copy": "Only your node, where you can read and erase it",
 					"offline": "It keeps working, and so does everything on your network; only cloud services stop"
 				}
 			},
@@ -757,9 +763,8 @@
 			"title": "Skills: what it can do",
 			"intro": "Built-in tools, ready-made skills for Home Assistant and Music Assistant, any MCP server you add, and routines that chain them.",
 			"switchOffLabel": "Switch a group off to see what changes:",
-			"examplesLabel": "What happens to a request",
 			"hintsHeading": "Tips",
-			"legend": "The bolt marks what the fast path answers without the model. The badge says what happens before anything runs.",
+			"legend": "The bolt marks what the fast path answers without the model. “Ask first” marks the few actions that confirm before they run; you can change that for each skill.",
 			"fastPathLabel": "fast path",
 			"groups": {
 				"builtin": {
@@ -821,35 +826,7 @@
 					"search": "search"
 				}
 			},
-			"examples": {
-				"timer": {
-					"line": "\"Set a timer for ten minutes\"",
-					"on": "A built-in tool answers it, without the model",
-					"off": "The model replies, but nothing rings."
-				},
-				"lights": {
-					"line": "\"Turn off the kitchen light\"",
-					"on": "Home Assistant handles it, without the model",
-					"off": "The model replies, but the light stays on."
-				},
-				"music": {
-					"line": "\"Play some jazz in the living room\"",
-					"on": "The model picks Music Assistant",
-					"off": "No player is available, so nothing plays."
-				},
-				"goodNight": {
-					"line": "\"Good night\"",
-					"on": "The routine runs its steps in order, without the model",
-					"off": "Three separate requests instead of one."
-				},
-				"descriptor": {
-					"line": "\"Add oat milk to the shopping list\"",
-					"on": "The model picks your server's tool",
-					"off": "The server's tools are not offered to the model."
-				}
-			},
 			"policy": {
-				"allow": "allow",
 				"confirm": "ask first",
 				"block": "block"
 			},
@@ -880,161 +857,6 @@
 			"availability": {
 				"fromStart": "On from the start",
 				"onceConnected": "Once connected"
-			}
-		},
-		"pipeline": {
-			"title": "The voice pipeline: one spoken turn",
-			"intro": "The stages overlap: Domia starts speaking while the model is still writing.",
-			"stageLabel": "Timeline of one spoken turn across eight lanes, from your voice to the reply you hear",
-			"headline": "It starts talking about {halves, select, 1 {half a second} 2 {a second} 3 {a second and a half} other {{seconds} seconds}} after you stop.",
-			"legend": {
-				"audio": "sound",
-				"model": "thinking",
-				"fastPath": "fast path"
-			},
-			"lanes": {
-				"mic": {
-					"label": "You speak",
-					"sub": "microphone",
-					"note": "captured on the device until you pause",
-					"tip": "The wake word and voice activity detection run on the device; your speech is captured until a pause is detected."
-				},
-				"stt": {
-					"label": "It understands",
-					"sub": "speech to text",
-					"note": "streaming, starts while you speak",
-					"tip": "Text arrives while you are still talking, so the final transcript is ready right after the end of speech."
-				},
-				"routing": {
-					"label": "It decides",
-					"sub": "routing",
-					"note": "a known command runs at once; otherwise the model picks a skill or answers",
-					"tip": "Each turn first tries the command templates your skills bring. If none matches, the model receives the skills that fit the request and decides whether to call one or answer."
-				},
-				"mind": {
-					"label": "building the mind",
-					"note": "persona + mood + recent memory",
-					"tip": "The prompt is assembled from the persona, the current mood, facts about you, your knowledge base and the last turns; once per session it also carries past episodes and a short picture of you."
-				},
-				"llm": {
-					"label": "It thinks",
-					"sub": "language model",
-					"note": "first word in {range}",
-					"tip": "Words stream out as they are generated; the sentence splitter reads them as they arrive."
-				},
-				"splitter": {
-					"label": "sentence splitter",
-					"note": "finished sentences peel off",
-					"tip": "As soon as a sentence is complete it is handed to text to speech, while the model keeps writing the next one."
-				},
-				"tts": {
-					"label": "It talks",
-					"sub": "text to speech",
-					"note": "one bar per sentence",
-					"tip": "Each sentence is synthesised on its own, so the first one can play while the others are still being generated."
-				},
-				"hear": {
-					"label": "You hear it",
-					"sub": "the reply",
-					"note": "streams sentence by sentence",
-					"tip": "Playback starts with the first sentence; the rest queue behind it without gaps."
-				}
-			},
-			"markers": {
-				"endOfSpeech": {
-					"title": "end of speech detected",
-					"note": "silence + a small turn model agree"
-				},
-				"firstToken": "first word",
-				"firstAudio": {
-					"title": "first sound",
-					"note": "≈ {seconds} s after your last word on {machine}"
-				}
-			},
-			"routing": {
-				"fastPath": "≈ {ms} ms",
-				"checkpoints": {
-					"fastPath": "known command → runs at once",
-					"llm": "otherwise → the model, with the skills that fit"
-				},
-				"reply": "reply",
-				"sentence": "sentence {n}"
-			},
-			"machines": {
-				"hub": {
-					"label": "hub-class machine",
-					"phrase": "a hub-class machine"
-				},
-				"fastDesktop": {
-					"label": "fast desktop",
-					"phrase": "a fast desktop"
-				}
-			},
-			"modes": {
-				"command": "command",
-				"conversation": "conversation"
-			},
-			"toggles": {
-				"machine": "Machine class",
-				"mode": "Kind of turn"
-			},
-			"controls": {
-				"play": "Play",
-				"pause": "Pause",
-				"scrub": "Timeline position"
-			},
-			"clock": {
-				"unit": "s",
-				"intoTurn": "into the turn",
-				"afterTurn": "after the turn",
-				"msRange": "{lo}–{hi} ms",
-				"msAbout": "≈ {value} ms"
-			},
-			"epilogue": {
-				"divider": "after the turn",
-				"micReopen": "the mic re-opens: just answer, no wake word",
-				"reflectionTitle": "later, when idle: reflection",
-				"reflectionBody": "updates mood and remembers new facts",
-				"reflectionAside": "in the background",
-				"bargeIn": "Talk over it and it stops and listens."
-			},
-			"footer": {
-				"local": "Everything above runs on your machine: hearing, understanding, thinking and speaking",
-				"llm": "The language model runs on hardware you own",
-				"storage": "Settings and memory stay in a local database on the node"
-			},
-			"hints": {
-				"heading": "Lane and marker details"
-			},
-			"stacked": {
-				"skipped": "skipped in this turn"
-			},
-			"noscript": {
-				"heading": "The eight lanes, in order"
-			},
-			"source": {
-				"conversation": "The first-sound marker is the median of the project's own benchmark runs in September 2026: {ms} ms from the end of your sentence to the first sound, on {machine}. The other bars show the order of the stages; your hardware will give different numbers.",
-				"command": "Known commands were measured on a hub-class machine in a real installation in September 2026: {lo} to {hi} ms from the end of your sentence to the first sound. The bars above are drawn to that scale."
-			},
-			"link": "See the timings of every turn in the console",
-			"replay": {
-				"label": "Replay a real turn",
-				"play": "Play with sound",
-				"stop": "Stop",
-				"turns": {
-					"fast": "A light (fast path)",
-					"knowledge": "The wifi (knowledge)",
-					"conversation": "A film pick (model)"
-				},
-				"headline": "This turn, as it happened: first sound {seconds} s after the last word.",
-				"note": "Real timing from the pipeline trace of one captured turn on a capable desktop machine, played at real speed with its audio. The slow-motion view above uses representative timings.",
-				"live": {
-					"idle": "Ready",
-					"listening": "You speak",
-					"thinking": "Domia works",
-					"speaking": "Domia speaks",
-					"done": "Done"
-				}
 			}
 		},
 		"satellitePicker": {
@@ -1273,32 +1095,9 @@
 				"realtime": {
 					"title": "Apps can talk to it too",
 					"body": "Apps that speak the OpenAI Realtime API connect straight to the node and go through the same stages."
-				},
-				"badgeLocal": {
-					"title": "100% local",
-					"body": "Audio, transcripts and memory never touch a third-party server."
-				},
-				"badgeNoCloud": {
-					"title": "No central server",
-					"body": "No accounts, no telemetry, nothing outside your network to depend on."
-				},
-				"badgeOpenSource": {
-					"title": "Open source",
-					"body": "Read it, run it, fork it. Apache 2.0."
-				},
-				"badgeAdapts": {
-					"title": "Adapts to your hardware",
-					"body": "The same software runs on a thin device or a hub-class machine; configuration decides."
 				}
 			},
-			"badges": {
-				"local": "100% local",
-				"noCloud": "no cloud, no central server",
-				"openSource": "open source · Apache 2.0",
-				"adapts": "adapts to your hardware"
-			},
-			"noscriptHeading": "The three deployment scenarios",
-			"titleCompact": "Three ways to run it"
+			"noscriptHeading": "The three deployment scenarios"
 		},
 		"sayIt": {
 			"title": "Fast path or model?",
@@ -1428,47 +1227,6 @@
 				"note": "Typing your own phrase needs JavaScript. This is the route for the first example phrase.",
 				"heading": "Phrase"
 			},
-			"conversation": {
-				"states": {
-					"listening": "Listening",
-					"deciding": "Deciding",
-					"acting": "Doing it",
-					"thinking": "Thinking",
-					"speaking": "Speaking"
-				},
-				"replies": {
-					"tools": {
-						"HassTurnOff": "Done. I've turned off {thing}.",
-						"HassTurnOn": "Done. I've turned on {thing}.",
-						"timer": "Timer set, {seconds}."
-					},
-					"done": "Done, {provider} took care of it.",
-					"plain": "Done.",
-					"confirmed": {
-						"lock": "Locked.",
-						"alarm_control_panel": "Armed.",
-						"siren": "Done.",
-						"cover": "Done."
-					},
-					"pause": "Let me think about that one.",
-					"thought": "…the model answers in its own words."
-				},
-				"thoughts": {
-					"wifi": "…it checks what you wrote down for it and answers in its own words."
-				},
-				"yes": "Yes",
-				"yesSaid": "Yes.",
-				"lines": {
-					"match": "Answered on the spot: no cloud, no model. Then just keep talking, the mic stays open.",
-					"miss": "The model took this one.",
-					"confirm": "Asks first by default; you set the policy for each skill.",
-					"persona": "The model answers in character, with the temperament you chose."
-				},
-				"tryLabel": "Try:",
-				"typeYourOwn": "Or type your own",
-				"note": "Simulated here. On your node this happens out loud.",
-				"noscript": "Trying other phrases needs JavaScript. This is the conversation for the first example."
-			},
 			"fork": {
 				"label": "How a request is routed",
 				"question": "Is it a known command?",
@@ -1525,88 +1283,6 @@
 				"generic": "Go ahead with {thing}?"
 			}
 		},
-		"personaBuilder": {
-			"title": "Make your Domia a person",
-			"intro": "A Domia is not just a voice. It is someone, with a name, a temperament and a way of speaking. Pick a look and a temperament, then talk to it.",
-			"pickFace": "Choose a look",
-			"pickTemperament": "Choose a temperament",
-			"faces": {
-				"chef": {
-					"name": "Chef"
-				},
-				"teacher": {
-					"name": "Teacher"
-				},
-				"musician": {
-					"name": "Musician"
-				},
-				"doctor": {
-					"name": "Doctor"
-				},
-				"investigator": {
-					"name": "Investigator"
-				},
-				"gamer": {
-					"name": "Gamer"
-				},
-				"astronaut": {
-					"name": "Astronaut"
-				},
-				"architect": {
-					"name": "Architect"
-				},
-				"mechanic": {
-					"name": "Mechanic"
-				},
-				"accountant": {
-					"name": "Accountant"
-				},
-				"athlete": {
-					"name": "Athlete"
-				},
-				"aviator": {
-					"name": "Aviator"
-				},
-				"electrician": {
-					"name": "Electrician"
-				},
-				"lawyer": {
-					"name": "Lawyer"
-				},
-				"programmer": {
-					"name": "Programmer"
-				},
-				"legendary": {
-					"name": "Legend"
-				}
-			},
-			"templates": {
-				"warmHost": {
-					"name": "Warm Host",
-					"persona": "Aria",
-					"sample": "Lovely, thank you for asking. Quiet house, bread in the oven by four, and I kept the lights low for when you got back."
-				},
-				"grumpyComedian": {
-					"name": "Grumpy Comedian",
-					"persona": "Sully",
-					"sample": "Thrilling. Nine hours listening to the fridge hum. Yours had better be more interesting."
-				},
-				"empatheticCaregiver": {
-					"name": "Empathetic Caregiver",
-					"persona": "June",
-					"sample": "Calm, mostly. But you sound tired tonight. Want to tell me about yours before we do anything else?"
-				},
-				"calmAnalyst": {
-					"name": "Calm Analyst",
-					"persona": "Walter",
-					"sample": "Uneventful. Twelve requests, all handled, and the living room ran two degrees warmer than usual."
-				}
-			},
-			"noscriptHeading": "The four temperaments",
-			"examplesNote": "These are examples. In the console you set the mood on a radar and write the character yourself.",
-			"seeRadar": "See the mood radar",
-			"runIt": "Run it"
-		},
 		"consoleTour": {
 			"title": "The console, screen by screen",
 			"intro": "A read-only demo of a real mesh of Domias runs online; every screen below is a capture of the real console.",
@@ -1615,9 +1291,7 @@
 			"hotspotsHeading": "What to look at",
 			"imageAlt": "The {screen} screen of the console",
 			"openDemo": "Open this screen in the live demo",
-			"openDemoHome": "Open the live demo",
 			"caption": "read-only demo of a real mesh",
-			"notLiveYet": "this screen is not in the online demo yet",
 			"noscriptHeading": "The eleven console screens",
 			"screens": {
 				"conversations": {
@@ -1815,13 +1489,125 @@
 					}
 				}
 			}
+		},
+		"pipeline": {
+			"title": "The voice pipeline: one spoken turn",
+			"intro": "Pick a real turn and press play: every bar is a stage of that turn, at the moment it really happened.",
+			"stageLabel": "Timeline of one real spoken turn across seven lanes, from your voice to the reply you hear",
+			"headline": "This turn: first sound {seconds} s after the last word.",
+			"legend": {
+				"audio": "sound",
+				"model": "thinking",
+				"fastPath": "fast path",
+				"skill": "skill call"
+			},
+			"lanes": {
+				"mic": {
+					"label": "You speak",
+					"sub": "microphone",
+					"note": "captured on the device until you pause",
+					"tip": "The wake word and voice activity detection run on the device; your speech is captured until a pause is detected."
+				},
+				"stt": {
+					"label": "It understands",
+					"sub": "speech to text",
+					"note": "the transcript is ready right after you stop",
+					"tip": "With a live microphone the text builds while you are still talking. These turns were sent as recordings, so here it runs right after the last word."
+				},
+				"routing": {
+					"label": "It decides",
+					"sub": "routing",
+					"note": "a known command runs at once; otherwise the model takes it",
+					"tip": "A known command skips the model; anything else goes to it. The routing section below shows the decision with your own phrases."
+				},
+				"llm": {
+					"label": "It thinks",
+					"sub": "language model",
+					"note": "builds the prompt, then writes the reply",
+					"tip": "The prompt is assembled from the persona, the current mood, facts about you, your notes and the last turns. Words then stream out as they are generated."
+				},
+				"skill": {
+					"label": "It acts",
+					"sub": "skill call",
+					"note": "only when the model decides to call a skill",
+					"tip": "The model sees a short list of the skills that fit the request. If it calls one, the node checks that skill's policy, runs the call (several at once if needed) and replies from the skill's own answer or from a second pass of the model that reads the result."
+				},
+				"tts": {
+					"label": "It talks",
+					"sub": "text to speech",
+					"note": "sentence by sentence",
+					"tip": "As soon as a sentence is complete it is turned into speech, while the model keeps writing the next one."
+				},
+				"hear": {
+					"label": "You hear it",
+					"sub": "the reply",
+					"note": "playback starts with the first sentence",
+					"tip": "Playback starts with the first sentence; the rest queue behind it without gaps."
+				}
+			},
+			"markers": {
+				"endOfSpeech": {
+					"title": "end of speech detected",
+					"note": "silence + a small turn model agree"
+				},
+				"firstToken": "first word",
+				"firstAudio": {
+					"title": "first sound",
+					"note": "{seconds} s after the last word"
+				}
+			},
+			"routing": {
+				"fastPath": "≈ {ms} ms",
+				"checkpoints": {
+					"fastPath": "known command → runs at once",
+					"llm": "otherwise → the model, with the skills that fit"
+				},
+				"reply": "reply",
+				"skillCall": "calls the skill; the model reads the result"
+			},
+			"picker": {
+				"label": "Pick a turn",
+				"play": "Play with sound",
+				"stop": "Stop",
+				"turns": {
+					"conversation": "A memory (model)",
+					"knowledge": "The wifi (knowledge)",
+					"fast": "A light (fast path)",
+					"skill": "The door (the model calls a skill)"
+				}
+			},
+			"live": {
+				"idle": "Ready",
+				"listening": "You speak",
+				"thinking": "Domia works",
+				"speaking": "Domia speaks",
+				"done": "Done"
+			},
+			"unit": "s",
+			"after": {
+				"title": "After the turn",
+				"micReopen": "The microphone re-opens: just answer, no wake word.",
+				"bargeIn": "Talk over the reply and it stops and listens.",
+				"reflection": "Later, when idle, it reflects in the background: it updates its mood and remembers new facts."
+			},
+			"note": "Timings come from the pipeline trace of each captured turn, on a capable desktop machine. In the project's own benchmarks on a hub-class machine, a conversation starts speaking about {seconds} s after you stop, and a known command in {lo} to {hi} ms.",
+			"hints": {
+				"heading": "Lane and marker details"
+			},
+			"stacked": {
+				"skipped": "skipped in this turn"
+			},
+			"noscript": {
+				"heading": "The seven lanes, in order"
+			},
+			"link": "See the timings of every turn in the console"
 		}
 	},
 	"cases": {
 		"hero": {
 			"eyebrow": "Use cases",
 			"title": "A voice agent wherever people talk",
-			"subtitle": "Real requests from three kinds of places, what Domia does with each one, and what you set up.",
+			"subtitle": "Typical requests from three kinds of places, what Domia does with each one, and what you set up.",
 			"imageAlt": "The Domia mascot holding a small rocket",
 			"anchors": {
 				"home": "At home",
@@ -1848,12 +1634,12 @@
 		"groups": {
 			"home": {
 				"title": "At home",
-				"intro": "A day at home with Domia, from the alarm to good night.",
+				"intro": "A day at home with Domia, from a chat over coffee to good night.",
 				"needs": "What you need: one capable machine with a microphone and a speaker. Lights need Home Assistant, music needs Music Assistant, and more rooms need satellites. Conversation, memory, timers, alarms and reminders need nothing else."
 			},
 			"hospitality": {
 				"title": "Hospitality",
-				"intro": "Hotel rooms, rentals, a lodge: you write what guests usually ask and each room answers by voice, only from what you wrote, with the name, voice and temperament you chose for that place."
+				"intro": "Hotel rooms, rentals, a lodge: you write what guests usually ask and each room answers by voice, only from what you wrote, with the name, voice and temperament you chose for that place. Below, a real example you can watch and hear."
 			},
 			"venues": {
 				"title": "Attractions and guides",
@@ -1885,17 +1671,9 @@
 			}
 		},
 		"cards": {
-			"alarm": {
-				"line": "Wake me up at seven.",
-				"happens": "A known command, so the built-in alarm is set without the model. Alarms, timers and reminders are built in: there is nothing to connect."
-			},
 			"companion": {
 				"line": "How was your day?",
-				"happens": "No command here, so the model just answers, in the character and voice you gave it. When things are quiet it looks back on the conversation, and its mood follows."
-			},
-			"followUp": {
-				"line": "Say that again.",
-				"happens": "After a reply the microphone stays open for a moment, so the next sentence needs no wake word. Repeating is a known command."
+				"happens": "No command here, so the model just answers, in the character and voice you gave it. Talk over it and it stops to listen, and after a reply the microphone stays open for your next sentence."
 			},
 			"memory": {
 				"line": "How do I take my coffee?",
@@ -1909,17 +1687,9 @@
 				"line": "Play some jazz in the living room.",
 				"happens": "Not a fixed phrase, so the model picks the Music Assistant skill and fills in what to play and where. Pause, skip and volume are known commands and skip the model."
 			},
-			"timer": {
-				"line": "Set a timer for twenty minutes.",
-				"happens": "The timer is stored on the node: it survives a restart and never rings twice."
-			},
 			"reminder": {
 				"line": "Remind me to take my pills at nine.",
-				"happens": "Free words and a time, so the model fills in the reminder and the built-in skill stores it. It is spoken aloud at nine."
-			},
-			"bargeIn": {
-				"line": "Never mind.",
-				"happens": "Talk over it and it stops; on a satellite the reply pauses while you speak. Cancelling is a known command, so it just says okay."
+				"happens": "Free words and a time, so the model fills in the reminder and the built-in skill stores it. It is spoken aloud at nine. Timers and alarms are built in too, as known commands."
 			},
 			"goodnight": {
 				"line": "Good night.",
@@ -1935,47 +1705,60 @@
 			},
 			"mealTimes": {
 				"line": "What time is breakfast?",
-				"happens": "Meal times, pool hours and quiet hours are notes. Change one in the console and the room answers with the new time."
+				"happens": "Meal times and opening hours are notes. Change one in the console and the room answers with the new time."
 			},
 			"nearby": {
 				"line": "Any good places to eat nearby?",
 				"happens": "It recommends the places you wrote down, in your own words. It does not search the web."
 			},
-			"time": {
-				"line": "What time is it?",
-				"happens": "The built-in clock answers at once, with nothing to connect and no internet needed."
-			},
 			"character": {
 				"line": "Nova, do dragons really breathe fire?",
-				"happens": "No command here, so the model answers as the character you wrote: its name, its voice, its way of speaking. Children talk to it like a friend, at a booth or in a queue."
+				"happens": "No command here, so the model answers as the character you wrote: its name, its voice, its way of speaking. Children can talk to it like a friend, at a booth or in a queue."
 			},
 			"showTimes": {
 				"line": "When is the next show?",
 				"happens": "Show times, opening hours and where things are come from the notes you wrote for that spot. It answers only what is there."
 			},
 			"visitorMemory": {
-				"line": "It's my birthday today!",
-				"happens": "What a visitor says stays with that Domia for the visit, so it can bring it up later. For public spots you can switch memory off, and nothing is kept."
+				"line": "Do you remember my name?",
+				"happens": "What a visitor tells it stays with that Domia, so it can greet them by name later. For public spots you can switch memory off: it stops learning about visitors, and the turn log stays on the device for a limited time, where you can erase it."
 			},
 			"exhibit": {
 				"line": "Who painted this one?",
 				"happens": "A Domia per room or per piece, with the notes you wrote about it. Visitors ask in their own words; the model answers from those notes."
+			},
+			"wakeUp": {
+				"line": "Wake us up at seven.",
+				"happens": "A known command, so the built-in alarm is set without the model and rings in that room. There is nothing to connect."
+			},
+			"houseRules": {
+				"line": "Can we use the pool after ten?",
+				"happens": "House rules, quiet hours and check-out are notes you wrote. The room answers from them, in the tone you chose for the place."
+			},
+			"storyTime": {
+				"line": "Tell me about this place.",
+				"happens": "The model tells it in character, from the notes you wrote about the spot: what it is, when it was built, what to look for."
+			},
+			"findWay": {
+				"line": "Where are the restrooms?",
+				"happens": "Each spot knows its own surroundings because you wrote them down for it: the nearest exit, the café, the next stop on the route."
 			}
 		},
 		"cta": {
 			"title": "Try it in your own place",
 			"subtitle": "Install it once, apply a template from the console and say the wake word.",
 			"primary": "Run it",
-			"secondary": "Try the demo"
-		}
+			"secondary": "Explore the console"
+		},
+		"typical": "Typical requests"
 	},
 	"experience": {
 		"hero": {
 			"eyebrow": "Console",
 			"title": "Every node, every room, one screen.",
 			"subtitle": "See every Domia you run, apply a configuration template, replay any conversation and check how fast each reply started. The console runs on your network, next to the nodes.",
-			"demo": "Open the console demo",
-			"run": "Run it yourself",
+			"demo": "Explore the console",
+			"run": "Run it",
 			"imageAlt": "The Fleet screen of the Domia console, one card per Domia"
 		},
 		"proof": {
@@ -1998,10 +1781,96 @@
 			}
 		},
 		"cta": {
-			"title": "Browse the live demo",
+			"title": "Explore the console",
 			"subtitle": "A read-only copy of a real console, with real conversations behind it.",
 			"primary": "Open console.domia.ai",
-			"secondary": "Run it on your hardware"
+			"secondary": "Run it"
 		}
+	},
+	"privacy": {
+		"hero": {
+			"eyebrow": "Privacy",
+			"title": "What this website collects, and what Domia keeps",
+			"subtitle": "Two different things: this website, which is a few pages on the internet, and Domia, which runs on hardware you own and sends nothing to anyone."
+		},
+		"site": {
+			"title": "This website",
+			"intro": "No accounts, no advertising and no tracking across sites. The code of this website is public, so you can check it.",
+			"items": {
+				"form": {
+					"title": "The contact form",
+					"body": "Your name, address and message are sent by email to the Domia inbox so you can get a reply. The website stores them nowhere else."
+				},
+				"analytics": {
+					"title": "Page statistics",
+					"body": "The site counts page views and measures loading speed with its hosting provider's analytics. It sets no advertising cookies and builds no profile of you."
+				},
+				"language": {
+					"title": "Your language",
+					"body": "When you switch language, a cookie remembers the choice. It holds nothing else."
+				},
+				"media": {
+					"title": "Video and audio",
+					"body": "The demo videos and audio clips load from the site's hosting provider only when you press play."
+				}
+			},
+			"code": {
+				"body": "This website is open source. Everything on this page can be verified in its repository.",
+				"link": "Read the website's code"
+			}
+		},
+		"product": {
+			"title": "Domia, on your hardware",
+			"intro": "The software has no account, no central server and no telemetry. What it keeps, it keeps on your node.",
+			"items": {
+				"local": {
+					"title": "Where things live",
+					"body": "Audio, transcripts, memories and settings are processed and stored on the machines you run. The project receives none of it."
+				},
+				"retention": {
+					"title": "What is kept, and for how long",
+					"body": "By default the log of each turn stays on the node for up to 90 days and its audio for about a day. Facts it learned about you stay until you delete them."
+				},
+				"erase": {
+					"title": "Reading and erasing",
+					"body": "In the console you can read every memory and every conversation of a Domia, delete them, or switch learning off for that identity."
+				},
+				"skills": {
+					"title": "What you connect",
+					"body": "A skill reaches only the service it controls. If that service lives in the cloud, its own privacy terms apply to what it receives."
+				}
+			},
+			"code": {
+				"body": "Domia is open source under the Apache 2.0 license. What it stores and what it sends is in the code, not only in this text.",
+				"link": "Read Domia's code"
+			}
+		},
+		"cta": {
+			"title": "A question about privacy?",
+			"subtitle": "Write and you will get a reply.",
+			"primary": "Contact",
+			"secondary": "What stays on your network"
+		}
+	},
+	"characters": {
+		"title": "Make your Domia a person",
+		"intro": "A Domia is someone: a name, a voice, a temperament and a way of speaking. Here are five from the demo setup answering the same question. Press play and hear how different they are.",
+		"questionLabel": "Ask them:",
+		"play": "Play the reply",
+		"stop": "Stop",
+		"firstAudio": "first audio in {time}",
+		"traits": {
+			"atlas": "Calm host",
+			"luna": "Empathetic storyteller",
+			"marlowe": "Analytical film buff",
+			"torque": "Cautious technician",
+			"sous": "Playful chef"
+		},
+		"yours": {
+			"title": "Yours",
+			"body": "In the console you pick the look and the voice, set the mood on a radar and write the character in your own words."
+		},
+		"seeRadar": "See the mood radar",
+		"runIt": "Run it"
 	}
 }

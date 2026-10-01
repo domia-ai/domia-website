@@ -1,9 +1,11 @@
 import type { ReplayTurn } from "@/data/types"
+import { playback } from "@/lib/playback"
 
-import type { ReplayPlayer, ReplayState } from "./types"
+import type { ReplayPhase, ReplayPlayer, TimeStore } from "./types"
 
 export const createReplayPlayer = (
-	onChange: (state: ReplayState) => void,
+	onPhase: (phase: ReplayPhase) => void,
+	store: TimeStore,
 ): ReplayPlayer => {
 	const user = new Audio()
 	const reply = new Audio()
@@ -11,6 +13,13 @@ export const createReplayPlayer = (
 	let startedAt = 0
 	let active: ReplayTurn | null = null
 	let replyStarted = false
+	let phase: ReplayPhase = "idle"
+
+	const setPhase = (next: ReplayPhase) => {
+		if (next === phase) return
+		phase = next
+		onPhase(next)
+	}
 
 	const clear = () => {
 		if (raf !== 0) cancelAnimationFrame(raf)
@@ -18,6 +27,14 @@ export const createReplayPlayer = (
 		user.pause()
 		reply.pause()
 		replyStarted = false
+		active = null
+	}
+
+	const stop = () => {
+		clear()
+		playback.release(stop)
+		store.set(0)
+		setPhase("idle")
 	}
 
 	const tick = (now: number) => {
@@ -30,38 +47,40 @@ export const createReplayPlayer = (
 			void reply.play().catch(() => undefined)
 		}
 		if (t >= active.maxSeconds) {
-			const finished = active
+			const { maxSeconds } = active
 			clear()
-			active = null
-			onChange({ id: finished.id, t: finished.maxSeconds, phase: "done" })
+			playback.release(stop)
+			store.set(maxSeconds)
+			setPhase("done")
 			return
 		}
-		const phase =
+		store.set(t)
+		setPhase(
 			t < markers.endOfSpeech
 				? "listening"
 				: t < markers.firstAudio
 					? "thinking"
-					: "speaking"
-		onChange({ id: active.id, t, phase })
+					: "speaking",
+		)
 		raf = requestAnimationFrame(tick)
 	}
 
 	const start = (turn: ReplayTurn) => {
 		clear()
+		playback.claim(stop)
 		active = turn
 		startedAt = performance.now()
 		user.src = turn.userAudio
 		void user.play().catch(() => undefined)
-		onChange({ id: turn.id, t: 0, phase: "listening" })
+		store.set(0)
+		setPhase("listening")
 		raf = requestAnimationFrame(tick)
 	}
 
-	const stop = () => {
-		const stopped = active
+	const dispose = () => {
 		clear()
-		active = null
-		onChange({ id: stopped?.id ?? null, t: 0, phase: "idle" })
+		playback.release(stop)
 	}
 
-	return { start, stop, dispose: clear }
+	return { start, stop, dispose }
 }

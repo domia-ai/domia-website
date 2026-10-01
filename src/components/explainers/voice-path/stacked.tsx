@@ -36,7 +36,7 @@ export function VoicePathStacked({
 										className={cn(
 											"rounded-lg motion-safe:transition-opacity motion-safe:duration-300",
 											hop.kind === "node" && "bg-node-hub ring-mesh/50",
-											broken && "opacity-30",
+											broken && "opacity-50",
 										)}
 									>
 										<CardContent className="flex flex-col gap-2">

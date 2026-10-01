@@ -5,133 +5,52 @@
 		"generator": "manual"
 	},
 	"axis": {
-		"maxSeconds": 2.8,
-		"loopSeconds": 18,
-		"sweepSeconds": 13,
 		"x0": 250,
 		"width": 890,
-		"viewBox": { "w": 1160, "h": 585 }
-	},
-	"lanes": [
-		{ "id": "mic", "y": 56, "color": "audio" },
-		{ "id": "stt", "y": 104, "color": "thinking" },
-		{ "id": "routing", "y": 152, "color": "fastPath" },
-		{ "id": "mind", "y": 200, "color": "thinking" },
-		{ "id": "llm", "y": 248, "color": "thinking" },
-		{ "id": "splitter", "y": 296, "color": "neutral" },
-		{ "id": "tts", "y": 344, "color": "audio", "rows": [344, 358, 372] },
-		{ "id": "hear", "y": 420, "color": "audio" }
-	],
-	"machines": {
-		"hub": {
-			"id": "hub",
-			"template": "full-hub",
-			"modes": {
-				"conversation": {
-					"spans": {
-						"mic": [[0, 1.0]],
-						"stt": [[0.1, 1.57]],
-						"routing": [[1.57, 1.572]],
-						"mind": [[1.572, 1.6]],
-						"llm": [[1.6, 2.75]],
-						"splitter": [[1.87, 2.75]],
-						"tts": [
-							[2.16, 2.42],
-							[2.45, 2.64],
-							[2.66, 2.8]
-						],
-						"hear": [[2.5, 2.8]]
-					},
-					"sentences": [
-						{ "at": 2.16, "row": 0, "tts": [2.16, 2.42] },
-						{ "at": 2.45, "row": 1, "tts": [2.45, 2.64] },
-						{ "at": 2.66, "row": 2, "tts": [2.66, 2.8] }
-					],
-					"markers": {
-						"endOfSpeech": 1.0,
-						"sttFinal": 1.57,
-						"firstToken": 1.87,
-						"firstAudio": 2.5
-					},
-					"routing": {
-						"fastPathMs": 2,
-						"fastPathEnd": 1.572,
-						"llmStart": 1.6
-					}
-				},
-				"command": {
-					"spans": {
-						"mic": [[0, 1.0]],
-						"stt": [[0.1, 1.57]],
-						"routing": [
-							[1.57, 1.572],
-							[1.572, 1.62]
-						],
-						"tts": [[1.62, 1.68]],
-						"hear": [[1.7, 2.2]]
-					},
-					"sentences": [{ "at": 1.62, "row": 0, "tts": [1.62, 1.68] }],
-					"markers": {
-						"endOfSpeech": 1.0,
-						"sttFinal": 1.57,
-						"firstToken": null,
-						"firstAudio": 1.7
-					},
-					"routing": {
-						"fastPathMs": 2,
-						"fastPathEnd": 1.572,
-						"llmStart": null
-					}
-				}
-			},
-			"ledger": {
-				"perceivedMs": 1503,
-				"ttftMsRange": [291, 291],
-				"fastPathPerceivedMsRange": [600, 800]
-			}
-		},
-		"fastDesktop": {
-			"id": "fastDesktop",
-			"template": "standalone",
-			"modes": {
-				"conversation": {
-					"spans": {
-						"mic": [[0, 1.0]],
-						"stt": [[0.1, 1.45]],
-						"routing": [[1.45, 1.452]],
-						"mind": [[1.452, 1.46]],
-						"llm": [[1.46, 2.5]],
-						"splitter": [[1.58, 2.5]],
-						"tts": [
-							[1.64, 1.9],
-							[1.95, 2.2],
-							[2.25, 2.5]
-						],
-						"hear": [[2.0, 2.8]]
-					},
-					"sentences": [
-						{ "at": 1.64, "row": 0, "tts": [1.64, 1.9] },
-						{ "at": 1.95, "row": 1, "tts": [1.95, 2.2] },
-						{ "at": 2.25, "row": 2, "tts": [2.25, 2.5] }
-					],
-					"markers": {
-						"endOfSpeech": 1.0,
-						"sttFinal": 1.45,
-						"firstToken": 1.58,
-						"firstAudio": 2.0
-					},
-					"routing": {
-						"fastPathMs": 2,
-						"fastPathEnd": 1.452,
-						"llmStart": 1.46
-					}
-				}
-			},
-			"ledger": {
-				"perceivedMs": 1007,
-				"ttftMsRange": [63, 110]
-			}
+		"viewBox": {
+			"w": 1160,
+			"h": 448
 		}
 	},
-	"epilogue": { "micReopenAt": 13.4, "reflectionAt": 15.2 }
+	"lanes": [
+		{
+			"id": "mic",
+			"y": 56,
+			"color": "audio"
+		},
+		{
+			"id": "stt",
+			"y": 104,
+			"color": "thinking"
+		},
+		{
+			"id": "routing",
+			"y": 152,
+			"color": "fastPath"
+		},
+		{
+			"id": "llm",
+			"y": 218,
+			"color": "thinking"
+		},
+		{
+			"id": "skill",
+			"y": 266,
+			"color": "tool"
+		},
+		{
+			"id": "tts",
+			"y": 314,
+			"color": "audio"
+		},
+		{
+			"id": "hear",
+			"y": 390,
+			"color": "audio"
+		}
+	],
+	"benchmarks": {
+		"hubConversationMs": 1503,
+		"hubCommandMsRange": [600, 800]
+	}
 }

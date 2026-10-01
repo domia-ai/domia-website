@@ -1,10 +1,230 @@
 {
 	"meta": {
-		"source": "domia-demo video captures (out-video/<name>) via domia-video/public/demo/<name>/manifest.json; audio and timings from the real pipeline",
-		"capturedAt": "2026-09-30T20:31:26.982Z",
+		"source": "domia-demo video captures (out-video/<name>) via domia-video/public/demo/<name>/manifest.json; audio and timings from the real pipeline; number words in spoken passwords are shown as digits",
+		"capturedAt": "2026-10-01T19:44:51.411Z",
 		"generator": "domia-demo/script/website-media.ts"
 	},
 	"turns": [
+		{
+			"id": "characters-atlas-0",
+			"video": "characters",
+			"identity": "Atlas",
+			"avatar": "/collection/legendary.webp",
+			"room": "hallway",
+			"path": "llm",
+			"userText": "How was your day?",
+			"replyText": "It was quiet so far.",
+			"userAudio": "/audio/turns/characters/atlas-0.user.m4a",
+			"replyAudio": "/audio/turns/characters/atlas-0.reply.m4a",
+			"userDurationMs": 1030,
+			"replyDurationMs": 1568,
+			"timings": {
+				"sttMs": 126,
+				"llmTtftMs": 176,
+				"ttsFirstChunkMs": 653,
+				"ttfaMs": 1100,
+				"totalMs": 2756
+			},
+			"tools": []
+		},
+		{
+			"id": "characters-atlas-1",
+			"video": "characters",
+			"identity": "Atlas",
+			"avatar": "/collection/legendary.webp",
+			"room": "hallway",
+			"path": "llm",
+			"userText": "Tell me a little about yourself.",
+			"replyText": "I've been the household's stalwart companion for quite some time now, assisting with everything from household management to etiquette, and I must say, I've grown quite fond of the family.",
+			"userAudio": "/audio/turns/characters/atlas-1.user.m4a",
+			"replyAudio": "/audio/turns/characters/atlas-1.reply.m4a",
+			"userDurationMs": 1444,
+			"replyDurationMs": 10429,
+			"timings": {
+				"sttMs": 75,
+				"llmTtftMs": 180,
+				"ttsFirstChunkMs": 754,
+				"ttfaMs": 1125,
+				"totalMs": 13966
+			},
+			"tools": []
+		},
+		{
+			"id": "characters-luna-0",
+			"video": "characters",
+			"identity": "Luna",
+			"avatar": "/collection/astronaut.webp",
+			"room": "guest",
+			"path": "llm",
+			"userText": "How was your day?",
+			"replyText": "It was a bit sleepy, but I love hearing about your day.",
+			"userAudio": "/audio/turns/characters/luna-0.user.m4a",
+			"replyAudio": "/audio/turns/characters/luna-0.reply.m4a",
+			"userDurationMs": 1030,
+			"replyDurationMs": 3196,
+			"timings": {
+				"sttMs": 67,
+				"llmTtftMs": 172,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 948,
+				"totalMs": 4588
+			},
+			"tools": []
+		},
+		{
+			"id": "characters-luna-1",
+			"video": "characters",
+			"identity": "Luna",
+			"avatar": "/collection/astronaut.webp",
+			"room": "guest",
+			"path": "llm",
+			"userText": "Tell me a little about yourself.",
+			"replyText": "I'm Luna — an AI companion built to live with you.",
+			"userAudio": "/audio/turns/characters/luna-1.user.m4a",
+			"replyAudio": "/audio/turns/characters/luna-1.reply.m4a",
+			"userDurationMs": 1475,
+			"replyDurationMs": 3366,
+			"timings": {
+				"sttMs": 95,
+				"llmTtftMs": 194,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 1026,
+				"totalMs": 4847
+			},
+			"tools": []
+		},
+		{
+			"id": "characters-marlowe-0",
+			"video": "characters",
+			"identity": "Marlowe",
+			"avatar": "/collection/investigator.webp",
+			"room": "cinema",
+			"path": "llm",
+			"userText": "How was your day?",
+			"replyText": "It was a dark one, full of twists.",
+			"userAudio": "/audio/turns/characters/marlowe-0.user.m4a",
+			"replyAudio": "/audio/turns/characters/marlowe-0.reply.m4a",
+			"userDurationMs": 1004,
+			"replyDurationMs": 2109,
+			"timings": {
+				"sttMs": 89,
+				"llmTtftMs": 188,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 1261,
+				"totalMs": 1262
+			},
+			"tools": []
+		},
+		{
+			"id": "characters-marlowe-1",
+			"video": "characters",
+			"identity": "Marlowe",
+			"avatar": "/collection/investigator.webp",
+			"room": "cinema",
+			"path": "llm",
+			"userText": "Tell me a little about yourself.",
+			"replyText": "A man of the silver screen, at your service.",
+			"userAudio": "/audio/turns/characters/marlowe-1.user.m4a",
+			"replyAudio": "/audio/turns/characters/marlowe-1.reply.m4a",
+			"userDurationMs": 1446,
+			"replyDurationMs": 2613,
+			"timings": {
+				"sttMs": 78,
+				"llmTtftMs": 194,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 1362,
+				"totalMs": 1362
+			},
+			"tools": []
+		},
+		{
+			"id": "characters-torque-0",
+			"video": "characters",
+			"identity": "Torque",
+			"avatar": "/collection/mechanic.webp",
+			"room": "entrance",
+			"path": "llm",
+			"userText": "How was your day?",
+			"replyText": "Not bad.",
+			"userAudio": "/audio/turns/characters/torque-0.user.m4a",
+			"replyAudio": "/audio/turns/characters/torque-0.reply.m4a",
+			"userDurationMs": 1030,
+			"replyDurationMs": 855,
+			"timings": {
+				"sttMs": 61,
+				"llmTtftMs": 173,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 739,
+				"totalMs": 740
+			},
+			"tools": []
+		},
+		{
+			"id": "characters-torque-1",
+			"video": "characters",
+			"identity": "Torque",
+			"avatar": "/collection/mechanic.webp",
+			"room": "entrance",
+			"path": "llm",
+			"userText": "Tell me a little about yourself.",
+			"replyText": "I'm Torque, garage workshop assistant.",
+			"userAudio": "/audio/turns/characters/torque-1.user.m4a",
+			"replyAudio": "/audio/turns/characters/torque-1.reply.m4a",
+			"userDurationMs": 1475,
+			"replyDurationMs": 2291,
+			"timings": {
+				"sttMs": 80,
+				"llmTtftMs": 189,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 1228,
+				"totalMs": 1229
+			},
+			"tools": []
+		},
+		{
+			"id": "characters-sous-0",
+			"video": "characters",
+			"identity": "Sous",
+			"avatar": "/collection/chef.webp",
+			"room": "kitchen",
+			"path": "llm",
+			"userText": "How was your day?",
+			"replyText": "It's been a revelation, full of unexpected flavors and aromas that have left me breathless.",
+			"userAudio": "/audio/turns/characters/sous-0.user.m4a",
+			"replyAudio": "/audio/turns/characters/sous-0.reply.m4a",
+			"userDurationMs": 1044,
+			"replyDurationMs": 5298,
+			"timings": {
+				"sttMs": 133,
+				"llmTtftMs": 179,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 1171,
+				"totalMs": 6931
+			},
+			"tools": []
+		},
+		{
+			"id": "characters-sous-1",
+			"video": "characters",
+			"identity": "Sous",
+			"avatar": "/collection/chef.webp",
+			"room": "kitchen",
+			"path": "llm",
+			"userText": "Tell me a little about yourself.",
+			"replyText": "Food is life, and I'm the conductor of this kitchen orchestra.",
+			"userAudio": "/audio/turns/characters/sous-1.user.m4a",
+			"replyAudio": "/audio/turns/characters/sous-1.reply.m4a",
+			"userDurationMs": 1475,
+			"replyDurationMs": 3472,
+			"timings": {
+				"sttMs": 91,
+				"llmTtftMs": 195,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 970,
+				"totalMs": 4889
+			},
+			"tools": []
+		},
 		{
 			"id": "evening-kitchen-light",
 			"video": "evening",
@@ -33,19 +253,19 @@
 			"identity": "Sous",
 			"avatar": "/collection/chef.webp",
 			"room": "kitchen",
-			"path": "tool",
+			"path": "fast",
 			"userText": "Chef, what time is it?",
-			"replyText": "It's nine thirty-two in the evening.",
+			"replyText": "It's eleven nineteen in the morning.",
 			"userAudio": "/audio/turns/evening/time.user.m4a",
 			"replyAudio": "/audio/turns/evening/time.reply.m4a",
-			"userDurationMs": 1269,
-			"replyDurationMs": 1772,
+			"userDurationMs": 1326,
+			"replyDurationMs": 1795,
 			"timings": {
-				"sttMs": 89,
+				"sttMs": 84,
 				"llmTtftMs": null,
 				"ttsFirstChunkMs": null,
-				"ttfaMs": 1788,
-				"totalMs": 3382
+				"ttfaMs": 837,
+				"totalMs": 2398
 			},
 			"tools": ["domia__time"]
 		},
@@ -55,19 +275,19 @@
 			"identity": "Marlowe",
 			"avatar": "/collection/investigator.webp",
 			"room": "cinema",
-			"path": "memory",
+			"path": "llm",
 			"userText": "My name is Laura, and I can't stand horror films.",
-			"replyText": "Laura, you're a cinephile at heart, I take it?",
+			"replyText": "Laura, horror's not for you, I agree.",
 			"userAudio": "/audio/turns/evening/intro.user.m4a",
 			"replyAudio": "/audio/turns/evening/intro.reply.m4a",
-			"userDurationMs": 2630,
-			"replyDurationMs": 2707,
+			"userDurationMs": 2609,
+			"replyDurationMs": 2245,
 			"timings": {
-				"sttMs": 116,
-				"llmTtftMs": 173,
+				"sttMs": 218,
+				"llmTtftMs": 177,
 				"ttsFirstChunkMs": null,
-				"ttfaMs": 1447,
-				"totalMs": 1448
+				"ttfaMs": 1622,
+				"totalMs": 1624
 			},
 			"tools": []
 		},
@@ -78,18 +298,18 @@
 			"avatar": "/collection/investigator.webp",
 			"room": "cinema",
 			"path": "memory",
-			"userText": "Marlowe, what should I watch tonight? One pick, and tell me why.",
-			"replyText": "\"The Third Man\", it's a masterpiece, Laura - a dark, witty, and visually stunning tale of espionage and loyalty, with that iconic theme music.",
+			"userText": "Marlowe, what do you remember about me?",
+			"replyText": "Laura, you mentioned you can't stand horror films, and we just talked about it.",
 			"userAudio": "/audio/turns/evening/recommend.user.m4a",
 			"replyAudio": "/audio/turns/evening/recommend.reply.m4a",
-			"userDurationMs": 3390,
-			"replyDurationMs": 8626,
+			"userDurationMs": 1908,
+			"replyDurationMs": 4241,
 			"timings": {
-				"sttMs": 144,
-				"llmTtftMs": 240,
+				"sttMs": 137,
+				"llmTtftMs": 239,
 				"ttsFirstChunkMs": null,
-				"ttfaMs": 3422,
-				"totalMs": 3425
+				"ttfaMs": 2155,
+				"totalMs": 2156
 			},
 			"tools": []
 		},
@@ -101,7 +321,7 @@
 			"room": "guest",
 			"path": "knowledge",
 			"userText": "What's the guest wifi password?",
-			"replyText": "sunflower twenty twenty six",
+			"replyText": "sunflower2026",
 			"userAudio": "/audio/turns/evening/guest-wifi.user.m4a",
 			"replyAudio": "/audio/turns/evening/guest-wifi.reply.m4a",
 			"userDurationMs": 1661,
@@ -165,6 +385,72 @@
 			]
 		},
 		{
+			"id": "hero-who",
+			"video": "hero",
+			"identity": "Domia",
+			"avatar": "/domia.webp",
+			"room": "hallway",
+			"path": "llm",
+			"userText": "Who are you, and what do you do?",
+			"replyText": "I'm Domia, the AI companion built to live with you, helping with the people, conversations, and music in this house.",
+			"userAudio": "/audio/turns/hero/who.user.m4a",
+			"replyAudio": "/audio/turns/hero/who.reply.m4a",
+			"userDurationMs": 1571,
+			"replyDurationMs": 6215,
+			"timings": {
+				"sttMs": 68,
+				"llmTtftMs": 173,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 2554,
+				"totalMs": 2554
+			},
+			"tools": []
+		},
+		{
+			"id": "hero-private",
+			"video": "hero",
+			"identity": "Domia",
+			"avatar": "/domia.webp",
+			"room": "hallway",
+			"path": "knowledge",
+			"userText": "Does anything I say leave this house?",
+			"replyText": "No, everything that happens in this house stays here.",
+			"userAudio": "/audio/turns/hero/private.user.m4a",
+			"replyAudio": "/audio/turns/hero/private.reply.m4a",
+			"userDurationMs": 1822,
+			"replyDurationMs": 2622,
+			"timings": {
+				"sttMs": 89,
+				"llmTtftMs": 160,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 1523,
+				"totalMs": 1524
+			},
+			"tools": []
+		},
+		{
+			"id": "hero-lights",
+			"video": "hero",
+			"identity": "Domia",
+			"avatar": "/domia.webp",
+			"room": "hallway",
+			"path": "fast",
+			"userText": "Turn on the living room lights.",
+			"replyText": "Done, I turned on Living Room Lights.",
+			"userAudio": "/audio/turns/hero/lights.user.m4a",
+			"replyAudio": "/audio/turns/hero/lights.reply.m4a",
+			"userDurationMs": 1448,
+			"replyDurationMs": 2060,
+			"timings": {
+				"sttMs": 151,
+				"llmTtftMs": null,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 887,
+				"totalMs": 888
+			},
+			"tools": ["home-assistant__HassTurnOn"]
+		},
+		{
 			"id": "hosting-arrival",
 			"video": "hosting",
 			"identity": "Atlas",
@@ -194,7 +480,7 @@
 			"room": "guest",
 			"path": "knowledge",
 			"userText": "What's the wifi password?",
-			"replyText": "sunflower twenty twenty six.",
+			"replyText": "sunflower2026.",
 			"userAudio": "/audio/turns/hosting/wifi.user.m4a",
 			"replyAudio": "/audio/turns/hosting/wifi.reply.m4a",
 			"userDurationMs": 1396,
@@ -251,6 +537,28 @@
 				"totalMs": 4281
 			},
 			"tools": []
+		},
+		{
+			"id": "skills-door",
+			"video": "skills",
+			"identity": "Atlas",
+			"avatar": "/collection/legendary.webp",
+			"room": "hallway",
+			"path": "skill",
+			"userText": "Is the front door locked?",
+			"replyText": "The front door is locked.",
+			"userAudio": "/audio/turns/skills/door.user.m4a",
+			"replyAudio": "/audio/turns/skills/door.reply.m4a",
+			"userDurationMs": 1348,
+			"replyDurationMs": 1797,
+			"timings": {
+				"sttMs": 73,
+				"llmTtftMs": 261,
+				"ttsFirstChunkMs": null,
+				"ttfaMs": 1757,
+				"totalMs": 3676
+			},
+			"tools": ["home-assistant__GetLiveContext"]
 		}
 	]
 }

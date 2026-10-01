@@ -14,8 +14,8 @@ export function RoutinesDetails({ copy }: RoutinesDetailsProps) {
 		<div className="flex flex-col gap-3 text-sm">
 			<p className="font-medium">{copy.routines.exampleTitle}</p>
 			<ol className="flex list-decimal flex-col gap-1.5 pl-5">
-				{copy.routines.steps.map((step) => (
-					<li key={step} className="text-pretty">
+				{copy.routines.steps.map((step, index) => (
+					<li key={index} className="text-pretty">
 						{step}
 					</li>
 				))}

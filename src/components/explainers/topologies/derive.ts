@@ -69,10 +69,6 @@ export const hintKeys: readonly TopologyHintKey[] = [
 	"hubC",
 	"sameBehaviour",
 	"realtime",
-	"badgeLocal",
-	"badgeNoCloud",
-	"badgeOpenSource",
-	"badgeAdapts",
 ]
 
 const pipelineChipKeys: readonly TopologyPipelineChipKey[] = [
@@ -83,13 +79,11 @@ const pipelineChipKeys: readonly TopologyPipelineChipKey[] = [
 	"tts",
 ]
 
-export const recordFrom = <K extends string, V>(
-	keys: readonly K[],
-	value: (key: K) => V,
-): Record<K, V> =>
-	Object.fromEntries(keys.map((key) => [key, value(key)])) as Record<K, V>
-
-export const nodeKey = (id: string): TopologyNodeKey => nodeKeys[id]
+export const nodeKey = (id: string): TopologyNodeKey => {
+	const key = nodeKeys[id]
+	if (!key) throw new Error(`Unknown topology node: ${id}`)
+	return key
+}
 
 export const nodeHint = (id: string): TopologyHintKey => {
 	const key = nodeKey(id)

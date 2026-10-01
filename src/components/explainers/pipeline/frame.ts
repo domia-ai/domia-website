@@ -2,7 +2,6 @@ import {
 	clamp01,
 	createAxis,
 	fillBetween,
-	loopToTurn,
 	smoothstep,
 } from "@/components/explainers/shared"
 import type { Axis } from "@/components/explainers/shared"
@@ -13,17 +12,16 @@ import type {
 	PipelineSpan,
 } from "@/data/types"
 
+import { recordFrom } from "@/lib/record"
+
 import { layout } from "./geometry"
-import { selectedMode } from "./selection"
 import type {
 	Bar,
 	Checkpoint,
 	CheckpointId,
 	Chip,
-	EpilogueFrame,
 	FrameInput,
 	LaneFrame,
-	MindGlow,
 	PipelineFrame,
 	RoutingFrame,
 	TokenTick,
@@ -31,8 +29,6 @@ import type {
 } from "./types"
 
 const laneCenter = (y: number) => y + layout.bar.height / 2
-
-const rowCenter = (y: number) => y + layout.row.height / 2
 
 const reveal = (u: number, at: number) => clamp01((u - at) / layout.reveal)
 
@@ -55,44 +51,40 @@ const laneBars = (
 	axis: Axis,
 	u: number | null,
 ): Bar[] =>
-	spans.map(([start, end], index) => {
-		const rowY = lane.rows?.[index]
-		const size = rowY === undefined ? layout.bar : layout.row
-		const y = rowY ?? lane.y
+	spans.map(([start, end]) => {
 		const full = axis.x(end) - axis.x(start)
 		const tiny = full < layout.bar.minWidth
-		if (u === null) {
+		const shape = {
+			y: lane.y,
+			height: layout.bar.height,
+			radius: layout.bar.radius,
+		}
+		if (u === null)
 			return {
 				x: axis.x(start),
 				width: tiny ? layout.bar.minWidth : full,
-				y,
-				height: size.height,
-				radius: size.radius,
+				...shape,
 			}
-		}
 		const span = fillBetween(u, start, end, axis)
 		const width = tiny && u >= start ? layout.bar.minWidth : span.width
-		return { ...span, width, y, height: size.height, radius: size.radius }
+		return { ...span, width, ...shape }
 	})
 
 const deriveLanes = (
 	lanes: PipelineLane[],
 	mode: PipelineMode,
-	fallback: PipelineMode,
 	axis: Axis,
 	u: number,
 ): LaneFrame[] =>
 	lanes.map((lane) => {
-		const own = mode.spans[lane.id] ?? []
-		const active = own.length > 0
-		const schedule = active ? own : (fallback.spans[lane.id] ?? [])
+		const spans = mode.spans[lane.id] ?? []
 		return {
 			id: lane.id,
 			y: lane.y,
 			color: lane.color,
-			active,
-			ghosts: laneBars(lane, schedule, axis, null),
-			fills: active ? laneBars(lane, own, axis, u) : [],
+			active: spans.length > 0,
+			ghosts: laneBars(lane, spans, axis, null),
+			fills: laneBars(lane, spans, axis, u),
 		}
 	})
 
@@ -136,8 +128,7 @@ const deriveTokenTicks = (
 const deriveChips = (
 	mode: PipelineMode,
 	originY: number,
-	ttsLane: PipelineLane,
-	kind: Chip["kind"],
+	targetY: number,
 	axis: Axis,
 	u: number,
 ): Chip[] =>
@@ -145,13 +136,11 @@ const deriveChips = (
 		const { drop, lead, hold, fade, height, inset } = layout.chip
 		const progress = smoothstep(sentence.at, sentence.at + drop, u)
 		const fromY = laneCenter(originY) - height / 2
-		const rowY = ttsLane.rows?.[sentence.row] ?? ttsLane.y
-		const toY = rowCenter(rowY) - height / 2
+		const toY = laneCenter(targetY) - height / 2
 		const fadeIn = clamp01((u - (sentence.at - lead)) / drop)
 		const fadeOut = 1 - clamp01((u - sentence.at - hold) / fade)
 		return {
 			index,
-			kind,
 			x: axis.x(sentence.at) + inset,
 			y: fromY + progress * (toY - fromY),
 			opacity: fadeIn * fadeOut,
@@ -160,7 +149,6 @@ const deriveChips = (
 
 const deriveRouting = (
 	mode: PipelineMode,
-	laneY: number,
 	axis: Axis,
 	u: number,
 ): RoutingFrame => {
@@ -173,49 +161,11 @@ const deriveRouting = (
 		at === null ? [] : [{ id, x: axis.x(at), opacity: reveal(u, at) }],
 	)
 	return {
-		laneY,
 		fastPathLabel: {
 			x: axis.x(markers.sttFinal),
 			opacity: reveal(u, routing.fastPathEnd),
 		},
 		checkpoints,
-	}
-}
-
-const deriveMindGlow = (
-	span: PipelineSpan | undefined,
-	laneY: number,
-	axis: Axis,
-	u: number,
-	t: number,
-): MindGlow | null => {
-	if (!span) return null
-	const [start, end] = span
-	const { glowRadius, pulse, base, amplitude, idle } = layout.mind
-	const inside = u >= start && u <= end + layout.reveal
-	const opacity = inside
-		? base + amplitude * Math.sin(t * pulse)
-		: u > end
-			? idle
-			: 0
-	return { x: axis.x(start) + glowRadius, y: laneCenter(laneY), opacity }
-}
-
-const deriveEpilogue = (
-	t: number,
-	micReopenAt: number,
-	reflectionAt: number,
-): EpilogueFrame => {
-	const { fade, dividerOpacity, ringGrow, ringOpacity, pulseRate, dot } =
-		layout.epilogue
-	const micOpacity = clamp01((t - micReopenAt) / fade)
-	const pulse = (t * pulseRate) % 1
-	return {
-		dividerOpacity: micOpacity * dividerOpacity,
-		micOpacity,
-		ringRadius: dot + pulse * ringGrow,
-		ringOpacity: (1 - pulse) * ringOpacity,
-		reflectionOpacity: clamp01((t - reflectionAt) / fade),
 	}
 }
 
@@ -225,67 +175,45 @@ const laneById = (lanes: PipelineLane[], id: PipelineLaneId) => {
 	return lane
 }
 
-export const deriveFrame = ({
-	data,
-	selection,
-	t,
-	replay,
-}: FrameInput): PipelineFrame => {
-	const { axis: axisData, lanes, epilogue } = data
-	const maxSeconds = replay ? replay.turn.maxSeconds : axisData.maxSeconds
-	const sweepSeconds = replay ? replay.turn.maxSeconds : axisData.sweepSeconds
+const hasSpans = (mode: PipelineMode, id: PipelineLaneId) =>
+	(mode.spans[id] ?? []).length > 0
+
+export const deriveFrame = ({ data, turn, t }: FrameInput): PipelineFrame => {
+	const { axis: axisData, lanes } = data
+	const { mode, maxSeconds } = turn
 	const axis = createAxis({
 		x0: axisData.x0,
 		width: axisData.width,
 		max: maxSeconds,
 	})
-	const u = loopToTurn(t, sweepSeconds, maxSeconds)
-	const mode = replay ? replay.turn.mode : selectedMode(data, selection)
-	const fallback = replay
-		? replay.turn.mode
-		: data.machines[selection.machine].modes.conversation
-
-	const mic = laneById(lanes, "mic")
-	const routing = laneById(lanes, "routing")
-	const mind = laneById(lanes, "mind")
-	const llm = laneById(lanes, "llm")
-	const splitter = laneById(lanes, "splitter")
-	const tts = laneById(lanes, "tts")
-
-	const splitterActive = (mode.spans.splitter ?? []).length > 0
-	const chipOrigin = splitterActive ? splitter : routing
-	const chipKind = splitterActive ? "sentence" : "reply"
-
-	const playheadOpacity =
-		t < sweepSeconds
-			? layout.playhead.opacity
-			: Math.max(
-					0,
-					layout.playhead.opacity -
-						(t - sweepSeconds) * layout.playhead.fadePerSecond,
-				)
+	const u = Math.min(maxSeconds, Math.max(0, t))
+	const laneY = recordFrom(
+		lanes.map((lane) => lane.id),
+		(id) => laneById(lanes, id).y,
+	)
+	const chipOrigin = hasSpans(mode, "skill")
+		? laneById(lanes, "skill")
+		: hasSpans(mode, "llm")
+			? laneById(lanes, "llm")
+			: laneById(lanes, "routing")
 	const gridStep =
-		maxSeconds > 8
-			? layout.grid.step * 4
-			: maxSeconds > 4
-				? layout.grid.step * 2
-				: layout.grid.step
+		layout.grid.steps.find((step) => maxSeconds > step.above)?.seconds ??
+		layout.grid.step
 
 	return {
-		u,
 		axis,
+		maxSeconds,
 		ticks: axis.ticks(gridStep),
-		lanes: deriveLanes(lanes, mode, fallback, axis, u),
-		wave: deriveWave(mode.spans.mic?.[0], mic.y, axis, u),
+		lanes: deriveLanes(lanes, mode, axis, u),
+		wave: deriveWave(mode.spans.mic?.[0], laneY.mic, axis, u),
 		tokenTicks: deriveTokenTicks(
 			mode.spans.llm?.[0],
 			mode.markers.firstToken,
 			axis,
 			u,
 		),
-		chips: deriveChips(mode, chipOrigin.y, tts, chipKind, axis, u),
-		routing: deriveRouting(mode, routing.y, axis, u),
-		mindGlow: deriveMindGlow(mode.spans.mind?.[0], mind.y, axis, u, t),
+		chips: deriveChips(mode, chipOrigin.y, laneY.tts, axis, u),
+		routing: deriveRouting(mode, axis, u),
 		markers: {
 			endOfSpeech: {
 				x: axis.x(mode.markers.endOfSpeech),
@@ -303,19 +231,10 @@ export const deriveFrame = ({
 				opacity: reveal(u, mode.markers.firstAudio),
 			},
 		},
-		playhead: { x: axis.x(u), opacity: playheadOpacity },
-		epilogue: replay
-			? deriveEpilogue(0, epilogue.micReopenAt, epilogue.reflectionAt)
-			: deriveEpilogue(t, epilogue.micReopenAt, epilogue.reflectionAt),
-		laneY: {
-			mic: mic.y,
-			stt: laneById(lanes, "stt").y,
-			routing: routing.y,
-			mind: mind.y,
-			llm: llm.y,
-			splitter: splitter.y,
-			tts: tts.y,
-			hear: laneById(lanes, "hear").y,
+		playhead: {
+			x: axis.x(u),
+			opacity: t > maxSeconds ? 0 : layout.playhead.opacity,
 		},
+		laneY,
 	}
 }

@@ -4,6 +4,8 @@ import { routing } from "./routing"
 
 export const SITE_URL = "https://www.domia.ai"
 
+export const SITE_LAST_MODIFIED = "2026-10-01"
+
 export const localizedUrl = (path: string, locale: string): string => {
 	const suffix = path === "/" ? "" : path
 	return locale === routing.defaultLocale
@@ -11,20 +13,25 @@ export const localizedUrl = (path: string, locale: string): string => {
 		: `${SITE_URL}/${locale}${suffix}`
 }
 
+const OG_LOCALES: Record<string, string> = { en: "en_US", es: "es_ES" }
+
 export const alternatesFor = (path: string) => ({
 	canonical: (locale: string) => localizedUrl(path, locale),
 	languages: {
-		en: localizedUrl(path, "en"),
-		es: localizedUrl(path, "es"),
-		"x-default": localizedUrl(path, "en"),
+		...Object.fromEntries(
+			routing.locales.map((locale) => [locale, localizedUrl(path, locale)]),
+		),
+		"x-default": localizedUrl(path, routing.defaultLocale),
 	},
 })
 
-export const ogLocale = (locale: string) =>
-	locale === "es" ? "es_ES" : "en_US"
+export const ogLocale = (locale: string): string =>
+	OG_LOCALES[locale] ?? OG_LOCALES[routing.defaultLocale]
 
-export const ogAlternateLocale = (locale: string) =>
-	locale === "es" ? "en_US" : "es_ES"
+export const ogAlternateLocales = (locale: string): string[] =>
+	routing.locales
+		.filter((candidate) => candidate !== locale)
+		.map((candidate) => ogLocale(candidate))
 
 export const pageMetadata = (
 	path: string,
@@ -50,7 +57,7 @@ export const pageMetadata = (
 			siteName: "Domia",
 			images: [{ url: "/og-image.png", width: 1200, height: 630, alt: title }],
 			locale: ogLocale(locale),
-			alternateLocale: ogAlternateLocale(locale),
+			alternateLocale: ogAlternateLocales(locale),
 			type: "website",
 		},
 		twitter: {

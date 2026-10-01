@@ -1,16 +1,12 @@
-import { ArrowUpRight } from "lucide-react"
-
 import { cn } from "@/lib/utils"
 import {
 	Card,
 	CardContent,
 	CardDescription,
-	CardFooter,
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card"
 
-import { LinkButton } from "./link-button"
 import type { ProofGridProps, ProofItem } from "./types"
 
 const columnsClassName: Record<2 | 3, string> = {
@@ -18,7 +14,7 @@ const columnsClassName: Record<2 | 3, string> = {
 	3: "lg:grid-cols-3",
 }
 
-function ProofCard({ title, body, icon: Icon, href, hrefLabel }: ProofItem) {
+function ProofCard({ title, body, icon: Icon }: ProofItem) {
 	return (
 		<Card className="h-full">
 			<CardHeader>
@@ -32,14 +28,6 @@ function ProofCard({ title, body, icon: Icon, href, hrefLabel }: ProofItem) {
 			<CardContent>
 				<CardDescription className="text-base">{body}</CardDescription>
 			</CardContent>
-			{href && hrefLabel ? (
-				<CardFooter className="border-0 bg-transparent pt-0">
-					<LinkButton href={href} variant="ghost" className="-ml-2.5">
-						{hrefLabel}
-						<ArrowUpRight data-icon="inline-end" aria-hidden="true" />
-					</LinkButton>
-				</CardFooter>
-			) : null}
 		</Card>
 	)
 }

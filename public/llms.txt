@@ -32,10 +32,11 @@ The console manages one or many nodes: Overview, Fleet, Broadcast, Satellites, T
 
 - [Home](https://www.domia.ai/): what Domia is and does
 - [How it works](https://www.domia.ai/technology): the voice pipeline, routing, skills, memory, satellites and mesh
-- [Use cases](https://www.domia.ai/cases): at home and hosting guests
+- [Use cases](https://www.domia.ai/cases): at home, in hospitality and at attractions and guides
 - [Run it](https://www.domia.ai/run): install, apply a template or build your own configuration
 - [Console](https://www.domia.ai/console): manage nodes, replay conversations, edit configuration
-- [About](https://www.domia.ai/about): mission, principles and where the project stands
+- [About](https://www.domia.ai/about): why it exists, principles and community
+- [Privacy](https://www.domia.ai/privacy): what this website collects and what Domia keeps on your hardware
 - [Contact](https://www.domia.ai/contact): get in touch, frequently asked questions
 
 ## Links

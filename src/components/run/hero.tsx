@@ -13,19 +13,19 @@ export async function Hero() {
 			eyebrow={t("eyebrow")}
 			title={t("title")}
 			subtitle={t("subtitle")}
-			priority
 			actions={
 				<>
+					<LinkButton href={gettingStartedUrl} size="lg">
+						{t("primary")}
+					</LinkButton>
 					<Button
 						size="lg"
+						variant="outline"
 						nativeButton={false}
-						render={<a href="#first-turn" />}
+						render={<a href="#first-turn" role={undefined} />}
 					>
-						{t("primary")}
-					</Button>
-					<LinkButton href={gettingStartedUrl} size="lg" variant="outline">
 						{t("secondary")}
-					</LinkButton>
+					</Button>
 				</>
 			}
 			art={
@@ -34,9 +34,9 @@ export async function Hero() {
 					alt={t("imageAlt")}
 					width={1536}
 					height={1024}
-					sizes="(min-width: 1024px) 520px, 100vw"
+					sizes="(min-width: 552px) 520px, calc(100vw - 2rem)"
 					priority
-					className="animate-domia-pulse h-auto w-full max-w-[520px]"
+					className="animate-domia-pulse h-auto w-full max-w-130"
 				/>
 			}
 		/>

@@ -63,7 +63,7 @@ function IdentityChip({ identity, name, hint }: IdentityChipProps) {
 		<Tip hint={hint} className={identityChipClassName}>
 			<Image
 				src={identity.avatar}
-				alt={name}
+				alt=""
 				width={avatarSize}
 				height={avatarSize}
 				className="size-6 rounded-full object-cover"

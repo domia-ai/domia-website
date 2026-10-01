@@ -16,7 +16,7 @@ export async function UseCasesStrip() {
 	const t = await getTranslations("landing.useCases")
 
 	return (
-		<Section tone="base" labelledBy="use-cases-title">
+		<Section tone="alt" labelledBy="use-cases-title">
 			<div className="flex flex-col gap-10">
 				<TypographyH2 id="use-cases-title" className="text-center">
 					{t("title")}

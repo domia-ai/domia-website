@@ -1,65 +1,41 @@
 import { getTranslations } from "next-intl/server"
 
 import { Section } from "@/components/sections"
-import {
-	TypographyH2,
-	TypographyLarge,
-	TypographySmall,
-} from "@/components/ui/typography"
+import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
 import { loadTurns } from "@/data"
-import type { TurnPath, TurnRoom } from "@/data/types"
 
-import { LISTEN_DEFAULT_LIMIT } from "./constants"
+import { loadListenCopy } from "./copy"
 import { ListenStrip } from "./listen-strip"
-import type { ListenCopy, ListenSectionProps } from "./types"
-
-const PATHS: TurnPath[] = [
-	"fast",
-	"tool",
-	"llm",
-	"memory",
-	"knowledge",
-	"routine",
-]
-const ROOMS: TurnRoom[] = [
-	"kitchen",
-	"cinema",
-	"hallway",
-	"guest",
-	"entrance",
-	"terrace",
-]
+import type { ListenSectionProps } from "./types"
 
 export async function ListenSection({
 	video,
 	tone = "alt",
-	limit = LISTEN_DEFAULT_LIMIT,
+	featured,
 }: ListenSectionProps) {
 	const t = await getTranslations("listen")
-	const all = loadTurns().turns
-	const turns = (
-		video ? all.filter((turn) => turn.video === video) : all
-	).slice(0, limit)
-	if (turns.length === 0) return null
+	const all = loadTurns().turns.filter(
+		(turn) => video === undefined || turn.video === video,
+	)
+	if (all.length === 0) throw new Error(`No turns for video ${video ?? "*"}`)
+	const missing = (featured ?? []).filter(
+		(id) => !all.some((turn) => turn.id === id),
+	)
+	if (missing.length > 0)
+		throw new Error(`Featured turns are missing: ${missing.join(", ")}`)
 
-	const copy: ListenCopy = {
-		play: t("play"),
-		stop: t("stop"),
-		phases: {
-			idle: t("phases.idle"),
-			listening: t("phases.listening"),
-			thinking: t("phases.thinking"),
-			speaking: t("phases.speaking"),
-		},
-		paths: Object.fromEntries(
-			PATHS.map((p) => [p, t(`paths.${p}`)]),
-		) as ListenCopy["paths"],
-		rooms: Object.fromEntries(
-			ROOMS.map((r) => [r, t(`rooms.${r}`)]),
-		) as ListenCopy["rooms"],
-		firstAudio: t("firstAudio"),
-		replayNote: t("replayNote"),
+	const rankOf = (id: string): number => {
+		const rank = featured?.indexOf(id) ?? -1
+		return rank === -1 ? Number.MAX_SAFE_INTEGER : rank
 	}
+	const turns = featured
+		? [...all].sort((a, b) => rankOf(a.id) - rankOf(b.id))
+		: all
+	const visibleCount = featured
+		? turns.filter((turn) => featured.includes(turn.id)).length
+		: turns.length
+
+	const copy = await loadListenCopy()
 
 	return (
 		<Section tone={tone} labelledBy="listen-title">
@@ -70,10 +46,7 @@ export async function ListenSection({
 						{t("body")}
 					</TypographyLarge>
 				</div>
-				<ListenStrip turns={turns} copy={copy} />
-				<TypographySmall className="text-muted-foreground">
-					{copy.replayNote}
-				</TypographySmall>
+				<ListenStrip turns={turns} visibleCount={visibleCount} copy={copy} />
 			</div>
 		</Section>
 	)

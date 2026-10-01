@@ -17,7 +17,7 @@ export async function RouteLegend() {
 			<TypographyH2 id="routes-title" className="text-2xl">
 				{t("legend.title")}
 			</TypographyH2>
-			<ul className="grid list-none grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-5">
+			<ul className="grid list-none grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
 				{caseBadgeIds.map((id) => (
 					<li key={id} className="flex flex-col items-start gap-2">
 						<CaseBadge id={id} label={t(`routes.${id}`)} />

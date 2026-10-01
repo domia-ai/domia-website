@@ -6,12 +6,11 @@ import { Badge, badgeVariants } from "@/components/ui/badge"
 import type { ToolPolicy } from "@/data/types"
 import { cn } from "@/lib/utils"
 
-import { Hint } from "../shared"
+import { Hint } from "@/components/explainers/shared"
 import type { CapabilityChipProps } from "./types"
 
-const policyClassName: Record<ToolPolicy, string> = {
-	allow: "bg-tool/10 text-tool",
-	confirm: "bg-fast-path/15 text-fast-path",
+const policyClassName: Record<Exclude<ToolPolicy, "allow">, string> = {
+	confirm: "bg-fast-path/15 text-fast-path-text",
 	block: "bg-destructive/10 text-destructive",
 }
 
@@ -36,15 +35,17 @@ export function CapabilityChip({ capability, copy }: CapabilityChipProps) {
 					<span className="sr-only">{copy.fastPathLabel}</span>
 				</>
 			) : null}
-			<Badge
-				variant="outline"
-				className={cn(
-					"h-4 border-transparent px-1.5",
-					policyClassName[capability.policy],
-				)}
-			>
-				{copy.policy[capability.policy]}
-			</Badge>
+			{capability.policy === "allow" ? null : (
+				<Badge
+					variant="outline"
+					className={cn(
+						"h-4 border-transparent px-1.5",
+						policyClassName[capability.policy],
+					)}
+				>
+					{copy.policy[capability.policy]}
+				</Badge>
+			)}
 		</>
 	)
 

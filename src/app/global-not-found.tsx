@@ -3,7 +3,6 @@ import { outfitSans } from "@/fonts"
 
 import Image from "next/image"
 import { NextIntlClientProvider } from "next-intl"
-import type { AbstractIntlMessages } from "next-intl"
 import { getLocale, getMessages, getTranslations } from "next-intl/server"
 
 import { ThemeProvider } from "@/components/providers/theme"
@@ -17,9 +16,7 @@ export default async function GlobalNotFound() {
 	const locale = await getLocale()
 	const t = await getTranslations({ locale, namespace: "notFound" })
 	const tNav = await getTranslations({ locale, namespace: "nav" })
-	const { nav } = (await getMessages({ locale })) as {
-		nav: AbstractIntlMessages
-	}
+	const messages = await getMessages({ locale })
 
 	return (
 		<html lang={locale} suppressHydrationWarning>
@@ -34,7 +31,10 @@ export default async function GlobalNotFound() {
 				>
 					{tNav("skipToContent")}
 				</a>
-				<NextIntlClientProvider locale={locale} messages={{ nav }}>
+				<NextIntlClientProvider
+					locale={locale}
+					messages={{ nav: messages.nav }}
+				>
 					<ThemeProvider
 						attribute="class"
 						defaultTheme="system"

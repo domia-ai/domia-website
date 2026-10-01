@@ -11,7 +11,6 @@ export async function Hero() {
 			eyebrow={t("eyebrow")}
 			title={t("title")}
 			subtitle={t("subtitle")}
-			priority
 			art={
 				<Image
 					src="/about.webp"

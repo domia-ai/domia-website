@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server"
 
 import { localizedMetadata, pageLocale } from "@/i18n/page"
-import { CaseGroups, Hero } from "@/components/cases"
+import { CaseGroup, Hero, SetupAlso } from "@/components/cases"
 import { CtaBand } from "@/components/sections"
 import { ListenSection } from "@/components/listen"
 import { BreadcrumbsJsonLd } from "@/components/seo/breadcrumbs"
@@ -22,9 +22,12 @@ export default async function Cases(props: PageProps<"/[locale]/cases">) {
 			/>
 			<DemoVideoJsonLd video="hosting" />
 			<Hero />
-			<CaseGroups />
+			<CaseGroup group="home" tone="alt" />
+			<CaseGroup group="hospitality" tone="base" />
 			<DemoVideoSection video="hosting" tone="alt" />
 			<ListenSection video="hosting" tone="base" />
+			<CaseGroup group="venues" tone="alt" />
+			<SetupAlso tone="base" />
 			<CtaBand
 				title={tCta("title")}
 				subtitle={tCta("subtitle")}

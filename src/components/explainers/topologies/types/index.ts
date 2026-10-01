@@ -1,6 +1,6 @@
 import type { ReactNode } from "react"
 
-import type { HintItem, HintSide } from "@/components/explainers/shared"
+import type { HintItem } from "@/components/explainers/shared"
 import type { SectionTone } from "@/components/sections"
 import type {
 	TopologiesData,
@@ -13,8 +13,6 @@ import type {
 	TopologyScenario,
 	TopologyScenarioId,
 } from "@/data/types"
-
-export type TopologiesVariant = "full" | "compact"
 
 export type ScenarioRecord<T> = Record<TopologyScenarioId, T>
 
@@ -49,10 +47,6 @@ export type TopologyHintKey =
 	| "hubC"
 	| "sameBehaviour"
 	| "realtime"
-	| "badgeLocal"
-	| "badgeNoCloud"
-	| "badgeOpenSource"
-	| "badgeAdapts"
 
 export type TopologyPipelineChipKey = "wake" | "stt" | "routing" | "llm" | "tts"
 
@@ -78,11 +72,8 @@ export type TopologyOverlaysCopy = {
 	personaBody: string
 }
 
-export type TopologyBadgeKey = "local" | "noCloud" | "openSource" | "adapts"
-
 export type TopologiesCopy = {
 	title: string
-	titleCompact: string
 	intro: string
 	stageLabel: string
 	tabsLabel: string
@@ -98,34 +89,22 @@ export type TopologiesCopy = {
 	captions: ScenarioRecord<string>
 	hintsHeading: string
 	hints: Record<TopologyHintKey, HintItem>
-	badges: Record<TopologyBadgeKey, string>
 	noscriptHeading: string
-}
-
-export type TopologiesState = {
-	scenario: TopologyScenarioId
 }
 
 export type TopologiesExplainerProps = {
 	tone?: SectionTone
 }
 
-export type TopologiesBlockProps = TopologiesExplainerProps & {
-	id: string
-	variant: TopologiesVariant
-}
-
 export type TopologiesIslandProps = {
 	data: TopologiesData
 	copy: TopologiesCopy
-	variant: TopologiesVariant
 }
 
 export type HintsContextValue = Record<TopologyHintKey, HintItem> | null
 
 export type TipProps = {
 	hint: TopologyHintKey
-	side?: HintSide
 	className?: string
 	children: ReactNode
 }
@@ -139,10 +118,6 @@ export type IdentityChipProps = {
 export type LinkShapeProps = {
 	link: TopologyLink
 	dotAt: TopologyPoint | null
-}
-
-export type BadgesProps = {
-	copy: TopologiesCopy
 }
 
 export type PeerLlmMode = "shared" | "delegated"

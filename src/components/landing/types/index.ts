@@ -1,7 +1,10 @@
 import type { ComponentType, SVGProps } from "react"
 import type { LucideIcon } from "lucide-react"
 
-export type DemoLinkVariant = "primary" | "secondary" | "inline"
+import type { ListenCopy } from "@/components/listen/types"
+import type { Turn } from "@/data/types"
+
+export type DemoLinkVariant = "primary" | "secondary"
 
 export type DemoLinkSize = "sm" | "lg"
 
@@ -40,4 +43,17 @@ export type ImageCrop = {
 	y: number
 	width: number
 	height: number
+}
+
+export type HeroTurnCopy = {
+	previous: string
+	next: string
+	show: string
+	imageAlt: string
+}
+
+export type HeroTurnProps = {
+	turns: Turn[]
+	listen: ListenCopy
+	copy: HeroTurnCopy
 }

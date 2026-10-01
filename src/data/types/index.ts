@@ -1,9 +1,3 @@
-export type DataMeta = {
-	source: string
-	capturedAt: string
-	generator: string
-}
-
 export type TopologyNodeKind = "node" | "peripheral" | "satellite" | "peer"
 
 export type TopologyRect = { x: number; y: number; w: number; h: number }
@@ -50,7 +44,6 @@ export type TopologyScenario = {
 export type TopologyIdentity = { id: string; node: string; avatar: string }
 
 export type TopologiesData = {
-	meta: DataMeta
 	canvas: { w: number; h: number }
 	nodes: TopologyNode[]
 	scenarios: TopologyScenario[]
@@ -59,24 +52,20 @@ export type TopologiesData = {
 }
 
 export type PipelineAxis = {
-	maxSeconds: number
-	loopSeconds: number
-	sweepSeconds: number
 	x0: number
 	width: number
 	viewBox: { w: number; h: number }
 }
 
 export type PipelineLaneId =
-	"mic" | "stt" | "routing" | "mind" | "llm" | "splitter" | "tts" | "hear"
+	"mic" | "stt" | "routing" | "llm" | "skill" | "tts" | "hear"
 
-export type PipelineLaneColor = "audio" | "thinking" | "fastPath" | "neutral"
+export type PipelineLaneColor = "audio" | "thinking" | "fastPath" | "tool"
 
 export type PipelineLane = {
 	id: PipelineLaneId
 	y: number
 	color: PipelineLaneColor
-	rows?: number[]
 }
 
 export type PipelineSpan = [number, number]
@@ -103,29 +92,15 @@ export type PipelineMode = {
 	routing: PipelineRouting
 }
 
-export type PipelineModeId = "conversation" | "command"
-
-export type PipelineMachineId = "hub" | "fastDesktop"
-
-export type PipelineLedger = {
-	perceivedMs: number
-	ttftMsRange: [number, number]
-	fastPathPerceivedMsRange?: [number, number]
-}
-
-export type PipelineMachine = {
-	id: PipelineMachineId
-	template: string
-	modes: { conversation: PipelineMode; command?: PipelineMode }
-	ledger: PipelineLedger
+export type PipelineBenchmarks = {
+	hubConversationMs: number
+	hubCommandMsRange: [number, number]
 }
 
 export type PipelineData = {
-	meta: DataMeta
 	axis: PipelineAxis
 	lanes: PipelineLane[]
-	machines: Record<PipelineMachineId, PipelineMachine>
-	epilogue: { micReopenAt: number; reflectionAt: number }
+	benchmarks: PipelineBenchmarks
 }
 
 export type FastPathAstNode =
@@ -205,7 +180,6 @@ export type FastPathDemoEntity = {
 }
 
 export type FastPathData = {
-	meta: DataMeta
 	stats: FastPathStats
 	excludedDomains: string[]
 	nameGroups: Record<string, string[]>
@@ -223,7 +197,7 @@ export type MemoryLayer = {
 	recalledBy: "always" | "relevance" | "session"
 }
 
-export type MemoryData = { meta: DataMeta; layers: MemoryLayer[] }
+export type MemoryData = { layers: MemoryLayer[] }
 
 export type ToolPolicy = "allow" | "confirm" | "block"
 
@@ -251,20 +225,8 @@ export type SkillGroup = {
 	domains: SkillDomain[]
 }
 
-export type SkillExampleId =
-	"timer" | "lights" | "music" | "goodNight" | "descriptor"
-
-export type SkillExample = {
-	id: SkillExampleId
-	group: SkillGroupId
-	tool: string
-	fastPath: boolean
-}
-
 export type SkillsData = {
-	meta: DataMeta
 	groups: SkillGroup[]
-	examples: SkillExample[]
 	routineMaxSteps: number
 	descriptorLimits: {
 		maxBytes: number
@@ -291,7 +253,6 @@ export type SatelliteProtocol = {
 }
 
 export type SatellitesData = {
-	meta: DataMeta
 	protocols: SatelliteProtocol[]
 	followUpDefault: boolean
 	defaultProtocol: SatelliteProtocolId
@@ -313,14 +274,13 @@ export type Archetype = {
 	template: ArchetypeTemplateId
 }
 
-export type ArchetypesData = { meta: DataMeta; archetypes: Archetype[] }
+export type ArchetypesData = { archetypes: Archetype[] }
 
 export type VoiceHopKind = "device" | "network" | "internet" | "vendor" | "node"
 
 export type VoiceHop = { id: string; kind: VoiceHopKind; stores?: string[] }
 
 export type VoicePathData = {
-	meta: DataMeta
 	paths: {
 		cloud: { hops: VoiceHop[] }
 		local: { hops: VoiceHop[]; boundary: string }
@@ -341,55 +301,19 @@ export type ConsoleScreen = {
 	key: string
 	route: string
 	lead?: boolean
-	liveRoute?: boolean
 	image: { light: string; dark: string; width: number; height: number }
 	hotspots: ConsoleHotspot[]
 }
 
 export type ConsoleTourData = {
-	meta: DataMeta
 	screens: ConsoleScreen[]
-}
-
-export type PersonaFaceId =
-	| "accountant"
-	| "architect"
-	| "astronaut"
-	| "athlete"
-	| "aviator"
-	| "chef"
-	| "doctor"
-	| "electrician"
-	| "gamer"
-	| "investigator"
-	| "lawyer"
-	| "legendary"
-	| "mechanic"
-	| "musician"
-	| "programmer"
-	| "teacher"
-
-export type PersonaTemplateId =
-	"warmHost" | "grumpyComedian" | "empatheticCaregiver" | "calmAnalyst"
-
-export type PersonaFace = { id: PersonaFaceId; image: string }
-
-export type PersonaTemplate = {
-	id: PersonaTemplateId
-	defaultFace: PersonaFaceId
-}
-
-export type PersonasData = {
-	meta: DataMeta
-	faces: PersonaFace[]
-	templates: PersonaTemplate[]
 }
 
 export type TurnRoom =
 	"kitchen" | "cinema" | "hallway" | "guest" | "entrance" | "terrace"
 
 export type TurnPath =
-	"fast" | "tool" | "llm" | "memory" | "knowledge" | "routine"
+	"fast" | "tool" | "llm" | "memory" | "knowledge" | "routine" | "skill"
 
 export type TurnTimings = {
 	sttMs: number | null
@@ -417,25 +341,10 @@ export type Turn = {
 }
 
 export type TurnsData = {
-	meta: DataMeta
 	turns: Turn[]
 }
 
-export type Voice = {
-	face: string
-	voice: string
-	line: string
-	audio: string
-	avatar: string
-	durationMs: number
-}
-
-export type VoicesData = {
-	meta: DataMeta
-	voices: Voice[]
-}
-
-export type ReplayId = "fast" | "knowledge" | "conversation"
+export type ReplayId = "fast" | "knowledge" | "conversation" | "skill"
 
 export type ReplayTurn = {
 	id: ReplayId
@@ -451,6 +360,5 @@ export type ReplayTurn = {
 }
 
 export type ReplayData = {
-	meta: DataMeta
 	turns: ReplayTurn[]
 }

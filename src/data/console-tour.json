@@ -1,6 +1,6 @@
 {
 	"meta": {
-		"source": "console navigation (Overview, Fleet, Broadcast, Satellites, Templates, Conversations, Chat, Emotions, Memories, Analytics, Settings); all 22 captures taken 2026-09-28 at 1440x900 from the local build of the upcoming public demo; hotspot percentages checked against the light captures; liveRoute false marks screens not yet on the public demo (404 on 2026-09-28)",
+		"source": "console navigation (Overview, Fleet, Broadcast, Satellites, Templates, Conversations, Chat, Emotions, Memories, Analytics, Settings); all 22 captures taken 2026-09-28 at 1440x900 from the local build of the upcoming public demo; hotspot percentages checked against the light captures",
 		"capturedAt": "2026-09-28T00:00:00.000Z",
 		"generator": "manual"
 	},
@@ -52,7 +52,7 @@
 			"hotspots": [
 				{
 					"id": "glance",
-					"x": 19.4,
+					"x": 72.8,
 					"y": 42.1,
 					"w": 25.6,
 					"h": 28.2
@@ -66,7 +66,7 @@
 				},
 				{
 					"id": "thinClient",
-					"x": 72.8,
+					"x": 19.4,
 					"y": 42.1,
 					"w": 25.6,
 					"h": 28.2
@@ -177,7 +177,6 @@
 		{
 			"key": "broadcast",
 			"route": "/broadcast",
-			"liveRoute": false,
 			"image": {
 				"light": "/console/broadcast-light.webp",
 				"dark": "/console/broadcast-dark.webp",
@@ -211,7 +210,6 @@
 		{
 			"key": "satellites",
 			"route": "/satellites",
-			"liveRoute": false,
 			"image": {
 				"light": "/console/satellites-light.webp",
 				"dark": "/console/satellites-dark.webp",

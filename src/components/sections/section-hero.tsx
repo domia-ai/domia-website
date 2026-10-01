@@ -16,7 +16,6 @@ export function SectionHero({
 	artPosition = "right",
 	below,
 	halo = true,
-	priority = false,
 	className,
 }: SectionHeroProps) {
 	const stacked = artPosition === "below"
@@ -66,7 +65,6 @@ export function SectionHero({
 							"flex flex-1 items-center justify-center",
 							stacked && "w-full",
 						)}
-						data-priority={priority ? "" : undefined}
 					>
 						<div className={cn("relative", stacked && "w-full")}>
 							{halo ? (

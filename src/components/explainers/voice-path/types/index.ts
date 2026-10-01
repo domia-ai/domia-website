@@ -61,7 +61,6 @@ export type MapLayout = {
 	hops: VoiceHop[]
 	boxes: HopBoxGeometry[]
 	segments: HopSegment[]
-	centerY: number
 }
 
 export type MapLayoutOptions = {

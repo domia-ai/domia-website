@@ -323,38 +323,6 @@
 			"domains": []
 		}
 	],
-	"examples": [
-		{
-			"id": "timer",
-			"group": "builtin",
-			"tool": "timer",
-			"fastPath": true
-		},
-		{
-			"id": "lights",
-			"group": "homeAssistant",
-			"tool": "HassTurnOff",
-			"fastPath": true
-		},
-		{
-			"id": "music",
-			"group": "musicAssistant",
-			"tool": "music_play",
-			"fastPath": false
-		},
-		{
-			"id": "goodNight",
-			"group": "routines",
-			"tool": "routine_good_night",
-			"fastPath": true
-		},
-		{
-			"id": "descriptor",
-			"group": "mcp",
-			"tool": "add_to_list",
-			"fastPath": false
-		}
-	],
 	"routineMaxSteps": 8,
 	"descriptorLimits": {
 		"maxBytes": 65536,

@@ -15,7 +15,7 @@ const colorClassName: Record<StepColor, string> = {
 const badgeClassName = (color?: StepColor) =>
 	color ? colorClassName[color] : "border-primary/50 bg-primary/10"
 
-function Step({ step, index, ordered }: StepProps) {
+function Step({ step, index }: StepProps) {
 	return (
 		<li className="group/step relative flex gap-4 md:flex-col md:gap-5">
 			<div className="flex shrink-0 flex-col items-center md:flex-row">
@@ -26,11 +26,7 @@ function Step({ step, index, ordered }: StepProps) {
 					)}
 					aria-hidden="true"
 				>
-					{ordered ? (
-						index + 1
-					) : (
-						<span className="bg-foreground size-2.5 rounded-full" />
-					)}
+					{index + 1}
 				</span>
 				<span className="bg-border mt-2 h-full w-px group-last/step:hidden md:mt-0 md:ml-2 md:h-px md:w-full" />
 			</div>
@@ -42,14 +38,12 @@ function Step({ step, index, ordered }: StepProps) {
 	)
 }
 
-export function StepList({ steps, ordered = true }: StepListProps) {
-	const ListTag = ordered ? "ol" : "ul"
-
+export function StepList({ steps }: StepListProps) {
 	return (
-		<ListTag className="grid list-none grid-cols-1 md:auto-cols-fr md:grid-flow-col md:gap-4">
+		<ol className="grid list-none grid-cols-1 md:auto-cols-fr md:grid-flow-col md:gap-4">
 			{steps.map((step, index) => (
-				<Step key={step.id} step={step} index={index} ordered={ordered} />
+				<Step key={step.id} step={step} index={index} />
 			))}
-		</ListTag>
+		</ol>
 	)
 }

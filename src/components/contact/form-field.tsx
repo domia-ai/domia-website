@@ -59,6 +59,7 @@ export function FormField({
 				<Textarea
 					{...controlProps}
 					rows={MESSAGE_ROWS}
+					className="min-h-36"
 					onChange={(event) => onValueChange(event.target.value)}
 				/>
 			) : (

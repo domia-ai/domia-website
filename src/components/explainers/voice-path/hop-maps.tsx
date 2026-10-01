@@ -48,7 +48,7 @@ export function HopMaps({ layouts, copy, visibility }: HopMapsProps) {
 								key={`${layout.key}-${segment.id}`}
 								className={cn(
 									"motion-safe:transition-opacity motion-safe:duration-300",
-									broken && "opacity-30",
+									broken && "opacity-50",
 								)}
 							>
 								<path

@@ -11,3 +11,5 @@ export type CommunityLink = {
 	href: string
 	icon: CommunityIcon
 }
+
+export type CommunityLinkTarget = Pick<CommunityLink, "href" | "icon">

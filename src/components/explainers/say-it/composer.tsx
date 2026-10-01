@@ -64,14 +64,11 @@ export function SayItFreeText({
 	copy,
 	draft,
 	status,
-	lockUntilReady = false,
-	inputRef,
 	onDraftChange,
 	onFocus,
 	onSubmit,
 }: SayItFreeTextProps) {
 	const statusId = useId()
-	const locked = lockUntilReady && (status === "idle" || status === "loading")
 
 	return (
 		<form
@@ -83,7 +80,6 @@ export function SayItFreeText({
 		>
 			<div className="flex min-w-0 gap-2">
 				<Input
-					ref={inputRef}
 					value={draft}
 					onChange={(event) => onDraftChange(event.target.value)}
 					onFocus={onFocus}
@@ -92,13 +88,12 @@ export function SayItFreeText({
 					aria-describedby={statusId}
 					maxLength={SAY_IT_INPUT_MAX_CHARS}
 					autoComplete="off"
-					disabled={locked}
 					className="h-10 min-w-0 flex-1"
 				/>
 				<Button
 					type="submit"
 					size="lg"
-					disabled={locked || status === "loading" || draft.trim().length === 0}
+					disabled={status === "loading" || draft.trim().length === 0}
 					className="min-w-24 shrink-0 max-sm:h-10"
 				>
 					{copy.submit}

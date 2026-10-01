@@ -8,17 +8,15 @@ import {
 import { cn } from "@/lib/utils"
 
 import { laneTone } from "./geometry"
-import { laneSubtitle } from "./lane-copy"
-import { pickCopy, selectedMode } from "./selection"
 import type { PipelineStackedProps } from "./types"
 
 export function PipelineStacked({
 	data,
 	copy,
-	selection,
+	turn,
+	labels,
 }: PipelineStackedProps) {
-	const mode = selectedMode(data, selection)
-	const max = data.axis.maxSeconds
+	const { mode, maxSeconds } = turn
 	const markers = [
 		{
 			id: "endOfSpeech",
@@ -28,7 +26,7 @@ export function PipelineStacked({
 		{
 			id: "firstAudio",
 			title: copy.markers.firstAudio.title,
-			note: pickCopy(copy.markers.firstAudio.note, selection),
+			note: labels.firstAudioNote,
 		},
 	]
 
@@ -37,7 +35,7 @@ export function PipelineStacked({
 			<dl className="border-border flex flex-col gap-2 rounded-xl border p-3 text-sm">
 				{markers.map((marker) => (
 					<div key={marker.id} className="flex flex-col gap-0.5">
-						<dt className="text-audio font-semibold">{marker.title}</dt>
+						<dt className="text-audio-text font-semibold">{marker.title}</dt>
 						<dd className="text-muted-foreground text-xs text-balance">
 							{marker.note}
 						</dd>
@@ -60,17 +58,14 @@ export function PipelineStacked({
 									<CardTitle className="flex items-center gap-2">
 										<span
 											aria-hidden="true"
-											className={cn(
-												"size-2 shrink-0 rounded-[2px]",
-												tone.swatch,
-											)}
+											className={cn("size-2 shrink-0 rounded-xs", tone.swatch)}
 										/>
 										{laneCopy.label}
 									</CardTitle>
 									<CardDescription className="text-balance">
 										{skipped
 											? copy.stacked.skipped
-											: laneSubtitle(laneCopy, selection.machine)}
+											: `${laneCopy.sub} · ${laneCopy.note}`}
 									</CardDescription>
 								</CardHeader>
 								{skipped ? null : (
@@ -87,8 +82,8 @@ export function PipelineStacked({
 														tone.swatch,
 													)}
 													style={{
-														left: `${(start / max) * 100}%`,
-														width: `${((end - start) / max) * 100}%`,
+														left: `${(start / maxSeconds) * 100}%`,
+														width: `${((end - start) / maxSeconds) * 100}%`,
 													}}
 												/>
 											))}
@@ -100,11 +95,6 @@ export function PipelineStacked({
 					)
 				})}
 			</ol>
-			<p className="text-muted-foreground text-xs text-balance">
-				{copy.epilogue.micReopen}
-				<span aria-hidden="true"> · </span>
-				{copy.epilogue.bargeIn}
-			</p>
 		</div>
 	)
 }

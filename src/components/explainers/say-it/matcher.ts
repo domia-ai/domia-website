@@ -14,6 +14,7 @@ import type {
 	SayItBest,
 	SayItCandidate,
 	SayItCapture,
+	SayItResolvedArgs,
 	SayItCompiledIntent,
 	SayItCompiledSlot,
 	SayItHomeName,
@@ -28,7 +29,7 @@ const fold = (text: string): string =>
 	text
 		.toLowerCase()
 		.normalize("NFD")
-		.replace(/[̀-ͯ]/g, "")
+		.replace(/[\u0300-\u036f]/g, "")
 		.replace(/[.,!?¡¿;:'"„“”]/g, " ")
 		.replace(/\s+/g, " ")
 		.trim()
@@ -54,6 +55,32 @@ const phraseEndingAt = (
 			p.every((t, k) => tokens[end - p.length + k] === t),
 	)
 
+const trimStart = (
+	tokens: string[],
+	start: number,
+	end: number,
+	phrases: string[][],
+	left: number,
+): number => {
+	if (left === 0 || start >= end) return start
+	const hit = phraseAt(tokens, start, phrases)
+	if (!hit || start + hit.length >= end) return start
+	return trimStart(tokens, start + hit.length, end, phrases, left - 1)
+}
+
+const trimEnd = (
+	tokens: string[],
+	start: number,
+	end: number,
+	phrases: string[][],
+	left: number,
+): number => {
+	if (left === 0 || end <= start) return end
+	const hit = phraseEndingAt(tokens, end, phrases)
+	if (!hit || end - hit.length <= start) return end
+	return trimEnd(tokens, start, end - hit.length, phrases, left - 1)
+}
+
 const stripSkipWords = (
 	folded: string,
 	skipWords: string[],
@@ -64,18 +91,8 @@ const stripSkipWords = (
 		.filter((p) => p.length > 0)
 		.sort((a, b) => b.length - a.length)
 	const tokens = folded.split(" ").filter(Boolean)
-	let start = 0
-	let end = tokens.length
-	for (let n = 0; n < maxPerSide && start < end; n++) {
-		const hit = phraseAt(tokens, start, phrases)
-		if (!hit || start + hit.length >= end) break
-		start += hit.length
-	}
-	for (let n = 0; n < maxPerSide && end > start; n++) {
-		const hit = phraseEndingAt(tokens, end, phrases)
-		if (!hit || end - hit.length <= start) break
-		end -= hit.length
-	}
+	const start = trimStart(tokens, 0, tokens.length, phrases, maxPerSide)
+	const end = trimEnd(tokens, start, tokens.length, phrases, maxPerSide)
 	const kept = tokens.slice(start, end)
 	return kept.length > 0 ? kept.join(" ") : folded
 }
@@ -192,10 +209,18 @@ const compileIntent = (
 })
 
 const skipSpaces = (text: string, pos: number): number => {
-	let cursor = pos
-	while (cursor < text.length && text[cursor] === " ") cursor++
-	return cursor
+	const offset = text.slice(pos).search(/[^ ]/)
+	return offset === -1 ? text.length : pos + offset
 }
+
+const firstMatch = <T>(
+	items: readonly T[],
+	attempt: (item: T) => SayItMatchState | null,
+): SayItMatchState | null =>
+	items.reduce<SayItMatchState | null>(
+		(found, item) => found ?? attempt(item),
+		null,
+	)
 
 const matchNodes = (
 	text: string,
@@ -203,23 +228,20 @@ const matchNodes = (
 	nodeIdx: number,
 	state: SayItMatchState,
 	slots: Map<string, SayItCompiledSlot>,
-	results: SayItMatchState[],
-): void => {
-	if (results.length > 0) return
-	if (nodeIdx >= nodes.length) {
-		if (text.slice(state.pos).trim().length === 0) results.push(state)
-		return
-	}
+): SayItMatchState | null => {
+	if (nodeIdx >= nodes.length)
+		return text.slice(state.pos).trim().length === 0 ? state : null
 	const node = nodes[nodeIdx]
 	const pos = skipSpaces(text, state.pos)
+	const rest = nodes.slice(nodeIdx + 1)
 	if (node.kind === "text") {
 		const literal = node.value
-		if (!text.startsWith(literal, pos)) return
+		if (!text.startsWith(literal, pos)) return null
 		const after = pos + literal.length
 		const boundary =
 			after >= text.length || text[after] === " " || text[after - 1] === " "
-		if (!boundary) return
-		matchNodes(
+		if (!boundary) return null
+		return matchNodes(
 			text,
 			nodes,
 			nodeIdx + 1,
@@ -229,47 +251,26 @@ const matchNodes = (
 				literalChars: state.literalChars + literal.length,
 			},
 			slots,
-			results,
 		)
-		return
 	}
-	if (node.kind === "optional") {
-		matchNodes(
-			text,
-			[...node.body, ...nodes.slice(nodeIdx + 1)],
-			0,
-			{ ...state, captures: new Map(state.captures) },
-			slots,
-			results,
+	if (node.kind === "optional")
+		return (
+			matchNodes(text, [...node.body, ...rest], 0, state, slots) ??
+			matchNodes(text, nodes, nodeIdx + 1, state, slots)
 		)
-		if (results.length > 0) return
-		matchNodes(text, nodes, nodeIdx + 1, state, slots, results)
-		return
-	}
-	if (node.kind === "group") {
-		for (const alt of node.alternatives) {
-			matchNodes(
-				text,
-				[...alt, ...nodes.slice(nodeIdx + 1)],
-				0,
-				{ ...state, captures: new Map(state.captures) },
-				slots,
-				results,
-			)
-			if (results.length > 0) return
-		}
-		return
-	}
+	if (node.kind === "group")
+		return firstMatch(node.alternatives, (alternative) =>
+			matchNodes(text, [...alternative, ...rest], 0, state, slots),
+		)
 	const slot = slots.get(node.name)
-	if (!slot) return
+	if (!slot) return null
 	if (slot.kind === "free") {
 		const tokens = text.slice(pos).split(" ").filter(Boolean)
 		const limit = Math.min(SAY_IT_FREE_CAPTURE_MAX_TOKENS, tokens.length)
-		for (let count = 1; count <= limit; count++) {
+		const counts = Array.from({ length: limit }, (_, index) => index + 1)
+		return firstMatch(counts, (count) => {
 			const captured = tokens.slice(0, count).join(" ")
-			const captures = new Map(state.captures)
-			captures.set(node.name, { kind: "free", text: captured })
-			matchNodes(
+			return matchNodes(
 				text,
 				nodes,
 				nodeIdx + 1,
@@ -277,22 +278,20 @@ const matchNodes = (
 					...state,
 					pos: pos + captured.length,
 					slotChars: state.slotChars + captured.length,
-					captures,
+					captures: new Map([
+						...state.captures,
+						[node.name, { kind: "free", text: captured }],
+					]),
 				},
 				slots,
-				results,
 			)
-			if (results.length > 0) return
-		}
-		return
+		})
 	}
-	for (const value of slot.values) {
-		if (!text.startsWith(value.folded, pos)) continue
+	return firstMatch(slot.values, (value) => {
+		if (!text.startsWith(value.folded, pos)) return null
 		const after = pos + value.folded.length
-		if (after < text.length && text[after] !== " ") continue
-		const captures = new Map(state.captures)
-		captures.set(node.name, { kind: "value", value })
-		matchNodes(
+		if (after < text.length && text[after] !== " ") return null
+		return matchNodes(
 			text,
 			nodes,
 			nodeIdx + 1,
@@ -300,13 +299,14 @@ const matchNodes = (
 				...state,
 				pos: after,
 				slotChars: state.slotChars + value.folded.length,
-				captures,
+				captures: new Map([
+					...state.captures,
+					[node.name, { kind: "value", value }],
+				]),
 			},
 			slots,
-			results,
 		)
-		if (results.length > 0) return
-	}
+	})
 }
 
 const matchTemplate = (
@@ -314,16 +314,13 @@ const matchTemplate = (
 	ast: FastPathAstNode[],
 	slots: Map<string, SayItCompiledSlot>,
 ): SayItParse | null => {
-	const results: SayItMatchState[] = []
-	matchNodes(
+	const hit = matchNodes(
 		folded,
 		ast,
 		0,
 		{ pos: 0, literalChars: 0, slotChars: 0, captures: new Map() },
 		slots,
-		results,
 	)
-	const hit = results.find((r) => folded.slice(r.pos).trim().length === 0)
 	return hit
 		? {
 				literalChars: hit.literalChars,
@@ -337,22 +334,29 @@ const argsOf = (
 	captures: Map<string, SayItCapture>,
 	slots: Map<string, SayItCompiledSlot>,
 	argDefaults: Record<string, unknown>,
-): { args: Record<string, unknown>; resolved: Record<string, unknown> } => {
-	const args: Record<string, unknown> = { ...argDefaults }
-	const resolved: Record<string, unknown> = { ...argDefaults }
-	for (const [slotName, captured] of captures) {
-		const arg = slots.get(slotName)?.arg ?? slotName
-		if (captured.kind === "free") {
-			args[arg] = captured.text
-			resolved[arg] = captured.text
-			continue
-		}
-		Object.assign(resolved, captured.value.args)
-		for (const argName of Object.keys(captured.value.args))
-			args[argName] = captured.value.phrase
-	}
-	return { args, resolved }
-}
+): SayItResolvedArgs =>
+	[...captures].reduce<SayItResolvedArgs>(
+		({ args, resolved }, [slotName, captured]) => {
+			if (captured.kind === "free") {
+				const arg = slots.get(slotName)?.arg ?? slotName
+				return {
+					args: { ...args, [arg]: captured.text },
+					resolved: { ...resolved, [arg]: captured.text },
+				}
+			}
+			const phrases = Object.fromEntries(
+				Object.keys(captured.value.args).map((name) => [
+					name,
+					captured.value.phrase,
+				]),
+			)
+			return {
+				args: { ...args, ...phrases },
+				resolved: { ...resolved, ...captured.value.args },
+			}
+		},
+		{ args: { ...argDefaults }, resolved: { ...argDefaults } },
+	)
 
 const candidatesFor = (
 	intents: SayItCompiledIntent[],
@@ -361,39 +365,37 @@ const candidatesFor = (
 	blocked: boolean,
 ): SayItCandidate[] => {
 	const utteranceTokens = new Set(folded.split(" "))
-	const candidates: SayItCandidate[] = []
-	for (const intent of intents) {
-		if (blocked && !intent.allowBlockedTokens) continue
-		const keywordsOk = intent.requiredKeywords.every((group) =>
-			group.some((k) =>
-				k.includes(" ") ? folded.includes(k) : utteranceTokens.has(k),
+	const hasKeywords = (intent: SayItCompiledIntent) =>
+		intent.requiredKeywords.every((group) =>
+			group.some((keyword) =>
+				keyword.includes(" ")
+					? folded.includes(keyword)
+					: utteranceTokens.has(keyword),
 			),
 		)
-		if (!keywordsOk) continue
-		for (const template of intent.templates) {
-			if (!template.prefilter.test(folded)) continue
-			const parsed = matchTemplate(folded, template.ast, intent.slots)
-			if (!parsed) continue
-			const coverage =
-				folded.length > 0 ? parsed.literalChars / folded.length : 0
-			if (parsed.literalChars === 0 || coverage < minCoverage) continue
-			const { args, resolved } = argsOf(
-				parsed.captures,
-				intent.slots,
-				intent.argDefaults,
-			)
-			candidates.push({
-				tool: intent.tool,
-				provider: intent.provider,
-				priority: intent.priority,
-				literalChars: parsed.literalChars,
-				slotChars: parsed.slotChars,
-				args,
-				resolved,
-			})
-		}
-	}
-	return candidates
+	return intents
+		.filter((intent) => !blocked || intent.allowBlockedTokens)
+		.filter(hasKeywords)
+		.flatMap((intent) =>
+			intent.templates.flatMap((template) => {
+				if (!template.prefilter.test(folded)) return []
+				const parsed = matchTemplate(folded, template.ast, intent.slots)
+				if (!parsed) return []
+				const coverage =
+					folded.length > 0 ? parsed.literalChars / folded.length : 0
+				if (parsed.literalChars === 0 || coverage < minCoverage) return []
+				return [
+					{
+						tool: intent.tool,
+						provider: intent.provider,
+						priority: intent.priority,
+						literalChars: parsed.literalChars,
+						slotChars: parsed.slotChars,
+						...argsOf(parsed.captures, intent.slots, intent.argDefaults),
+					},
+				]
+			}),
+		)
 }
 
 const bestOf = (candidates: SayItCandidate[]): SayItBest => {

@@ -2,7 +2,11 @@
 
 import { useState } from "react"
 
-import { HintIndex, HintProvider, MachineToggle } from "../shared"
+import {
+	HintIndex,
+	HintProvider,
+	MachineToggle,
+} from "@/components/explainers/shared"
 import { MemoryBand, hintId } from "./band"
 import type { MemoryLayersIslandProps, MemoryPhase } from "./types"
 

@@ -64,7 +64,7 @@ const createMapLayout = (
 		}
 	})
 
-	return { key, hops, boxes, segments, centerY }
+	return { key, hops, boxes, segments }
 }
 
 export const createStageLayouts = (data: VoicePathData): MapLayout[] => [

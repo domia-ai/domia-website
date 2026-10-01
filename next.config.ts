@@ -8,6 +8,16 @@ const nextConfig: NextConfig = {
 	experimental: {
 		globalNotFound: true,
 	},
+	async redirects() {
+		return [
+			{ source: "/experience", destination: "/console", permanent: true },
+			{ source: "/marketplace", destination: "/run", permanent: true },
+			{ source: "/community", destination: "/about", permanent: true },
+			{ source: "/es/experience", destination: "/es/console", permanent: true },
+			{ source: "/es/marketplace", destination: "/es/run", permanent: true },
+			{ source: "/es/community", destination: "/es/about", permanent: true },
+		]
+	},
 	async headers() {
 		return [
 			{

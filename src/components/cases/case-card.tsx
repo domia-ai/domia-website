@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { TypographyH3, TypographyP } from "@/components/ui/typography"
 
 import { CaseBadge } from "./case-badge"
-import type { CaseCardProps, CaseNoteCardProps } from "./types"
+import type { CaseCardProps } from "./types"
 
 export function CaseCard({ line, happens, routeLabel, badges }: CaseCardProps) {
 	return (
@@ -23,23 +23,6 @@ export function CaseCard({ line, happens, routeLabel, badges }: CaseCardProps) {
 					<TypographyP className="text-muted-foreground mt-0 leading-6">
 						{happens}
 					</TypographyP>
-				</CardContent>
-			</Card>
-		</li>
-	)
-}
-
-export function CaseNoteCard({ title, children }: CaseNoteCardProps) {
-	return (
-		<li className="flex">
-			<Card className="bg-muted/40 w-full">
-				<CardHeader>
-					<TypographyH3 className="text-lg font-medium tracking-normal">
-						{title}
-					</TypographyH3>
-				</CardHeader>
-				<CardContent className="text-muted-foreground leading-6">
-					{children}
 				</CardContent>
 			</Card>
 		</li>

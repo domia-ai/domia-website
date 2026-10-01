@@ -55,7 +55,7 @@ export function HopBox({ box, copy, broken }: HopBoxProps) {
 	}
 	const outerClassName = cn(
 		"absolute motion-safe:transition-opacity motion-safe:duration-300",
-		broken && "opacity-30",
+		broken && "opacity-50",
 	)
 
 	const content = (
@@ -83,7 +83,7 @@ export function HopBox({ box, copy, broken }: HopBoxProps) {
 					side="bottom"
 					className={cn(
 						frameClassName,
-						"focus-visible:ring-ring/50 outline-none focus-visible:ring-[3px]",
+						"focus-visible:ring-ring/50 outline-none focus-visible:ring-3",
 					)}
 				>
 					{content}

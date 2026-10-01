@@ -1,21 +1,21 @@
-import type { PipelineLaneColor, PipelineLaneId } from "@/data/types"
+import type { PipelineLaneColor } from "@/data/types"
 
-import type { LaneTone, PipelineSelection } from "./types"
+import type { LaneTone } from "./types"
 
-export const defaultSelection: PipelineSelection = {
-	machine: "hub",
-	mode: "conversation",
-}
-
-export const subLanes: ReadonlySet<PipelineLaneId> = new Set<PipelineLaneId>([
-	"mind",
-	"splitter",
-])
+export const REPLAY_REST_SECONDS = 1
 
 export const layout = {
-	grid: { top: 44, bottom: 462, labelY: 34, step: 0.5 },
+	grid: {
+		top: 44,
+		bottom: 432,
+		labelY: 34,
+		step: 0.5,
+		steps: [
+			{ above: 8, seconds: 2 },
+			{ above: 4, seconds: 1 },
+		],
+	},
 	bar: { height: 16, radius: 4, minWidth: 6 },
-	row: { height: 9, radius: 3 },
 	label: { x: 18, offsetY: 4, gap: 10 },
 	reveal: 0.06,
 	wave: {
@@ -33,7 +33,7 @@ export const layout = {
 		textureScale: 1.6,
 		envelopePower: 0.55,
 	},
-	tokens: { step: 0.048, opacity: 0.9 },
+	tokens: { step: 0.048, opacity: 0.9, inset: 3 },
 	chip: {
 		width: 76,
 		height: 15,
@@ -47,61 +47,30 @@ export const layout = {
 	},
 	checkpoint: { radius: 2.5, labelOffset: 13, lineGap: 12 },
 	fastPathLabel: { offsetY: 6 },
-	mind: { glowRadius: 15, pulse: 18, base: 0.35, amplitude: 0.25, idle: 0.1 },
 	hear: { glowPad: 3, glowOpacity: 0.25 },
 	markers: {
-		endOfSpeech: { above: 10, labelX: 9, labelY: 4, noteGap: 14 },
+		endOfSpeech: { above: 10, labelX: 9, labelY: 4, noteGap: 14, dot: 4.5 },
 		firstToken: { above: 8, labelX: 8, labelY: 5 },
 		firstAudio: { above: 28, labelX: 11, labelY: 4, noteGap: 14, dot: 4.5 },
 	},
-	playhead: { opacity: 0.9, fadePerSecond: 1.5, half: 4.5, tip: 8 },
-	epilogue: {
-		dividerY: 470,
-		labelGap: 6,
-		micY: 498,
-		dot: 5,
-		dotInset: 8,
-		boxRadius: 8,
-		textX: 18,
-		textY: 4,
-		boxY: 520,
-		boxHeight: 44,
-		boxWidth: 650,
-		boxPad: 16,
-		titleY: 18,
-		bodyY: 34,
-		asideY: 24,
-		fade: 0.7,
-		dividerOpacity: 0.9,
-		ringGrow: 11,
-		ringOpacity: 0.5,
-		pulseRate: 0.8,
-	},
+	playhead: { opacity: 0.9, half: 4.5, tip: 8 },
 }
 
 export const laneTone: Record<PipelineLaneColor, LaneTone> = {
 	audio: {
 		fill: "fill-audio",
-		stroke: "stroke-audio",
-		text: "fill-audio",
 		swatch: "bg-audio",
 	},
 	thinking: {
 		fill: "fill-model",
-		stroke: "stroke-model",
-		text: "fill-model",
 		swatch: "bg-model",
 	},
 	fastPath: {
 		fill: "fill-fast-path",
-		stroke: "stroke-fast-path",
-		text: "fill-fast-path",
 		swatch: "bg-fast-path",
 	},
-	neutral: {
-		fill: "fill-muted-foreground",
-		stroke: "stroke-muted-foreground",
-		text: "fill-muted-foreground",
-		swatch: "bg-muted-foreground",
+	tool: {
+		fill: "fill-tool",
+		swatch: "bg-tool",
 	},
 }

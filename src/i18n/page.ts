@@ -1,11 +1,8 @@
 import type { Metadata } from "next"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 
+import type { LocalePagePropsType } from "./types"
 import { pageMetadata } from "./urls"
-
-type LocalePagePropsType = {
-	params: Promise<{ locale: string }>
-}
 
 export const localizedMetadata =
 	(path: string, page: string) =>

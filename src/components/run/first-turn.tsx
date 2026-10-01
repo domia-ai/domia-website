@@ -5,6 +5,7 @@ import type { StepItem } from "@/components/sections"
 import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
 import { stepIds } from "@/constants/run"
 
+import { Help } from "./help"
 import { InstallNotes } from "./install-notes"
 import { Requirements } from "./requirements"
 import type { StepId } from "./types"
@@ -36,8 +37,9 @@ export async function FirstTurn() {
 					</TypographyLarge>
 				</div>
 				<Requirements />
-				<StepList steps={steps} ordered />
+				<StepList steps={steps} />
 				<InstallNotes />
+				<Help />
 			</div>
 		</Section>
 	)

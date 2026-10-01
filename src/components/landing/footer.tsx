@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server"
 
 import { Link } from "@/i18n/navigation"
-import { routes, socialMediaLinks } from "@/constants"
+import { footerRoutes, socialMediaLinks } from "@/constants"
 
 const isWebLink = (href: string) => href.startsWith("http")
 
@@ -25,7 +25,7 @@ export async function Footer() {
 						aria-label={t("footerNav")}
 						className="flex flex-wrap justify-center gap-x-4"
 					>
-						{routes.map((route) => (
+						{footerRoutes.map((route) => (
 							<Link
 								key={route}
 								href={route}
@@ -38,7 +38,12 @@ export async function Footer() {
 				</div>
 
 				<div className="mt-8 flex flex-col items-center gap-4 border-t pt-8 md:flex-row md:justify-between">
-					<p className="text-muted-foreground text-sm">{t("copyright")}</p>
+					<div className="flex flex-col items-center gap-1 md:items-start">
+						<p className="text-muted-foreground text-sm">{t("copyright")}</p>
+						<p className="text-muted-foreground max-w-xl text-center text-xs text-pretty md:text-left">
+							{t("madeByDomia")}
+						</p>
+					</div>
 					<ul className="flex list-none gap-x-2">
 						{socialMediaLinks.map((item) => {
 							const external = isWebLink(item.href)
@@ -53,7 +58,7 @@ export async function Footer() {
 										<span className="sr-only">
 											{external
 												? `${item.name} ${t("opensInNewTab")}`
-												: item.name}
+												: t("email")}
 										</span>
 										<item.icon aria-hidden="true" className="size-5" />
 									</a>

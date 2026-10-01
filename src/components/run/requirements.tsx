@@ -19,7 +19,7 @@ export async function Requirements() {
 			<CardContent>
 				<ul
 					aria-labelledby="requirements-title"
-					className="grid list-none grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2 lg:grid-cols-3"
+					className="grid list-none grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2"
 				>
 					{requirementIds.map((id) => (
 						<li key={id} className="flex items-start gap-2 text-sm">

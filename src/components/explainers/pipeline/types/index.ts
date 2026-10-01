@@ -4,9 +4,6 @@ import type {
 	PipelineData,
 	PipelineLaneColor,
 	PipelineLaneId,
-	PipelineMachineId,
-	PipelineModeId,
-	ReplayData,
 	ReplayId,
 	ReplayTurn,
 } from "@/data/types"
@@ -19,64 +16,51 @@ export type CheckpointId = "fastPath" | "llm"
 
 export type LaneCopy = {
 	label: string
-	sub: string | null
-	note: Record<PipelineMachineId, string>
+	sub: string
+	note: string
 	tip: string
 }
 
-export type ByMode<T> = { conversation: T; command?: T }
+export type AfterItem = {
+	id: string
+	text: string
+}
 
-export type ByMachineAndMode<T> = Record<PipelineMachineId, ByMode<T>>
+export type ReplayPhase =
+	"idle" | "listening" | "thinking" | "speaking" | "done"
 
 export type PipelineCopy = {
 	title: string
 	intro: string
 	stageLabel: string
-	headline: ByMachineAndMode<string>
-	source: ByMachineAndMode<string>
+	headline: string
 	link: string
-	legend: { audio: string; model: string; fastPath: string }
+	legend: { audio: string; model: string; fastPath: string; skill: string }
 	lanes: Record<PipelineLaneId, LaneCopy>
 	markers: {
 		endOfSpeech: { title: string; note: string }
 		firstToken: string
-		firstAudio: {
-			title: string
-			note: ByMachineAndMode<string>
-		}
+		firstAudio: { title: string; note: string }
 	}
 	routing: {
 		fastPath: string
 		checkpoints: Record<CheckpointId, string>
 		reply: string
-		sentences: string[]
+		skillCall: string
 	}
-	toggles: {
-		machine: { label: string; items: Record<PipelineMachineId, string> }
-		mode: { label: string; items: Record<PipelineModeId, string> }
+	picker: {
+		label: string
+		play: string
+		stop: string
+		turns: Record<ReplayId, string>
 	}
-	controls: { play: string; pause: string; scrub: string }
-	clock: { unit: string; intoTurn: string; afterTurn: string }
-	epilogue: {
-		divider: string
-		micReopen: string
-		bargeIn: string
-		reflectionTitle: string
-		reflectionBody: string
-		reflectionAside: string
-	}
-	footer: string[]
+	live: Record<ReplayPhase, string>
+	unit: string
+	locale: string
+	after: { title: string; items: AfterItem[] }
+	note: string
 	hints: { heading: string }
-	stacked: {
-		skipped: string
-	}
-	noscript: { heading: string }
-	replay: ReplayCopy
-}
-
-export type PipelineSelection = {
-	machine: PipelineMachineId
-	mode: PipelineModeId
+	stacked: { skipped: string }
 }
 
 export type PipelineExplainerProps = {
@@ -85,55 +69,53 @@ export type PipelineExplainerProps = {
 
 export type PipelineIslandProps = {
 	data: PipelineData
-	replay: ReplayData
+	turns: ReplayTurn[]
 	copy: PipelineCopy
+}
+
+export type TimelineProps = {
+	data: PipelineData
+	copy: PipelineCopy
+	turn: ReplayTurn
+	labels: TurnLabels
+	store: TimeStore
+	playing: boolean
+}
+
+export type TurnLabels = {
+	headline: string
+	firstAudioNote: string
+	fastPath: string
 }
 
 export type PipelineStackedProps = {
 	data: PipelineData
 	copy: PipelineCopy
-	selection: PipelineSelection
+	turn: ReplayTurn
+	labels: TurnLabels
 }
 
 export type LaneLabelsProps = {
 	data: PipelineData
 	copy: PipelineCopy
-	selection: PipelineSelection
-	frame: PipelineFrame
+	turn: ReplayTurn
 }
 
 export type CanvasProps = {
 	data: PipelineData
 	copy: PipelineCopy
-	selection: PipelineSelection
 	frame: PipelineFrame
+	labels: TurnLabels
 }
 
 export type LegendProps = {
 	copy: PipelineCopy
 }
 
-export type HeadlineProps = {
-	copy: PipelineCopy
-	selection: PipelineSelection
-	override: string | null
-}
-
-export type FooterChipsProps = {
-	copy: PipelineCopy
-}
-
-export type SourceCaptionProps = {
-	copy: PipelineCopy
-	selection: PipelineSelection
-	override: string | null
-}
-
 export type FrameInput = {
 	data: PipelineData
-	selection: PipelineSelection
+	turn: ReplayTurn
 	t: number
-	replay?: ReplayFrameInput
 }
 
 export type Bar = FillSpan & {
@@ -163,11 +145,8 @@ export type TokenTick = {
 	opacity: number
 }
 
-export type ChipKind = "sentence" | "reply"
-
 export type Chip = {
 	index: number
-	kind: ChipKind
 	x: number
 	y: number
 	opacity: number
@@ -185,15 +164,8 @@ export type Marker = {
 }
 
 export type RoutingFrame = {
-	laneY: number
 	fastPathLabel: Marker
 	checkpoints: Checkpoint[]
-}
-
-export type MindGlow = {
-	x: number
-	y: number
-	opacity: number
 }
 
 export type PlayheadFrame = {
@@ -201,58 +173,27 @@ export type PlayheadFrame = {
 	opacity: number
 }
 
-export type EpilogueFrame = {
-	dividerOpacity: number
-	micOpacity: number
-	ringRadius: number
-	ringOpacity: number
-	reflectionOpacity: number
-}
-
 export type PipelineFrame = {
-	u: number
 	axis: Axis
+	maxSeconds: number
 	ticks: AxisTick[]
 	lanes: LaneFrame[]
 	wave: WaveBar[]
 	tokenTicks: TokenTick[]
 	chips: Chip[]
 	routing: RoutingFrame
-	mindGlow: MindGlow | null
 	markers: {
 		endOfSpeech: Marker
 		firstToken: Marker | null
 		firstAudio: Marker
 	}
 	playhead: PlayheadFrame
-	epilogue: EpilogueFrame
 	laneY: Record<PipelineLaneId, number>
 }
 
 export type LaneTone = {
 	fill: string
-	stroke: string
-	text: string
 	swatch: string
-}
-
-export type ReplayCopy = {
-	label: string
-	play: string
-	stop: string
-	turns: Record<ReplayId, string>
-	headline: string
-	note: string
-	live: Record<ReplayPhase, string>
-}
-
-export type ReplayPhase =
-	"idle" | "listening" | "thinking" | "speaking" | "done"
-
-export type ReplayState = {
-	id: ReplayId | null
-	t: number
-	phase: ReplayPhase
 }
 
 export type ReplayPlayer = {
@@ -261,14 +202,15 @@ export type ReplayPlayer = {
 	dispose: () => void
 }
 
-export type ReplayFrameInput = {
-	turn: ReplayTurn
-	t: number
+export type TimeStore = {
+	get: () => number
+	set: (next: number) => void
+	subscribe: (listener: () => void) => () => void
 }
 
-export type ReplayControlsProps = {
+export type TurnPickerProps = {
 	turns: ReplayTurn[]
-	copy: ReplayCopy
+	copy: PipelineCopy["picker"]
 	selected: ReplayId
 	running: boolean
 	onSelect: (id: ReplayId) => void

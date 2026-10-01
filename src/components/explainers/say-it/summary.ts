@@ -1,15 +1,8 @@
-import {
-	SAY_IT_CONVERSATION_TOPIC_ORDER,
-	SAY_IT_PERSONA_TOPIC,
-} from "./constants"
 import type {
 	SayItConfirmVerdict,
-	SayItConversationCardCopy,
-	SayItConversationTurn,
 	SayItCopy,
 	SayItForkOutcome,
 	SayItPhraseCopy,
-	SayItPreset,
 	SayItToolVerdict,
 	SayItVerdict,
 } from "./types"
@@ -129,64 +122,5 @@ export const forkOutcomeOf = (
 			locale,
 		),
 		note: realNode ? sentence(realNode, locale) : undefined,
-	}
-}
-
-export const presetTopicOf = (presetId: string): string =>
-	presetId.split("-").slice(1).join("-")
-
-const topicRank = (preset: SayItPreset): number => {
-	const rank = SAY_IT_CONVERSATION_TOPIC_ORDER.indexOf(presetTopicOf(preset.id))
-	return rank === -1 ? SAY_IT_CONVERSATION_TOPIC_ORDER.length : rank
-}
-
-export const conversationOrderOf = (presets: SayItPreset[]): SayItPreset[] =>
-	[...presets].sort((a, b) => topicRank(a) - topicRank(b))
-
-export const conversationTurnOf = (
-	verdict: SayItVerdict,
-	presetId: string | null,
-	copy: SayItConversationCardCopy,
-	personaSample: string,
-): SayItConversationTurn => {
-	const { conversation, phrases } = copy
-	if (verdict.kind === "miss") {
-		const topic = presetId === null ? "" : presetTopicOf(presetId)
-		if (topic === SAY_IT_PERSONA_TOPIC)
-			return {
-				kind: "chat",
-				reply: personaSample,
-				line: conversation.lines.persona,
-			}
-		return {
-			kind: "think",
-			pause: conversation.replies.pause,
-			reply: conversation.thoughts[topic] ?? conversation.replies.thought,
-			line: conversation.lines.miss,
-		}
-	}
-	if (verdict.kind === "confirm" || verdict.kind === "matchConfirm")
-		return {
-			kind: "ask",
-			reply:
-				verdict.kind === "confirm"
-					? confirmQuestionOf(verdict, phrases)
-					: toolQuestionOf(verdict, phrases),
-			confirmed:
-				conversation.replies.confirmed[verdict.domain] ??
-				conversation.replies.plain,
-			line: conversation.lines.confirm,
-		}
-	return {
-		kind: "act",
-		reply: fill(
-			conversation.replies.tools[verdict.tool] ?? conversation.replies.done,
-			{
-				...valuesOf(verdict, phrases),
-				thing: objectOf(verdict, phrases) ?? phrases.generic,
-				provider: phrases.providers[verdict.provider] ?? phrases.generic,
-			},
-		),
-		line: conversation.lines.match,
 	}
 }

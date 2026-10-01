@@ -20,12 +20,12 @@ export const contactFaqGroups: ContactFaqGroup[] = [
 
 export const contactFaqPages: Record<ContactFaqId, ContactFaqPage> = {
 	what: "technology",
-	privacy: "technology",
+	privacy: "privacy",
 	cost: "run",
 	hardware: "run",
 	offline: "technology",
 	rooms: "console",
-	internet: "run",
+	internet: "console",
 	smartHome: "technology",
 	homeAssistant: "technology",
 	skills: "console",
@@ -52,6 +52,7 @@ export const contactTextFields: ContactTextField[] = [
 	{ name: "subject", wide: true },
 	{
 		name: "message",
+		required: true,
 		multiline: true,
 		wide: true,
 		showCounter: true,

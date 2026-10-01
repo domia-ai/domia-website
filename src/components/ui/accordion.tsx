@@ -26,10 +26,13 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
 function AccordionTrigger({
 	className,
 	children,
+	heading,
 	...props
-}: AccordionPrimitive.Trigger.Props) {
+}: AccordionPrimitive.Trigger.Props & {
+	heading?: AccordionPrimitive.Header.Props["render"]
+}) {
 	return (
-		<AccordionPrimitive.Header className="flex">
+		<AccordionPrimitive.Header className="flex" render={heading}>
 			<AccordionPrimitive.Trigger
 				data-slot="accordion-trigger"
 				className={cn(

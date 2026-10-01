@@ -59,9 +59,9 @@ export function InPageNav({ items, label }: InPageNavProps) {
 			<nav
 				ref={trackRef}
 				aria-label={label}
-				className="relative mx-auto w-full max-w-7xl [scrollbar-width:none] overflow-x-auto px-4"
+				className="relative mx-auto w-full max-w-7xl [scrollbar-width:none] overflow-x-auto px-4 max-md:[mask-image:linear-gradient(to_right,black_calc(100%-2.5rem),transparent)]"
 			>
-				<ul className="flex list-none items-center gap-1 py-2">
+				<ul className="flex list-none items-center gap-1 py-2 max-md:pr-10">
 					{items.map((item) => {
 						const active = item.id === activeId
 						return (

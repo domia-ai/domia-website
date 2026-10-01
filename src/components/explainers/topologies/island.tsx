@@ -10,62 +10,18 @@ import {
 } from "@/components/explainers/shared"
 import type { TopologyScenarioId } from "@/data/types"
 
-import { badgeClassName, frameClassName, stageClassName } from "./classes"
+import { frameClassName, stageClassName } from "./classes"
 import { defaultScenario, findScenario, isScenarioId } from "./derive"
 import { LinkLayer } from "./link-layer"
 import { NodeCard } from "./node-card"
 import { OverlayLayer } from "./overlays"
 import { TopologiesStacked } from "./stacked"
-import { HintsContext, Tip } from "./tip"
-import type {
-	BadgesProps,
-	TopologiesIslandProps,
-	TopologyBadgeKey,
-	TopologyHintKey,
-} from "./types"
+import { HintsContext } from "./tip"
+import type { TopologiesIslandProps } from "./types"
 
-const badgeKeys: readonly TopologyBadgeKey[] = [
-	"local",
-	"noCloud",
-	"openSource",
-	"adapts",
-]
-
-const badgeHint: Record<TopologyBadgeKey, TopologyHintKey> = {
-	local: "badgeLocal",
-	noCloud: "badgeNoCloud",
-	openSource: "badgeOpenSource",
-	adapts: "badgeAdapts",
-}
-
-function Badges({ copy }: BadgesProps) {
-	return (
-		<ul className="flex flex-wrap gap-2">
-			{badgeKeys.map((key) => (
-				<li key={key}>
-					<Tip hint={badgeHint[key]} className={badgeClassName}>
-						{key === "local" ? (
-							<span
-								aria-hidden="true"
-								className="bg-audio size-1.5 rounded-full"
-							/>
-						) : null}
-						{copy.badges[key]}
-					</Tip>
-				</li>
-			))}
-		</ul>
-	)
-}
-
-export function TopologiesIsland({
-	data,
-	copy,
-	variant,
-}: TopologiesIslandProps) {
+export function TopologiesIsland({ data, copy }: TopologiesIslandProps) {
 	const [scenario, setScenario] = useState<TopologyScenarioId>(defaultScenario)
 	const current = findScenario(data, scenario)
-	const full = variant === "full"
 
 	const content = (
 		<div className="flex flex-col gap-6">
@@ -122,17 +78,12 @@ export function TopologiesIsland({
 					</Stage>
 				</div>
 			</ScenarioTabs>
-			{full ? <Badges copy={copy} /> : null}
-			{full ? (
-				<HintIndex
-					heading={copy.hintsHeading}
-					items={Object.values(copy.hints)}
-				/>
-			) : null}
+			<HintIndex
+				heading={copy.hintsHeading}
+				items={Object.values(copy.hints)}
+			/>
 		</div>
 	)
-
-	if (!full) return content
 
 	return (
 		<HintsContext.Provider value={copy.hints}>

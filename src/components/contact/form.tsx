@@ -16,6 +16,7 @@ import {
 import { submitContactForm } from "@/actions/contact"
 import { contactEmail } from "@/constants/landing"
 import { buildContactFormSchema } from "@/schemas"
+import type { ContactFormResponseType } from "@/types"
 
 import {
 	CONTACT_FIELD_LIMITS,
@@ -43,7 +44,9 @@ export function Form() {
 			}
 		},
 		onSubmit: async ({ value, formApi }) => {
-			const result = await submitContactForm(value)
+			const result = await submitContactForm(value).catch(
+				(): ContactFormResponseType => ({ success: false, code: "error" }),
+			)
 
 			if (result.success) {
 				formApi.reset()
@@ -75,7 +78,7 @@ export function Form() {
 						<TypographyP className="text-muted-foreground">
 							{t("toasts.sent.description")}
 						</TypographyP>
-						<Button variant="outline" onClick={sendAnother}>
+						<Button variant="outline" autoFocus onClick={sendAnother}>
 							{t("sendAnother")}
 						</Button>
 					</div>
@@ -85,12 +88,13 @@ export function Form() {
 			{sent ? null : (
 				<form
 					noValidate
+					method="post"
 					aria-labelledby="contact-form-title"
 					className="flex flex-col gap-6"
 					onSubmit={(event) => {
 						event.preventDefault()
 						event.stopPropagation()
-						form.handleSubmit()
+						void form.handleSubmit()
 					}}
 				>
 					<TypographySmall className="text-muted-foreground">
@@ -149,6 +153,11 @@ export function Form() {
 					<TypographySmall className="text-muted-foreground">
 						{t("privacy")}
 					</TypographySmall>
+					<noscript>
+						<TypographySmall className="text-muted-foreground">
+							{t("noscript", { email: contactEmail })}
+						</TypographySmall>
+					</noscript>
 				</form>
 			)}
 		</div>

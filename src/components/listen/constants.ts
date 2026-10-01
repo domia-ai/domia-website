@@ -1,4 +1,8 @@
-export const LISTEN_DEFAULT_LIMIT = 6
+export const LISTEN_HOME_FEATURED = [
+	"evening-intro",
+	"evening-recommend",
+	"evening-guest-wifi",
+]
 
 export const LISTEN_FALLBACK_TTFA_MS = 800
 

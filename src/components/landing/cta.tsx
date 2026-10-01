@@ -1,5 +1,7 @@
 import { getTranslations } from "next-intl/server"
 
+import { githubUrl } from "@/constants"
+
 import { LinkButton, Section } from "@/components/sections"
 import { GithubIcon } from "@/components/landing/icons"
 import { DemoLink } from "@/components/landing/demo-link"
@@ -23,7 +25,7 @@ export async function Cta() {
 					</LinkButton>
 					<DemoLink variant="secondary" size="lg" label={t("demo")} />
 				</div>
-				<LinkButton href="https://github.com/domia-ai" variant="link">
+				<LinkButton href={githubUrl} variant="link">
 					<GithubIcon data-icon="inline-start" aria-hidden="true" />
 					{t("github")}
 				</LinkButton>

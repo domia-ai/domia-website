@@ -9,17 +9,20 @@ export type ListenCopy = {
 	paths: Record<TurnPath, string>
 	rooms: Record<TurnRoom, string>
 	firstAudio: string
-	replayNote: string
+	locale: string
+	more: string
+	less: string
 }
 
 export type ListenSectionProps = {
 	video?: string
 	tone?: "base" | "alt"
-	limit?: number
+	featured?: string[]
 }
 
 export type ListenStripProps = {
 	turns: Turn[]
+	visibleCount: number
 	copy: ListenCopy
 }
 
@@ -27,6 +30,7 @@ export type TurnCardProps = {
 	turn: Turn
 	copy: ListenCopy
 	phase: ListenPhase
+	prominent?: boolean
 	onToggle: () => void
 }
 
