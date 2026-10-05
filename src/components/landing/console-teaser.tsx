@@ -8,10 +8,7 @@ import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { TypographyH2, TypographyLarge } from "@/components/ui/typography"
 
-import {
-	CONSOLE_OVERVIEW_CROP,
-	CONSOLE_SCREENSHOT_SIZES,
-} from "./console-teaser-constants"
+import { CONSOLE_OVERVIEW_CROP, CONSOLE_SCREENSHOT_SIZES } from "./constants"
 import type { ImageCrop } from "./types"
 
 const percent = (value: number, total: number) => `${(value / total) * 100}%`

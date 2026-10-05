@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security problem
+    url: https://github.com/domia-ai/domia-website/security/advisories/new
+    about: Report a vulnerability privately. Never open a public issue for it.
+  - name: A problem with Domia itself
+    url: https://github.com/domia-ai/domia-core/issues/new/choose
+    about: This repository is only the website. Report product problems in domia-core.

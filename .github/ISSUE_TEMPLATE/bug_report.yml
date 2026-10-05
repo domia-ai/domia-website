@@ -1,0 +1,32 @@
+name: Something is wrong on the site
+description: A broken page, a wrong or unclear statement, a translation or accessibility problem
+labels: ["bug"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Page
+      description: The URL, including the language.
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of problem
+      options:
+        - Wrong or outdated statement
+        - Wording or translation
+        - Layout or display
+        - Audio or video
+        - Accessibility
+        - Contact form
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong and what it should be
+      description: A screenshot helps. For display problems, say the device and browser.
+    validations:
+      required: true

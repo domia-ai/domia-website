@@ -1,0 +1,17 @@
+name: Suggestion
+description: Propose a change to what the site shows or explains
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is missing or hard to understand
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you propose
+      description: The site only describes what Domia already does; if this is about a capability that does not exist yet, propose it in domia-core instead.
+    validations:
+      required: true
