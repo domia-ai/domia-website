@@ -211,12 +211,12 @@
 	},
 	"meta": {
 		"home": {
-			"title": "Domia — Asistente de voz local en tu hardware",
-			"description": "Asistente de voz 100% local para cualquier espacio. Corre en tu hardware con los modelos que elijas. Home Assistant vía MCP. Sin nube ni cuentas.",
-			"ogTitle": "Domia — Asistente de voz local en tu hardware",
-			"ogDescription": "Asistente de voz 100% local para cualquier espacio. Corre en tu hardware con los modelos que elijas. Home Assistant vía MCP. Sin nube ni cuentas.",
+			"title": "Domia — Agente de voz local en tu hardware",
+			"description": "Agente de voz 100% local para cualquier espacio. Corre en tu hardware con los modelos que elijas. Home Assistant vía MCP. Sin nube ni cuentas.",
+			"ogTitle": "Domia — Agente de voz local en tu hardware",
+			"ogDescription": "Agente de voz 100% local para cualquier espacio. Corre en tu hardware con los modelos que elijas. Home Assistant vía MCP. Sin nube ni cuentas.",
 			"ogImageAlt": "Domia, un agente de voz local de código abierto que funciona en tu propio hardware",
-			"twitterDescription": "Asistente de voz 100% local para cualquier espacio. Corre en tu hardware con los modelos que elijas. Home Assistant vía MCP. Sin nube ni cuentas.",
+			"twitterDescription": "Agente de voz 100% local para cualquier espacio. Corre en tu hardware con los modelos que elijas. Home Assistant vía MCP. Sin nube ni cuentas.",
 			"breadcrumb": "Inicio"
 		},
 		"technology": {
