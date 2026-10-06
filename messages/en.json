@@ -211,12 +211,12 @@
 	},
 	"meta": {
 		"home": {
-			"title": "Domia: a local voice agent on hardware you own",
-			"description": "An open-source voice agent that runs on hardware you own. It talks with you, remembers you and acts through the skills you connect. No cloud.",
-			"ogTitle": "Domia: a local voice agent on hardware you own",
-			"ogDescription": "An open-source voice agent that runs on hardware you own. It talks with you, remembers you and acts through the skills you connect. No cloud.",
+			"title": "Domia — Local voice agent on hardware you own",
+			"description": "A fully local voice agent for any space. Runs on your hardware with the models you choose. Connect Home Assistant via MCP. No cloud, no accounts.",
+			"ogTitle": "Domia — Local voice agent on hardware you own",
+			"ogDescription": "A fully local voice agent for any space. Runs on your hardware with the models you choose. Connect Home Assistant via MCP. No cloud, no accounts.",
 			"ogImageAlt": "Domia, an open-source local voice agent that runs on your own hardware",
-			"twitterDescription": "An open-source voice agent that runs on hardware you own. It talks with you, remembers you and acts through the skills you connect. No cloud.",
+			"twitterDescription": "A fully local voice agent for any space. Runs on your hardware with the models you choose. Connect Home Assistant via MCP. No cloud, no accounts.",
 			"breadcrumb": "Home"
 		},
 		"technology": {
