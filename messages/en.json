@@ -235,8 +235,8 @@
 			"breadcrumb": "Run it"
 		},
 		"about": {
-			"title": "About Domia: local-first voice AI",
-			"description": "Why Domia exists, the principles behind it and how to join: an open-source voice agent that runs on hardware you own, built in public.",
+			"title": "About Domia — Local voice agent",
+			"description": "Domia is a fully local voice agent for any space. Hardware and model agnostic. Home Assistant via MCP. No cloud, no accounts.",
 			"breadcrumb": "About"
 		},
 		"contact": {
