@@ -235,8 +235,8 @@
 			"breadcrumb": "Ponla en marcha"
 		},
 		"about": {
-			"title": "Sobre Domia: IA de voz local",
-			"description": "Por qué existe Domia, los principios que la guían y cómo sumarte: un agente de voz de código abierto que funciona en tu hardware, hecho en público.",
+			"title": "Acerca de Domia — Agente de voz local",
+			"description": "Domia es un agente de voz 100% local para cualquier espacio. Agnóstico a hardware y modelo. Home Assistant vía MCP. Sin nube ni cuentas.",
 			"breadcrumb": "Acerca de"
 		},
 		"contact": {
