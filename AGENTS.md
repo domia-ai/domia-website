@@ -101,6 +101,7 @@ These decide what the site may say. They matter more than any style preference.
 - An agent working in a maintainer's checkout does not commit, push, amend, rebase or tag unless asked in that conversation: it leaves the work in the tree and says what changed. (A contributor working on their own fork commits to their own branch as usual — see `CONTRIBUTING.md`.)
 - No destructive commands (`reset --hard`, `checkout --` over someone's changes, force push) without an explicit request.
 - No `Co-Authored-By` lines and no tool attribution in commit messages or pull requests.
+- When an agent or cloud coding session commits for the org, set both author and committer to `domia-admin` ([github.com/domia-admin](https://github.com/domia-admin)). Do not keep tool defaults (`Claude`, etc.). Configure git user in the session that commits — local box settings do not reach Claude cloud VMs.
 - Commit messages follow `COMMITS.md`.
 
 ## Never
